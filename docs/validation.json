@@ -1,0 +1,120 @@
+{
+  "core": {
+    "passed": true,
+    "tests": [
+      "uniform cusp sampling",
+      "asymmetric triangular/trapezoidal timing",
+      "complex/NaN/Inf rejection",
+      "planner failure",
+      "modulo heading",
+      "collision frame denominator"
+    ]
+  },
+  "cg": {
+    "passed": true,
+    "relative_errors": [
+      1.041296670974872e-10,
+      1.1085218633335201e-10
+    ]
+  },
+  "tracker": {
+    "passed": true,
+    "duration_s": 4.008934997876978,
+    "pose_defect": 7.875025076486963e-10,
+    "terminal_error": [
+      -1.6354775222993112e-07,
+      0,
+      4.898587196589413e-16
+    ],
+    "blocked_collision_percent": 90.57356608478803
+  },
+  "code_analyzer": [
+    {
+      "file": "common/+parking/CheckCase.m",
+      "messages": {
+        "id": "AGROW",
+        "message": "变量的大小似乎在每个循环迭代都会更改。请考虑进行预分配以提升速度。",
+        "fix": 0,
+        "line": 19,
+        "column": [
+          56,
+          59
+        ]
+      }
+    },
+    {
+      "file": "common/+parking/SearchHybridAStar.m",
+      "messages": [
+        {
+          "id": "AGROW",
+          "message": "变量的大小似乎在每个循环迭代都会更改。请考虑进行预分配以提升速度。",
+          "fix": 0,
+          "line": 29,
+          "column": [
+            42,
+            45
+          ]
+        },
+        {
+          "id": "AGROW",
+          "message": "变量的大小似乎在每个循环迭代都会更改。请考虑进行预分配以提升速度。",
+          "fix": 0,
+          "line": 29,
+          "column": [
+            55,
+            62
+          ]
+        },
+        {
+          "id": "SPRIX",
+          "message": "此稀疏索引表达式可能速度较慢。",
+          "fix": 0,
+          "line": 71,
+          "column": [
+            13,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "file": "evaluation/+cpe/ValidateResult.m",
+      "messages": {
+        "id": "ASGLU",
+        "message": "赋给变量的值可能未使用。请考虑改用 ~ 替换该变量。",
+        "fix": 1,
+        "line": 44,
+        "column": [
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "file": "planners/HA_CG/+hacg/ConjugateGradient.m",
+      "messages": {
+        "id": "NASGU",
+        "message": "赋给变量的值可能未使用。",
+        "fix": 0,
+        "line": 5,
+        "column": [
+          34,
+          37
+        ]
+      }
+    },
+    {
+      "file": "planners/HA_CG/+hacg/Smooth.m",
+      "messages": {
+        "id": "ASGLU",
+        "message": "赋给变量的值可能未使用。请考虑改用 ~ 替换该变量。",
+        "fix": 1,
+        "line": 38,
+        "column": [
+          14,
+          15
+        ]
+      }
+    }
+  ]
+}
