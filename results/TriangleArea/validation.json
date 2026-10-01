@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 4,
+  "evaluation_success_count": 4,
+  "terminal_reached_count": 0,
+  "maximum_printed_model_collocation_defect": 1.0330644786837873E-7,
+  "minimum_node_triangle_area_excess": 0.0099999088401734326,
+  "native_node_collision_counts": [
+    null,
+    null,
+    0,
+    0,
+    null,
+    0,
+    null,
+    null,
+    null,
+    0,
+    null,
+    null
+  ],
+  "model_difference": "Printed front-reference dynamics are not equivalent to the benchmark rear-reference bicycle model."
+}
