@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "cases": 12,
+  "maximum_forward_euler_defect": 1.062575891164208E-8,
+  "disc_counts": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    128,
+    32,
+    2,
+    18,
+    32,
+    50,
+    18
+  ],
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 12,
+  "collision_free_frame_count": 12
+}

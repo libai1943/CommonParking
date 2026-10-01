@@ -3,11 +3,13 @@ function result = SolveCase(name,c)
 name = upper(string(name));
 switch name
     case {"HA_CG","HA+CG"}
-        canonical = 'HA_CG'; planner = @hacg.Plan;
+        canonical = 'HA_CG'; planner = @hacg.Plan;kind='path';
+    case "STC"
+        canonical = 'STC'; planner = @stc.Plan;kind='trajectory';
     otherwise
         error('CommonParking:UnknownPlanner','Unknown released planner: %s',name);
 end
-result = cp.EmptyResult(canonical,c.id,'path');
+result = cp.EmptyResult(canonical,c.id,kind);
 try
     result = planner(c);
 catch problem

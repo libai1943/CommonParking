@@ -1,0 +1,33 @@
+# Li et al., ECC 2020: first-order EXPLICIT Runge-Kutta (forward Euler),
+# fixed safe travel corridors and minimum terminal time. Generalized discs.
+param N integer >= 3;
+param D integer >= 2;
+param lw;param vmax;param amax;param phimax;param wmax;
+param boundary{1..6};param offset{1..D,1..2};
+param box{1..N,1..D,1..4};param max_time;
+var tf >= .1, <= max_time;
+var x{1..N};var y{1..N};var theta{1..N};
+var v{1..N} >= -vmax, <= vmax;
+var phi{1..N} >= -phimax, <= phimax;
+var a{1..N} >= -amax, <= amax;
+var w{1..N} >= -wmax, <= wmax;
+var cx{i in 1..N,j in 1..D}=x[i]+offset[j,1]*cos(theta[i])-offset[j,2]*sin(theta[i]);
+var cy{i in 1..N,j in 1..D}=y[i]+offset[j,1]*sin(theta[i])+offset[j,2]*cos(theta[i]);
+minimize time: tf;
+subject to dx{i in 1..N-1}: x[i+1]=x[i]+tf/(N-1)*v[i]*cos(theta[i]);
+subject to dy{i in 1..N-1}: y[i+1]=y[i]+tf/(N-1)*v[i]*sin(theta[i]);
+subject to dtheta{i in 1..N-1}: theta[i+1]=theta[i]+tf/(N-1)*v[i]*tan(phi[i])/lw;
+subject to dv{i in 1..N-1}: v[i+1]=v[i]+tf/(N-1)*a[i];
+subject to dphi{i in 1..N-1}: phi[i+1]=phi[i]+tf/(N-1)*w[i];
+subject to corridor_x{i in 1..N,j in 1..D}: box[i,j,1]<=cx[i,j]<=box[i,j,2];
+subject to corridor_y{i in 1..N,j in 1..D}: box[i,j,3]<=cy[i,j]<=box[i,j,4];
+subject to start_x:x[1]=boundary[1];
+subject to start_y:y[1]=boundary[2];
+subject to start_theta:theta[1]=boundary[3];
+subject to finish_x:x[N]=boundary[4];
+subject to finish_y:y[N]=boundary[5];
+subject to finish_theta:theta[N]=boundary[6];
+subject to start_v:v[1]=0;subject to finish_v:v[N]=0;
+subject to start_phi:phi[1]=0;subject to finish_phi:phi[N]=0;
+subject to start_a:a[1]=0;subject to finish_a:a[N]=0;
+subject to start_w:w[1]=0;subject to finish_w:w[N]=0;
