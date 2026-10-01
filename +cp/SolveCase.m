@@ -6,6 +6,8 @@ switch name
         canonical = 'HA_CG'; planner = @hacg.Plan;kind='path';
     case "STC"
         canonical = 'STC'; planner = @stc.Plan;kind='trajectory';
+    case "BIRRT_HC"
+        canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"
         canonical = 'TriangleArea'; planner = @triangle.Plan;kind='trajectory';
     case "BOMP"

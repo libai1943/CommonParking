@@ -1,0 +1,131 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 11,
+  "evaluation_success_count": 11,
+  "terminal_reached_count": 5,
+  "independent_checks": [
+    {
+      "endpoint_quadrature_error": 1.8873791418627661E-15,
+      "reverse_traversal_error": 3.1086244689504383E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 5,
+      "path_length": 14.429608625043166,
+      "absolute_curvature_integral": 4.3406755998227462,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.18218721112036818,
+      "dense_reference_collision_percent": 0
+    },
+    {},
+    {
+      "endpoint_quadrature_error": 2.2204460492503131E-15,
+      "reverse_traversal_error": 3.3306690738754696E-16,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 2,
+      "path_length": 14.068009200818615,
+      "absolute_curvature_integral": 1.6158371487844596,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.34381097362191726,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 1.5543122344752192E-15,
+      "reverse_traversal_error": 4.4408920985006262E-16,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 3,
+      "path_length": 25.454529254039464,
+      "absolute_curvature_integral": 3.9155600528293717,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.14852775166208632,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 2.6090241078691179E-15,
+      "reverse_traversal_error": 4.4408920985006262E-16,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 2,
+      "path_length": 10.917725794788446,
+      "absolute_curvature_integral": 2.0173660709702714,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.10233846751872565,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 1.7763568394002505E-15,
+      "reverse_traversal_error": 1.7763568394002505E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 4,
+      "path_length": 19.593254339179165,
+      "absolute_curvature_integral": 2.4303903961556519,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.15178320404196874,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 9.6034291630076041E-15,
+      "reverse_traversal_error": 3.9968028886505635E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 12,
+      "path_length": 31.115547685463628,
+      "absolute_curvature_integral": 5.4300451881968055,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.13067598677749526,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 1.4710455076283324E-15,
+      "reverse_traversal_error": 3.5527136788005009E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 6,
+      "path_length": 18.224160071338353,
+      "absolute_curvature_integral": 4.6675791386166594,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.15824411026648855,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 8.5487172896137054E-15,
+      "reverse_traversal_error": 1.1102230246251565E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 3,
+      "path_length": 26.921392034087344,
+      "absolute_curvature_integral": 5.56467090627568,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.18070850090611981,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 1.7763568394002505E-15,
+      "reverse_traversal_error": 1.5987211554602254E-14,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 14,
+      "path_length": 40.51197817239018,
+      "absolute_curvature_integral": 7.0842112759751714,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.21410915206886785,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 1.7763568394002505E-15,
+      "reverse_traversal_error": 2.2204460492503131E-15,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 4,
+      "path_length": 19.72113269069683,
+      "absolute_curvature_integral": 2.0507791057301121,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.4238697432324528,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "endpoint_quadrature_error": 8.2156503822261584E-15,
+      "reverse_traversal_error": 8.8817841970012523E-16,
+      "same_gear_curvature_jump": 0,
+      "gear_changes": 7,
+      "path_length": 21.496791856339996,
+      "absolute_curvature_integral": 3.6499149114788114,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_clearance_m": 0.11079341170270404,
+      "dense_reference_collision_percent": 0
+    }
+  ]
+}
