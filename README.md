@@ -17,7 +17,7 @@ save('my_result.mat','result','evaluation');   % explicit output destination
 
 `RunMe.m` shows the separate loading, planning, evaluation and plotting steps. `RunPlanner` itself neither saves files nor opens plots. Its only inputs are a method name and an integer case ID from 1 to 12. Algorithm settings are inside each planner's `Config.m`. Public `result` objects have exactly two possible kinds: `path` or `trajectory`; see [the complete result contract](docs/RESULT_FORMAT.md).
 
-MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for Reeds-Shepp and Dubins primitives. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, H-OBCA, TriangleArea, BOMP and evaluation need a separately installed AMPL/Ipopt runtime:
+MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for Reeds-Shepp and Dubins primitives. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, LIOM, H-OBCA, TriangleArea, BOMP and evaluation need a separately installed AMPL/Ipopt runtime:
 
 ```matlab
 setpref('CommonParking','AmplDirectory','path/to/your/ampl-and-ipopt-folder');
@@ -60,11 +60,12 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [LIOM](planners/LIOM/README.md) (`LIOM`) | Trajectory | Li et al., TITS 2022; fault-tolerant initialization and multi-disc extension | Implemented and tested on all 12 cases |
 | [BiRRT* + HC-Steer](planners/BiRRT_HC/README.md) (`BiRRT_HC`) | Path | Banzhaf et al., ITSC 2017; authors' HC±± geometry | Implemented and tested on all 12 cases |
 | [BOMP](planners/BOMP/README.md) (`BOMP`) | Trajectory | Shi et al., IJIRA 2019; 15-node pseudospectral MAKKT | Implemented and tested on all 12 cases |
 | [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; literal printed-model transcription | 12 cases tested; model distinction documented |
 
-Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priorities are LIOM and tightly coupled lattice planning with optimal control. At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
+Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priority is tightly coupled lattice planning with optimal control. At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
 
 ## HA+CG: measured results
 
@@ -228,3 +229,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/BiRRT_HC/metrics.csv) · [JSON](results/BiRRT_HC/metrics.json) · [validation](results/BiRRT_HC/validation.json).
 <!-- /results:BiRRT_HC -->
+
+<!-- results:LIOM -->
+## LIOM: measured results
+
+The paper's fault-tolerant initialization, fixed 1e9 penalty, 51 states (50 intervals) and iterative corridor reconstruction are retained, with the requested full-body multi-disc extension. 9/12 calls passed both the native solve flag and the paper infeasibility threshold; 9 evaluator calls succeeded and 4 executions attained the terminal tolerance. Long-duration local solutions and failures remain in the table; no global time-optimality claim is made. Independent checks recomputed every accepted penalty component, objective, corridor geometry and hard bounds. See [the complete paper mapping and numerical settings](planners/LIOM/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 33.9847 | 0 | yes | 123.1058 | 4.0606 | 26.5106 | 9 | 350.7120 | no |
+| 02 | no | no | 1021.2213 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 26.5475 | 0 | yes | 11.4635 | 9.5801 | 1.7384 | 2 | 123.1845 | no |
+| 04 | yes | yes | 7.1940 | 0 | no | 14.5930 | 7.8905 | 2.1156 | 3 | 115.0603 | no |
+| 05 | yes | yes | 75.6834 | 0 | no | 12.4712 | 7.6956 | 2.2545 | 2 | 109.5008 | no |
+| 06 | no | no | 768.6065 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 51.4130 | 0 | yes | 11.1934 | 7.2629 | 2.1998 | 1 | 99.6268 | no |
+| 08 | yes | yes | 7.1454 | 0 | no | 31.7136 | 5.4020 | 9.0605 | 10 | 194.6253 | no |
+| 09 | yes | yes | 69.8413 | 0 | yes | 32.8238 | 7.8812 | 7.8397 | 4 | 177.2083 | no |
+| 10 | no | no | 1233.4159 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 92.6447 | 0 | no | 17.2039 | 10.9135 | 3.5026 | 4 | 164.1607 | no |
+| 12 | yes | yes | 12.0446 | 0 | no | 50.2205 | 7.8552 | 10.7869 | 3 | 201.4210 | no |
+
+[CSV](results/LIOM/metrics.csv) · [JSON](results/LIOM/metrics.json) · [validation](results/LIOM/validation.json).
+<!-- /results:LIOM -->
