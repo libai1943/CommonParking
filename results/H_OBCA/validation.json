@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "cases": 12,
+  "maximum_rk2_defect": 2.4972180232868056E-8,
+  "minimum_node_clearance": 0.049999828251275691,
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 4,
+  "collision_free_frame_count": 10
+}

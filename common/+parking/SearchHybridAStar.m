@@ -7,7 +7,8 @@ defaults=struct('xyResolution',0.2,'thetaResolution',pi/36,'step',0.5, ...
     'collisionStep',0.04,'clearance',0.12,'heuristicWeight',1.0, ...
     'switchPenalty',1.5,'reversePenalty',0.05,'maxExpanded',100000,'maxSeconds',180, ...
     'analyticEvery',5,'steeringSamples',3, ...
-    'variableStep',true,'stepScale',0.1,'maximumStep',1.0);
+    'variableStep',true,'stepScale',0.1,'maximumStep',1.0, ...
+    'returnPartial',false,'steeringChangePenalty',0,'nonholonomicHeuristic',true);
 keys=fieldnames(defaults);
 for j=1:numel(keys), if ~isfield(opt,keys{j}),opt.(keys{j})=defaults.(keys{j});end,end
 v=c.vehicle; t=c.task; start=[t.x0 t.y0 t.theta0]; goal=[t.xf t.yf t.thetaf];
@@ -24,7 +25,8 @@ nt=ceil(2*pi/opt.thetaResolution); best=sparse(prod(dims)*nt*2,1);
 % Immutable node records avoid corrupting descendants when a cell improves.
 cap=600000; Q=zeros(cap,3); G=inf(cap,1); parent=zeros(cap,1); prim=zeros(cap,2); dir=zeros(cap,1);
 Q(1,:)=start; G(1)=0; count=1; expanded=0; open=1; priority=0;
-finish=0; tail=[]; clock=tic;
+finish=0; tail=zeros(0,2); clock=tic;bestPartial=1;bestRemaining=inf;
+if opt.returnPartial,[~,remaining]=connect(rs,start,goal);bestRemaining=remaining(1);end
 while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
     [~,pos]=min(priority); cur=open(pos);open(pos)=[];priority(pos)=[];
     q0=Q(cur,:); key=index(q0,max(dir(cur),-1));
@@ -55,11 +57,12 @@ while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
             sample=parking.IntegratePrimitive(q0,linspace(0,signed,ceil(step/opt.collisionStep)+1),kap);
             q1=sample(end,:);
             if any(q1(1:2)<lower)||any(q1(1:2)>upper),continue;end
-            ng=G(cur)+step*(1+opt.reversePenalty*(direction<0))+opt.switchPenalty*(dir(cur)~=0 && dir(cur)~=direction);
+            ng=G(cur)+step*(1+opt.reversePenalty*(direction<0))+opt.switchPenalty*(dir(cur)~=0 && dir(cur)~=direction) ...
+                +opt.steeringChangePenalty*abs(atan(v.lw*kap)-atan(v.lw*prim(cur,2)));
             key=index(q1,direction);
             if best(key)>0 && ng>=best(key)-1e-9,continue;end
             if ~parking.FootprintClearance(sample,c,opt.clearance),continue;end
-            [~,h]=connect(rs,q1,goal);
+            if opt.nonholonomicHeuristic,[~,h]=connect(rs,q1,goal);else,h=norm(q1(1:2)-goal(1:2));end
             ij=round((q1(1:2)-H.lower)/H.ds)+1;
             if all(ij>=1)&&ij(1)<=H.nx&&ij(2)<=H.ny
                 dh=H.distance(ij(1)+(ij(2)-1)*H.nx);
@@ -68,6 +71,7 @@ while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
             count=count+1;
             if count>cap,error('Search storage capacity exceeded.');end
             Q(count,:)=q1;G(count)=ng;parent(count)=cur;prim(count,:)=[signed kap];dir(count)=direction;
+            if opt.returnPartial && h(1)<bestRemaining,bestRemaining=h(1);bestPartial=count;end
             best(key)=ng+eps;open(end+1)=count;priority(end+1)=ng+opt.heuristicWeight*h(1); %#ok<AGROW>
         end
     end
@@ -75,8 +79,12 @@ end
 result=struct('success',finish>0,'expanded',expanded,'runtime',toc(clock),'options',opt);
 result.heuristic_setup_time=setupTime;result.reference='Dolgov et al.2010, Dolgov et al. (2010), Sec.2';
 result.search_bounds=[lower;upper];
-if finish==0,result.primitives=zeros(0,2);return;end
-p=[];cur=finish;
+result.partial=false;
+if finish==0
+    if ~opt.returnPartial,result.primitives=zeros(0,2);return;end
+    finish=bestPartial;result.partial=true;result.partial_endpoint=Q(finish,:);
+end
+p=zeros(0,2);cur=finish;
 while parent(cur)>0,p=[prim(cur,:);p];cur=parent(cur);end %#ok<AGROW>
 result.primitives=[p;tail];
 [result.poses,result.direction,result.curvature,result.signed_step]=parking.SamplePrimitives(start,result.primitives,0.02);
