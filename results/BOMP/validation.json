@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 2,
+  "evaluation_success_count": 2,
+  "terminal_reached_count": 0,
+  "independent_checks": [
+    {},
+    {},
+    {},
+    {},
+    {
+      "pseudospectral_defect": 1.9606898504775927E-7,
+      "primal_residual": 1.2030337859236795E-7,
+      "stationarity_squared": 0.0001000100932727706,
+      "complementarity": 0.00010019932287541071,
+      "relaxation": 0.0001,
+      "minimum_relaxed_pseudodistance": 0.050100019945044295,
+      "minimum_independent_J2": 0.049961359352174488,
+      "native_node_collision_count": 0,
+      "reference_sample_collision_percent": 0,
+      "reference_peak_acceleration": 9.2438369838167453,
+      "reference_peak_steering": 0.83885989100881708
+    },
+    {},
+    {},
+    {},
+    {
+      "pseudospectral_defect": 2.270615544475163E-7,
+      "primal_residual": 1.6593667417907909E-7,
+      "stationarity_squared": 1.0010036308320078E-5,
+      "complementarity": 1.0127963550876653E-5,
+      "relaxation": 9.9999999999999991E-6,
+      "minimum_relaxed_pseudodistance": 0.050010019991689234,
+      "minimum_independent_J2": 0.049999321334200618,
+      "native_node_collision_count": 0,
+      "reference_sample_collision_percent": 11.696522655426765,
+      "reference_peak_acceleration": 7.3912615914109132,
+      "reference_peak_steering": 0.92728227668247454
+    },
+    {},
+    {},
+    {}
+  ]
+}

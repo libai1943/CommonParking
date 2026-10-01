@@ -17,7 +17,7 @@ save('my_result.mat','result','evaluation');   % explicit output destination
 
 `RunMe.m` shows the separate loading, planning, evaluation and plotting steps. `RunPlanner` itself neither saves files nor opens plots. Its only inputs are a method name and an integer case ID from 1 to 12. Algorithm settings are inside each planner's `Config.m`. Public `result` objects have exactly two possible kinds: `path` or `trajectory`; see [the complete result contract](docs/RESULT_FORMAT.md).
 
-MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for Reeds-Shepp and Dubins primitives. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, H-OBCA, TriangleArea and evaluation need a separately installed AMPL/Ipopt runtime:
+MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for Reeds-Shepp and Dubins primitives. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, H-OBCA, TriangleArea, BOMP and evaluation need a separately installed AMPL/Ipopt runtime:
 
 ```matlab
 setpref('CommonParking','AmplDirectory','path/to/your/ampl-and-ipopt-folder');
@@ -58,9 +58,10 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [BOMP](planners/BOMP/README.md) (`BOMP`) | Trajectory | Shi et al., IJIRA 2019; 15-node pseudospectral MAKKT | Implemented and tested on all 12 cases |
 | [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; literal printed-model transcription | 12 cases tested; model distinction documented |
 
-Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priorities are the LIOM and BOMP methods, followed by Hybrid Curvature Steer with BiRRT* and tightly coupled lattice planning with optimal control. At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
+Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priorities are LIOM, followed by Hybrid Curvature Steer with BiRRT* and tightly coupled lattice planning with optimal control. At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
 
 ## HA+CG: measured results
 
@@ -174,3 +175,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/TriangleArea/metrics.csv) · [JSON](results/TriangleArea/metrics.json) · [validation](results/TriangleArea/validation.json).
 <!-- /results:TriangleArea -->
+
+<!-- results:BOMP -->
+## BOMP: measured results
+
+The original constant initial guess, 15-node pseudospectral mesh and decreasing MAKKT relaxation are retained. Cases 5 and 9 reached native convergence; their evaluator calls succeeded, but both had replay collisions and terminal error outside tolerance. The remaining native failures are reported without fabricated scores. Independent checks verified the successful outputs' discrete model and MAKKT constraints; the dense reference steering peaks were 0.839 and 0.927 rad, exceeding the 0.7 rad node bound, and peak accelerations were 9.24 and 7.39 m/s². **The paper does not constrain acceleration, and the coarse global polynomial can overshoot between nodes.** These results concern this specified mesh and implementation. See [the paper mapping and numerical choices](planners/BOMP/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 20.6546 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 22.6278 | — | — | — | — | — | — | — | — |
+| 03 | no | no | 9.2312 | — | — | — | — | — | — | — | — |
+| 04 | no | no | 22.2790 | — | — | — | — | — | — | — | — |
+| 05 | yes | yes | 12.2742 | 3.6067 | no | 48.9351 | 3.5809 | 11.4059 | 8 | 189.8681 | yes |
+| 06 | no | no | 41.5762 | — | — | — | — | — | — | — | — |
+| 07 | no | no | 46.1693 | — | — | — | — | — | — | — | — |
+| 08 | no | no | 45.6169 | — | — | — | — | — | — | — | — |
+| 09 | yes | yes | 33.3294 | 11.9561 | no | 56.0535 | 6.4203 | 15.3674 | 9 | 262.8766 | yes |
+| 10 | no | no | 30.2631 | — | — | — | — | — | — | — | — |
+| 11 | no | no | 77.7122 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 40.7007 | — | — | — | — | — | — | — | — |
+
+[CSV](results/BOMP/metrics.csv) · [JSON](results/BOMP/metrics.json) · [validation](results/BOMP/validation.json).
+<!-- /results:BOMP -->

@@ -8,6 +8,8 @@ switch name
         canonical = 'STC'; planner = @stc.Plan;kind='trajectory';
     case "TRIANGLEAREA"
         canonical = 'TriangleArea'; planner = @triangle.Plan;kind='trajectory';
+    case "BOMP"
+        canonical = 'BOMP'; planner = @bomp.Plan;kind='trajectory';
     case {"H_OBCA","OBCA"}
         canonical = 'H_OBCA'; planner = @hobca.Plan;kind='trajectory';
     otherwise
