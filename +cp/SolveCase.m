@@ -28,6 +28,8 @@ switch name
         canonical = 'SE2_NMPC'; planner = @se2mpc.Plan;kind='trajectory';
     case "WGRRT"
         canonical = 'WGRRT'; planner = @wgrrt.Plan;kind='path';
+    case "OSEHS"
+        canonical = 'OSEHS'; planner = @osehs.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"

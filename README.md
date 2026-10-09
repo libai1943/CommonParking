@@ -70,6 +70,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
 | [Waypoint-guided two-stage RRT](planners/WGRRT/README.md) (`WGRRT`) | Path | Wang, Jha & Akemi, CASE 2017; geometric exploration, guided bi-RRT and value iteration | Implemented and tested on all 12 cases |
 | [SE(2)-aware nonlinear MPC](planners/SE2_NMPC/README.md) (`SE2_NMPC`) | Trajectory | Roesmann, Makarow & Bertram, ECC 2021; static quasi-time-optimal OCP realization | Implemented and tested on all 12 cases |
 | [TEB with homology exploration](planners/TEB/README.md) (`TEB`) | Trajectory | Roesmann, Hoffmann & Bertram, RAS 2017; sampled topology exploration and timed elastic bands | Implemented and tested on all 12 cases |
@@ -524,3 +525,28 @@ Planning times include all online construction, search and smoothing stages. MAT
 
 [CSV](results/WGRRT/metrics.csv) · [JSON](results/WGRRT/metrics.json) · [validation](results/WGRRT/validation.json).
 <!-- /results:WGRRT -->
+
+<!-- results:OSEHS -->
+## Orientation-aware space exploration guided search: measured results
+
+The directed-circle route and independent circle-guided kinematic search produced 10/12 native paths; 10 execution optimizations succeeded and 6 attained the terminal tolerance. Cases 2 and 5 exhausted the configured search refinements. All successful paths passed continuous full-body collision checks, while the tracked execution of case 11 had 1.98% collision frames. The 2015 six-primitive model, radius-dependent search resolution and direction-aware penalties are retained; implementation choices omitted from the article are documented. Independent checks recompute the circle geometry and search objective, integrate every primitive, and verify exact endpoint poses, cusps and mileage spacing. See [the paper mapping, finite budgets and analytic goal expansion](planners/OSEHS/README.md).
+
+Planning times include all online construction, search and any smoothing stages. MATLAB uses its default numerical-library thread setting for this geometric method. Other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 8.4350 | 0 | no | 29.5861 | 6.5967 | 9.9436 | 3 | 180.4026 | yes |
+| 02 | no | no | 183.9453 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 13.2684 | 0 | yes | 23.3247 | 2.2704 | 4.8978 | 1 | 76.6813 | no |
+| 04 | yes | yes | 7.8912 | 0 | no | 36.3722 | 2.9306 | 11.3251 | 4 | 162.5567 | yes |
+| 05 | no | no | 184.1384 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 35.3410 | 0 | yes | 49.6984 | 5.7551 | 11.7263 | 7 | 209.8145 | yes |
+| 07 | yes | yes | 4.2925 | 0 | yes | 48.4859 | 4.7186 | 12.9320 | 7 | 211.5052 | yes |
+| 08 | yes | yes | 12.4761 | 0 | no | 42.9539 | 2.8783 | 16.3579 | 5 | 217.3618 | no |
+| 09 | yes | yes | 8.8421 | 0 | no | 36.1165 | 4.1585 | 11.5107 | 3 | 171.6919 | yes |
+| 10 | yes | yes | 13.0423 | 0 | yes | 67.9864 | 4.7497 | 17.0197 | 8 | 257.6932 | yes |
+| 11 | yes | yes | 4.0159 | 1.9794 | yes | 37.3333 | 2.5401 | 8.8913 | 5 | 139.3146 | no |
+| 12 | yes | yes | 18.8324 | 0 | yes | 36.1722 | 4.3584 | 8.1884 | 2 | 135.4672 | yes |
+
+[CSV](results/OSEHS/metrics.csv) · [JSON](results/OSEHS/metrics.json) · [validation](results/OSEHS/validation.json).
+<!-- /results:OSEHS -->
