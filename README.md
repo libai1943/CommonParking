@@ -68,6 +68,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [TEB with homology exploration](planners/TEB/README.md) (`TEB`) | Trajectory | Roesmann, Hoffmann & Bertram, RAS 2017; sampled topology exploration and timed elastic bands | Implemented and tested on all 12 cases |
 | [Eta3 spline optimization](planners/Eta3/README.md) (`Eta3`) | Path | Lini, Piazzi & Consolini, CDC/ECC 2011; geometric nonlinear program with disclosed online initialization | Implemented and tested on all 12 cases |
 | [DL-IAPS + PJSO](planners/DL_IAPS_PJSO/README.md) (`DL_IAPS_PJSO`) | Trajectory | Zhou et al., RAL 2021; dual-loop path smoothing and piecewise-jerk speed QPs | Implemented and tested on all 12 cases |
 | [C-PRM](planners/CPRM/README.md) (`CPRM`) | Path | Song & Amato, IROS 2001; lazy customized roadmap and cubic smoothing | Implemented and tested on all 12 cases |
@@ -444,3 +445,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/Eta3/metrics.csv) · [JSON](results/Eta3/metrics.json) · [validation](results/Eta3/validation.json).
 <!-- /results:Eta3 -->
+
+<!-- results:TEB -->
+## Timed elastic bands in distinctive topologies: measured results
+
+The paper's sampling-based topology discovery and fixed-weight, soft-constraint LM produced 11/12 finite native outputs; 11 execution optimizations succeeded and 0 attained the terminal tolerance. **This configuration performed poorly on the terminal-parking tasks: several outputs already overlap obstacles at native nodes, and seven executions have nonzero collision percentages.** Ten static planning cycles retain the paper's four resize/optimization calls and five LM iterations per call. Native completion does not certify convergence or feasibility. These measurements concern this handwritten static adapter with the article's suggested penalty weights, not all TEB settings or the authors' complete ROS stack. The full penalty objective, positive time grid, topology exploration, selected candidate, exact output poses, LM descent history and sparse derivatives were checked independently. See [the paper equations, signed homology calculation and whole-trajectory adapter](planners/TEB/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 7.0006 | 57.3084 | no | 43.4073 | 31.9059 | 10.5404 | 33 | 589.4633 | yes |
+| 02 | yes | yes | 124.0682 | 0 | no | 45.3531 | 12.9049 | 13.4895 | 20 | 363.9433 | yes |
+| 03 | yes | yes | 5.8231 | 0 | no | 28.9049 | 9.7629 | 8.2922 | 9 | 225.5515 | yes |
+| 04 | yes | yes | 9.3074 | 0 | no | 27.0431 | 6.4456 | 7.5374 | 4 | 159.8299 | yes |
+| 05 | yes | yes | 6.5739 | 70.5149 | no | 89.5890 | 55.2758 | 17.2289 | 61 | 1030.0471 | yes |
+| 06 | yes | yes | 9.9094 | 45.0499 | no | 36.5534 | 23.6713 | 9.3345 | 11 | 385.0575 | yes |
+| 07 | no | no | 5.6947 | — | — | — | — | — | — | — | — |
+| 08 | yes | yes | 6.0059 | 46.6086 | no | 37.9767 | 26.5128 | 8.9838 | 23 | 469.9658 | yes |
+| 09 | yes | yes | 26.1409 | 46.1875 | no | 34.5298 | 20.1499 | 8.3960 | 23 | 400.4593 | yes |
+| 10 | yes | yes | 44.4696 | 80.3127 | no | 62.2922 | 55.1081 | 14.5452 | 28 | 836.5323 | yes |
+| 11 | yes | yes | 17.1053 | 0 | no | 33.8941 | 5.5014 | 6.9570 | 5 | 149.5844 | no |
+| 12 | yes | yes | 18.6970 | 65.4293 | no | 70.6080 | 41.8616 | 18.7534 | 42 | 816.1508 | yes |
+
+[CSV](results/TEB/metrics.csv) · [JSON](results/TEB/metrics.json) · [validation](results/TEB/validation.json).
+<!-- /results:TEB -->
