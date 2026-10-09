@@ -18,6 +18,8 @@ switch name
         canonical = 'LamirauxSmooth'; planner = @lamiraux.Plan;kind='path';
     case "CPRM"
         canonical = 'CPRM'; planner = @cprm.Plan;kind='path';
+    case "DL_IAPS_PJSO"
+        canonical = 'DL_IAPS_PJSO'; planner = @dliaps.Plan;kind='trajectory';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"

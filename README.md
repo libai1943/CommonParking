@@ -29,7 +29,7 @@ BiRRT* + HC-Steer needs a one-time native MATLAB module build: run `BuildHCSteer
 
 Lattice + OCP similarly needs `BuildLatticeGraph` once. Its validated offline primitive library and heuristic are included under the planner folder; offline preparation is excluded from online timing and can be reproduced using the documented builders.
 
-SLiFS additionally needs MATLAB Optimization Toolbox (`quadprog`); it has no AMPL dependency in its planner. The common evaluator still uses the external AMPL/Ipopt runtime.
+SLiFS and DL-IAPS/PJSO additionally need MATLAB Optimization Toolbox (`quadprog`); their planners have no AMPL dependency. The common evaluator still uses the external AMPL/Ipopt runtime.
 
 Saved results can be loaded uniformly with `[result,metrics,evaluationStatus] = LoadPublishedResult('LamirauxSmooth',2)`. Most are single MAT files. Two larger artifacts are stored in lossless binary chunks because of the publication transport's request-size limit; the loader checks their byte count and SHA-256 before loading a temporary MAT file outside the repository. No samples or precision are discarded. The stored result has the same standard structure as a fresh planner call.
 
@@ -66,6 +66,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [DL-IAPS + PJSO](planners/DL_IAPS_PJSO/README.md) (`DL_IAPS_PJSO`) | Trajectory | Zhou et al., RAL 2021; dual-loop path smoothing and piecewise-jerk speed QPs | Implemented and tested on all 12 cases |
 | [C-PRM](planners/CPRM/README.md) (`CPRM`) | Path | Song & Amato, IROS 2001; lazy customized roadmap and cubic smoothing | Implemented and tested on all 12 cases |
 | [Smooth canonical curves](planners/LamirauxSmooth/README.md) (`LamirauxSmooth`) | Path | Lamiraux & Laumond, TRA 2001; smooth steering and holonomic-path approximation | Implemented and tested on all 12 cases |
 | [Geometric subdivision + RS](planners/LaumondRS/README.md) (`LaumondRS`) | Path | Laumond et al., TRA 1994; recursive shortest-curve approximation and shortening | Implemented and tested on all 12 cases |
@@ -390,3 +391,28 @@ Planning times include all online construction, search and smoothing stages. MAT
 
 [CSV](results/CPRM/metrics.csv) · [JSON](results/CPRM/metrics.json) · [validation](results/CPRM/validation.json).
 <!-- /results:CPRM -->
+
+<!-- results:DL_IAPS_PJSO -->
+## DL-IAPS with piecewise-jerk speed optimization: measured results
+
+Ten calls returned trajectories and all ten passed execution optimization and attained the terminal tolerance. Case 2 exhausted the initializer's search budget; case 8 had an unsuccessful speed QP. Case 6 has a small nonzero executed collision percentage, retained in the table. The implementation follows the paper's complete quartic curvature linearization, penalty/trust-region loops and separate constant-jerk speed QPs. A uniform 20% search-curvature reserve supplies smoothing room; the optimization uses the full common vehicle limit. Independent checks recompute the discrete path constraints, full-footprint node checks, longitudinal polynomial dynamics, bounds, exact cusps and endpoint poses. These discrete constraints do not prove continuous bicycle feasibility or safety. See [the equations, endpoint-sign interpretation and differences from the Apollo source snapshot](planners/DL_IAPS_PJSO/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 4.3112 | 0 | yes | 21.8958 | 3.7957 | 4.8320 | 2 | 96.2765 | no |
+| 02 | no | no | 182.8249 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 17.6811 | 0 | yes | 15.2711 | 6.4778 | 2.4219 | 1 | 93.9978 | no |
+| 04 | yes | yes | 7.4755 | 0 | yes | 17.6826 | 5.2086 | 3.5917 | 1 | 93.0027 | no |
+| 05 | yes | yes | 4.1344 | 0 | yes | 15.4969 | 5.8138 | 2.1961 | 1 | 85.0993 | no |
+| 06 | yes | yes | 13.0686 | 0.0579 | yes | 22.4598 | 5.0240 | 3.3501 | 3 | 98.7409 | no |
+| 07 | yes | yes | 17.9400 | 0 | yes | 19.9878 | 3.1578 | 3.0109 | 2 | 71.6863 | no |
+| 08 | no | no | 3.5384 | — | — | — | — | — | — | — | — |
+| 09 | yes | yes | 60.9611 | 0 | yes | 22.7370 | 5.7102 | 3.3701 | 3 | 105.8027 | no |
+| 10 | yes | yes | 168.7406 | 0 | yes | 24.8709 | 9.9732 | 4.6281 | 2 | 156.0133 | no |
+| 11 | yes | yes | 24.8487 | 0.0789 | yes | 21.5333 | 5.0647 | 3.3075 | 2 | 93.7216 | no |
+| 12 | yes | yes | 28.3866 | 0 | yes | 21.1665 | 7.0589 | 3.5510 | 2 | 116.0986 | no |
+
+[CSV](results/DL_IAPS_PJSO/metrics.csv) · [JSON](results/DL_IAPS_PJSO/metrics.json) · [validation](results/DL_IAPS_PJSO/validation.json).
+<!-- /results:DL_IAPS_PJSO -->

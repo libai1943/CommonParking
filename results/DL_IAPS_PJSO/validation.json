@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 10,
+  "evaluation_success_count": 10,
+  "terminal_reached_count": 10,
+  "unit": {
+    "passed": true,
+    "quartic_gradient_relative_error": 4.2909255192004559E-10,
+    "maximum_speed_qp_residual": 4.4234164942036358E-12,
+    "speed_integration_error": 2.4274345554464727E-12
+  },
+  "independent_checks": [
+    {
+      "maximum_normalized_quartic_residual": 3.3544429338740175E-8,
+      "maximum_reconstructed_curvature": 0.30097816864408611,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.1455431152094695,
+      "maximum_speed_dynamics_residual": 1.0746438461328722E-12,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 3.7747582837255322E-13,
+      "exact_cusp_indices": [
+        307,
+        667
+      ],
+      "smoothing_qp_calls": 29,
+      "collision_outer_iterations": 3,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.77577384820609807,
+      "reference_time_s": 15.8
+    },
+    {},
+    {
+      "maximum_normalized_quartic_residual": 4.2409718974689683E-7,
+      "maximum_reconstructed_curvature": 0.30094984978631517,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.23646100338900666,
+      "maximum_speed_dynamics_residual": 2.480479480157327E-14,
+      "maximum_speed_bound_violation": 2.19824158875781E-14,
+      "maximum_boundary_error": 1.3322676295501878E-15,
+      "exact_cusp_indices": 350,
+      "smoothing_qp_calls": 1427,
+      "collision_outer_iterations": 2,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.86938431355417423,
+      "reference_time_s": 14.200000000000001
+    },
+    {
+      "maximum_normalized_quartic_residual": 3.91952558334244E-7,
+      "maximum_reconstructed_curvature": 0.30094174183427441,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.29265230037731804,
+      "maximum_speed_dynamics_residual": 8.6736173798840355E-16,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 7.66053886991358E-15,
+      "exact_cusp_indices": 350,
+      "smoothing_qp_calls": 483,
+      "collision_outer_iterations": 2,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.83847121148135761,
+      "reference_time_s": 14.400000000000002
+    },
+    {
+      "maximum_normalized_quartic_residual": 2.10494959836519E-7,
+      "maximum_reconstructed_curvature": 0.3008369475959945,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.2548492310097048,
+      "maximum_speed_dynamics_residual": 2.2913635790923489E-12,
+      "maximum_speed_bound_violation": 1.8245405186689823E-12,
+      "maximum_boundary_error": 1.3045120539345589E-14,
+      "exact_cusp_indices": 253,
+      "smoothing_qp_calls": 59,
+      "collision_outer_iterations": 2,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.79750072184664722,
+      "reference_time_s": 15.400000000000002
+    },
+    {
+      "maximum_normalized_quartic_residual": 4.1410783819383019E-9,
+      "maximum_reconstructed_curvature": 0.300737579790403,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.00027828458475376294,
+      "maximum_speed_dynamics_residual": 4.8536175079050281E-13,
+      "maximum_speed_bound_violation": 1.0937917238607042E-12,
+      "maximum_boundary_error": 1.0602629885170245E-14,
+      "exact_cusp_indices": [
+        146,
+        516
+      ],
+      "smoothing_qp_calls": 152,
+      "collision_outer_iterations": 68,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 1.5078645942780169,
+      "reference_time_s": 19.400000000000002
+    },
+    {
+      "maximum_normalized_quartic_residual": -1.8456820824774496E-6,
+      "maximum_reconstructed_curvature": 0.30080939427066994,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.0042177112755835688,
+      "maximum_speed_dynamics_residual": 6.5991569847545506E-13,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 9.3480778673438181E-14,
+      "exact_cusp_indices": [
+        188,
+        396
+      ],
+      "smoothing_qp_calls": 968,
+      "collision_outer_iterations": 24,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.76330244432831873,
+      "reference_time_s": 17
+    },
+    {},
+    {
+      "maximum_normalized_quartic_residual": -4.2718383057811567E-10,
+      "maximum_reconstructed_curvature": 0.30044385318130706,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.0020297557960542445,
+      "maximum_speed_dynamics_residual": 3.1976563757973864E-11,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 1.1102230246251565E-14,
+      "exact_cusp_indices": [
+        488,
+        880
+      ],
+      "smoothing_qp_calls": 143,
+      "collision_outer_iterations": 65,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.78164247433080181,
+      "reference_time_s": 19.400000000000002
+    },
+    {
+      "maximum_normalized_quartic_residual": -2.8672030844867284E-9,
+      "maximum_reconstructed_curvature": 0.30087220726192682,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.00072840770578885827,
+      "maximum_speed_dynamics_residual": 3.9636707039828821E-13,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 6.028448851225221E-10,
+      "exact_cusp_indices": [
+        307,
+        623
+      ],
+      "smoothing_qp_calls": 181,
+      "collision_outer_iterations": 23,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.78930821262306416,
+      "reference_time_s": 24.8
+    },
+    {
+      "maximum_normalized_quartic_residual": 2.363228183316649E-9,
+      "maximum_reconstructed_curvature": 0.3009741554049179,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.0019205106236575009,
+      "maximum_speed_dynamics_residual": 8.6042284408449632E-16,
+      "maximum_speed_bound_violation": 1.3322676295501878E-15,
+      "maximum_boundary_error": 4.7630856231909665E-13,
+      "exact_cusp_indices": [
+        253,
+        569
+      ],
+      "smoothing_qp_calls": 110,
+      "collision_outer_iterations": 48,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.7392425645025037,
+      "reference_time_s": 17.6
+    },
+    {
+      "maximum_normalized_quartic_residual": 8.17811198910918E-9,
+      "maximum_reconstructed_curvature": 0.30096919384232718,
+      "common_curvature_limit": 0.30081727873681408,
+      "minimum_path_node_separation": 0.012126503156159596,
+      "maximum_speed_dynamics_residual": 1.8022041151088963E-10,
+      "maximum_speed_bound_violation": 0,
+      "maximum_boundary_error": 1.354472090042691E-14,
+      "exact_cusp_indices": [
+        339,
+        909
+      ],
+      "smoothing_qp_calls": 88,
+      "collision_outer_iterations": 20,
+      "output_sample_collision_percent": 0,
+      "maximum_output_steering_rate": 0.80704530155502607,
+      "reference_time_s": 20.000000000000004
+    }
+  ]
+}
