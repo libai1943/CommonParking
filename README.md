@@ -2,6 +2,8 @@
 
 A MATLAB benchmark for motion planning in 12 static terminal-parking scenes. The accepted scene geometry and start/goal poses are frozen. Each scene requires local maneuvering; these are not long-range driving or valet-parking route tasks.
 
+[Forty-method result index and verification](docs/RESULT_INDEX.md) · [Evaluation protocol](evaluation/README.md) · [Result contract](docs/RESULT_FORMAT.md)
+
 ## Quick start
 
 ```matlab
@@ -152,7 +154,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [BOMP](planners/BOMP/README.md) (`BOMP`) | Trajectory | Shi et al., IJIRA 2019; 15-node pseudospectral MAKKT | Implemented and tested on all 12 cases |
 | [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; literal printed-model transcription | 12 cases tested; model distinction documented |
 
-Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. Further non-learning geometric, sampling and numerical methods are being assessed against their original papers before implementation. At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
+Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. This release contains 40 documented implementations and 480 recorded case outcomes. [The alphabetical result index](docs/RESULT_INDEX.md) distinguishes native success, evaluation success, terminal attainment and zero collision frames, with links to every twelve-case table and the artifact audit. Each method documents its original initialization and optimization, along with any numerical replacement or task adapter; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
 
 ## HA+CG: measured results
 

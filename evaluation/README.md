@@ -38,6 +38,8 @@ There are initially 2,001 uniformly spaced phase nodes. With reference duration 
 
 Hermite-Simpson dynamics and linearly interpolated controls are solved with AMPL/Ipopt (`tol=acceptable_tol=1e-8`, 2,000 iterations, 180 solver CPU seconds per mesh). The whole objective is multiplied by 10,000 and automatic NLP scaling is disabled; relative objective weights are unchanged. This avoids premature stopping caused by a tiny phase-averaged objective. Native success must be `solved` with a solve-result number in 0–99 and a successful process exit. A last iterate from a failed solve is not accepted.
 
+[Ipopt targets a local NLP solution](https://coin-or.github.io/Ipopt/), so a successful tracking solve is not a proof of the globally closest possible execution. The fixed initialization, objective, duration range and numerical checks define the reproducible evaluation procedure. Improving those protocol choices requires a new protocol version and rerunning every compared result, rather than replacing selected rows.
+
 ## Independent execution and numerical resolution
 
 After optimization, the controls are independently integrated from the true start using RK4, with a maximum step of 1 ms and a split at every control knot. The integrated poses must agree with collocation poses to within `1e-4` m/rad componentwise. Speed and steering extrema between knots are also checked analytically, since they are quadratic under linear controls. A bound excess over `5e-7` triggers refinement. The mesh is refined to 4,001, then 8,001 nodes; failure to meet these tolerances is reported as an evaluation failure. This check prevents merely interpolating a coarse infeasible trajectory and calling it a high-accuracy execution.
