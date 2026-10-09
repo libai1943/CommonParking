@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 4,
+  "unit": {
+    "passed": true,
+    "random_sweeps": 300,
+    "sampled_collisions": 166,
+    "analytic_collisions": 166,
+    "reverse_invariance": true
+  },
+  "independent_checks": [
+    {
+      "geometric_edges_certified": 1,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 8.8817841970012523E-16,
+      "endpoint_error": 1.021405182655144E-14,
+      "initial_length_m": 31.350818651658585,
+      "final_length_m": 9.087697669135725,
+      "gear_changes": 4,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.0089288804011724565,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 1,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.8873791418627661E-15,
+      "endpoint_error": 3.0753177782116836E-14,
+      "initial_length_m": 60.654700067176442,
+      "final_length_m": 9.5215224138461778,
+      "gear_changes": 6,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.005244170965655881,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 16,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.3322676295501878E-15,
+      "endpoint_error": 2.55351295663786E-14,
+      "initial_length_m": 17.338036699005979,
+      "final_length_m": 10.32165263076597,
+      "gear_changes": 2,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.0017828087565698869,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 18,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 6.6613381477509392E-16,
+      "endpoint_error": 5.2735593669694936E-15,
+      "initial_length_m": 20.409532340433618,
+      "final_length_m": 10.7805939602445,
+      "gear_changes": 1,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.021529874237290358,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 21,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.1102230246251565E-15,
+      "endpoint_error": 2.55351295663786E-15,
+      "initial_length_m": 11.049285729441044,
+      "final_length_m": 10.499866236137535,
+      "gear_changes": 1,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.011370305935528124,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 23,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 8.8817841970012523E-16,
+      "endpoint_error": 2.19824158875781E-14,
+      "initial_length_m": 41.502431103696949,
+      "final_length_m": 12.768905431431969,
+      "gear_changes": 2,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.00020376167993985117,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 18,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 4.4408920985006262E-16,
+      "endpoint_error": 2.5673907444456745E-15,
+      "initial_length_m": 9.4967902374023474,
+      "final_length_m": 9.4967902374023474,
+      "gear_changes": 1,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.2490270530907801,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 1,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 4.9960036108132044E-16,
+      "endpoint_error": 2.5357493882438575E-13,
+      "initial_length_m": 138.9067701934749,
+      "final_length_m": 11.458559859913448,
+      "gear_changes": 4,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.15823883581909604,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 1,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.1102230246251565E-15,
+      "endpoint_error": 1.1768364061026659E-14,
+      "initial_length_m": 35.1141215297273,
+      "final_length_m": 12.615969511687643,
+      "gear_changes": 10,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.01364037930540718,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 18,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 6.2172489379008766E-15,
+      "endpoint_error": 5.96189764223709E-14,
+      "initial_length_m": 70.448903206895011,
+      "final_length_m": 16.095463314493522,
+      "gear_changes": 7,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.00724828477084738,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 31,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.1324274851176597E-14,
+      "endpoint_error": 8.2156503822261584E-14,
+      "initial_length_m": 80.311102509132567,
+      "final_length_m": 66.418125481495039,
+      "gear_changes": 176,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.00071882856573379783,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "geometric_edges_certified": 29,
+      "analytic_primitive_sweep_passed": true,
+      "primitive_boundary_quadrature_error": 1.9984014443252818E-15,
+      "endpoint_error": 5.5511151231257827E-15,
+      "initial_length_m": 14.031012773927657,
+      "final_length_m": 13.684482107541042,
+      "gear_changes": 1,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_minimum_separating_gap_m": 0.0012129707644985555,
+      "dense_reference_collision_percent": 0
+    }
+  ]
+}

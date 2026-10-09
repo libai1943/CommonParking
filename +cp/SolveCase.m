@@ -12,6 +12,8 @@ switch name
         canonical = 'LatticeOCP'; planner = @lattice.Plan;kind='path';
     case "SLIFS"
         canonical = 'SLiFS'; planner = @slifs.Plan;kind='trajectory';
+    case "LAUMONDRS"
+        canonical = 'LaumondRS'; planner = @laumond.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"
