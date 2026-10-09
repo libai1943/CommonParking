@@ -41,6 +41,8 @@ HyperplaneOCP uses the external AMPL/Ipopt runtime (MA97). Its complete model, n
 
 VPF uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/VPF/README.md).
 
+RITP needs MATLAB Optimization Toolbox and Parallel Computing Toolbox, plus Navigation Toolbox for Hybrid A* initialization. The planner itself has no AMPL dependency.
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -74,6 +76,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs and parallel collision-weight iterations | Implemented and tested on all 12 cases |
 | [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
 | [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
 | [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
@@ -606,3 +609,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/VPF/metrics.csv) · [JSON](results/VPF/metrics.json) · [validation](results/VPF/validation.json).
 <!-- /results:VPF -->
+
+<!-- results:RITP -->
+## Rapid iterative trajectory planning: measured results
+
+The printed quintic path QP, iterative reference weights, x-only terminal alignment and quintic velocity QP produced 12/12 native trajectories; 12 execution optimizations succeeded and 5 attained the terminal tolerance. Independent gear phases run in parallel. **The printed constraints do not guarantee exact terminal tangents, curvature continuity or full polygon separation, and the reference-distance velocity mapping can disagree with the optimized position derivative.** These limitations and all native/evaluator failures remain visible. Independent checks recompute QP objectives, stationarity, time-law coefficients, output fields, cusp jumps, dense footprint intersections and physical derivative discrepancies. See [the equations and explicit differences from the later author code](planners/RITP/README.md).
+
+Planning times include Hybrid A* and process-pool creation/shutdown. Up to four workers process independent gear phases, each with one numerical-library thread. Other development jobs were active; these are not controlled hardware comparisons or the paper's optimization-only timings.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 35.4536 | 0 | no | 46.2810 | 4.5301 | 15.9511 | 9 | 249.8120 | no |
+| 02 | yes | yes | 152.9583 | 0 | no | 50.5647 | 1.5272 | 17.6283 | 5 | 216.5559 | no |
+| 03 | yes | yes | 20.6998 | 0 | no | 34.0499 | 1.9141 | 10.8933 | 4 | 148.0745 | no |
+| 04 | yes | yes | 19.9788 | 0 | yes | 36.2373 | 1.5756 | 12.2840 | 2 | 148.5960 | no |
+| 05 | yes | yes | 19.5910 | 0 | no | 38.8889 | 3.2211 | 9.8529 | 6 | 160.7400 | no |
+| 06 | yes | yes | 21.1244 | 0 | yes | 32.0000 | 1.1481 | 7.8043 | 1 | 94.5239 | no |
+| 07 | yes | yes | 18.7907 | 0 | no | 33.7349 | 2.6880 | 10.2129 | 4 | 149.0086 | no |
+| 08 | yes | yes | 21.3217 | 0 | no | 51.9084 | 5.2302 | 19.7952 | 11 | 305.2544 | no |
+| 09 | yes | yes | 44.3541 | 0 | no | 52.8302 | 5.9903 | 19.3621 | 13 | 318.5241 | no |
+| 10 | yes | yes | 59.8835 | 0 | yes | 45.3299 | 1.0864 | 15.0881 | 3 | 176.7445 | no |
+| 11 | yes | yes | 34.8318 | 0 | yes | 48.0460 | 1.0886 | 11.8320 | 4 | 149.2061 | no |
+| 12 | yes | yes | 71.3482 | 0 | yes | 45.5285 | 4.5350 | 11.3474 | 11 | 213.8235 | no |
+
+[CSV](results/RITP/metrics.csv) · [JSON](results/RITP/metrics.json) · [validation](results/RITP/validation.json).
+<!-- /results:RITP -->

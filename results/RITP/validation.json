@@ -1,0 +1,710 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 5,
+  "unit": {
+    "passed": true,
+    "path_objective_error": 3.4638958368304884E-12,
+    "quintic_closed_form_error": 2.1316282072803006E-13,
+    "steering_derivative_error": 1.2406464744429968E-12,
+    "vertex_test_misses_crossing_rectangles": true,
+    "x_only_tsc_heading_error_rad": [
+      -0.63553216782509181,
+      -1.4588629341202406
+    ]
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 8.5347429756987818,
+          "qp_objective_error": 3.1796787425264483E-13,
+          "projected_gradient_residual": 2.333192141976032E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95036061710490249,
+          "maximum_steering_rad": 0.72484951408653719,
+          "maximum_steering_rate_rad_s": 0.64301819879334976,
+          "maximum_speed_mapping_error_m_s": 0.0076878544556506657,
+          "maximum_acceleration_mapping_error_m_s2": 0.012177614720173036,
+          "time_s": 7.4417637850354241,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 13.756107091186296,
+          "qp_objective_error": 3.7490011095542286E-11,
+          "projected_gradient_residual": 1.2434649427959978E-13,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.975231600550655,
+          "maximum_steering_rad": 0.81039756515291617,
+          "maximum_steering_rate_rad_s": 0.98919057466963145,
+          "maximum_speed_mapping_error_m_s": 0.021710142262161121,
+          "maximum_acceleration_mapping_error_m_s2": 0.042514742900302271,
+          "time_s": 8.8830034102211357,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 1.7711798312627323,
+          "qp_objective_error": 3.8413716652030416E-14,
+          "projected_gradient_residual": 8.777521957440037E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.94851042806160768,
+          "maximum_steering_rad": 0.4298480856505435,
+          "maximum_steering_rate_rad_s": 0.41490367664770916,
+          "maximum_speed_mapping_error_m_s": 0.011309374087821197,
+          "maximum_acceleration_mapping_error_m_s2": 0.0276220859678695,
+          "time_s": 3.4165548972004185,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.0999633283598354,
+        0.072310134576716034
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          0.095993400143770335,
+          -0.43232147889165595
+        ],
+        [
+          -0.10917005579087513,
+          -0.276527875797649
+        ]
+      ],
+      "worker_count": 3,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 1.5974581204662095,
+          "qp_objective_error": 1.8962609260597674E-13,
+          "projected_gradient_residual": 3.2607123642012476E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.97567148067687026,
+          "maximum_steering_rad": 0.15688474071743291,
+          "maximum_steering_rate_rad_s": 0.19082581840534149,
+          "maximum_speed_mapping_error_m_s": 0.004157047436832915,
+          "maximum_acceleration_mapping_error_m_s2": 0.013280892871189456,
+          "time_s": 2.6357482709825564,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 11.84674994067028,
+          "qp_objective_error": 1.3086420835861645E-11,
+          "projected_gradient_residual": 1.6037309187395955E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98560091621725088,
+          "maximum_steering_rad": 0.7555383116632356,
+          "maximum_steering_rate_rad_s": 0.24417410432135633,
+          "maximum_speed_mapping_error_m_s": 0.012018654608595804,
+          "maximum_acceleration_mapping_error_m_s2": 0.019166714383936384,
+          "time_s": 8.09706693630218,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 22.443876847325043,
+          "qp_objective_error": 5.6786575441947207E-11,
+          "projected_gradient_residual": 4.0965496562001496E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.9733074194997593,
+          "maximum_steering_rad": 0.80262909800510029,
+          "maximum_steering_rate_rad_s": 0.5320379704472461,
+          "maximum_speed_mapping_error_m_s": 0.024779181567854556,
+          "maximum_acceleration_mapping_error_m_s2": 0.041856595936707985,
+          "time_s": 10.30709000112083,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 1.7936401928289105,
+          "qp_objective_error": 2.05613304160579E-13,
+          "projected_gradient_residual": 1.3568986196411625E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95756286097391163,
+          "maximum_steering_rad": 0.43749094849370573,
+          "maximum_steering_rate_rad_s": 0.45948462695372611,
+          "maximum_speed_mapping_error_m_s": 0.0081595698045419281,
+          "maximum_acceleration_mapping_error_m_s2": 0.023876465797489695,
+          "time_s": 2.9252366257413254,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 1.6839451918702795,
+          "qp_objective_error": 7.0832228971084987E-14,
+          "projected_gradient_residual": 1.1684168801234838E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.97253133194001307,
+          "maximum_steering_rad": 0.2808180764488829,
+          "maximum_steering_rate_rad_s": 0.34495663874948679,
+          "maximum_speed_mapping_error_m_s": 0.0044866182564053461,
+          "maximum_acceleration_mapping_error_m_s2": 0.015486800631294068,
+          "time_s": 2.4855289028070056,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        0.057384804996823024,
+        0.04468321885914267
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          0.11528223383834639,
+          0.3295599671716129
+        ],
+        [
+          -0.030539933716919213,
+          -1.2430453734563218
+        ],
+        [
+          -0.047254562272774137,
+          -0.67465158025674032
+        ],
+        [
+          -0.093912053571153509,
+          0.14359179423903837
+        ]
+      ],
+      "worker_count": 4,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 10.923940966369049,
+          "qp_objective_error": 4.8778758809930878E-12,
+          "projected_gradient_residual": 1.8555339865755628E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.97950034135262887,
+          "maximum_steering_rad": 0.76506831635256378,
+          "maximum_steering_rate_rad_s": 0.64184683558316735,
+          "maximum_speed_mapping_error_m_s": 0.010466173416897193,
+          "maximum_acceleration_mapping_error_m_s2": 0.018069290114884173,
+          "time_s": 8.08721367959911,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 16.578276549683729,
+          "qp_objective_error": 5.0448534238967113E-13,
+          "projected_gradient_residual": 4.8807925795073687E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98130891673856935,
+          "maximum_steering_rad": 0.74049087842947969,
+          "maximum_steering_rate_rad_s": 0.44272665965593183,
+          "maximum_speed_mapping_error_m_s": 0.018827468819794135,
+          "maximum_acceleration_mapping_error_m_s2": 0.033161038725350964,
+          "time_s": 10.159239995269001,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.0588474719594313,
+        0.019629347832203159
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        0.1214083811381212,
+        -0.57930189475181781
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 13.209739029878298,
+          "qp_objective_error": 5.1354476227061241E-12,
+          "projected_gradient_residual": 1.6373330553891585E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98159885766834065,
+          "maximum_steering_rad": 0.779256621669313,
+          "maximum_steering_rate_rad_s": 0.6348617657182144,
+          "maximum_speed_mapping_error_m_s": 0.013042454592684166,
+          "maximum_acceleration_mapping_error_m_s2": 0.023084150271136056,
+          "time_s": 8.8551588987899557,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 16.832787903406206,
+          "qp_objective_error": 4.1545433759893058E-11,
+          "projected_gradient_residual": 3.741059188049393E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98233097564327165,
+          "maximum_steering_rad": 0.76857334693908741,
+          "maximum_steering_rate_rad_s": 0.54837555399129168,
+          "maximum_speed_mapping_error_m_s": 0.018776442161189389,
+          "maximum_acceleration_mapping_error_m_s2": 0.033275593044678531,
+          "time_s": 10.095223397277776,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.075734680593774986,
+        -0.011315550791133335
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        0.010010852929236314,
+        -0.7095910204926954
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 4.0422607529517629,
+          "qp_objective_error": 1.9128698625081597E-11,
+          "projected_gradient_residual": 1.6960901486638089E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.985140706082452,
+          "maximum_steering_rad": 0.44613435043344485,
+          "maximum_steering_rate_rad_s": 0.3624095394722236,
+          "maximum_speed_mapping_error_m_s": 0.002795108853739992,
+          "maximum_acceleration_mapping_error_m_s2": 0.00439271098662114,
+          "time_s": 5.42790074417109,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 28.434939674189639,
+          "qp_objective_error": 3.7779201988996647E-10,
+          "projected_gradient_residual": 5.7728687985845418E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.97216303021541928,
+          "maximum_steering_rad": 0.94972972808076728,
+          "maximum_steering_rate_rad_s": 0.25375058454943716,
+          "maximum_speed_mapping_error_m_s": 0.020198443044205604,
+          "maximum_acceleration_mapping_error_m_s2": 0.02996214755159593,
+          "time_s": 12.53570987121393,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        0.041121092271493916,
+        0.051943957069361446
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        0.01960991672701639,
+        -0.94238852689947661
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 13.054147471353083,
+          "qp_objective_error": 2.8542501695483224E-11,
+          "projected_gradient_residual": 1.3504625204620789E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.99287113033285757,
+          "maximum_steering_rad": 0.78358997954466336,
+          "maximum_steering_rate_rad_s": 0.28004869501247115,
+          "maximum_speed_mapping_error_m_s": 0.0071044147420274741,
+          "maximum_acceleration_mapping_error_m_s2": 0.014739240211969342,
+          "time_s": 8.5800763607455686,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 19.822127251616774,
+          "qp_objective_error": 5.8054894225278986E-11,
+          "projected_gradient_residual": 6.4213099703511623E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.96447211432200119,
+          "maximum_steering_rad": 0.90173463739561011,
+          "maximum_steering_rate_rad_s": 0.37535846580070226,
+          "maximum_speed_mapping_error_m_s": 0.012218698045785976,
+          "maximum_acceleration_mapping_error_m_s2": 0.015459037127782849,
+          "time_s": 11.711143533366659,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.0012922721911906852,
+        0.0011075601954324554
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        -0.0371946306643387,
+        -1.6853246169402727
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 2.9304073300856457,
+          "qp_objective_error": 2.5552893134772603E-12,
+          "projected_gradient_residual": 1.2270118510672186E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95097225798179741,
+          "maximum_steering_rad": 0.54631432979594008,
+          "maximum_steering_rate_rad_s": 0.41413774383815638,
+          "maximum_speed_mapping_error_m_s": 0.011416813389852775,
+          "maximum_acceleration_mapping_error_m_s2": 0.019150011007489989,
+          "time_s": 4.3648262192332625,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 23.256303774025096,
+          "qp_objective_error": 1.0962608598674706E-10,
+          "projected_gradient_residual": 3.2990011190263763E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98033343790202976,
+          "maximum_steering_rad": 0.74490968680722225,
+          "maximum_steering_rate_rad_s": 0.30132963703795723,
+          "maximum_speed_mapping_error_m_s": 0.025359242991318063,
+          "maximum_acceleration_mapping_error_m_s2": 0.033665893991389528,
+          "time_s": 11.644654019648957,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        0.0964748959640147,
+        -0.023134683029437886
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        0.071287636730788417,
+        -0.80885505572136451
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 9.5365288237508317,
+          "qp_objective_error": 2.0936141709171352E-11,
+          "projected_gradient_residual": 6.7431480310371417E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95494354769523959,
+          "maximum_steering_rad": 0.75947164864030681,
+          "maximum_steering_rate_rad_s": 0.24159176627468015,
+          "maximum_speed_mapping_error_m_s": 0.00828850522838814,
+          "maximum_acceleration_mapping_error_m_s2": 0.015339313340636485,
+          "time_s": 7.3799043144696288,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 21.545044661850021,
+          "qp_objective_error": 2.340456717320194E-10,
+          "projected_gradient_residual": 9.4267833901728174E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.96543985980003266,
+          "maximum_steering_rad": 0.82473986403491706,
+          "maximum_steering_rate_rad_s": 0.833094039512601,
+          "maximum_speed_mapping_error_m_s": 0.037346617757390822,
+          "maximum_acceleration_mapping_error_m_s2": 0.068866754557642726,
+          "time_s": 10.741849455084147,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 1.7458691805779709,
+          "qp_objective_error": 2.4003021792395884E-13,
+          "projected_gradient_residual": 3.86059851518051E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.96513381450255753,
+          "maximum_steering_rad": 0.25201910487179957,
+          "maximum_steering_rate_rad_s": 0.25835593730540124,
+          "maximum_speed_mapping_error_m_s": 0.0075778534101465268,
+          "maximum_acceleration_mapping_error_m_s2": 0.016974609734381974,
+          "time_s": 3.5623533508145253,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        0.0467117999774902,
+        0.096671184944371324
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          0.12289764026043459,
+          -0.51996980294568107
+        ],
+        [
+          -0.14720412128705537,
+          -0.28507572010357712
+        ]
+      ],
+      "worker_count": 3,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 13.045031810168796,
+          "qp_objective_error": 1.0556888696555689E-11,
+          "projected_gradient_residual": 1.04337914852169E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.962954080690226,
+          "maximum_steering_rad": 0.737513632468655,
+          "maximum_steering_rate_rad_s": 0.12353193781030906,
+          "maximum_speed_mapping_error_m_s": 0.010046656931109723,
+          "maximum_acceleration_mapping_error_m_s2": 0.016534640116648514,
+          "time_s": 8.7329959270014523,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 27.839337128818837,
+          "qp_objective_error": 3.6774139289263985E-11,
+          "projected_gradient_residual": 4.4167735015627663E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.96022897264846385,
+          "maximum_steering_rad": 0.873520409014442,
+          "maximum_steering_rate_rad_s": 0.59843501582664949,
+          "maximum_speed_mapping_error_m_s": 0.049816591351634396,
+          "maximum_acceleration_mapping_error_m_s2": 0.071368075748194634,
+          "time_s": 11.230191130102023,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 1.7851168448737054,
+          "qp_objective_error": 5.0470738699459616E-13,
+          "projected_gradient_residual": 7.7528352535822924E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95734158964461946,
+          "maximum_steering_rad": 0.30445923526629204,
+          "maximum_steering_rate_rad_s": 0.30132468279946989,
+          "maximum_speed_mapping_error_m_s": 0.00940432959050238,
+          "maximum_acceleration_mapping_error_m_s2": 0.021369508754078788,
+          "time_s": 3.5510778347471734,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        0.033227382908156737,
+        0.085665121488480545
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          0.027162176293194062,
+          -1.4749877917070509
+        ],
+        [
+          -0.15054839724845939,
+          -0.52391144922573463
+        ]
+      ],
+      "worker_count": 3,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 8.7871710494739563,
+          "qp_objective_error": 4.9793058565228421E-11,
+          "projected_gradient_residual": 4.6210514576712883E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.95539738898921234,
+          "maximum_steering_rad": 0.74188501485668,
+          "maximum_steering_rate_rad_s": 0.36617006959336967,
+          "maximum_speed_mapping_error_m_s": 0.0083059609194830811,
+          "maximum_acceleration_mapping_error_m_s2": 0.016981549560908471,
+          "time_s": 7.1086124434067228,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 10.85443100941432,
+          "qp_objective_error": 8.7830187567305984E-11,
+          "projected_gradient_residual": 9.5321825761466414E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98695648045514561,
+          "maximum_steering_rad": 0.7483712386445065,
+          "maximum_steering_rate_rad_s": 0.15388703192823575,
+          "maximum_speed_mapping_error_m_s": 0.010645470888912089,
+          "maximum_acceleration_mapping_error_m_s2": 0.0184640898332184,
+          "time_s": 7.9218966317216966,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 55.891759523027417,
+          "qp_objective_error": 5.4149040806805715E-10,
+          "projected_gradient_residual": 1.1207884027058605E-13,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.94233347748755858,
+          "maximum_steering_rad": 0.76702376402565775,
+          "maximum_steering_rate_rad_s": 0.252519978908075,
+          "maximum_speed_mapping_error_m_s": 0.045388173005828106,
+          "maximum_acceleration_mapping_error_m_s2": 0.049670279429013781,
+          "time_s": 14.960361286536934,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.019093763099928607,
+        0.011563380673358626
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          -0.021713309151530358,
+          -1.1976368053334581
+        ],
+        [
+          -0.017266935455790385,
+          1.4211739045853382
+        ]
+      ],
+      "worker_count": 3,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 7.5271468394071075,
+          "qp_objective_error": 3.772804291202192E-11,
+          "projected_gradient_residual": 1.7814067556612885E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.9906238706896161,
+          "maximum_steering_rad": 0.727056850373405,
+          "maximum_steering_rate_rad_s": 0.63951370129124518,
+          "maximum_speed_mapping_error_m_s": 0.0074699135680545313,
+          "maximum_acceleration_mapping_error_m_s2": 0.011532257271564345,
+          "time_s": 7.0569821777573427,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 11.010420675059478,
+          "qp_objective_error": 4.7037929107318632E-12,
+          "projected_gradient_residual": 2.3233592396092916E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.9939141274298372,
+          "maximum_steering_rad": 0.53818779370988445,
+          "maximum_steering_rate_rad_s": 0.2429347657035511,
+          "maximum_speed_mapping_error_m_s": 0.0056960401345233953,
+          "maximum_acceleration_mapping_error_m_s2": 0.011872421288851388,
+          "time_s": 8.8058143530414643,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 2.7605421635562974,
+          "qp_objective_error": 9.6900265589283663E-13,
+          "projected_gradient_residual": 8.0817012685997073E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.96572761834041676,
+          "maximum_steering_rad": 0.5541880549801298,
+          "maximum_steering_rate_rad_s": 1.4882776292690956,
+          "maximum_speed_mapping_error_m_s": 0.016909286098594226,
+          "maximum_acceleration_mapping_error_m_s2": 0.036583806982816158,
+          "time_s": 4.21017695653967,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 6.8841507051100184,
+          "qp_objective_error": 7.4074080202990444E-13,
+          "projected_gradient_residual": 8.3029235413336488E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.94296488695521763,
+          "maximum_steering_rad": 0.77175021554583034,
+          "maximum_steering_rate_rad_s": 0.57773987159986251,
+          "maximum_speed_mapping_error_m_s": 0.013962977316761794,
+          "maximum_acceleration_mapping_error_m_s2": 0.024740728331977657,
+          "time_s": 6.4039075683887541,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.01358923118171651,
+        0.0041911421350175893
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        [
+          0.13021171214746019,
+          0.092421596384533761
+        ],
+        [
+          -0.028630301380754286,
+          0.66308394279119709
+        ],
+        [
+          0.094651124195371583,
+          0.62021570434861606
+        ]
+      ],
+      "worker_count": 4,
+      "owned_pool": true
+    },
+    {
+      "passed": true,
+      "phases": [
+        {
+          "path_objective": 12.389344477440856,
+          "qp_objective_error": 1.1452172543613415E-11,
+          "projected_gradient_residual": 8.238691303264179E-15,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.97281278068592858,
+          "maximum_steering_rad": 0.84389942537971563,
+          "maximum_steering_rate_rad_s": 0.37487958249587078,
+          "maximum_speed_mapping_error_m_s": 0.0075949770503552817,
+          "maximum_acceleration_mapping_error_m_s2": 0.013936679457751067,
+          "time_s": 9.455995083823904,
+          "dense_step_s": 0.001
+        },
+        {
+          "path_objective": 25.635731803144779,
+          "qp_objective_error": 6.4858340920181945E-11,
+          "projected_gradient_residual": 4.7681484133165214E-14,
+          "native_node_collision_percent": 0,
+          "dense_polynomial_collision_percent": 0,
+          "minimum_tangent_magnitude": 0.98626852099783446,
+          "maximum_steering_rad": 0.89108179043055,
+          "maximum_steering_rate_rad_s": 0.42395788846395022,
+          "maximum_speed_mapping_error_m_s": 0.01291284151043615,
+          "maximum_acceleration_mapping_error_m_s2": 0.016233682355423718,
+          "time_s": 12.506710320017962,
+          "dense_step_s": 0.001
+        }
+      ],
+      "endpoint_heading_error_rad": [
+        -0.11731910614654312,
+        0.011355235481555814
+      ],
+      "cusp_heading_and_steering_jumps_rad": [
+        0.013040011478758273,
+        -1.678911374966122
+      ],
+      "worker_count": 2,
+      "owned_pool": true
+    }
+  ]
+}
