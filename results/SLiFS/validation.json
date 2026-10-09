@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 6,
+  "evaluation_success_count": 6,
+  "terminal_reached_count": 6,
+  "unit": {
+    "passed": true,
+    "jacobian_error": 7.0921868378093222E-10,
+    "support_violation": 2.3314683517128287E-15,
+    "distance_error": 3.5527136788005009E-15
+  },
+  "independent_checks": [
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 4.6798030617981046E-6,
+      "maximum_shape_residual": 1.384908562940268E-6,
+      "objective": 15.57028151114452,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 1.5543122344752192E-15,
+      "minimum_affine_circle_clearance_excess": 0.031309420711699815,
+      "minimum_physical_circle_clearance_excess": 0.031309491646097282,
+      "between_node_collision": false
+    },
+    {},
+    {},
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 6.464761710189143E-6,
+      "maximum_shape_residual": 4.5139597926180386E-7,
+      "objective": 14.557723231063415,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 1.7763568394002505E-15,
+      "minimum_affine_circle_clearance_excess": 0.10611150745412753,
+      "minimum_physical_circle_clearance_excess": 0.10611150745412753,
+      "between_node_collision": false
+    },
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 7.7392968500789028E-6,
+      "maximum_shape_residual": 6.507762604357481E-6,
+      "objective": 26.884532403713866,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 1.3322676295501878E-15,
+      "minimum_affine_circle_clearance_excess": 0.16697243835134032,
+      "minimum_physical_circle_clearance_excess": 0.166972438335636,
+      "between_node_collision": false
+    },
+    {},
+    {},
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 5.0985920859863976E-6,
+      "maximum_shape_residual": 9.147444279822281E-7,
+      "objective": 16.750794435924156,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 1.0547118733938987E-15,
+      "minimum_affine_circle_clearance_excess": 0.037288180328839488,
+      "minimum_physical_circle_clearance_excess": 0.037288010400075761,
+      "between_node_collision": false
+    },
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 1.0058914032046087E-5,
+      "maximum_shape_residual": 6.6535701095382649E-6,
+      "objective": 27.687789997198642,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 2.886579864025407E-15,
+      "minimum_affine_circle_clearance_excess": 0.00057771428748573661,
+      "minimum_physical_circle_clearance_excess": 0.00057756844765330384,
+      "between_node_collision": false
+    },
+    {},
+    {
+      "nodes": 200,
+      "maximum_discrete_kinematic_residual": 6.6754163535187594E-6,
+      "maximum_shape_residual": 1.1396615595460347E-5,
+      "objective": 25.258003256998261,
+      "maximum_motion_bound_violation": 0,
+      "maximum_boundary_error": 9.9920072216264089E-16,
+      "minimum_affine_circle_clearance_excess": 0.0480381849311978,
+      "minimum_physical_circle_clearance_excess": 0.048038531395644041,
+      "between_node_collision": false
+    },
+    {}
+  ]
+}

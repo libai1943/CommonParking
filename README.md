@@ -29,6 +29,8 @@ BiRRT* + HC-Steer needs a one-time native MATLAB module build: run `BuildHCSteer
 
 Lattice + OCP similarly needs `BuildLatticeGraph` once. Its validated offline primitive library and heuristic are included under the planner folder; offline preparation is excluded from online timing and can be reproduced using the documented builders.
 
+SLiFS additionally needs MATLAB Optimization Toolbox (`quadprog`); it has no AMPL dependency in its planner. The common evaluator still uses the external AMPL/Ipopt runtime.
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -62,13 +64,14 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [SLiFS](planners/SLiFS/README.md) (`SLiFS`) | Trajectory | Sun et al., TITS 2022; L1 convexification within circle-centre feasible sets | Implemented and tested on all 12 cases |
 | [Lattice + OCP](planners/LatticeOCP/README.md) (`LatticeOCP`) | Path | Bergman et al., TIV 2021; full-model primitives and matched-cost improvement | Implemented and tested on all 12 cases |
 | [LIOM](planners/LIOM/README.md) (`LIOM`) | Trajectory | Li et al., TITS 2022; fault-tolerant initialization and multi-disc extension | Implemented and tested on all 12 cases |
 | [BiRRT* + HC-Steer](planners/BiRRT_HC/README.md) (`BiRRT_HC`) | Path | Banzhaf et al., ITSC 2017; authors' HC±± geometry | Implemented and tested on all 12 cases |
 | [BOMP](planners/BOMP/README.md) (`BOMP`) | Trajectory | Shi et al., IJIRA 2019; 15-node pseudospectral MAKKT | Implemented and tested on all 12 cases |
 | [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; literal printed-model transcription | 12 cases tested; model distinction documented |
 
-Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priority is SLiFS (successive linearization in feasible sets). At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
+Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. Only completed implementations appear in this table. The next development priority is the geometric-path subdivision and Reeds–Shepp shortening method of Laumond et al. (1994). At most 40 methods are planned. Their original initialization and optimization methods will be respected; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
 
 ## HA+CG: measured results
 
@@ -282,3 +285,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/LatticeOCP/metrics.csv) · [JSON](results/LatticeOCP/metrics.json) · [validation](results/LatticeOCP/validation.json).
 <!-- /results:LatticeOCP -->
+
+<!-- results:SLiFS -->
+## SLiFS: measured results
+
+Six cases passed the native QP/iteration criteria and independent evaluation; all six had 0% measured collision frames and attained the terminal tolerance. The other six are blocked at an endpoint by the paper's five-circle vehicle cover plus its retained 0.1 m safety margin. The implementation uses the paper's L1 linearization/feasible-set iterations and first-step perturbation, with its explicitly permitted Hybrid A* initializer. MATLAB quadprog replaces the article's CPLEX backend. Independent checks recomputed the nonlinear discrete residuals, original objective, affine and physical circle distances, motion bounds and swept footprints. See [the paper mapping and executable interpretations of the pseudocode](planners/SLiFS/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 22.3384 | 0 | yes | 15.2124 | 5.0855 | 2.1903 | 2 | 82.7580 | no |
+| 02 | no | no | 1.7766 | — | — | — | — | — | — | — | — |
+| 03 | no | no | 1.7381 | — | — | — | — | — | — | — | — |
+| 04 | yes | yes | 5.8933 | 0 | yes | 14.3939 | 4.8198 | 0.8757 | 1 | 61.9549 | no |
+| 05 | yes | yes | 3.8016 | 0 | yes | 26.5562 | 2.4348 | 3.4800 | 3 | 74.1480 | no |
+| 06 | no | no | 1.7182 | — | — | — | — | — | — | — | — |
+| 07 | no | no | 1.6436 | — | — | — | — | — | — | — | — |
+| 08 | yes | yes | 4.5597 | 0 | yes | 16.2578 | 7.4657 | 2.9942 | 3 | 119.5986 | no |
+| 09 | yes | yes | 9.0320 | 0 | yes | 29.9632 | 5.0637 | 5.6174 | 6 | 136.8114 | no |
+| 10 | no | no | 1.6056 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 8.2909 | 0 | yes | 24.3149 | 8.5387 | 2.2126 | 4 | 127.5124 | no |
+| 12 | no | no | 1.7198 | — | — | — | — | — | — | — | — |
+
+[CSV](results/SLiFS/metrics.csv) · [JSON](results/SLiFS/metrics.json) · [validation](results/SLiFS/validation.json).
+<!-- /results:SLiFS -->

@@ -10,6 +10,8 @@ switch name
         canonical = 'LIOM'; planner = @liom.Plan;kind='trajectory';
     case "LATTICEOCP"
         canonical = 'LatticeOCP'; planner = @lattice.Plan;kind='path';
+    case "SLIFS"
+        canonical = 'SLiFS'; planner = @slifs.Plan;kind='trajectory';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"
