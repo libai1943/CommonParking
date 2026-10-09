@@ -96,6 +96,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [BiRRT* + HCR00-Steer](planners/BiRRT_HCR/README.md) (`BiRRT_HCR`) | Path | Banzhaf et al., IV 2018; cubic-spiral curvature-rate-continuous steering | Implemented and tested on all 12 cases |
 | [HJ-guided bidirectional A*](planners/HJBA/README.md) (`HJBA`) | Path | Chi et al., TVT 2026; numerical HJ reachability and connected-state bidirectional search | Implemented and tested on all 12 cases |
 | [DFTPAV static geometry](planners/DFTPAV_Path/README.md) (`DFTPAV_Path`) | Path | Han et al., TITS 2024; MINCO, movable gear changes and explicit geometric-output adapter | Implemented and tested on all 12 cases |
 | [Cumulative key constraints](planners/TPCKC/README.md) (`TPCKC`) | Trajectory | Guo et al., TVT 2025; implicit-Euler NLP and cumulative vertex constraints | Implemented and tested on all 12 cases |
@@ -914,3 +915,28 @@ Planning times include every safe-grid test, full HJ computation, pool startup/s
 
 [CSV](results/HJBA/metrics.csv) · [JSON](results/HJBA/metrics.json) · [validation](results/HJBA/validation.json).
 <!-- /results:HJBA -->
+
+<!-- results:BiRRT_HCR -->
+## BiRRT* with HCR00-Steer: measured results
+
+The 2018 cubic-spiral HCR00 steering function, with continuous curvature/rate between cusps, produced 7/12 native paths; 7 execution optimizations succeeded and 7 attained the terminal tolerance. The paper's five-second initial-solution deadline and three-second improvement period are retained; unsuccessful native searches remain failures. This is a distinct implementation of the HCR equations and both elementary roots, using the authors' licensed HC00 circle/tangent family geometry as its foundation. The zero-curvature endpoint variant, common-vehicle derivative limits, selected footprint-grid kernel and unpublished cost weights are explicitly documented. Independent checks cover 320 random connections, both ramp regimes and elementary constructions, sixty ODE comparisons, reversal, derivative extrema, cusp/mileage consistency and native full-body collision sampling. See [the formulation and adapter details](planners/BiRRT_HCR/README.md).
+
+Planner time includes setup, case loading, footprint-grid construction, five-second initial search plus three-second improvement when applicable, and path conversion. In-flight edge operations can exceed a deadline slightly. The one-time MEX build is excluded. One seeded run per case is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 10.8261 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 10.7208 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 8.7908 | 0 | yes | 60.2151 | 2.8725 | 14.9371 | 3 | 193.0960 | no |
+| 04 | yes | yes | 9.9914 | 0 | yes | 13.7790 | 12.4872 | 0.2970 | 1 | 132.8418 | no |
+| 05 | no | no | 11.3295 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 8.8592 | 0 | yes | 25.1972 | 9.3701 | 2.6891 | 2 | 130.5927 | no |
+| 07 | yes | yes | 8.8983 | 0 | yes | 36.9534 | 16.9963 | 3.3546 | 4 | 223.5085 | no |
+| 08 | yes | yes | 9.0169 | 0 | yes | 86.1539 | 3.7315 | 16.1404 | 5 | 223.7189 | no |
+| 09 | no | no | 10.8638 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 8.8213 | 0 | yes | 71.7949 | 3.3598 | 12.5413 | 4 | 179.0112 | no |
+| 11 | yes | yes | 8.7478 | 0 | yes | 66.6667 | 2.7961 | 16.4823 | 3 | 207.7842 | no |
+| 12 | no | no | 11.0645 | — | — | — | — | — | — | — | — |
+
+[CSV](results/BiRRT_HCR/metrics.csv) · [JSON](results/BiRRT_HCR/metrics.json) · [validation](results/BiRRT_HCR/validation.json).
+<!-- /results:BiRRT_HCR -->

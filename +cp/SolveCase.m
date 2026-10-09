@@ -64,6 +64,8 @@ switch name
         canonical = 'BOMP'; planner = @bomp.Plan;kind='trajectory';
     case {"H_OBCA","OBCA"}
         canonical = 'H_OBCA'; planner = @hobca.Plan;kind='trajectory';
+    case "BIRRT_HCR"
+        canonical='BiRRT_HCR';planner=@bhcr.Plan;kind='path';
     otherwise
         error('CommonParking:UnknownPlanner','Unknown released planner: %s',name);
 end

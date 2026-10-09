@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 7,
+  "evaluation_success_count": 7,
+  "terminal_reached_count": 7,
+  "unit": {
+    "passed": true,
+    "random_connections": 320,
+    "independent_ODE_connections": 60,
+    "endpoint_error": 3.2862601528904634E-14,
+    "ODE_error": 1.9166890297128703E-11,
+    "reverse_error": 3.3750779948604759E-14,
+    "continuity_error": 4.4408920985006262E-16,
+    "endpoint_curvature_rate_error": 2.2204460492503131E-16,
+    "limit_violation": 4.4408920985006262E-16,
+    "elementary_types": [
+      203,
+      264
+    ],
+    "elementary_endpoint_error": 7.1054273576010019E-15,
+    "curvature_integral_error": 1.7763568394002505E-15
+  },
+  "independent_checks": [
+    {},
+    {},
+    {
+      "passed": true,
+      "maximum_ODE_error": 4.1247005810873816E-12,
+      "endpoint_error": [
+        -1.1157741397482823E-13,
+        -1.91624494050302E-12,
+        -3.5527136788005009E-15
+      ],
+      "within_gear_continuity_error": 3.4694469519536142E-18,
+      "uniform_spacing_error": 4.6074255521944E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 32.814512496755363,
+      "cusp_count": 3,
+      "curvature_integral": 6.1529655804745991,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.18735235437447673
+    },
+    {
+      "passed": true,
+      "maximum_ODE_error": 1.5094592242803628E-12,
+      "endpoint_error": [
+        1.7137402608113916E-12,
+        3.3817393330082268E-13,
+        0
+      ],
+      "within_gear_continuity_error": 2.7755575615628914E-17,
+      "uniform_spacing_error": 4.1078251911130792E-15,
+      "maximum_curvature": 0.11814536763794439,
+      "maximum_curvature_rate": 0.045206897409590024,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 21.886197937323853,
+      "cusp_count": 1,
+      "curvature_integral": 1.1519173063162573,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.29518167136923179
+    },
+    {},
+    {
+      "passed": true,
+      "maximum_ODE_error": 7.9092288274296152E-12,
+      "endpoint_error": [
+        -6.592171253316792E-12,
+        -4.3780534753068423E-12,
+        2.886579864025407E-15
+      ],
+      "within_gear_continuity_error": 1.3877787807814457E-17,
+      "uniform_spacing_error": 4.0870085094013575E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 32.077038413769,
+      "cusp_count": 2,
+      "curvature_integral": 2.1777662581208377,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.1517832040419691
+    },
+    {
+      "passed": true,
+      "maximum_ODE_error": 8.9652729684530641E-12,
+      "endpoint_error": [
+        1.3815360314084479E-11,
+        -7.9793480850520737E-12,
+        4.4408920985006262E-16
+      ],
+      "within_gear_continuity_error": 1.3877787807814457E-17,
+      "uniform_spacing_error": 4.163336342344337E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 45.856052068785644,
+      "cusp_count": 4,
+      "curvature_integral": 2.9219540411785832,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.23471208318404235
+    },
+    {
+      "passed": true,
+      "maximum_ODE_error": 5.8397731095283234E-12,
+      "endpoint_error": [
+        5.5446758295829568E-12,
+        -9.5759511431481315E-13,
+        -2.0212861992297212E-15
+      ],
+      "within_gear_continuity_error": 5.4836592626899145E-18,
+      "uniform_spacing_error": 4.1772141301521515E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 53.11193923127766,
+      "cusp_count": 5,
+      "curvature_integral": 8.0380788256597935,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.22276166321057866
+    },
+    {},
+    {
+      "passed": true,
+      "maximum_ODE_error": 1.0031087072093214E-11,
+      "endpoint_error": [
+        2.1147361639606288E-11,
+        4.8738790781044372E-12,
+        2.2204460492503131E-15
+      ],
+      "within_gear_continuity_error": 1.1102230246251565E-16,
+      "uniform_spacing_error": 6.5572547391923308E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 43.427910423431861,
+      "cusp_count": 4,
+      "curvature_integral": 5.7664646048542991,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.19707963502433368
+    },
+    {
+      "passed": true,
+      "maximum_ODE_error": 6.8896000016138714E-12,
+      "endpoint_error": [
+        1.3127277043167851E-12,
+        2.6423307986078726E-14,
+        -3.3077843189710302E-15
+      ],
+      "within_gear_continuity_error": 2.7755575615628914E-17,
+      "uniform_spacing_error": 9.26342336171615E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_rate": 0.071428571428571425,
+      "maximum_curvature_acceleration": 0.3905,
+      "path_length_m": 41.398149954903595,
+      "cusp_count": 3,
+      "curvature_integral": 8.1218226268798812,
+      "dense_native_collision_percent": 0,
+      "dense_native_collision_free": true,
+      "minimum_SAT_gap_m": 0.19632865621630868
+    },
+    {}
+  ]
+}
