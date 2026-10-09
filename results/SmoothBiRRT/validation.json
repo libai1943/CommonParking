@@ -1,0 +1,170 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 6,
+  "evaluation_success_count": 6,
+  "terminal_reached_count": 4,
+  "unit": {
+    "passed": true,
+    "joint_cusp_and_reverse_cost": true,
+    "circle_cover": true,
+    "third_tree_and_feedback_exercised": true,
+    "search": {
+      "success": true,
+      "iterations": 10,
+      "nodes": [
+        47,
+        47
+      ],
+      "rewires": 0,
+      "connections": 10,
+      "smoothing_runs": 10,
+      "feedback_nodes": 90,
+      "rs_calls": 109,
+      "cost": 1.9999999999999987,
+      "search_time_s": 1.8956912,
+      "time_to_first_solution_s": 0.6278686,
+      "seed": 2.020106E+6
+    }
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "independent_ode_error": 3.1308289294429414E-13,
+      "native_terminal_error": [
+        9.5479180117763462E-15,
+        9.43689570931383E-15,
+        2.9420910152566648E-15
+      ],
+      "objective_terms": [
+        9.28508484621187,
+        5.1083546478649673,
+        2,
+        9.28508484621187
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.22067072497971818,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 9.28508484621187,
+      "gear_changes": 2
+    },
+    {},
+    {},
+    {
+      "passed": true,
+      "independent_ode_error": 4.1086578583815481E-13,
+      "native_terminal_error": [
+        -7.2164496600635175E-16,
+        1.9984014443252818E-15,
+        0
+      ],
+      "objective_terms": [
+        11.827971898923973,
+        6.4546601792743736,
+        1,
+        5.9266263976578815
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.22281342892094691,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 11.827971898923973,
+      "gear_changes": 1
+    },
+    {},
+    {
+      "passed": true,
+      "independent_ode_error": 1.9637624859569769E-12,
+      "native_terminal_error": [
+        -4.7217785237307908E-13,
+        -3.6415315207705135E-13,
+        -5.595524044110789E-14
+      ],
+      "objective_terms": [
+        12.965462715763548,
+        8.4919948033651789,
+        1,
+        7.06057222240347
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.044956522205817917,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 12.965462715763548,
+      "gear_changes": 1
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 2.123218267868765E-12,
+      "native_terminal_error": [
+        4.0120684552391594E-14,
+        -1.73749903353837E-14,
+        -7.1054273576010019E-15
+      ],
+      "objective_terms": [
+        9.4967902374023119,
+        8.3060142824877357,
+        1,
+        6.5477895079136026
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.076660811318436828,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 9.4967902374023119,
+      "gear_changes": 1
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 4.0383668631349678E-13,
+      "native_terminal_error": [
+        6.4392935428259079E-15,
+        1.4988010832439613E-15,
+        1.3600232051658168E-15
+      ],
+      "objective_terms": [
+        11.378738656554866,
+        7.18057860248292,
+        2,
+        11.378738656554866
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.10962292072666413,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 11.378738656554866,
+      "gear_changes": 2
+    },
+    {},
+    {},
+    {
+      "passed": true,
+      "independent_ode_error": 7.5583983516480657E-13,
+      "native_terminal_error": [
+        -1.8873791418627661E-15,
+        -6.2172489379008766E-15,
+        2.2204460492503131E-15
+      ],
+      "objective_terms": [
+        10.860840987719174,
+        3.3831970694005595,
+        3,
+        8.592284176004803
+      ],
+      "dense_physical_collision_percent": 0,
+      "continuous_physical_collision_free": true,
+      "dense_disc_collision_free": true,
+      "dense_disc_clearance_m": 0.11441167649230466,
+      "cover_radius_m": 1.1341884832888227,
+      "path_length_m": 10.860840987719174,
+      "gear_changes": 3
+    },
+    {}
+  ]
+}

@@ -42,6 +42,8 @@ switch name
         canonical = 'BL_Dijkstra'; planner = @bldijkstra.Plan;kind='path';
     case "GRAPHBELLMAN"
         canonical = 'GraphBellman'; planner = @gbellman.Plan;kind='path';
+    case "SMOOTHBIRRT"
+        canonical = 'SmoothBiRRT'; planner = @sfrrt.Plan;kind='path';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

@@ -51,6 +51,8 @@ BL_Dijkstra needs a one-time C++ module build with `BuildBLDijkstra`. It uses ba
 
 GraphBellman needs a one-time C++ module build with `BuildGraphBellman`. The planner uses base MATLAB and computes a value function over both direction modes on the entire grid. [Source and build instructions](planners/GraphBellman/README.md).
 
+SmoothBiRRT needs MATLAB Navigation Toolbox for its Reeds–Shepp curves. Search, smoothing, feedback and disc collision checking are plain MATLAB in [its planner folder](planners/SmoothBiRRT/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -84,6 +86,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Smooth-feedback Bi-RRT*](planners/SmoothBiRRT/README.md) (`SmoothBiRRT`) | Path | Jhang, Lian & Hao, CASE 2020; third-tree smoothing and search feedback | Implemented and tested on all 12 cases |
 | [Finite-element Bellman graph](planners/GraphBellman/README.md) (`GraphBellman`) | Path | Laurini, Consolini & Locatelli, TAC 2021; Model 1 and selective Bellman updates | Implemented and tested on all 12 cases |
 | [Barraquand-Latombe Dijkstra](planners/BL_Dijkstra/README.md) (`BL_Dijkstra`) | Path | Barraquand & Latombe, Algorithmica 1993; minimum-reversal indexed search | Implemented and tested on all 12 cases |
 | [Backward dynamic programming](planners/DPGrid/README.md) (`DPGrid`) | Path | Schildbach & Borrelli, IV 2016; finite pose grid with continuous steering arcs | Implemented and tested on all 12 cases |
@@ -746,3 +749,28 @@ Planning times include the entire finite-element graph construction, single-thre
 
 [CSV](results/GraphBellman/metrics.csv) · [JSON](results/GraphBellman/metrics.json) · [validation](results/GraphBellman/validation.json).
 <!-- /results:GraphBellman -->
+
+<!-- results:SmoothBiRRT -->
+## Smooth-feedback bidirectional RRT*: measured results
+
+Revised two-tree RS search, a third smoothing tree, feedback branches and a contracting sampling region produced 6/12 native paths; 6 execution optimizations succeeded and 4 attained the strict terminal tolerance. **The article's enclosing-disc model can reject a frozen task endpoint even when the physical rectangle is feasible.** Endpoint-model rejections and search-budget failures are both retained. The original length, reverse-distance, cusp and curved-length cost terms are used, with explicitly chosen unpublished weights. Independent checks recompute full path costs and terminal poses, integrate all arcs and measure dense disc/full-body clearance. See [the Algorithm 1 mapping, MATLAB time budget and disclosed smoothing/feedback choices](planners/SmoothBiRRT/README.md).
+
+Planning times include all RS queries, tree construction, third-tree smoothing, feedback, ROI updates and path sampling. Numerical-library threads are fixed to one. Other development jobs were active; a fixed random seed with wall-time stopping does not imply bitwise repeatability across hardware or load.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 70.7639 | 0 | no | 28.9038 | 5.9189 | 9.6086 | 3 | 170.2749 | yes |
+| 02 | no | no | 10.3670 | — | — | — | — | — | — | — | — |
+| 03 | no | no | 9.8303 | — | — | — | — | — | — | — | — |
+| 04 | yes | yes | 69.9998 | 0 | yes | 26.2516 | 2.1228 | 6.3392 | 1 | 89.6201 | no |
+| 05 | no | no | 69.7556 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 70.2196 | 0 | yes | 27.3171 | 2.2589 | 7.0487 | 2 | 103.0752 | no |
+| 07 | yes | yes | 70.0905 | 0 | yes | 24.0146 | 2.4027 | 7.0159 | 2 | 104.1860 | yes |
+| 08 | yes | yes | 69.8689 | 0 | no | 32.3935 | 5.1368 | 12.2385 | 3 | 188.7524 | yes |
+| 09 | no | no | 69.7485 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 9.7324 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 69.7488 | 0 | yes | 38.0751 | 4.8389 | 12.3412 | 4 | 191.8011 | yes |
+| 12 | no | no | 9.6964 | — | — | — | — | — | — | — | — |
+
+[CSV](results/SmoothBiRRT/metrics.csv) · [JSON](results/SmoothBiRRT/metrics.json) · [validation](results/SmoothBiRRT/validation.json).
+<!-- /results:SmoothBiRRT -->
