@@ -68,6 +68,8 @@ switch name
         canonical='BiRRT_HCR';planner=@bhcr.Plan;kind='path';
     case "CC_PRM"
         canonical='CC_PRM';planner=@ccp.Plan;kind='path';
+    case "TDR_OBCA"
+        canonical='TDR_OBCA';planner=@tdr.Plan;kind='trajectory';
     otherwise
         error('CommonParking:UnknownPlanner','Unknown released planner: %s',name);
 end

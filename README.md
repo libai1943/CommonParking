@@ -65,6 +65,10 @@ HJBA needs MATLAB Navigation and Parallel Computing Toolboxes. `BuildHJBA` optio
 
 CC_PRM uses base MATLAB after a one-time `BuildCCSteer` C++ module build. The standalone geometry test additionally uses Optimization Toolbox. [Paper construction, build instructions and roadmap adapter](planners/CC_PRM/README.md).
 
+TDR_OBCA uses MATLAB Navigation/Optimization Toolboxes and the external AMPL/Ipopt runtime with MA97. The shared polygon-support helper is in H_OBCA. [Printed formulation and static-task adapters](planners/TDR_OBCA/README.md).
+
+`BuildHCRSteer` compiles the licensed circle/tangent geometry and benchmark cubic-spiral implementation once. A configured MATLAB C++ compiler or Windows portable Zig compiler is supported; binaries stay outside the source tree. [Source and build instructions](planners/BiRRT_HCR/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -98,6 +102,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [TDR-OBCA](planners/TDR_OBCA/README.md) (`TDR_OBCA`) | Trajectory | He et al., ACC 2021; temporal and dual initialization with printed fixed-time NLP | Implemented and tested on all 12 cases |
 | [CC-Steer + directed PRM](planners/CC_PRM/README.md) (`CC_PRM`) | Path | Fraichard & Scheuer, TRO 2004; continuous-curvature connector with disclosed roadmap adapter | Implemented and tested on all 12 cases |
 | [BiRRT* + HCR00-Steer](planners/BiRRT_HCR/README.md) (`BiRRT_HCR`) | Path | Banzhaf et al., IV 2018; cubic-spiral curvature-rate-continuous steering | Implemented and tested on all 12 cases |
 | [HJ-guided bidirectional A*](planners/HJBA/README.md) (`HJBA`) | Path | Chi et al., TVT 2026; numerical HJ reachability and connected-state bidirectional search | Implemented and tested on all 12 cases |
@@ -968,3 +973,28 @@ Planning time includes setup, case loading, the complete directed roadmap, conti
 
 [CSV](results/CC_PRM/metrics.csv) · [JSON](results/CC_PRM/metrics.json) · [validation](results/CC_PRM/validation.json).
 <!-- /results:CC_PRM -->
+
+<!-- results:TDR_OBCA -->
+## TDR-OBCA printed formulation: measured results
+
+Temporal constant-jerk QPs, the analytically solved distance-dual QP and the printed fixed-time Euler NLP produced 12/12 native trajectories; 12 execution optimizations succeeded and 8 attained the strict terminal tolerance. **This follows the printed absolute-state and negative-distance objective, not later Apollo source variants.** Terminal pose remains soft; a disclosed hard terminal-zero-speed condition enforces the benchmark rest-to-rest task. The standalone call has no previous MPC cycle, so the prior-cycle input is zero. Unpublished weights and modified temporal-QP choices are explicit and uniform across cases. Independent tests verify the dual QP against numerical optimization, constant-jerk integration, all NLP constraints/objective, full-body node clearance and continuous-input integration. See [the equation mapping, source differences and static-task adaptations](planners/TDR_OBCA/README.md).
+
+Planning time includes Hybrid A*, all phase speed QPs, exact distance-dual initialization, the final NLP and output conversion. Numerical-library threads are fixed to one. These measurements differ from the paper's deployed Apollo pipeline and are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 18.0075 | 0 | yes | 20.1525 | 8.6977 | 3.2329 | 2 | 129.3063 | no |
+| 02 | yes | yes | 126.9965 | 5.9594 | yes | 32.3844 | 8.0820 | 3.9160 | 2 | 129.9797 | no |
+| 03 | yes | yes | 15.7545 | 0 | yes | 14.4890 | 10.4108 | 1.3004 | 1 | 122.1123 | no |
+| 04 | yes | yes | 17.1182 | 2.1611 | yes | 14.9446 | 13.2139 | 0.9071 | 1 | 146.2097 | no |
+| 05 | yes | yes | 16.0026 | 0 | yes | 15.7975 | 9.7419 | 1.3714 | 1 | 116.1331 | no |
+| 06 | yes | yes | 15.4161 | 0 | yes | 16.0909 | 11.0483 | 1.4982 | 1 | 130.4651 | no |
+| 07 | yes | yes | 15.1623 | 0.8323 | yes | 13.8151 | 14.7484 | 1.9326 | 1 | 171.8099 | no |
+| 08 | yes | yes | 23.5755 | 1.7383 | no | 21.1118 | 11.5006 | 3.3848 | 3 | 163.8541 | no |
+| 09 | yes | yes | 33.8492 | 0 | no | 23.9964 | 9.1230 | 3.3475 | 2 | 134.7048 | no |
+| 10 | yes | yes | 55.0737 | 0 | yes | 25.1172 | 10.8360 | 3.2955 | 0 | 141.3156 | no |
+| 11 | yes | yes | 26.7340 | 0.0067 | no | 29.7624 | 8.1489 | 5.2289 | 1 | 138.7784 | no |
+| 12 | yes | yes | 27.9476 | 0 | no | 25.1404 | 4.9107 | 2.9813 | 1 | 83.9197 | no |
+
+[CSV](results/TDR_OBCA/metrics.csv) · [JSON](results/TDR_OBCA/metrics.json) · [validation](results/TDR_OBCA/validation.json).
+<!-- /results:TDR_OBCA -->
