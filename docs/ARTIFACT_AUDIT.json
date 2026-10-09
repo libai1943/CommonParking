@@ -581,7 +581,7 @@
       "cases": 12,
       "planner_success": 2,
       "evaluation_success": 2,
-      "terminal_reached": 0,
+      "terminal_reached": 2,
       "zero_collision_execution": 2,
       "screen_codes": [
         "planner_failed",
@@ -647,7 +647,7 @@
       "cases": 12,
       "planner_success": 11,
       "evaluation_success": 11,
-      "terminal_reached": 9,
+      "terminal_reached": 11,
       "zero_collision_execution": 11,
       "screen_codes": [
         "valid",
@@ -655,12 +655,12 @@
         "valid",
         "valid",
         "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
         "planner_failed",
-        "valid",
-        "valid",
-        "valid",
-        "valid",
-        "valid",
         "valid"
       ]
     },
@@ -757,8 +757,8 @@
       "cases": 12,
       "planner_success": 12,
       "evaluation_success": 12,
-      "terminal_reached": 8,
-      "zero_collision_execution": 7,
+      "terminal_reached": 12,
+      "zero_collision_execution": 5,
       "screen_codes": [
         "valid",
         "valid",
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "81ddb77f67d47328d78bfb9b3a97587b2b47dca6",
+  "source_commit": "55814833b4b961c4b279f3fc75aae5838df0c1d7",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {
