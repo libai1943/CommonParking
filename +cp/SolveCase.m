@@ -48,6 +48,8 @@ switch name
         canonical = 'DubinsGrid'; planner = @dgrid.Plan;kind='path';
     case "BICCHITANGENTS"
         canonical = 'BicchiTangents'; planner = @btangent.Plan;kind='path';
+    case "TPCKC"
+        canonical = 'TPCKC'; planner = @tpckc.Plan;kind='trajectory';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

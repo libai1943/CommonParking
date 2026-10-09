@@ -57,6 +57,8 @@ DubinsGrid needs a one-time C++ module build with `BuildDubinsGrid` and MATLAB O
 
 BicchiTangents needs a one-time C++ module build with `BuildBicchiTangents` and otherwise uses base MATLAB. [Source, theorem scope and build instructions](planners/BicchiTangents/README.md).
 
+TPCKC uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/TPCKC/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -90,6 +92,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Cumulative key constraints](planners/TPCKC/README.md) (`TPCKC`) | Trajectory | Guo et al., TVT 2025; implicit-Euler NLP and cumulative vertex constraints | Implemented and tested on all 12 cases |
 | [Bicchi tangent graph](planners/BicchiTangents/README.md) (`BicchiTangents`) | Path | Bicchi, Casalino & Santilli, ICRA 1995; obstacle-supported circles and tangents | Implemented and tested on all 12 cases |
 | [Dubins grid + Frenet SQP](planners/DubinsGrid/README.md) (`DubinsGrid`) | Path | Siedentop et al., FAS 2015; Dubins lattice and normal-offset smoothing | Implemented and tested on all 12 cases |
 | [Smooth-feedback Bi-RRT*](planners/SmoothBiRRT/README.md) (`SmoothBiRRT`) | Path | Jhang, Lian & Hao, CASE 2020; third-tree smoothing and search feedback | Implemented and tested on all 12 cases |
@@ -830,3 +833,28 @@ Planning times include all support-circle construction, the complete directed gr
 
 [CSV](results/BicchiTangents/metrics.csv) · [JSON](results/BicchiTangents/metrics.json) · [validation](results/BicchiTangents/validation.json).
 <!-- /results:BicchiTangents -->
+
+<!-- results:TPCKC -->
+## Trajectory planning with cumulative key constraints: measured results
+
+The implicit-Euler NLP and cumulative vertex-constraint loop produced 5/12 native trajectories; 5 execution optimizations succeeded and 5 attained the strict terminal tolerance. The article's 0.04 s initial mesh, temporal propagation, objective weights and three trust radii are retained. Failed intermediate NLPs remain native failures. Independent verification checks the implicit model, objective, cumulative keys, immutable dual initialization and native full-body intersections. The analytic pose-fixed SOCP initialization agrees with an independent primal quadratic projection to 3.3e-10. **The native vertex-exclusion test can miss polygon crossings without vertex intrusion; full-body execution is measured separately.** See [the paper mapping, final-trial logic and numerical choices](planners/TPCKC/README.md).
+
+Planning times include Hybrid A*, path-to-trajectory initialization, geometric SOCP solutions, all native NLP calls and output conversion; they differ from the paper's sum of Ipopt-only CPU times. Numerical-library threads are fixed to one. Other development jobs were active, so these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 7.4902 | 0 | yes | 11.6338 | 11.9625 | 1.7800 | 2 | 147.4253 | no |
+| 02 | no | no | 47.6686 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 5.7599 | 0 | yes | 10.2762 | 9.6255 | 2.1429 | 1 | 122.6837 | no |
+| 04 | no | no | 90.2620 | — | — | — | — | — | — | — | — |
+| 05 | yes | yes | 7.0066 | 0 | yes | 9.7747 | 10.0726 | 1.8776 | 1 | 124.5028 | no |
+| 06 | no | no | 11.2696 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 6.5942 | 0 | yes | 9.2098 | 8.1003 | 1.8409 | 1 | 104.4119 | no |
+| 08 | no | no | 9.3955 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 28.2591 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 50.6740 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 36.9998 | 0 | yes | 9.3333 | 8.2070 | 1.6738 | 2 | 108.8075 | no |
+| 12 | no | no | 17.9163 | — | — | — | — | — | — | — | — |
+
+[CSV](results/TPCKC/metrics.csv) · [JSON](results/TPCKC/metrics.json) · [validation](results/TPCKC/validation.json).
+<!-- /results:TPCKC -->

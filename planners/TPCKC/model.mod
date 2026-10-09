@@ -1,0 +1,37 @@
+param N integer >0;
+set I := 0..N;
+set U := 0..N-1;
+param M integer >=0;
+set K := 1..M;
+param J{K} integer >0;
+param timeIndex{K} integer;
+param kind{K} integer;
+param px{K};param py{K};
+param ax{m in K,j in 1..J[m]};param ay{m in K,j in 1..J[m]};param bound{m in K,j in 1..J[m]};
+param lw;param vmax;param amax;param phimax;param wmax;param radius;
+param weights{1..3};param boundary{1..6};param minHeading;param maxHeading;
+param rx{I};param ry{I};param minimumTime;param maximumTime;param minimumDistance;
+var T >=minimumTime,<=maximumTime;
+var zx{I};var zy{I};var ztheta{I} >=minHeading/3.14159265358979323846,<=maxHeading/3.14159265358979323846;
+var zv{I} >=-1,<=1;var zphi{I} >=-1,<=1;var za{U} >=-1,<=1;var zw{U} >=-1,<=1;
+var x{k in I}=radius*zx[k];var y{k in I}=radius*zy[k];var theta{k in I}=3.14159265358979323846*ztheta[k];
+var v{k in I}=vmax*zv[k];var phi{k in I}=phimax*zphi[k];var a{k in U}=amax*za[k];var omega{k in U}=wmax*zw[k];
+var lambda{m in K,j in 1..J[m]} >=0;
+var qx{m in K}=if kind[m]=1 then x[timeIndex[m]]+cos(theta[timeIndex[m]])*px[m]-sin(theta[timeIndex[m]])*py[m]
+ else cos(theta[timeIndex[m]])*(px[m]-x[timeIndex[m]])+sin(theta[timeIndex[m]])*(py[m]-y[timeIndex[m]]);
+var qy{m in K}=if kind[m]=1 then y[timeIndex[m]]+sin(theta[timeIndex[m]])*px[m]+cos(theta[timeIndex[m]])*py[m]
+ else -sin(theta[timeIndex[m]])*(px[m]-x[timeIndex[m]])+cos(theta[timeIndex[m]])*(py[m]-y[timeIndex[m]]);
+minimize cost:weights[1]*T+T/N*sum{k in U}(weights[2]*(a[k]^2+v[k]^2*omega[k]^2)+weights[3]*phi[k]^2);
+subject to xInitial:x[0]=boundary[1];subject to yInitial:y[0]=boundary[2];subject to thetaInitial:theta[0]=boundary[3];
+subject to vInitial:v[0]=0;subject to phiInitial:phi[0]=0;
+subject to xFinal:x[N]=boundary[4];subject to yFinal:y[N]=boundary[5];subject to thetaFinal:theta[N]=boundary[6];
+subject to vFinal:v[N]=0;subject to phiFinal:phi[N]=0;
+subject to xDynamics{k in U}:x[k+1]-x[k]=T/N*v[k+1]*cos(theta[k+1]);
+subject to yDynamics{k in U}:y[k+1]-y[k]=T/N*v[k+1]*sin(theta[k+1]);
+subject to thetaDynamics{k in U}:theta[k+1]-theta[k]=T/N*v[k+1]*tan(phi[k+1])/lw;
+subject to vDynamics{k in U}:v[k+1]-v[k]=T/N*a[k];
+subject to phiDynamics{k in U}:phi[k+1]-phi[k]=T/N*omega[k];
+subject to xTrust{k in 1..N-1}:rx[k]-radius<=x[k]<=rx[k]+radius;
+subject to yTrust{k in 1..N-1}:ry[k]-radius<=y[k]<=ry[k]+radius;
+subject to pointSeparation{m in K}:sum{j in 1..J[m]}(ax[m,j]*qx[m]+ay[m,j]*qy[m]-bound[m,j])*lambda[m,j]>=minimumDistance;
+subject to normalBound{m in K}:(sum{j in 1..J[m]}ax[m,j]*lambda[m,j])^2+(sum{j in 1..J[m]}ay[m,j]*lambda[m,j])^2<=1;

@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 5,
+  "evaluation_success_count": 5,
+  "terminal_reached_count": 5,
+  "unit": {
+    "passed": true,
+    "independent_projection_dual_gap": 3.278968865458128E-10,
+    "vertex_crossing_counterexample": true,
+    "propagation_excludes_endpoints": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "accepted_nlps": 2,
+      "intervals": 247,
+      "key_constraints": 0,
+      "maximum_dual_initialization_gap": 0,
+      "maximum_accepted_nlp_residual": 4.1905991875375304E-8,
+      "independent_implicit_recursion_error": 8.0324196960468441E-8,
+      "maximum_local_continuous_ode_defect": 0.0012753734553767604,
+      "native_node_physical_collision_percent": 0,
+      "minimum_native_sat_separation_m": 0.2299389008657331,
+      "objective_error": 2.2737367544323206E-13,
+      "immutable_socp_seeds_verified": true
+    },
+    {},
+    {
+      "passed": true,
+      "accepted_nlps": 2,
+      "intervals": 229,
+      "key_constraints": 0,
+      "maximum_dual_initialization_gap": 0,
+      "maximum_accepted_nlp_residual": 4.8583460356306507E-8,
+      "independent_implicit_recursion_error": 2.3083957301217595E-7,
+      "maximum_local_continuous_ode_defect": 0.0012316588601559708,
+      "native_node_physical_collision_percent": 0,
+      "minimum_native_sat_separation_m": 0.35595494870110223,
+      "objective_error": 0,
+      "immutable_socp_seeds_verified": true
+    },
+    {},
+    {
+      "passed": true,
+      "accepted_nlps": 2,
+      "intervals": 225,
+      "key_constraints": 0,
+      "maximum_dual_initialization_gap": 0,
+      "maximum_accepted_nlp_residual": 2.4983690651882162E-8,
+      "independent_implicit_recursion_error": 2.0852312704322529E-7,
+      "maximum_local_continuous_ode_defect": 0.0013492047874157365,
+      "native_node_physical_collision_percent": 0,
+      "minimum_native_sat_separation_m": 0.17822155277896234,
+      "objective_error": 1.1368683772161603E-13,
+      "immutable_socp_seeds_verified": true
+    },
+    {},
+    {
+      "passed": true,
+      "accepted_nlps": 2,
+      "intervals": 201,
+      "key_constraints": 0,
+      "maximum_dual_initialization_gap": 0,
+      "maximum_accepted_nlp_residual": 2.4991470574638533E-8,
+      "independent_implicit_recursion_error": 2.6260408355550181E-7,
+      "maximum_local_continuous_ode_defect": 0.0017326626157281311,
+      "native_node_physical_collision_percent": 0,
+      "minimum_native_sat_separation_m": 0.1393091643483928,
+      "objective_error": 1.1368683772161603E-13,
+      "immutable_socp_seeds_verified": true
+    },
+    {},
+    {},
+    {},
+    {
+      "passed": true,
+      "accepted_nlps": 4,
+      "intervals": 331,
+      "key_constraints": 212,
+      "maximum_dual_initialization_gap": 5.5511151231257827E-16,
+      "maximum_accepted_nlp_residual": 7.6309640937536873E-8,
+      "independent_implicit_recursion_error": 1.0588618271079042E-7,
+      "maximum_local_continuous_ode_defect": 0.00038536960481128091,
+      "native_node_physical_collision_percent": 0,
+      "minimum_native_sat_separation_m": 9.2369047444140762E-7,
+      "objective_error": 0,
+      "immutable_socp_seeds_verified": true
+    },
+    {}
+  ]
+}
