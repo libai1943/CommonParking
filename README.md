@@ -63,6 +63,8 @@ DFTPAV_Path needs MATLAB Navigation and Optimization Toolboxes. Its static MINCO
 
 HJBA needs MATLAB Navigation and Parallel Computing Toolboxes. `BuildHJBA` optionally compiles its HJ stencil; the complete MATLAB stencil remains available. The common analytic arc helpers live in the LaumondRS folder. [Source, build and reachability assumptions](planners/HJBA/README.md).
 
+CC_PRM uses base MATLAB after a one-time `BuildCCSteer` C++ module build. The standalone geometry test additionally uses Optimization Toolbox. [Paper construction, build instructions and roadmap adapter](planners/CC_PRM/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -96,6 +98,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [CC-Steer + directed PRM](planners/CC_PRM/README.md) (`CC_PRM`) | Path | Fraichard & Scheuer, TRO 2004; continuous-curvature connector with disclosed roadmap adapter | Implemented and tested on all 12 cases |
 | [BiRRT* + HCR00-Steer](planners/BiRRT_HCR/README.md) (`BiRRT_HCR`) | Path | Banzhaf et al., IV 2018; cubic-spiral curvature-rate-continuous steering | Implemented and tested on all 12 cases |
 | [HJ-guided bidirectional A*](planners/HJBA/README.md) (`HJBA`) | Path | Chi et al., TVT 2026; numerical HJ reachability and connected-state bidirectional search | Implemented and tested on all 12 cases |
 | [DFTPAV static geometry](planners/DFTPAV_Path/README.md) (`DFTPAV_Path`) | Path | Han et al., TITS 2024; MINCO, movable gear changes and explicit geometric-output adapter | Implemented and tested on all 12 cases |
@@ -940,3 +943,28 @@ Planner time includes setup, case loading, footprint-grid construction, five-sec
 
 [CSV](results/BiRRT_HCR/metrics.csv) · [JSON](results/BiRRT_HCR/metrics.json) · [validation](results/BiRRT_HCR/validation.json).
 <!-- /results:BiRRT_HCR -->
+
+<!-- results:CC_PRM -->
+## CC-Steer with a directed roadmap: measured results
+
+The 2004 continuous-curvature steering construction, embedded in a disclosed directed roadmap, produced 7/12 native paths; 7 execution optimizations succeeded and 7 attained the terminal tolerance. The connector includes both the nine printed circle families and the essential topological path; the latter was implemented separately from the licensed later CC00 source. **The roadmap is a benchmark adapter, not a reproduction of the article's PPP/ACA experiments.** Native query failures remain failures. Independent checks cover random connections, shrinking topological maneuvers, curvature continuity at all cusps, ODE integration, support-plane bounds against convex QPs, between-sample collision rejection, complete graph-route lengths and exact mileage output. See [the paper construction, source changes and finite adapter settings](planners/CC_PRM/README.md).
+
+Planning time includes setup, case loading, the complete directed roadmap, continuous-body edge checks, Dijkstra and path conversion. The one-time native module build is excluded. One seeded call per case is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 15.7015 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 12.4141 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 12.4997 | 0 | yes | 27.4996 | 28.9452 | 1.1542 | 4 | 320.9940 | no |
+| 04 | yes | yes | 12.8416 | 0 | yes | 14.2496 | 12.6530 | 0.3480 | 1 | 135.0100 | no |
+| 05 | no | no | 12.5890 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 13.0691 | 0 | yes | 36.3767 | 34.9966 | 1.1295 | 6 | 391.2604 | no |
+| 07 | yes | yes | 12.5511 | 0 | yes | 27.5813 | 24.8575 | 5.9447 | 3 | 323.0215 | no |
+| 08 | yes | yes | 12.0429 | 0 | yes | 37.9246 | 38.9483 | 2.5733 | 5 | 440.2164 | no |
+| 09 | no | no | 13.1416 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 12.6891 | 0 | yes | 23.0290 | 22.8562 | 1.9389 | 2 | 257.9513 | no |
+| 11 | yes | yes | 12.5034 | 0 | yes | 42.7184 | 41.1792 | 5.0702 | 7 | 497.4934 | no |
+| 12 | no | no | 13.0652 | — | — | — | — | — | — | — | — |
+
+[CSV](results/CC_PRM/metrics.csv) · [JSON](results/CC_PRM/metrics.json) · [validation](results/CC_PRM/validation.json).
+<!-- /results:CC_PRM -->

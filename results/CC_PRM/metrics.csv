@@ -1,0 +1,13 @@
+case_id,planner_success,evaluation_success,computation_time_s,collision_percent,terminal_reached,execution_time_s,control_effort_integral,steering_integral,gear_changes,smoothness_cost,time_upper_bound_active,code,solve_result_num
+1,False,False,15.7015127,,,,,,,,,planner_failed,
+2,False,False,12.4141262,,,,,,,,,planner_failed,
+3,True,True,12.4996875,0,True,27.499592871709027,28.945232877479754,1.1541696272907636,4,320.9940250477052,False,evaluated,
+4,True,True,12.8415899,0,True,14.24962322748507,12.653016100667191,0.3479855707293549,1,135.01001671396546,False,evaluated,
+5,False,False,12.5889716,,,,,,,,,planner_failed,
+6,True,True,13.0691237,0,True,36.376654759117876,34.99658486008341,1.129452053351934,6,391.2603691343534,False,evaluated,
+7,True,True,12.5511097,0,True,27.581291908676807,24.857454807404228,5.944698787605572,3,323.021535950098,False,evaluated,
+8,True,True,12.0428712,0,True,37.924596346009515,38.94832839995908,2.573308808911002,5,440.21637208870084,False,evaluated,
+9,False,False,13.1416406,,,,,,,,,planner_failed,
+10,True,True,12.6891227,0,True,23.028973712901927,22.856240985577234,1.9388934289733266,2,257.9513441455056,False,evaluated,
+11,True,True,12.5034014,0,True,42.71843711703974,41.17917207711086,5.07016578859428,7,497.49337865705144,False,evaluated,
+12,False,False,13.0652421,,,,,,,,,planner_failed,
