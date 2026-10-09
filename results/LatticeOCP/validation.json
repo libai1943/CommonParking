@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 2,
+  "evaluation_success_count": 2,
+  "terminal_reached_count": 2,
+  "offline_primitives": {
+    "passed": true,
+    "primitives": 480,
+    "independent_integration_error": 4.476056609803436E-7,
+    "objective_quadrature_error": 1.2041832775366856E-6,
+    "peak_steering": 0.69595966639568785,
+    "peak_spatial_steering_rate": 0.20000000999347922
+  },
+  "graph_search": {
+    "passed": true,
+    "lookup_entries_checked": 98,
+    "obstacle_detour_cost": 4,
+    "heading_transition_cost": 3
+  },
+  "known_feasible_ocps": {
+    "passed": true,
+    "one_phase": {
+      "native_status": 0,
+      "initial_cost": 10.042635917254032,
+      "optimized_cost": 10.042635920628388,
+      "maximum_shooting_residual": 9.4047859222623487E-9,
+      "gear_runs": 1
+    },
+    "gear_change": {
+      "native_status": 0,
+      "initial_cost": 20.085271834415035,
+      "optimized_cost": 19.338630865908772,
+      "maximum_shooting_residual": 9.1394672108169317E-9,
+      "gear_runs": 2
+    }
+  },
+  "independent_checks": [
+    {},
+    {},
+    {},
+    {
+      "native_nodes": 301,
+      "phases": 5,
+      "zero_length_phases": 1,
+      "maximum_shooting_residual": 9.54635009930982E-9,
+      "independent_ode_replay_error": 2.8690109170170786E-5,
+      "objective_quadrature_error": 8.3373361761118758E-6,
+      "initial_cost": 22.077522165335367,
+      "optimized_cost": 20.438743358596735,
+      "minimum_circle_clearance_excess": 0.099443928748484747,
+      "maximum_node_bound_violation": 0,
+      "peak_dense_steering": 0.3448240917772824,
+      "peak_dense_spatial_steering_rate": 0.20000040966576019,
+      "maximum_boundary_error": 0
+    },
+    {},
+    {},
+    {},
+    {
+      "native_nodes": 901,
+      "phases": 15,
+      "zero_length_phases": 6,
+      "maximum_shooting_residual": 9.7478015659291373E-9,
+      "independent_ode_replay_error": 3.4283059868300825E-5,
+      "objective_quadrature_error": 1.3409679972653521E-5,
+      "initial_cost": 38.637532829824579,
+      "optimized_cost": 30.137340885812037,
+      "minimum_circle_clearance_excess": -9.0732771209495189E-9,
+      "maximum_node_bound_violation": 0,
+      "peak_dense_steering": 0.60217823160687367,
+      "peak_dense_spatial_steering_rate": 0.20000000974762694,
+      "maximum_boundary_error": 0
+    },
+    {},
+    {},
+    {},
+    {}
+  ]
+}

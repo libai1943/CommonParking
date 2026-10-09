@@ -8,6 +8,8 @@ switch name
         canonical = 'STC'; planner = @stc.Plan;kind='trajectory';
     case "LIOM"
         canonical = 'LIOM'; planner = @liom.Plan;kind='trajectory';
+    case "LATTICEOCP"
+        canonical = 'LatticeOCP'; planner = @lattice.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"
