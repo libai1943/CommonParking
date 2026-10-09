@@ -27,3 +27,5 @@ subject to ego_outside{j in 1..NE}:ea[j]*epx[j]+eb[j]*epy[j]>=ec[j];
 var opx{j in 1..NO}=(ox[j]-x[oi[j]])*cos(theta[oi[j]])+(oy[j]-y[oi[j]])*sin(theta[oi[j]]);
 var opy{j in 1..NO}=-(ox[j]-x[oi[j]])*sin(theta[oi[j]])+(oy[j]-y[oi[j]])*cos(theta[oi[j]]);
 subject to obstacle_outside{j in 1..NO}:oa[j]*opx[j]+ob[j]*opy[j]>=oc[j];
+
+subject to uniform_time_grid{i in 2..N-1}:h[i]=h[1];

@@ -14,7 +14,7 @@ for j=1:numel(fields),name=fields{j};fprintf(f,['let ',name,'[%d]:=%.17g;\n'],[(
 h=max(o.minimumStep,min(o.maximumStep,diff(reference.t)));fprintf(f,'let h[%d]:=%.17g;\n',[(1:N-1)' h]');clear closer;
 f=fopen(fullfile(folder,'solve.run'),'w');closer=onCleanup(@()fclose(f));
 fprintf(f,'reset;model model.mod;data data.dat;include initial.run;\noption solver "%s";\n',strrep(runtime.ipopt,'\','/'));
-fprintf(f,'option ipopt_options "tol=%.9g acceptable_tol=%.9g max_iter=%d max_cpu_time=%.9g print_level=3 linear_solver=ma27 mu_strategy=adaptive";\n',o.solverTolerance,o.solverTolerance,o.maxIterations,o.maxCpuSeconds);
+fprintf(f,'option ipopt_options "tol=%.9g acceptable_tol=%.9g max_iter=%d max_cpu_time=%.9g print_level=3 linear_solver=ma97 mu_strategy=adaptive";\n',o.solverTolerance,o.solverTolerance,o.maxIterations,o.maxCpuSeconds);
 fprintf(f,'solve;\nprintf "%%d\\n%%s\\n%%s\\n",solve_result_num,solve_result,solve_message > "status.txt";\n');
 fprintf(f,'printf "%%.17g\\n",cost > "cost.txt";\n');
 fprintf(f,'printf {i in 1..N} "%%.17g %%.17g %%.17g %%.17g %%.17g %%.17g %%.17g\\n",x[i],y[i],theta[i],v[i],phi[i],a[i],omega[i] > "states.txt";\n');

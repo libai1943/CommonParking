@@ -18,5 +18,11 @@ end
 path=struct('x',[0;1;2],'y',[0;0;0]);q=struct('x',[0;1;2],'y',[0;1;0]);assert(abs(psro.PathGap(path,q)-1)<1e-12);
 % A closed-loop area can cancel; the literal shoelace gap is retained.
 path=struct('x',[0;1;2;3;4],'y',zeros(5,1));q=struct('x',path.x,'y',[0;1;0;-1;0]);assert(psro.PathGap(path,q)==0);
-report=struct('passed',true,'signed_area_affine_error',maximumError,'random_rotational_envelopes',40,'shoelace_cancellation_retained',true);disp(report);
+% Uniform time intervals are part of the NLP, including for stationary motion.
+stationary=c;stationary.task=struct('x0',0,'y0',0,'theta0',0,'xf',0,'yf',0,'thetaf',0);
+q=struct('t',[0;.1;.2],'x',zeros(3,1),'y',zeros(3,1),'theta',zeros(3,1),'v',zeros(3,1),'phi',zeros(3,1),'a',zeros(3,1),'omega',zeros(3,1));
+data=struct('position_radius',ones(3,1),'angle_radius',ones(3,1),'ego_planes',zeros(0,6),'obstacle_planes',zeros(0,6));
+assert(psro.Check(stationary,q,[.1;.1],data,q,o).success);
+assert(~psro.Check(stationary,q,[.1;.11],data,q,o).success);
+report=struct('passed',true,'signed_area_affine_error',maximumError,'random_rotational_envelopes',40,'shoelace_cancellation_retained',true,'uniform_mesh_checked',true);disp(report);
 end

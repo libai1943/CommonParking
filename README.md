@@ -697,26 +697,26 @@ Planning times include Hybrid A* and process-pool creation/shutdown. Up to four 
 <!-- /results:RITP -->
 
 <!-- results:AnytimePSRO -->
-## Anytime predefined-space rapid optimization: measured results
+## AnytimePSRO: measured results
 
-Frozen-sign triangle-area half-spaces, logarithmically growing trust regions, explicit-Euler OCPs and anytime pool selection produced 10/12 native trajectories; 10 execution optimizations succeeded and 0 attained the strict terminal tolerance. Cases 2 and 9 reached the NLP iteration limit. **Six executions have nonzero collision percentages and none attains the common terminal tolerance in this configuration.** The paper's discrete model is retained; 200 nodes and explicitly chosen, otherwise unpublished objective weights are used uniformly. The full-body evaluator does not inherit the planner's vertex-exclusion approximation. Independent checks verify selected pool cost, native equations/constraints, original triangle areas, exact output timestamps and continuous-input ODE replay. See [the complete formulation, pruning envelope and disclosed numerical choices](planners/AnytimePSRO/README.md).
+12/12 native solves and 12/12 evaluations succeeded; 12 executions attained the terminal tolerance, 6 had zero measured collision frames, and 6 passed both checks. The paper's frozen-sign half-spaces, trust regions and anytime minimum-cost pool use a uniform 200-node explicit Euler grid, the common five-state rear bicycle and exact rest endpoints. Independent checks cover mesh uniformity, discrete equations, original area predicates, footprint geometry and execution. See [the formulation and numerical settings](planners/AnytimePSRO/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 22.0654 | 2.0406 | no | 16.5131 | 4.4926 | 3.3359 | 1 | 83.2852 | no |
-| 02 | no | no | 135.2308 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 17.8663 | 0 | no | 12.5094 | 6.4693 | 2.6981 | 1 | 96.6744 | no |
-| 04 | yes | yes | 23.6117 | 0 | no | 13.2667 | 7.3118 | 2.1738 | 1 | 99.8560 | no |
-| 05 | yes | yes | 8.4365 | 0 | no | 12.1301 | 6.5122 | 2.4023 | 1 | 94.1454 | no |
-| 06 | yes | yes | 21.4399 | 3.1844 | no | 14.5067 | 6.1067 | 2.8969 | 1 | 95.0367 | no |
-| 07 | yes | yes | 12.5452 | 0 | no | 10.4907 | 6.6362 | 2.0658 | 1 | 92.0199 | no |
-| 08 | yes | yes | 10.9139 | 3.1730 | no | 19.1913 | 6.0064 | 4.4567 | 3 | 119.6308 | no |
-| 09 | no | no | 38.6320 | — | — | — | — | — | — | — | — |
-| 10 | yes | yes | 46.3188 | 2.5582 | no | 19.3873 | 8.8041 | 5.5491 | 2 | 153.5317 | no |
-| 11 | yes | yes | 34.4461 | 4.5146 | no | 10.8965 | 6.0814 | 2.4039 | 2 | 94.8532 | no |
-| 12 | yes | yes | 20.4381 | 0.3453 | no | 14.7662 | 8.4538 | 2.5145 | 2 | 119.6833 | no |
+| 01 | yes | yes | 3.5526 | 0 | yes | 11.8162 | 10.2691 | 2.2427 | 2 | 135.1176 | no |
+| 02 | yes | yes | 2.6772 | 7.3171 | yes | 19.7191 | 3.8606 | 3.1574 | 3 | 85.1801 | no |
+| 03 | yes | yes | 0.9620 | 0 | yes | 9.9852 | 10.2482 | 2.0563 | 1 | 128.0442 | no |
+| 04 | yes | yes | 1.3663 | 0 | yes | 10.6313 | 12.0525 | 1.6125 | 1 | 141.6501 | no |
+| 05 | yes | yes | 0.7312 | 0 | yes | 9.7041 | 10.2823 | 1.8506 | 1 | 126.3287 | no |
+| 06 | yes | yes | 1.7438 | 0.2031 | yes | 10.8293 | 10.3828 | 2.0154 | 1 | 128.9817 | no |
+| 07 | yes | yes | 1.4515 | 0 | yes | 9.1740 | 8.1914 | 1.8355 | 1 | 105.2681 | no |
+| 08 | yes | yes | 1.7871 | 0 | yes | 15.3091 | 10.8463 | 3.4201 | 3 | 157.6639 | no |
+| 09 | yes | yes | 2.1065 | 3.2546 | yes | 18.0659 | 9.1292 | 3.3458 | 3 | 139.7498 | no |
+| 10 | yes | yes | 4.9270 | 2.0913 | yes | 12.3352 | 10.3740 | 1.2639 | 1 | 121.3796 | no |
+| 11 | yes | yes | 0.9968 | 1.0256 | yes | 9.8461 | 5.7049 | 2.1657 | 3 | 93.7067 | no |
+| 12 | yes | yes | 4.2348 | 0.4929 | yes | 17.8534 | 5.1754 | 3.0079 | 1 | 86.8336 | no |
 
 [CSV](results/AnytimePSRO/metrics.csv) · [JSON](results/AnytimePSRO/metrics.json) · [validation](results/AnytimePSRO/validation.json).
 <!-- /results:AnytimePSRO -->

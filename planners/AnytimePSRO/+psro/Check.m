@@ -11,5 +11,6 @@ violation=max([violation;E(:,6)-E(:,4).*px-E(:,5).*py]);
 O=data.obstacle_planes;idx=O(:,1);dx=O(:,2)-q.x(idx);dy=O(:,3)-q.y(idx);px=cos(q.theta(idx)).*dx+sin(q.theta(idx)).*dy;py=-sin(q.theta(idx)).*dx+cos(q.theta(idx)).*dy;
 violation=max([violation;O(:,6)-O(:,4).*px-O(:,5).*py]);
 objective=sum(h.*(1+o.accelerationWeight*q.a(1:end-1).^2+o.steeringRateWeight*q.omega(1:end-1).^2));
-report=struct('success',max([dynamics endpoint violation])<=o.feasibilityTolerance,'dynamics_residual',dynamics,'boundary_residual',endpoint,'maximum_inequality_violation',violation,'objective',objective);
+uniformity=max(abs(h-mean(h)));
+report=struct('uniform_step_residual',uniformity,'success',max([dynamics endpoint violation uniformity])<=o.feasibilityTolerance,'dynamics_residual',dynamics,'boundary_residual',endpoint,'maximum_inequality_violation',violation,'objective',objective);
 end
