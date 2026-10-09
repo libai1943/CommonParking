@@ -74,6 +74,8 @@ switch name
         canonical = 'RTR_TTS'; planner = @rtr.Plan;kind='path';
     case "TDR_OBCA"
         canonical='TDR_OBCA';planner=@tdr.Plan;kind='trajectory';
+    case "POINTPOTENTIALOCP"
+        canonical = 'PointPotentialOCP'; planner = @ppocp.Plan;kind='trajectory';
     case "INDIRECTOCP"
         canonical = 'IndirectOCP'; planner = @indpark.Plan;kind='trajectory';
     case "BIAGT"

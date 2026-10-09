@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 2,
+  "evaluation_success_count": 2,
+  "terminal_reached_count": 0,
+  "unit": {
+    "model_jacobian_error": 1.1102230246251565E-16,
+    "point_potential_gradient_error": 3.0597524514064389E-10,
+    "collocation_jacobian_error": 3.3044189606812324E-10,
+    "curved_fixture_sqp_success": true,
+    "curved_fixture_time_s": 5.6518681919596974,
+    "curved_constraint_residual": 7.4940054162198066E-16,
+    "native_node_interpolation_error": 0,
+    "dense_derivative_error": 1.187442949523998E-9,
+    "exact_off_grid_cusps": true,
+    "coincident_timestamp_merge": true
+  },
+  "independent_checks": [
+    {},
+    {},
+    {
+      "collocation_residual": 8.72565908416334E-16,
+      "endpoint_residual": 0,
+      "output_field_error": 0,
+      "nodes": 101,
+      "obstacle_points": 166,
+      "mesh": {
+        "passed": true,
+        "max_ode_defect": 2.1886182924868436E-5,
+        "max_point_potential": 0,
+        "max_bound_violation": 4.2188474935755949E-15,
+        "samples": 1001,
+        "step_s": 0.00943371536175604
+      },
+      "independent_integration_max_pose_error": [
+        6.1739503998126111E-7,
+        2.057441275127303E-7,
+        1.4078141830076163E-7
+      ],
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 9.43371536175604
+    },
+    {},
+    {},
+    {},
+    {
+      "collocation_residual": 8.6042284408449632E-16,
+      "endpoint_residual": 0,
+      "output_field_error": 0,
+      "nodes": 101,
+      "obstacle_points": 178,
+      "mesh": {
+        "passed": true,
+        "max_ode_defect": 2.1624537878461858E-5,
+        "max_point_potential": 0,
+        "max_bound_violation": 1.5543122344752192E-15,
+        "samples": 901,
+        "step_s": 0.0095944238492347862
+      },
+      "independent_integration_max_pose_error": [
+        6.0627266679214031E-7,
+        1.6735285068847361E-7,
+        1.0963204322145259E-7
+      ],
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 8.6349814643113074
+    },
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}

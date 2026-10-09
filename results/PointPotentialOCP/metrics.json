@@ -1,0 +1,236 @@
+[
+  {
+    "case_id": 1,
+    "planner_success": false,
+    "computation_time_s": 74.8211691,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 2,
+    "planner_success": false,
+    "computation_time_s": 71.5620266,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 3,
+    "planner_success": true,
+    "computation_time_s": 35.1345653,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": false,
+      "execution_time_s": 13.660352433992012,
+      "control_effort_integral": 4.121107802804175,
+      "steering_integral": 3.0135838350977924,
+      "gear_changes": 1,
+      "smoothness_cost": 76.34691637901967
+    },
+    "terminal_error": [
+      -0.0019212744997688658,
+      0.0007693149311365222,
+      0.027597858672754997
+    ],
+    "reference_time": 9.43371536175604,
+    "integration": {
+      "max_pose_defect": 2.8267427953920787e-08,
+      "max_state_defect": 2.8267427953920787e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 1.728120714410239,
+      "max_steering": 0.7005429571042572
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 4,
+    "planner_success": false,
+    "computation_time_s": 49.1337555,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 5,
+    "planner_success": false,
+    "computation_time_s": 57.9407393,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 6,
+    "planner_success": false,
+    "computation_time_s": 72.3712269,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 7,
+    "planner_success": true,
+    "computation_time_s": 31.4435029,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": false,
+      "execution_time_s": 10.0114490416126,
+      "control_effort_integral": 6.497123416863094,
+      "steering_integral": 2.0426210721552214,
+      "gear_changes": 1,
+      "smoothness_cost": 90.39744489018314
+    },
+    "terminal_error": [
+      0.0009793823511665346,
+      0.0006934279655928739,
+      0.01791526836833124
+    ],
+    "reference_time": 8.634981464311307,
+    "integration": {
+      "max_pose_defect": 1.8636919153335735e-08,
+      "max_state_defect": 1.8636919153335735e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.1585051484663125,
+      "max_steering": 0.7006189728756032
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 8,
+    "planner_success": false,
+    "computation_time_s": 103.2027052,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 9,
+    "planner_success": false,
+    "computation_time_s": 50.0143596,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 10,
+    "planner_success": false,
+    "computation_time_s": 113.1855513,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 11,
+    "planner_success": false,
+    "computation_time_s": 38.9558268,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 12,
+    "planner_success": false,
+    "computation_time_s": 44.3944088,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  }
+]

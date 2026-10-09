@@ -79,6 +79,8 @@ BIAGT uses base MATLAB after `BuildBIAGT` and the shared `BuildCCSteer` distance
 
 IndirectOCP uses MATLAB and Navigation Toolbox for its HA initialization. Its canonical state/costate solver is implemented in MATLAB without proprietary PINS or a direct NLP backend. [Formulation and disclosed numerical replacement](planners/IndirectOCP/README.md).
 
+PointPotentialOCP needs MATLAB Optimization Toolbox for SQP. Its planner has no AMPL or Navigation Toolbox dependency. [Paper formulation and independent numerical implementation](planners/PointPotentialOCP/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -112,6 +114,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Point-potential optimal control](planners/PointPotentialOCP/README.md) (`PointPotentialOCP`) | Trajectory | Kondak & Hommel, ICRA 2001; direct collocation, point potentials and SQP with disclosed backend replacement | Implemented and tested on all 12 cases |
 | [Indirect optimal control](planners/IndirectOCP/README.md) (`IndirectOCP`) | Trajectory | Pagot et al., Access 2023; planning component with an open canonical-equation solver | Implemented and tested on all 12 cases |
 | [Bidirectional improved A-search](planners/BIAGT/README.md) (`BIAGT`) | Path | Wang, Hansen & Ahn, TCST 2024; static prioritized bidirectional search | Implemented and tested on all 12 cases |
 | [Kinodynamic tree deformation](planners/KinoDeform/README.md) (`KinoDeform`) | Trajectory | Lamiraux, Ferre & Vallee, ICRA 2004; input-space trees and variational trajectory deformation | Implemented and tested on all 12 cases |
@@ -1138,3 +1141,28 @@ Planning time includes setup, case loading, Hybrid A*, the tracking OCP, every s
 
 [CSV](results/IndirectOCP/metrics.csv) · [JSON](results/IndirectOCP/metrics.json) · [validation](results/IndirectOCP/validation.json).
 <!-- /results:IndirectOCP -->
+
+<!-- results:PointPotentialOCP -->
+## Point-potential optimal control: measured results
+
+The direct-collocation/SQP method produced 2/12 native trajectories; 2 execution optimizations succeeded and 0 attained the terminal tolerance. The printed point-potential constraints, obstacle-free initialization and mesh-refinement loop are retained. MATLAB SQP replaces SNOPT, with disclosed interpolation, finite budgets and an optional deterministic initial-guess perturbation. Native success requires a positive solver flag and sampled mesh-accuracy checks. The printed potential has nonsmooth and potentially discontinuous branches; point exclusion is not full-polygon avoidance. Independent 1 ms integration of the native linear controls differed from native XY by at most 6.17395e-07 m. All failed initializations, obstacle solves and mesh checks remain failures; they do not establish scene infeasibility or original-SNOPT performance. See [the formula, solver replacement and explicit numerical choices](planners/PointPotentialOCP/README.md).
+
+Planning time includes setup, case loading, obstacle-free initialization and retry when needed, every obstacle OCP and mesh-refinement attempt, mesh checks and trajectory conversion. Numerical-library threads are fixed to one; concurrent development jobs were active. These are not SNOPT timings or controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 74.8212 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 71.5620 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 35.1346 | 0 | no | 13.6604 | 4.1211 | 3.0136 | 1 | 76.3469 | no |
+| 04 | no | no | 49.1338 | — | — | — | — | — | — | — | — |
+| 05 | no | no | 57.9407 | — | — | — | — | — | — | — | — |
+| 06 | no | no | 72.3712 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 31.4435 | 0 | no | 10.0114 | 6.4971 | 2.0426 | 1 | 90.3974 | no |
+| 08 | no | no | 103.2027 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 50.0144 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 113.1856 | — | — | — | — | — | — | — | — |
+| 11 | no | no | 38.9558 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 44.3944 | — | — | — | — | — | — | — | — |
+
+[CSV](results/PointPotentialOCP/metrics.csv) · [JSON](results/PointPotentialOCP/metrics.json) · [validation](results/PointPotentialOCP/validation.json).
+<!-- /results:PointPotentialOCP -->
