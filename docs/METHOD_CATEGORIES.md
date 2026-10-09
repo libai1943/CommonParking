@@ -1,6 +1,6 @@
 # Forty-method assessment by mechanism
 
-This is a descriptive assessment of the **current CommonParking implementations and settings**, across the same 12 frozen microscopic terminal-parking tasks. There are 480 recorded calls: 353 planner successes, 352 successful evaluations, and 198 executions that both attain the terminal tolerance and have zero measured collision frames. The latter is a conjunction of two published checks, **not a weighted score**. It does not imply optimality or continuous-time collision certification.
+This is a descriptive assessment of the **current CommonParking implementations and settings**, across the same 12 frozen microscopic terminal-parking tasks. There are 480 recorded calls: 364 planner successes, 363 successful evaluations, and 200 executions that both attain the terminal tolerance and have zero measured collision frames. The latter is a conjunction of two published checks, **not a weighted score**. It does not imply optimality or continuous-time collision certification.
 
 Native success, evaluation success, collision rate, terminal attainment, execution duration and smoothness remain separate fields. Terminal tolerance is 1 cm in each coordinate and 1 degree modulo 2*pi; measured collisions use full-rectangle frames at 1 ms. The executor is a local, obstacle-free tracking NLP plus independent integration, not a physical vehicle or a proof of globally best tracking. See the [protocol](../evaluation/README.md).
 
@@ -13,7 +13,7 @@ The four groups below are mutually exclusive **bookkeeping choices**, not a clai
 | Analytic geometry and constructive steering | 5 | 60 | 58 | 57 | 47 | 46 | 41 |
 | Sampling / roadmaps / exploration trees | 7 | 84 | 58 | 58 | 42 | 52 | 38 |
 | Discrete search / value / reachability | 9 | 108 | 85 | 85 | 45 | 67 | 34 |
-| Numerical optimization and optimization-dominant hybrids | 19 | 228 | 152 | 152 | 98 | 114 | 85 |
+| Numerical optimization and optimization-dominant hybrids | 19 | 228 | 163 | 163 | 110 | 119 | 87 |
 
 All outcome columns use the group's total call count as denominator; the last three count successfully evaluated executions only. These are counts from one recorded run per method and task. They are not estimated sampling success probabilities or evidence that one entire research category dominates another. Methods, meshes, native objectives, collision approximations and finite budgets differ. Some implementations reproduce a selected paper component or replace a numerical backend; their individual source mappings are essential context.
 
@@ -25,9 +25,9 @@ All outcome columns use the group's total call count as denominator; the last th
 
 **Sampling methods show a coverage-versus-executability distinction.** BiRRT_HC finds eleven native paths and all eleven have zero collision frames, while five reach the terminal tolerance. BiRRT_HCR and CC_PRM each solve seven tasks and pass both checks in all seven. KinoDeform passes both checks in all nine solved tasks. These observations motivate checking curvature/control continuity and exact connections alongside search coverage; they do not establish causation from a single comparison or eliminate the effects of budgets and random seeds.
 
-**The numerical methods have the widest spread in this implementation set.** STC passes both checks in all twelve. SE2_NMPC passes in nine; LIOM and DL_IAPS_PJSO each in eight; IndirectOCP in seven. Initialization, body representation, transcription and solver settings materially affect the outcome. LIOM uses a local sparse objective expression, verified inexact inner iterates, exactly three covering discs and 201 states. All eight solved tasks pass both execution checks. See the [LIOM formulation and settings](../planners/LIOM/README.md).
+**The numerical methods have the widest spread in this implementation set.** STC passes both checks in all twelve. SE2_NMPC passes in nine; LIOM and DL_IAPS_PJSO each in eight; IndirectOCP in seven. Initialization, body representation, transcription and solver settings materially affect the outcome. LIOM uses a sparse local objective, verified inexact inner iterates, exactly three covering discs and 201 states. All eight solved tasks pass both execution checks. See the [LIOM formulation and settings](../planners/LIOM/README.md).
 
-Several weak outcomes have specific scope mismatches. BOMP's printed formulation has no acceleration bound and uses a 15-node global polynomial, whose between-node overshoots are documented. TriangleArea retains printed dynamics that differ from the common rear-axle model. LatticeOCP and some circle-based methods reject endpoints that the physical rectangle can occupy. Soft penalties and sampled or under-covering collision approximations can leave physical intersections. These measurements do not isolate the merits of pseudospectral methods, triangle-area constraints, lattices or optimization as broad classes.
+Several weak outcomes have specific scope mismatches. BOMP's printed formulation has no acceleration bound and uses a 15-node global polynomial, whose between-node overshoots are documented. TriangleArea uses the common rear-axle model and 200-state Euler dynamics. Its vertex-only exclusion and the gap between discrete feasibility and executed motion must be distinguished from solver convergence. LatticeOCP and some circle-based methods reject endpoints that the physical rectangle can occupy. Soft penalties and sampled or under-covering collision approximations can leave physical intersections. These measurements do not isolate the merits of pseudospectral methods, triangle-area constraints, lattices or optimization as broad classes.
 
 **STC and RTR_TTS currently have the most complete joint coverage in this set.** Both pass all twelve. On those same twelve tasks, their median execution durations are approximately 13.4 and 24.1 seconds. RTR_TTS needs 18, 24 and 21 gear changes in cases 2, 9 and 12. STC's planner wall-time median is approximately 4.4 seconds, but its case-2 time is 70.8 seconds. These separate dimensions remain preferable to declaring a universal winner.
 
@@ -86,9 +86,9 @@ Each method has twelve attempted tasks. `Both` means successfully evaluated, ter
 | [H_OBCA](../planners/H_OBCA/README.md) | 12 | 12 | 4 | 10 | 4 | 2.998 |
 | [TDR_OBCA](../planners/TDR_OBCA/README.md) | 12 | 12 | 8 | 7 | 5 | 20.792 |
 | [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 6 | 6 | 6 | 2 | 2 | 13.059 |
-| [TriangleArea](../planners/TriangleArea/README.md) | 4 | 4 | 0 | 0 | 0 | 9.390 |
+| [TriangleArea](../planners/TriangleArea/README.md) | 11 | 11 | 9 | 4 | 2 | 11.199 |
 | [BOMP](../planners/BOMP/README.md) | 2 | 2 | 0 | 0 | 0 | 31.796 |
-| [SLiFS](../planners/SLiFS/README.md) | 6 | 6 | 6 | 6 | 6 | 2.789 |
+| [SLiFS](../planners/SLiFS/README.md) | 10 | 10 | 9 | 7 | 6 | 4.076 |
 | [DL_IAPS_PJSO](../planners/DL_IAPS_PJSO/README.md) | 10 | 10 | 10 | 8 | 8 | 17.811 |
 | [Eta3](../planners/Eta3/README.md) | 8 | 8 | 8 | 5 | 5 | 7.906 |
 | [TEB](../planners/TEB/README.md) | 11 | 11 | 0 | 4 | 0 | 9.608 |
@@ -107,8 +107,8 @@ This reclassifies existing measured terminal errors only; it does not change the
 
 | Each-coordinate threshold | Joint count / 480 |
 |---|---:|
-| 1 cm | 198 |
-| 2 cm | 202 |
-| 5 cm | 211 |
+| 1 cm | 200 |
+| 2 cm | 205 |
+| 5 cm | 216 |
 
 [All per-case measurements](RESULT_INDEX.md) retain individual times, collision percentages, effort, steering integrals, gear changes, failure codes and native/evaluation flags.

@@ -154,7 +154,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [LIOM](planners/LIOM/README.md) (`LIOM`) | Trajectory | Li et al., TITS 2022; fault-tolerant initialization and multi-disc extension | Implemented and tested on all 12 cases |
 | [BiRRT* + HC-Steer](planners/BiRRT_HC/README.md) (`BiRRT_HC`) | Path | Banzhaf et al., ITSC 2017; authors' HC±± geometry | Implemented and tested on all 12 cases |
 | [BOMP](planners/BOMP/README.md) (`BOMP`) | Trajectory | Shi et al., IJIRA 2019; 15-node pseudospectral MAKKT | Implemented and tested on all 12 cases |
-| [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; literal printed-model transcription | 12 cases tested; model distinction documented |
+| [TriangleArea](planners/TriangleArea/README.md) (`TriangleArea`) | Trajectory | Li & Shao, KBS 2015; triangle areas with common rear-axle model and Euler transcription | Implemented and tested on all 12 cases |
 
 Each planner has its own folder. References are named by author/title/DOI, not by a survey's numbering. This release contains 40 documented implementations and 480 recorded case outcomes. [The alphabetical result index](docs/RESULT_INDEX.md) distinguishes native success, evaluation success, terminal attainment and zero collision frames, with links to every twelve-case table and the artifact audit. Each method documents its original initialization and optimization, along with any numerical replacement or task adapter; a shared Hybrid A* initializer is not imposed on every method. Unavailable training data and undisclosed expert rules are outside the current scope.
 
@@ -247,26 +247,26 @@ The CG gradient check has relative error about 1e-10. The straight-maneuver test
 The baseline paper is Dolgov et al., *Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments*, IJRR 29(5), 485–501, 2010, DOI [10.1177/0278364909359210](https://doi.org/10.1177/0278364909359210). Evaluation is adapted from the organizer's TPCAP final source and Li et al., *Online Competition of Trajectory Planning for Automated Parking: Benchmarks, Achievements, Learned Lessons, and Future Perspectives*, TIV 8(1), 2023, DOI [10.1109/TIV.2022.3228963](https://doi.org/10.1109/TIV.2022.3228963). Source code is covered by the repository's [GPL-3.0 license](LICENSE); separately installed runtimes retain their own licenses.
 
 <!-- results:TriangleArea -->
-## TriangleArea (printed model): measured results
+## TriangleArea: measured results
 
-The literal printed 2015 model solved 4/12 NLPs; all four evaluator calls succeeded, but none attained the terminal tolerance and all four had replay collisions. The independent native-model check found a maximum collocation defect of 1.04e-7, area excess at least 0.01 m² within numerical tolerance, and no collisions at native nodes in those four outputs. **The printed front-reference dynamics differ from the benchmark rear-reference bicycle model. These measurements therefore do not isolate the quality of the triangle-area collision formulation.** See [the model distinction and exact adapters](planners/TriangleArea/README.md). Failed cases are retained as failures with unavailable metrics.
+11/12 native solves and 11/12 evaluations succeeded; 9 executions attained the terminal tolerance, 4 had zero measured collision frames, and 2 passed both checks. The supplied Triangle21 formulation uses independent corner variables, two-sided triangle-area constraints with 0.01 m^2 area excess, and 200-node explicit Euler for the common rear-axle bicycle. Multiple polygons share these same constraints. Exact task endpoints and rest states are imposed; no distance inflation is added. Native convergence and the supplied formulation's full-rectangle node collision check are both required. The common evaluator independently measures executed motion. See [the formulation and numerical settings](planners/TriangleArea/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | no | no | 13.2094 | — | — | — | — | — | — | — | — |
-| 02 | no | no | 53.3550 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 7.2913 | 21.5131 | no | 35.2238 | 11.7909 | 10.5402 | 9 | 268.3108 | yes |
-| 04 | yes | yes | 9.4767 | 1.9715 | no | 25.2072 | 12.1869 | 8.6211 | 4 | 228.0798 | yes |
-| 05 | no | no | 8.2452 | — | — | — | — | — | — | — | — |
-| 06 | yes | yes | 12.5239 | 32.8352 | no | 38.1438 | 17.2238 | 9.1700 | 7 | 298.9384 | yes |
-| 07 | no | no | 6.6661 | — | — | — | — | — | — | — | — |
-| 08 | no | no | 9.5045 | — | — | — | — | — | — | — | — |
-| 09 | no | no | 8.2387 | — | — | — | — | — | — | — | — |
-| 10 | yes | yes | 18.0837 | 31.3283 | no | 26.4311 | 12.7840 | 7.9377 | 4 | 227.2163 | yes |
-| 11 | no | no | 5.6760 | — | — | — | — | — | — | — | — |
-| 12 | no | no | 9.3042 | — | — | — | — | — | — | — | — |
+| 01 | yes | yes | 3.6905 | 0.2881 | yes | 11.8014 | 9.2024 | 2.6303 | 2 | 128.3272 | no |
+| 02 | yes | yes | 3.7356 | 5.3404 | yes | 21.7388 | 9.6817 | 4.2990 | 2 | 149.8074 | no |
+| 03 | yes | yes | 3.4104 | 0 | no | 75.1042 | 11.6552 | 3.5472 | 3 | 167.0237 | no |
+| 04 | yes | yes | 20.3768 | 1.2638 | yes | 10.5222 | 12.9142 | 1.6443 | 1 | 150.5847 | no |
+| 05 | yes | yes | 13.3026 | 0 | yes | 9.6206 | 10.8008 | 1.8374 | 1 | 131.3822 | no |
+| 06 | yes | yes | 16.1685 | 0.4945 | yes | 10.7159 | 11.9608 | 2.0006 | 1 | 144.6135 | no |
+| 07 | yes | yes | 2.1769 | 0 | yes | 8.9495 | 9.2809 | 1.7681 | 1 | 115.4894 | no |
+| 08 | no | no | 76.4669 | — | — | — | — | — | — | — | — |
+| 09 | yes | yes | 6.4159 | 1.0391 | yes | 22.2294 | 13.1271 | 3.1655 | 2 | 172.9258 | no |
+| 10 | yes | yes | 9.0957 | 2.0333 | yes | 16.6217 | 19.1138 | 2.0723 | 2 | 221.8611 | no |
+| 11 | yes | yes | 39.0367 | 0.9075 | yes | 11.6797 | 13.8245 | 1.6272 | 1 | 159.5173 | no |
+| 12 | yes | yes | 17.7752 | 0 | no | 101.1044 | 14.8913 | 5.1112 | 4 | 220.0248 | no |
 
 [CSV](results/TriangleArea/metrics.csv) · [JSON](results/TriangleArea/metrics.json) · [validation](results/TriangleArea/validation.json).
 <!-- /results:TriangleArea -->

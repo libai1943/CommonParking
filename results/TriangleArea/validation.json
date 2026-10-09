@@ -1,24 +1,500 @@
 {
   "passed": true,
   "cases": 12,
-  "planner_success_count": 4,
-  "evaluation_success_count": 4,
-  "terminal_reached_count": 0,
-  "maximum_printed_model_collocation_defect": 1.0330644786837873E-7,
-  "minimum_node_triangle_area_excess": 0.0099999088401734326,
-  "native_node_collision_counts": [
-    null,
-    null,
-    0,
-    0,
-    null,
-    0,
-    null,
-    null,
-    null,
-    0,
-    null,
-    null
-  ],
-  "model_difference": "Printed front-reference dynamics are not equivalent to the benchmark rear-reference bicycle model."
+  "planner_success_count": 11,
+  "evaluation_success_count": 11,
+  "terminal_reached_count": 9,
+  "unit": {
+    "passed": true,
+    "heading_branch_preserved": true,
+    "crossing_rectangles_pass_area_criterion": true,
+    "maximum_heading_increment_rad": 0.010942764531453264,
+    "maximum_sampled_steering_rate": 0.500000000000001,
+    "maximum_sampled_acceleration": 1
+  },
+  "initial_heading_audit": {
+    "cases": [
+      {
+        "case_id": 1,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936840898,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -5.5511151231257827E-17,
+          "terminal_branch_multiple": -0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.036687998305475089,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -5.5511151231257827E-17,
+          "terminal_branch_multiple": -0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.081585856827754766,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 1.6653345369377348E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.052180595716640778
+      },
+      {
+        "case_id": 2,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015004959715462451,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -1.6653345369377348E-16,
+          "terminal_branch_multiple": -0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.034093300363381651,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -1.6653345369377348E-16,
+          "terminal_branch_multiple": -0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.0780796529270118,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 5.5511151231257827E-17,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.029730003312136682
+      },
+      {
+        "case_id": 3,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936840926,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.035089539556320215,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.0705918847721414,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.012274637796011647
+      },
+      {
+        "case_id": 4,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936840898,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.038584366423451089,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.094075144912532771,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.019634450040472359
+      },
+      {
+        "case_id": 5,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936840732,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -5.5511151231257827E-17,
+          "terminal_branch_multiple": -0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.030989419993534328,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -5.5511151231257827E-17,
+          "terminal_branch_multiple": -0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.053241322808290137,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 1.6653345369377348E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.028429803376094791
+      },
+      {
+        "case_id": 6,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936840898,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -2.2204460492503131E-16,
+          "terminal_branch_multiple": -0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.0344618958427767,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -2.2204460492503131E-16,
+          "terminal_branch_multiple": -0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.075618720805889827,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 2.2204460492503131E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.026383654279340196
+      },
+      {
+        "case_id": 7,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.014961632416809145,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.030251256310798835,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.065880719422459988,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.022445300200006683
+      },
+      {
+        "case_id": 8,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.01499402994727661,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -1.3877787807814457E-16,
+          "terminal_branch_multiple": -0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.04097410971800941,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -1.3877787807814457E-16,
+          "terminal_branch_multiple": -0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.068246618995817743,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": -2.7755575615628914E-17,
+          "terminal_branch_multiple": -0
+        },
+        "original_yaw_euler_defect": 0.080535781545666721
+      },
+      {
+        "case_id": 9,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.01504086393684112,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 1.1102230246251565E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.040860077354700208,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 1.1102230246251565E-16,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.07839473224953275,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.027289992915024923
+      },
+      {
+        "case_id": 10,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.01504086393684112,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.053846924077602581,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.10034355312229781,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 2.2204460492503131E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.0211465013174712
+      },
+      {
+        "case_id": 11,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.01504086393684112,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 4.4408920985006262E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.020199718750470552,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 4.4408920985006262E-16,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.038419077558789816,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 4.4408920985006262E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.015145902793693961
+      },
+      {
+        "case_id": 12,
+        "search_path": {
+          "maximum_neighbor_change_rad": 0.015040863936841009,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "original_initial": {
+          "maximum_neighbor_change_rad": 0.03567485459733899,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 0,
+          "terminal_branch_multiple": 0
+        },
+        "stopped_initial": {
+          "maximum_neighbor_change_rad": 0.079408305221522091,
+          "principal_branch_jump_count": 0,
+          "unwrap_correction_rad": 0,
+          "start_error_rad": 0,
+          "terminal_wrapped_error_rad": 2.2204460492503131E-16,
+          "terminal_branch_multiple": 0
+        },
+        "original_yaw_euler_defect": 0.02320760111266372
+      }
+    ],
+    "branch_crossing_and_cusp": {
+      "start_theta": 3.1215926535897931,
+      "end_theta": 3.2215926535897927,
+      "expected_end_theta": 3.2215926535897932,
+      "maximum_neighbor_change": 0.0054393638787004761,
+      "branch_jump_count": 0
+    }
+  },
+  "source_model_mapping": {
+    "source_model_sha256": "94daaca6637144843fffe45e9fd7bcc3f18762324b1adae4fe175eadaf6c578f",
+    "vehicle_equations_bounds_endpoints_corner_equalities_and_object": true,
+    "obstacle_vertex_area_formula_identical": true,
+    "changed_obstacle_scope": "Single polygon expanded to multiple separately closed polygons",
+    "area_excess_m2": 0.01,
+    "solver_source_options": {
+      "max_cpu_time": 60,
+      "tol": 1E-10,
+      "bound_push": 0.0001,
+      "mu_strategy": "adaptive",
+      "linear_solver": "ma97"
+    }
+  },
+  "independent_checks": [
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 9.9934871029480621E-9,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999088426159233,
+      "maximum_scaled_area_violation": 1.0010652720418192E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0021326314449228168,
+      "maximum_heading_increment_rad": 0.034582999886465404
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 9.99885989977356E-9,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.00999990884026758,
+      "maximum_scaled_area_violation": 1.0010910609056659E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0021326314440689442,
+      "maximum_heading_increment_rad": 0.064297016220157488
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4997251296676737E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999088416282689,
+      "maximum_scaled_area_violation": 1.0010761181903054E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0021326314465484053,
+      "maximum_heading_increment_rad": 0.20898836150722544
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4330368005032188E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999557590013666,
+      "maximum_scaled_area_violation": 9.46331521575085E-9,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0011764653834109851,
+      "maximum_heading_increment_rad": 0.028832323208862864
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4281204658027633E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.463712814825767,
+      "maximum_scaled_area_violation": 0,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.166302791748156,
+      "maximum_heading_increment_rad": 0.028544462084745481
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.451612315587659E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999900183580515,
+      "maximum_scaled_area_violation": 1.3503704102145342E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0032139504781483197,
+      "maximum_heading_increment_rad": 0.033734345739399485
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4420169469907549E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.79649520394471907,
+      "maximum_scaled_area_violation": 0,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.16986462016308806,
+      "maximum_heading_increment_rad": 0.032768299739539986
+    },
+    {},
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 9.9962444086165725E-9,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.009999908845944816,
+      "maximum_scaled_area_violation": 1.0010287150593307E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0021326314450723638,
+      "maximum_heading_increment_rad": 0.06382159538855614
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4835770474906926E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999088593332175,
+      "maximum_scaled_area_violation": 1.0009861606797594E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0010988960939697368,
+      "maximum_heading_increment_rad": 0.059528217953867452
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.4809942503201121E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999092177096571,
+      "maximum_scaled_area_violation": 2.0403028115509823E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0021326315243560545,
+      "maximum_heading_increment_rad": 0.028663375743852804
+    },
+    {
+      "nodes": 200,
+      "maximum_euler_residual": 2.49982313738073E-8,
+      "maximum_boundary_error": 0,
+      "maximum_motion_bound_violation": 0,
+      "minimum_triangle_area_excess_m2": 0.0099999088416513615,
+      "maximum_scaled_area_violation": 1.0056452927845632E-8,
+      "native_node_collision_count": 0,
+      "minimum_native_sat_separation_m": 0.0028985456964107925,
+      "maximum_heading_increment_rad": 0.29361038215527807
+    }
+  ]
 }
