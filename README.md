@@ -49,6 +49,8 @@ DPGrid needs a one-time C++ module build with `BuildDPGrid`; it uses base MATLAB
 
 BL_Dijkstra needs a one-time C++ module build with `BuildBLDijkstra`. It uses base MATLAB and can require several GB of memory for its full indexed search. [Source, build and resource limits](planners/BL_Dijkstra/README.md).
 
+GraphBellman needs a one-time C++ module build with `BuildGraphBellman`. The planner uses base MATLAB and computes a value function over both direction modes on the entire grid. [Source and build instructions](planners/GraphBellman/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -82,6 +84,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Finite-element Bellman graph](planners/GraphBellman/README.md) (`GraphBellman`) | Path | Laurini, Consolini & Locatelli, TAC 2021; Model 1 and selective Bellman updates | Implemented and tested on all 12 cases |
 | [Barraquand-Latombe Dijkstra](planners/BL_Dijkstra/README.md) (`BL_Dijkstra`) | Path | Barraquand & Latombe, Algorithmica 1993; minimum-reversal indexed search | Implemented and tested on all 12 cases |
 | [Backward dynamic programming](planners/DPGrid/README.md) (`DPGrid`) | Path | Schildbach & Borrelli, IV 2016; finite pose grid with continuous steering arcs | Implemented and tested on all 12 cases |
 | [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
@@ -718,3 +721,28 @@ Planning times include setup, the single-threaded indexed search and exact path 
 
 [CSV](results/BL_Dijkstra/metrics.csv) · [JSON](results/BL_Dijkstra/metrics.json) · [validation](results/BL_Dijkstra/validation.json).
 <!-- /results:BL_Dijkstra -->
+
+<!-- results:GraphBellman -->
+## Finite-element switched-system Bellman graph method: measured results
+
+Model 1's two-mode discounted Bellman equation, simplex interpolation and selective graph updates produced 8/12 native goal-neighborhood paths; 8 execution optimizations succeeded and 0 attained the strict terminal tolerance. **Obstacles enter as the paper's soft state costs, and native termination uses a disclosed finite-grid neighborhood.** Convergence of the value function does not guarantee that the extracted continuous greedy policy reaches the goal. Failed rollouts and any collisions remain unchanged. An independent sparse MATLAB value iteration checks the C++ graph update; release checks recompute Bellman rows and policy decisions, integrate the arcs and measure full-body collisions. See [the Model 1 scope, equation mapping, target boundary and numerical choices](planners/GraphBellman/README.md).
+
+Planning times include the entire finite-element graph construction, single-threaded Bellman solve, greedy policy extraction and output sampling. The one-time C++ build is excluded; numerical-library threads are fixed to one. Other development jobs were active, so these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 37.1569 | 0 | no | 41.3518 | 4.4937 | 5.0970 | 6 | 125.9075 | no |
+| 02 | no | no | 37.5109 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 30.6033 | 0 | no | 24.9111 | 1.7836 | 5.6499 | 1 | 79.3346 | no |
+| 04 | yes | yes | 54.0090 | 0 | no | 27.7289 | 2.9894 | 4.8795 | 2 | 88.6893 | no |
+| 05 | no | no | 47.6115 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 35.7133 | 0 | no | 29.6296 | 2.9653 | 7.1776 | 2 | 111.4291 | no |
+| 07 | yes | yes | 40.0118 | 0 | no | 44.7600 | 6.6061 | 12.1849 | 2 | 197.9110 | yes |
+| 08 | yes | yes | 29.5774 | 0 | no | 42.1053 | 4.0574 | 9.3277 | 3 | 148.8509 | no |
+| 09 | no | no | 38.3030 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 35.8179 | 0 | no | 38.0278 | 5.2623 | 7.9816 | 1 | 137.4389 | no |
+| 11 | yes | yes | 30.5575 | 0 | no | 41.2853 | 4.9651 | 10.2362 | 3 | 167.0131 | yes |
+| 12 | no | no | 33.3632 | — | — | — | — | — | — | — | — |
+
+[CSV](results/GraphBellman/metrics.csv) · [JSON](results/GraphBellman/metrics.json) · [validation](results/GraphBellman/validation.json).
+<!-- /results:GraphBellman -->
