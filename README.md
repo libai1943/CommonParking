@@ -35,6 +35,8 @@ Saved results can be loaded uniformly with `[result,metrics,evaluationStatus] = 
 
 Eta3 needs MATLAB Optimization Toolbox (`fmincon`) and Navigation Toolbox for its disclosed initialization adapter. Its planner has no AMPL dependency.
 
+SE2_NMPC uses the external AMPL/Ipopt runtime (MA97), plus Navigation Toolbox for its disclosed Hybrid A* cold start. Its configuration and all model equations are contained in its planner folder.
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -68,6 +70,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [SE(2)-aware nonlinear MPC](planners/SE2_NMPC/README.md) (`SE2_NMPC`) | Trajectory | Roesmann, Makarow & Bertram, ECC 2021; static quasi-time-optimal OCP realization | Implemented and tested on all 12 cases |
 | [TEB with homology exploration](planners/TEB/README.md) (`TEB`) | Trajectory | Roesmann, Hoffmann & Bertram, RAS 2017; sampled topology exploration and timed elastic bands | Implemented and tested on all 12 cases |
 | [Eta3 spline optimization](planners/Eta3/README.md) (`Eta3`) | Path | Lini, Piazzi & Consolini, CDC/ECC 2011; geometric nonlinear program with disclosed online initialization | Implemented and tested on all 12 cases |
 | [DL-IAPS + PJSO](planners/DL_IAPS_PJSO/README.md) (`DL_IAPS_PJSO`) | Trajectory | Zhou et al., RAL 2021; dual-loop path smoothing and piecewise-jerk speed QPs | Implemented and tested on all 12 cases |
@@ -470,3 +473,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/TEB/metrics.csv) · [JSON](results/TEB/metrics.json) · [validation](results/TEB/validation.json).
 <!-- /results:TEB -->
+
+<!-- results:SE2_NMPC -->
+## SE(2)-aware quasi-time-optimal NLP: measured results
+
+The paper's wrapped-angle Crank-Nicolson OCP realization produced 11/12 native successes; 11 execution optimizations succeeded and 9 attained the terminal tolerance. The disclosed static adapter uses 200 intervals, the common rear-axle bicycle model, exact rectangular obstacle distances, and the article's 0.2 m safety gap. Endpoint-gap failures are retained without changing that margin. Independent checks cover native flags, all discrete dynamics, control/rate bounds, distance duals, objective, arbitrary 2*pi shifts, exact output fields and constant-input arc replay defects. See [the equation mapping and distinction from the complete feedback/ROS system](planners/SE2_NMPC/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 7.8356 | 0 | yes | 11.3913 | 12.9701 | 1.9599 | 2 | 159.2999 | no |
+| 02 | yes | yes | 116.1620 | 0 | no | 34.8347 | 6.7210 | 10.8879 | 6 | 206.0891 | no |
+| 03 | yes | yes | 4.6276 | 0 | yes | 10.3257 | 9.6308 | 2.1921 | 1 | 123.2287 | no |
+| 04 | yes | yes | 6.8677 | 0 | yes | 10.6366 | 12.5414 | 1.6604 | 1 | 147.0185 | no |
+| 05 | yes | yes | 4.9319 | 0 | yes | 10.0682 | 9.3863 | 1.9591 | 1 | 118.4546 | no |
+| 06 | no | no | 3.2914 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 6.4520 | 0 | yes | 9.4558 | 7.7980 | 1.9245 | 1 | 102.2255 | no |
+| 08 | yes | yes | 7.8346 | 0 | no | 38.3453 | 5.0375 | 15.0450 | 3 | 215.8256 | no |
+| 09 | yes | yes | 21.4934 | 0 | yes | 23.1925 | 9.2072 | 6.6716 | 5 | 183.7876 | no |
+| 10 | yes | yes | 41.9220 | 0 | yes | 16.8175 | 13.8226 | 3.9551 | 0 | 177.7768 | no |
+| 11 | yes | yes | 16.9598 | 0 | yes | 17.2038 | 13.5500 | 3.2030 | 4 | 187.5305 | no |
+| 12 | yes | yes | 20.6143 | 0 | yes | 17.5768 | 10.1333 | 4.2701 | 4 | 164.0338 | no |
+
+[CSV](results/SE2_NMPC/metrics.csv) · [JSON](results/SE2_NMPC/metrics.json) · [validation](results/SE2_NMPC/validation.json).
+<!-- /results:SE2_NMPC -->

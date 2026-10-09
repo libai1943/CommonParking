@@ -1,0 +1,382 @@
+[
+  {
+    "case_id": 1,
+    "planner_success": true,
+    "computation_time_s": 7.8356364,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 11.391333551438334,
+      "control_effort_integral": 12.970077300237806,
+      "steering_integral": 1.9599107985510023,
+      "gear_changes": 2,
+      "smoothness_cost": 159.2998809878881
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      -0.002950222748816511,
+      -0.0013429454151646647,
+      0.00017591902561137074
+    ],
+    "reference_time": 10.902616544544376,
+    "integration": {
+      "max_pose_defect": 2.9067104279079103e-10,
+      "max_state_defect": 2.9067104279079103e-10,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.3940110962886787,
+      "max_steering": 0.7006588126750483
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 2,
+    "planner_success": true,
+    "computation_time_s": 116.1619512,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": false,
+      "execution_time_s": 34.83474082097212,
+      "control_effort_integral": 6.720983910622098,
+      "steering_integral": 10.887925886889544,
+      "gear_changes": 6,
+      "smoothness_cost": 206.08909797511643
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      -0.014589383946294054,
+      -0.006776758560587237,
+      0.0006035035534012745
+    ],
+    "reference_time": 32.40669870398199,
+    "integration": {
+      "max_pose_defect": 8.565034903540436e-09,
+      "max_state_defect": 8.565034903540436e-09,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 0.8252915508093038,
+      "max_steering": 0.7006831982203542
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 3,
+    "planner_success": true,
+    "computation_time_s": 4.6275983,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 10.32570239322714,
+      "control_effort_integral": 9.630807611837746,
+      "steering_integral": 2.1920672801724566,
+      "gear_changes": 1,
+      "smoothness_cost": 123.22874892010202
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0006637715338315697,
+      0.00118749327638068,
+      6.307345823142185e-05
+    ],
+    "reference_time": 9.501540929104946,
+    "integration": {
+      "max_pose_defect": 2.4499389184029496e-08,
+      "max_state_defect": 2.4499389184029496e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.3031730885395567,
+      "max_steering": 0.7006182141903441
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 4,
+    "planner_success": true,
+    "computation_time_s": 6.8676728,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 10.6366293102397,
+      "control_effort_integral": 12.541409047662151,
+      "steering_integral": 1.6604449630238018,
+      "gear_changes": 1,
+      "smoothness_cost": 147.01854010685952
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0005061285908564694,
+      0.002298553033130313,
+      0.0001476980545054296
+    ],
+    "reference_time": 10.093945621548347,
+    "integration": {
+      "max_pose_defect": 3.20977230905406e-08,
+      "max_state_defect": 3.20977230905406e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.3759520899433557,
+      "max_steering": 0.7006879793858369
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 5,
+    "planner_success": true,
+    "computation_time_s": 4.9318897,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 10.068210798524433,
+      "control_effort_integral": 9.386308311626287,
+      "steering_integral": 1.9591478785469556,
+      "gear_changes": 1,
+      "smoothness_cost": 118.45456190173243
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      -0.0010583263172521118,
+      -0.0004535203432932122,
+      1.811547516028522e-05
+    ],
+    "reference_time": 9.247748011375728,
+    "integration": {
+      "max_pose_defect": 2.130709031433753e-08,
+      "max_state_defect": 2.130709031433753e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.2991161409930925,
+      "max_steering": 0.7006714512200045
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 6,
+    "planner_success": false,
+    "computation_time_s": 3.2913866,
+    "evaluation_success": false,
+    "code": "planner_failed",
+    "message": "Planner reported failure.",
+    "metrics": {
+      "collision_percent": null,
+      "terminal_reached": null,
+      "execution_time_s": null,
+      "control_effort_integral": null,
+      "steering_integral": null,
+      "gear_changes": null,
+      "smoothness_cost": null
+    }
+  },
+  {
+    "case_id": 7,
+    "planner_success": true,
+    "computation_time_s": 6.4520068,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 9.455841017031974,
+      "control_effort_integral": 7.798037728854697,
+      "steering_integral": 1.924513334525942,
+      "gear_changes": 1,
+      "smoothness_cost": 102.2255106338064
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0005057190545924732,
+      -0.0009487868432740759,
+      4.374215372093814e-05
+    ],
+    "reference_time": 8.658576710343786,
+    "integration": {
+      "max_pose_defect": 6.298080204927836e-09,
+      "max_state_defect": 6.298080204927836e-09,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.2914708227987894,
+      "max_steering": 0.7006639284740628
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 8,
+    "planner_success": true,
+    "computation_time_s": 7.834628,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": false,
+      "execution_time_s": 38.345261657930514,
+      "control_effort_integral": 5.037538239433025,
+      "steering_integral": 15.04501827696415,
+      "gear_changes": 3,
+      "smoothness_cost": 215.82556516397176
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      -0.01682253150655444,
+      -0.002367880647761833,
+      0.0021631086528964283
+    ],
+    "reference_time": 35.046189242913854,
+    "integration": {
+      "max_pose_defect": 7.700878867922256e-08,
+      "max_state_defect": 7.700878867922256e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 1.836424295721802,
+      "max_steering": 0.7006883952679245
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 9,
+    "planner_success": true,
+    "computation_time_s": 21.4934252,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 23.192534865990975,
+      "control_effort_integral": 9.207158926287462,
+      "steering_integral": 6.671598330244719,
+      "gear_changes": 5,
+      "smoothness_cost": 183.7875725653218
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0065825005404789305,
+      -0.003610924066551724,
+      0.00035320808130978593
+    ],
+    "reference_time": 22.37054339529811,
+    "integration": {
+      "max_pose_defect": 1.1886119422044317e-08,
+      "max_state_defect": 1.1886119422044317e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.133834512248718,
+      "max_steering": 0.7006987871069641
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 10,
+    "planner_success": true,
+    "computation_time_s": 41.9220014,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 16.817510640152115,
+      "control_effort_integral": 13.822614341116006,
+      "steering_integral": 3.955068497319423,
+      "gear_changes": 0,
+      "smoothness_cost": 177.77682838435427
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0013974583453424394,
+      0.004545334770561071,
+      0.00043333288606664034
+    ],
+    "reference_time": 15.777229633276404,
+    "integration": {
+      "max_pose_defect": 8.700477560630304e-10,
+      "max_state_defect": 8.700477560630304e-10,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.3484452896883052,
+      "max_steering": 0.7006824936067599
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 11,
+    "planner_success": true,
+    "computation_time_s": 16.959789,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 17.203752824938213,
+      "control_effort_integral": 13.550008210786366,
+      "steering_integral": 3.2030433635552478,
+      "gear_changes": 4,
+      "smoothness_cost": 187.53051574341612
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      -0.001665367371320725,
+      0.0036192601647737632,
+      -0.00019879904027275686
+    ],
+    "reference_time": 16.53523578815394,
+    "integration": {
+      "max_pose_defect": 2.830817802390584e-10,
+      "max_state_defect": 2.830817802390584e-10,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.4092438578138937,
+      "max_steering": 0.7006830686838035
+    },
+    "time_upper_bound_active": false
+  },
+  {
+    "case_id": 12,
+    "planner_success": true,
+    "computation_time_s": 20.6142865,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
+    "metrics": {
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 17.57679695499797,
+      "control_effort_integral": 10.133316731035842,
+      "steering_integral": 4.270064125118783,
+      "gear_changes": 4,
+      "smoothness_cost": 164.03380856154627
+    },
+    "solve_result_num": 0,
+    "terminal_error": [
+      0.0015214718033110808,
+      -0.003970619324615843,
+      -0.0005591480323572374
+    ],
+    "reference_time": 17.006402586049376,
+    "integration": {
+      "max_pose_defect": 6.559195098176929e-08,
+      "max_state_defect": 6.559195098176929e-08,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 1.7519291633623184,
+      "max_steering": 0.700698092491546
+    },
+    "time_upper_bound_active": false
+  }
+]
