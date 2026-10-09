@@ -69,6 +69,8 @@ TDR_OBCA uses MATLAB Navigation/Optimization Toolboxes and the external AMPL/Ipo
 
 `BuildHCRSteer` compiles the licensed circle/tangent geometry and benchmark cubic-spiral implementation once. A configured MATLAB C++ compiler or Windows portable Zig compiler is supported; binaries stay outside the source tree. [Source and build instructions](planners/BiRRT_HCR/README.md).
 
+RTR_TTS uses base MATLAB and the shared CC_PRM clothoid/distance module (`BuildCCSteer` once). It does not call the CC-family connector or roadmap search. [Algorithm, numerical choices and dependencies](planners/RTR_TTS/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -102,6 +104,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [RTR + TTS](planners/RTR_TTS/README.md) (`RTR_TTS`) | Path | Kiss & Tevesz, JAT 2017; RT trees and continuous-curvature local approximation | Implemented and tested on all 12 cases |
 | [TDR-OBCA](planners/TDR_OBCA/README.md) (`TDR_OBCA`) | Trajectory | He et al., ACC 2021; temporal and dual initialization with printed fixed-time NLP | Implemented and tested on all 12 cases |
 | [CC-Steer + directed PRM](planners/CC_PRM/README.md) (`CC_PRM`) | Path | Fraichard & Scheuer, TRO 2004; continuous-curvature connector with disclosed roadmap adapter | Implemented and tested on all 12 cases |
 | [BiRRT* + HCR00-Steer](planners/BiRRT_HCR/README.md) (`BiRRT_HCR`) | Path | Banzhaf et al., IV 2018; cubic-spiral curvature-rate-continuous steering | Implemented and tested on all 12 cases |
@@ -998,3 +1001,28 @@ Planning time includes Hybrid A*, all phase speed QPs, exact distance-dual initi
 
 [CSV](results/TDR_OBCA/metrics.csv) · [JSON](results/TDR_OBCA/metrics.json) · [validation](results/TDR_OBCA/validation.json).
 <!-- /results:TDR_OBCA -->
+
+<!-- results:RTR_TTS -->
+## RTR trees with TTS/eeS continuous-curvature approximation: measured results
+
+The paper's rotation/translation trees and complete mixed TTS/eeS approximation produced 12/12 native paths; 12 execution optimizations succeeded and 12 attained the terminal tolerance. Both stages are implemented, including TCI-interior nearest points, blocked-rotation extensions, tree intersections, sampled TTS turns, the essential exact eeS construction, reversed queries and recursive subdivision. The eeS path's curvature derivative is deliberately not bounded, as explained in the article; the common executor still enforces physical steering-rate limits. Finite query failures and execution outcomes are retained. Independent tests cover 1,021 local candidates, ODE integration, reverse traversal, shrinking maneuvers, exact translation sweeps and every successful native path's continuous full-body separation. See [the complete algorithm mapping and numerical choices](planners/RTR_TTS/README.md).
+
+Planning time includes setup, case loading, both RT trees, all sampled/analytic local connections, recursive approximation and mileage conversion. The shared one-time MEX build is excluded. One seeded run per case is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 9.9297 | 0 | yes | 55.9901 | 20.2184 | 2.3349 | 12 | 285.5330 | no |
+| 02 | yes | yes | 10.6680 | 0 | yes | 89.4215 | 16.4699 | 4.3784 | 18 | 298.4823 | no |
+| 03 | yes | yes | 10.4968 | 0 | yes | 17.0637 | 11.2996 | 1.1200 | 2 | 134.1958 | no |
+| 04 | yes | yes | 10.7351 | 0 | yes | 12.6395 | 11.1949 | 0.3687 | 1 | 120.6361 | no |
+| 05 | yes | yes | 10.9857 | 0 | yes | 16.5548 | 6.8690 | 1.7669 | 2 | 96.3595 | no |
+| 06 | yes | yes | 11.3754 | 0 | yes | 17.4959 | 11.6370 | 1.1403 | 2 | 137.7725 | no |
+| 07 | yes | yes | 11.4954 | 0 | yes | 22.3347 | 15.4218 | 0.8230 | 2 | 172.4485 | no |
+| 08 | yes | yes | 12.2913 | 0 | yes | 25.9339 | 12.1082 | 0.8257 | 1 | 134.3393 | no |
+| 09 | yes | yes | 16.9248 | 0 | yes | 112.5700 | 29.4751 | 10.0945 | 24 | 515.6958 | no |
+| 10 | yes | yes | 13.5533 | 0 | yes | 47.0452 | 14.8169 | 1.0547 | 2 | 168.7159 | no |
+| 11 | yes | yes | 14.5651 | 0 | yes | 19.9922 | 15.3098 | 0.7558 | 2 | 170.6558 | no |
+| 12 | yes | yes | 14.8071 | 0 | yes | 101.8885 | 17.6226 | 5.2454 | 21 | 333.6795 | no |
+
+[CSV](results/RTR_TTS/metrics.csv) · [JSON](results/RTR_TTS/metrics.json) · [validation](results/RTR_TTS/validation.json).
+<!-- /results:RTR_TTS -->

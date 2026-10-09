@@ -1,0 +1,350 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 12,
+  "unit": {
+    "passed": true,
+    "counts": [
+      1021,
+      901,
+      120
+    ],
+    "endpoint": 3.0961899710746366E-12,
+    "curvature_jump": 5.5511151231257827E-17,
+    "ode": 1.5543122344752192E-12,
+    "shrinking_excursion": [
+      [
+        1.628123183695698,
+        0.5156118052971409,
+        0.16307467738125317,
+        0.051569497159921256,
+        0.016307730796457837,
+        0.0051569580348274106,
+        0.0016307733427110879
+      ],
+      [
+        0.60512806033215227,
+        0.06050997909467859,
+        0.0060509950838123615,
+        0.00060509950555559392,
+        6.0509950552733713E-5,
+        6.0509950552705429E-6,
+        6.0509950552705168E-7
+      ],
+      [
+        1.6144063865550742,
+        0.48939566301483561,
+        0.15960017663924297,
+        0.051198128059848462,
+        0.016269837619734769,
+        0.0051531448114779535,
+        0.0016303912645347426
+      ]
+    ],
+    "exact_translation_sweep": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 1.9380053117856733E-12,
+      "endpoint_error": [
+        -1.936450999551198E-12,
+        1.4994672170587364E-12,
+        -6.6613381477509392E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 1.0193235144839718E-14,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 67.338858676039919,
+      "path_length_m": 57.573121203110006,
+      "cusp_count": 12,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.047067797895226082,
+      "minimum_geometric_path_SAT_gap_m": 0.020000049978507128,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 4.9986681460723048E-12,
+      "endpoint_error": [
+        -5.4136695126771883E-12,
+        -4.4552139755182907E-12,
+        1.7763568394002505E-15
+      ],
+      "all_cusp_curvature_continuity_error": 5.5511151231257827E-17,
+      "uniform_spacing_error": 1.136590821460004E-14,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 79.579408180575527,
+      "path_length_m": 91.446821848906239,
+      "cusp_count": 18,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.011999210883034017,
+      "minimum_geometric_path_SAT_gap_m": 0.020000256519173476,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 3.815614491031738E-12,
+      "endpoint_error": [
+        -3.588462860193431E-12,
+        4.5805581549984709E-12,
+        0
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 4.0314973581701E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 0.38094017738231523,
+      "path_length_m": 22.079963437943242,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.35595494870109157,
+      "minimum_geometric_path_SAT_gap_m": 0.35595494870110178,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 1.0005329897921911E-12,
+      "endpoint_error": [
+        1.1571854585668007E-12,
+        -1.20570220474292E-12,
+        4.4408920985006262E-16
+      ],
+      "all_cusp_curvature_continuity_error": 6.9388939039072284E-18,
+      "uniform_spacing_error": 5.7315263646273706E-15,
+      "maximum_curvature": 0.14320630868699175,
+      "maximum_curvature_derivative": 0.071428571428571327,
+      "path_length_m": 19.027707827971803,
+      "cusp_count": 1,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.37219963299081815,
+      "minimum_geometric_path_SAT_gap_m": 0.28975170993177723,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 4.0101255649460654E-12,
+      "endpoint_error": [
+        3.7327918533947013E-12,
+        -1.4324652575226082E-12,
+        7.7715611723760958E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 3.1571967262777889E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 5.6778984969641675,
+      "path_length_m": 14.508312214477883,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.080736104174143342,
+      "minimum_geometric_path_SAT_gap_m": 0.020000742525955406,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 5.3779203312842583E-12,
+      "endpoint_error": [
+        -9.5526919707822344E-12,
+        2.2162272017567375E-12,
+        2.2204460492503131E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 4.4478309924045334E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 0.43364541675915763,
+      "path_length_m": 23.919299442146329,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.1517832040419691,
+      "minimum_geometric_path_SAT_gap_m": 0.020000195743877569,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 5.9738880509030423E-12,
+      "endpoint_error": [
+        3.4098279755312433E-12,
+        4.4120262998603721E-13,
+        -2.2204460492503131E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 7.6813555516253018E-15,
+      "maximum_curvature": 0.1777946785307821,
+      "maximum_curvature_derivative": 0.0714285714285711,
+      "path_length_m": 36.923797182414958,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.019035733545870848,
+      "minimum_geometric_path_SAT_gap_m": 0.234383553791096,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 4.5607961851601431E-12,
+      "endpoint_error": [
+        2.3521184999708566E-12,
+        -5.3388682363930684E-12,
+        4.9960036108132044E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 7.4176775832768271E-15,
+      "maximum_curvature": 0.20754227158919378,
+      "maximum_curvature_derivative": 0.071428571428571327,
+      "path_length_m": 52.189668671567532,
+      "cusp_count": 1,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.4205653079774121,
+      "minimum_geometric_path_SAT_gap_m": 0.020001350519071481,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 8.9741547526500653E-12,
+      "endpoint_error": [
+        1.836797380860844E-11,
+        1.5786039142540176E-11,
+        1.1331077795295959E-15
+      ],
+      "all_cusp_curvature_continuity_error": 2.7755575615628914E-17,
+      "uniform_spacing_error": 1.5591694602079542E-14,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_curvature_derivative": 4.6979760750527255,
+      "path_length_m": 104.63448231179827,
+      "cusp_count": 24,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.014305073380730615,
+      "minimum_geometric_path_SAT_gap_m": 0.019945186144299076,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 1.0855316645574931E-11,
+      "endpoint_error": [
+        -2.1296131524906059E-11,
+        -1.3372636331610011E-11,
+        4.4408920985006262E-16
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 1.8159085346525217E-14,
+      "maximum_curvature": 0.0751540080832864,
+      "maximum_curvature_derivative": 0.071428571428567011,
+      "path_length_m": 98.424292294015771,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.040271060190911534,
+      "minimum_geometric_path_SAT_gap_m": 0.020000078871054594,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 1.964650664376677E-12,
+      "endpoint_error": [
+        -1.0790257576331896E-12,
+        -1.6642243139131097E-12,
+        -1.3322676295501878E-15
+      ],
+      "all_cusp_curvature_continuity_error": 0,
+      "uniform_spacing_error": 5.1417203827952562E-15,
+      "maximum_curvature": 0.1610439565702923,
+      "maximum_curvature_derivative": 0.0714285714285711,
+      "path_length_m": 31.091113717621653,
+      "cusp_count": 2,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.42361844172425389,
+      "minimum_geometric_path_SAT_gap_m": 0.020000103161819549,
+      "RTR_primitives_verified": true
+    },
+    {
+      "passed": true,
+      "structural_screen": {
+        "valid": true,
+        "code": "valid",
+        "message": "Passed structural and gross-task screening."
+      },
+      "maximum_ODE_error": 5.6041837837028652E-12,
+      "endpoint_error": [
+        -9.8304697715434486E-12,
+        1.3730572234749161E-11,
+        -8.8817841970012523E-16
+      ],
+      "all_cusp_curvature_continuity_error": 5.5511151231257827E-17,
+      "uniform_spacing_error": 1.8957058145474548E-14,
+      "maximum_curvature": 0.30081727873681413,
+      "maximum_curvature_derivative": 107.25872155803913,
+      "path_length_m": 98.931102895781152,
+      "cusp_count": 21,
+      "continuous_body_separation_passed": true,
+      "dense_native_collision_percent": 0,
+      "minimum_SAT_gap_m": 0.0079217983629606969,
+      "minimum_geometric_path_SAT_gap_m": 0.020000199477562042,
+      "RTR_primitives_verified": true
+    }
+  ]
+}
