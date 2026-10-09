@@ -47,6 +47,8 @@ AnytimePSRO uses the external AMPL/Ipopt runtime with MA27. All frozen-sign cons
 
 DPGrid needs a one-time C++ module build with `BuildDPGrid`; it uses base MATLAB for its planner and has no optimizer or Navigation Toolbox dependency. [Build instructions and source](planners/DPGrid/README.md).
 
+BL_Dijkstra needs a one-time C++ module build with `BuildBLDijkstra`. It uses base MATLAB and can require several GB of memory for its full indexed search. [Source, build and resource limits](planners/BL_Dijkstra/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -80,6 +82,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Barraquand-Latombe Dijkstra](planners/BL_Dijkstra/README.md) (`BL_Dijkstra`) | Path | Barraquand & Latombe, Algorithmica 1993; minimum-reversal indexed search | Implemented and tested on all 12 cases |
 | [Backward dynamic programming](planners/DPGrid/README.md) (`DPGrid`) | Path | Schildbach & Borrelli, IV 2016; finite pose grid with continuous steering arcs | Implemented and tested on all 12 cases |
 | [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
 | [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs and parallel collision-weight iterations | Implemented and tested on all 12 cases |
@@ -690,3 +693,28 @@ Planning times include MATLAB grid construction/filtering, the single-threaded C
 
 [CSV](results/DPGrid/metrics.csv) · [JSON](results/DPGrid/metrics.json) · [validation](results/DPGrid/validation.json).
 <!-- /results:DPGrid -->
+
+<!-- results:BL_Dijkstra -->
+## Barraquand-Latombe minimum-reversal search: measured results
+
+The six-control indexed-tree Dijkstra search produced 12/12 native goal-cell paths; 12 execution optimizations succeeded and 0 attained the strict terminal tolerance. **Native success means arrival in the goal grid cell, not exact endpoint attainment.** The primary reversal-count objective can prefer a long single-direction loop; both these routes and native failures remain in the table. The original front-axle control-speed convention and the Section 6.2 pair of gear-indexing arrays are retained. Independent ODE integration, continuous swept-body checks, goal-cell membership, exact cusps and native costs were verified. See [the original algorithm, finite-resolution limitations and uniform control-duration rule](planners/BL_Dijkstra/README.md).
+
+Planning times include setup, the single-threaded indexed search and exact path sampling. The one-time C++ build is excluded; numerical-library threads are fixed to one. Other development jobs were active, so these are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 67.7583 | 0 | no | 75.4011 | 5.5759 | 25.6792 | 4 | 332.5512 | yes |
+| 02 | yes | yes | 66.5070 | 0 | no | 32.1584 | 3.6889 | 9.9411 | 4 | 156.2998 | yes |
+| 03 | yes | yes | 26.8708 | 0 | no | 54.6445 | 5.8176 | 15.2645 | 1 | 215.8216 | no |
+| 04 | yes | yes | 61.0103 | 0 | no | 64.2264 | 5.7928 | 16.8981 | 4 | 246.9085 | no |
+| 05 | yes | yes | 39.7120 | 0 | no | 26.0449 | 2.9918 | 7.7338 | 2 | 117.2556 | yes |
+| 06 | yes | yes | 41.1115 | 0 | no | 28.4264 | 2.4516 | 7.4394 | 2 | 108.9095 | no |
+| 07 | yes | yes | 29.7325 | 0 | no | 58.4235 | 7.9284 | 12.6689 | 0 | 205.9733 | no |
+| 08 | yes | yes | 30.6838 | 0.1842 | no | 46.1344 | 5.8303 | 11.9234 | 1 | 182.5377 | no |
+| 09 | yes | yes | 57.6055 | 1.8951 | no | 72.7119 | 5.1520 | 26.4425 | 2 | 325.9450 | yes |
+| 10 | yes | yes | 20.5509 | 0 | no | 44.5311 | 4.4988 | 16.4476 | 3 | 224.4636 | yes |
+| 11 | yes | yes | 41.8443 | 0 | no | 24.0492 | 2.6694 | 6.9328 | 2 | 106.0222 | yes |
+| 12 | yes | yes | 67.1711 | 4.2467 | no | 34.7074 | 2.9350 | 8.8416 | 3 | 132.7667 | yes |
+
+[CSV](results/BL_Dijkstra/metrics.csv) · [JSON](results/BL_Dijkstra/metrics.json) · [validation](results/BL_Dijkstra/validation.json).
+<!-- /results:BL_Dijkstra -->

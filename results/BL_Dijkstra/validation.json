@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 12,
+  "evaluation_success_count": 12,
+  "terminal_reached_count": 0,
+  "unit": {
+    "passed": true,
+    "goal_cell_preserved": true,
+    "endpoint_error_m": [
+      0.0010000000000000009,
+      0.0010000000000000009
+    ],
+    "front_speed_step_verified": true,
+    "unreachable_wall": true,
+    "node_limit_failure": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "independent_ode_error": 3.82804898890754E-12,
+      "path_length_m": 48.933538887301424,
+      "gear_changes": 3,
+      "merged_arcs": 24,
+      "primitive_steps": 191,
+      "native_terminal_error": [
+        0.051061065611383016,
+        0.0094592615813701153,
+        -0.0098174770424664937
+      ],
+      "clearance_lower_bound_m": 0.0021675426134546427,
+      "dense_poses": 48935
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 1.1723955140041653E-13,
+      "path_length_m": 9.4327781788253038,
+      "gear_changes": 3,
+      "merged_arcs": 10,
+      "primitive_steps": 37,
+      "native_terminal_error": [
+        0.01209787790373551,
+        0.061413002752959966,
+        -0.0098174770424681573
+      ],
+      "clearance_lower_bound_m": 0.069586029742844335,
+      "dense_poses": 9434
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 3.2929214910382143E-12,
+      "path_length_m": 43.698368621476639,
+      "gear_changes": 0,
+      "merged_arcs": 31,
+      "primitive_steps": 165,
+      "native_terminal_error": [
+        -0.00831381870648018,
+        0.019547729671685277,
+        -0.010362892433711824
+      ],
+      "clearance_lower_bound_m": 0.0032953344176451793,
+      "dense_poses": 43700
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 2.8248514638562483E-12,
+      "path_length_m": 43.37834167720591,
+      "gear_changes": 3,
+      "merged_arcs": 35,
+      "primitive_steps": 164,
+      "native_terminal_error": [
+        -0.0023167820022709784,
+        -0.0692189221080377,
+        0.0016362461737473349
+      ],
+      "clearance_lower_bound_m": 0.012484460276448672,
+      "dense_poses": 43380
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 1.4321877017664519E-12,
+      "path_length_m": 10.863399628357657,
+      "gear_changes": 1,
+      "merged_arcs": 9,
+      "primitive_steps": 41,
+      "native_terminal_error": [
+        0.026048575372510374,
+        -0.04132775040330483,
+        -0.014180800172453989
+      ],
+      "clearance_lower_bound_m": 0.016004353095561807,
+      "dense_poses": 10865
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 2.2066792837449611E-12,
+      "path_length_m": 12.57679038467959,
+      "gear_changes": 1,
+      "merged_arcs": 14,
+      "primitive_steps": 48,
+      "native_terminal_error": [
+        0.015470371970975005,
+        0.049425053203840941,
+        0.00054541539124830507
+      ],
+      "clearance_lower_bound_m": 0.072620216669624149,
+      "dense_poses": 12578
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 3.1343816431217419E-12,
+      "path_length_m": 55.276337413338013,
+      "gear_changes": 0,
+      "merged_arcs": 48,
+      "primitive_steps": 204,
+      "native_terminal_error": [
+        0.066686865053856736,
+        -0.013539363123718284,
+        0.0015479339120918251
+      ],
+      "clearance_lower_bound_m": 0.00508564825438107,
+      "dense_poses": 55278
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 6.999734125656687E-12,
+      "path_length_m": 41.287925178497872,
+      "gear_changes": 0,
+      "merged_arcs": 28,
+      "primitive_steps": 153,
+      "native_terminal_error": [
+        -0.057423766326162085,
+        0.027001901071597056,
+        4.1959627386711559E-15
+      ],
+      "clearance_lower_bound_m": 0.0069983512163935835,
+      "dense_poses": 41289
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 8.4038331849001224E-12,
+      "path_length_m": 48.161970925682304,
+      "gear_changes": 1,
+      "merged_arcs": 25,
+      "primitive_steps": 190,
+      "native_terminal_error": [
+        0.02246631554685119,
+        0.034960894091527472,
+        -0.0098174770424716
+      ],
+      "clearance_lower_bound_m": 0.010650198581374615,
+      "dense_poses": 48163
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 5.1665338673956285E-12,
+      "path_length_m": 30.859291651904162,
+      "gear_changes": 0,
+      "merged_arcs": 11,
+      "primitive_steps": 123,
+      "native_terminal_error": [
+        -0.019112840143396481,
+        -0.02494088920708748,
+        0.0027270769562441903
+      ],
+      "clearance_lower_bound_m": 0.05686783838579601,
+      "dense_poses": 30861
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 9.9742436532324064E-13,
+      "path_length_m": 8.3784409104166091,
+      "gear_changes": 1,
+      "merged_arcs": 12,
+      "primitive_steps": 33,
+      "native_terminal_error": [
+        -0.026309946616662638,
+        -0.0058510423631910058,
+        -0.0027270769562406376
+      ],
+      "clearance_lower_bound_m": 0.01926040651894434,
+      "dense_poses": 8380
+    },
+    {
+      "passed": true,
+      "independent_ode_error": 4.9549253589020736E-13,
+      "path_length_m": 14.327438778482668,
+      "gear_changes": 2,
+      "merged_arcs": 12,
+      "primitive_steps": 53,
+      "native_terminal_error": [
+        0.027578103115495689,
+        0.054310135154314265,
+        0.00054541539124852711
+      ],
+      "clearance_lower_bound_m": 0.0026224058945464312,
+      "dense_poses": 14329
+    }
+  ]
+}
