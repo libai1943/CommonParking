@@ -61,6 +61,8 @@ TPCKC uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical
 
 DFTPAV_Path needs MATLAB Navigation and Optimization Toolboxes. Its static MINCO formulation and explicit geometric-output adapter are documented in [its planner folder](planners/DFTPAV_Path/README.md). The planner does not need AMPL.
 
+HJBA needs MATLAB Navigation and Parallel Computing Toolboxes. `BuildHJBA` optionally compiles its HJ stencil; the complete MATLAB stencil remains available. The common analytic arc helpers live in the LaumondRS folder. [Source, build and reachability assumptions](planners/HJBA/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -94,6 +96,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [HJ-guided bidirectional A*](planners/HJBA/README.md) (`HJBA`) | Path | Chi et al., TVT 2026; numerical HJ reachability and connected-state bidirectional search | Implemented and tested on all 12 cases |
 | [DFTPAV static geometry](planners/DFTPAV_Path/README.md) (`DFTPAV_Path`) | Path | Han et al., TITS 2024; MINCO, movable gear changes and explicit geometric-output adapter | Implemented and tested on all 12 cases |
 | [Cumulative key constraints](planners/TPCKC/README.md) (`TPCKC`) | Trajectory | Guo et al., TVT 2025; implicit-Euler NLP and cumulative vertex constraints | Implemented and tested on all 12 cases |
 | [Bicchi tangent graph](planners/BicchiTangents/README.md) (`BicchiTangents`) | Path | Bicchi, Casalino & Santilli, ICRA 1995; obstacle-supported circles and tangents | Implemented and tested on all 12 cases |
@@ -886,3 +889,28 @@ Planning times include Hybrid A*, all corridor construction, the full analytic-g
 
 [CSV](results/DFTPAV_Path/metrics.csv) · [JSON](results/DFTPAV_Path/metrics.json) · [validation](results/DFTPAV_Path/validation.json).
 <!-- /results:DFTPAV_Path -->
+
+<!-- results:HJBA -->
+## Hamilton–Jacobi-guided bidirectional A*: measured results
+
+The numerical HJ tube, exact static safe-set intersection and twenty connected-state search branches produced 12/12 native paths; 12 execution optimizations succeeded and 5 attained the strict terminal tolerance. **All reachability preparation is included in these timings, unlike the article's online-only timing.** The literal global-coordinate sampling quadrant is retained. Printed control-quantifier and heuristic-consistency issues, and all omitted numerical choices, are explicitly documented. Every successful native branch passes continuous full-rectangle collision checks; no whole-path safety guarantee is inferred from sampled reachable-set membership. Independent tests compare closed-form HJ solutions, MATLAB and compiled stencils, convex QP geometry, ODE integration and exact branch/cusp joins. See [the complete formulation, finite-grid limits and paper-to-code mapping](planners/HJBA/README.md).
+
+Planning times include every safe-grid test, full HJ computation, pool startup/shutdown, all connected-state branches and output conversion. The compiled HJ stencil is single-threaded; up to twelve MATLAB process workers search separate connected states, each with one numerical-library thread. Its one-time build is excluded. These timings differ from the paper's online-only measurements and are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 91.3910 | 0 | no | 29.5952 | 5.3250 | 9.9481 | 3 | 167.7313 | yes |
+| 02 | yes | yes | 124.1321 | 0 | no | 32.8591 | 4.6751 | 9.9613 | 4 | 166.3641 | yes |
+| 03 | yes | yes | 92.2525 | 0 | yes | 27.4533 | 3.3375 | 8.4674 | 2 | 128.0491 | yes |
+| 04 | yes | yes | 102.9591 | 0 | no | 29.5834 | 3.1102 | 8.2175 | 2 | 123.2772 | yes |
+| 05 | yes | yes | 69.9867 | 0 | yes | 25.5991 | 3.0756 | 7.9402 | 2 | 120.1580 | yes |
+| 06 | yes | yes | 76.7090 | 0 | yes | 43.1952 | 4.4254 | 9.6161 | 3 | 155.4150 | yes |
+| 07 | yes | yes | 56.1067 | 0 | no | 29.3016 | 2.8514 | 8.1701 | 3 | 125.2157 | yes |
+| 08 | yes | yes | 76.4677 | 2.7820 | no | 44.4996 | 3.3083 | 14.1923 | 6 | 205.0058 | yes |
+| 09 | yes | yes | 60.4730 | 0 | no | 44.8000 | 3.4186 | 11.9787 | 5 | 178.9730 | no |
+| 10 | yes | yes | 96.0548 | 0.9384 | yes | 49.3381 | 4.1475 | 13.6802 | 6 | 208.2771 | yes |
+| 11 | yes | yes | 154.1184 | 0 | yes | 51.0683 | 4.4637 | 18.2525 | 4 | 247.1625 | yes |
+| 12 | yes | yes | 63.1394 | 0 | no | 31.4640 | 4.5959 | 10.1387 | 2 | 157.3460 | yes |
+
+[CSV](results/HJBA/metrics.csv) · [JSON](results/HJBA/metrics.json) · [validation](results/HJBA/validation.json).
+<!-- /results:HJBA -->

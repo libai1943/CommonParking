@@ -52,6 +52,8 @@ switch name
         canonical = 'TPCKC'; planner = @tpckc.Plan;kind='trajectory';
     case "DFTPAV_PATH"
         canonical = 'DFTPAV_Path'; planner = @dftpav.Plan;kind='path';
+    case "HJBA"
+        canonical = 'HJBA'; planner = @hjba.Plan;kind='path';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"
