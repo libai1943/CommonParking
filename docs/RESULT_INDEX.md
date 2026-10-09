@@ -32,7 +32,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [LamirauxSmooth](../planners/LamirauxSmooth/README.md) | 12 | 11 | 11 | 9 | [JSON](../results/LamirauxSmooth/metrics.json) · [CSV](../results/LamirauxSmooth/metrics.csv) |
 | [LatticeOCP](../planners/LatticeOCP/README.md) | 2 | 2 | 2 | 2 | [JSON](../results/LatticeOCP/metrics.json) · [CSV](../results/LatticeOCP/metrics.csv) |
 | [LaumondRS](../planners/LaumondRS/README.md) | 12 | 12 | 4 | 4 | [JSON](../results/LaumondRS/metrics.json) · [CSV](../results/LaumondRS/metrics.csv) |
-| [LIOM](../planners/LIOM/README.md) | 9 | 9 | 4 | 9 | [JSON](../results/LIOM/metrics.json) · [CSV](../results/LIOM/metrics.csv) |
+| [LIOM](../planners/LIOM/README.md) | 8 | 8 | 8 | 8 | [JSON](../results/LIOM/metrics.json) · [CSV](../results/LIOM/metrics.csv) |
 | [OSEHS](../planners/OSEHS/README.md) | 10 | 10 | 6 | 9 | [JSON](../results/OSEHS/metrics.json) · [CSV](../results/OSEHS/metrics.csv) |
 | [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 2 | 2 | 0 | 2 | [JSON](../results/PointPotentialOCP/metrics.json) · [CSV](../results/PointPotentialOCP/metrics.csv) |
 | [RITP](../planners/RITP/README.md) | 12 | 12 | 5 | 12 | [JSON](../results/RITP/metrics.json) · [CSV](../results/RITP/metrics.csv) |
@@ -79,3 +79,5 @@ set(fig,'Visible','on');
 ```
 
 [Recorded software and non-identifying host details](ENVIRONMENT.json) accompany the timing data.
+
+[Mechanism-level assessment of all forty methods](METHOD_CATEGORIES.md) and [LIOM refinement study](LIOM_REFINEMENT.md) distinguish recorded outcomes from broader research claims.

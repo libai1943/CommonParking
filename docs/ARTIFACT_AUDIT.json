@@ -469,14 +469,14 @@
     {
       "planner": "LIOM",
       "cases": 12,
-      "planner_success": 9,
-      "evaluation_success": 9,
-      "terminal_reached": 4,
-      "zero_collision_execution": 9,
+      "planner_success": 8,
+      "evaluation_success": 8,
+      "terminal_reached": 8,
+      "zero_collision_execution": 8,
       "screen_codes": [
         "valid",
         "planner_failed",
-        "valid",
+        "planner_failed",
         "valid",
         "valid",
         "planner_failed",
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "40dac9f4cc840a97def438da983c6476a127191e",
+  "source_commit": "7f2194de7e8b10c768af011e7e4c61d8c9affc64",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {
@@ -907,9 +907,6 @@
       "Case12.mat": "2eac0e1b0848aeafca08e65f5660148ff538352beda8d883c99a1aef970cd043"
     }
   },
-  "hashed_result_artifacts": 628,
-  "readme_links_present": true,
-  "manifest_byte_representation": "Committed Git blob bytes, as delivered by git archive; working-tree text newline conversion may change raw hashes.",
-  "result_artifacts_match_committed_bytes": true,
-  "text_newline_normalization_verified": true
+  "hashed_result_artifacts": 629,
+  "readme_links_present": true
 }
