@@ -208,28 +208,30 @@ The fixed safe-corridor method uses the paper's minimum-time objective and forwa
 
 Raw data: [CSV](results/STC/metrics.csv), [JSON](results/STC/metrics.json), and standard `result` objects in `results/STC/CaseNN.mat`. [Paper correspondence and implementation choices](planners/STC/README.md). [Dynamics and format validation](results/STC/validation.json).
 
-## H-OBCA: measured results
+<!-- results:H_OBCA -->
+## H_OBCA: measured results
 
-All twelve planner and evaluator calls succeeded. Four tracked executions satisfy the terminal tolerance; cases 2 and 8 have nonzero measured collision-frame percentages. Native collision avoidance at planner nodes does not guarantee collision-free tracked execution. The paper's steering-as-input model has no terminal zero-steering constraint; the common tracker applies its documented endpoint convention. No metric is replaced by a penalty or hidden because the result is unfavorable. No tracker time cap was active.
+12/12 native solves and 12/12 evaluations succeeded; 12 executions attained the terminal tolerance, 5 had zero measured collision frames, and 5 passed both checks. The signed-distance dual formulation, objective and initialization stages use the common five-state rear bicycle with RK2, bounded steering rate, zero endpoint steering and 0.01 m physical clearance. Native discrete feasibility and the independently tracked execution remain separate outcomes. See [the formulation and numerical settings](planners/H_OBCA/README.md).
 
-Wall times are measured on this desktop and include all initialization and solver stages. Other development processes were active during parts of this run; these values should not be treated as controlled hardware timing comparisons.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
-| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness |
-|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|
-| 01 | yes | yes | 5.546 | 0.0000 | yes | 12.108 | 8.4946 | 2.1988 | 2 | 116.9343 |
-| 02 | yes | yes | 137.440 | 0.0404 | no | 22.290 | 2.7229 | 4.0664 | 3 | 82.8928 |
-| 03 | yes | yes | 1.573 | 0.0000 | no | 15.537 | 2.5251 | 3.8542 | 1 | 68.7933 |
-| 04 | yes | yes | 1.644 | 0.0000 | no | 17.628 | 2.3138 | 3.1568 | 1 | 59.7060 |
-| 05 | yes | yes | 1.615 | 0.0000 | no | 16.314 | 1.8462 | 3.7224 | 1 | 60.6860 |
-| 06 | yes | yes | 3.038 | 0.0000 | yes | 12.199 | 6.6517 | 2.3078 | 1 | 94.5943 |
-| 07 | yes | yes | 1.790 | 0.0000 | yes | 9.852 | 6.2427 | 2.2006 | 1 | 89.4329 |
-| 08 | yes | yes | 2.269 | 0.0883 | no | 18.108 | 4.5462 | 4.5130 | 2 | 100.5918 |
-| 09 | yes | yes | 2.957 | 0.0000 | no | 18.864 | 4.4634 | 4.0000 | 2 | 94.6335 |
-| 10 | yes | yes | 50.873 | 0.0000 | yes | 16.566 | 3.3607 | 3.7576 | 0 | 71.1831 |
-| 11 | yes | yes | 9.981 | 0.0000 | no | 25.129 | 1.9150 | 5.8597 | 1 | 82.7477 |
-| 12 | yes | yes | 9.729 | 0.0000 | no | 21.039 | 2.0548 | 3.3469 | 1 | 59.0165 |
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 1.0743 | 0.3804 | yes | 12.0896 | 8.3764 | 2.2662 | 2 | 116.4267 | no |
+| 02 | yes | yes | 1.1768 | 0.4256 | yes | 18.0924 | 3.9708 | 3.3139 | 2 | 82.8478 | no |
+| 03 | yes | yes | 0.6445 | 0 | yes | 11.5553 | 6.0562 | 2.5404 | 1 | 90.9660 | no |
+| 04 | yes | yes | 0.8281 | 0 | yes | 11.4825 | 8.5404 | 1.8040 | 1 | 108.4444 | no |
+| 05 | yes | yes | 0.9708 | 0 | yes | 11.5110 | 5.5432 | 2.6586 | 1 | 87.0184 | no |
+| 06 | yes | yes | 2.1979 | 0.3069 | yes | 12.0537 | 6.9270 | 2.2789 | 1 | 97.0582 | no |
+| 07 | yes | yes | 1.2837 | 0 | yes | 9.6729 | 6.5435 | 2.0723 | 1 | 91.1585 | no |
+| 08 | yes | yes | 2.3466 | 0.4188 | yes | 15.7597 | 7.0799 | 4.0572 | 2 | 121.3706 | no |
+| 09 | yes | yes | 1.9872 | 0 | yes | 15.7403 | 8.5078 | 3.3355 | 2 | 128.4327 | no |
+| 10 | yes | yes | 12.8358 | 0.3702 | yes | 14.0440 | 5.3305 | 1.3578 | 1 | 71.8830 | no |
+| 11 | yes | yes | 2.3544 | 0.1624 | yes | 10.4642 | 4.7811 | 2.5411 | 2 | 83.2214 | no |
+| 12 | yes | yes | 6.8868 | 0.4109 | yes | 17.2796 | 5.2232 | 2.1425 | 1 | 78.6564 | no |
 
-Raw data: [CSV](results/H_OBCA/metrics.csv), [JSON](results/H_OBCA/metrics.json), and standard `result` objects in `results/H_OBCA/CaseNN.mat`. [Paper correspondence](planners/H_OBCA/README.md). [RK2 and node-clearance validation](results/H_OBCA/validation.json).
+[CSV](results/H_OBCA/metrics.csv) · [JSON](results/H_OBCA/metrics.json) · [validation](results/H_OBCA/validation.json).
+<!-- /results:H_OBCA -->
 
 ## Validation and reproducibility
 
