@@ -26,6 +26,8 @@ switch name
         canonical = 'TEB'; planner = @teb.Plan;kind='trajectory';
     case "SE2_NMPC"
         canonical = 'SE2_NMPC'; planner = @se2mpc.Plan;kind='trajectory';
+    case "WGRRT"
+        canonical = 'WGRRT'; planner = @wgrrt.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"

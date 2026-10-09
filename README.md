@@ -70,6 +70,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Waypoint-guided two-stage RRT](planners/WGRRT/README.md) (`WGRRT`) | Path | Wang, Jha & Akemi, CASE 2017; geometric exploration, guided bi-RRT and value iteration | Implemented and tested on all 12 cases |
 | [SE(2)-aware nonlinear MPC](planners/SE2_NMPC/README.md) (`SE2_NMPC`) | Trajectory | Roesmann, Makarow & Bertram, ECC 2021; static quasi-time-optimal OCP realization | Implemented and tested on all 12 cases |
 | [TEB with homology exploration](planners/TEB/README.md) (`TEB`) | Trajectory | Roesmann, Hoffmann & Bertram, RAS 2017; sampled topology exploration and timed elastic bands | Implemented and tested on all 12 cases |
 | [Eta3 spline optimization](planners/Eta3/README.md) (`Eta3`) | Path | Lini, Piazzi & Consolini, CDC/ECC 2011; geometric nonlinear program with disclosed online initialization | Implemented and tested on all 12 cases |
@@ -498,3 +499,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/SE2_NMPC/metrics.csv) · [JSON](results/SE2_NMPC/metrics.json) · [validation](results/SE2_NMPC/validation.json).
 <!-- /results:SE2_NMPC -->
+
+<!-- results:WGRRT -->
+## Waypoint-guided two-stage RRT: measured results
+
+The geometric waypoint stage, accumulated bidirectional RRT graph and Bellman value iteration produced 11/12 native paths; 11 execution optimizations succeeded and 6 attained the terminal tolerance. The paper's neighbor radius 6, three RS candidates and 100 new nodes per waypoint connection are retained. **All submitted paths passed continuous full-body collision checks, but six tracked executions have nonzero collision percentages.** Discontinuous steering and the common execution model can change the path actually followed; native safety is not executable safety. The native failure and all execution deviations remain in the table. Independent validation checks every successful graph edge by adaptive quadrature and collision geometry, compares the recovered path with a separate graph shortest-distance algorithm, and verifies exact cusps and output mileage. See [the paper stages and disclosed sampling, finite-budget and shortening choices](planners/WGRRT/README.md).
+
+Planning times include all online construction, search and smoothing stages. MATLAB uses its default numerical-library thread setting for this geometric method. Other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 8.2239 | 9.8538 | no | 32.9608 | 7.3123 | 10.4744 | 5 | 202.8670 | yes |
+| 02 | no | no | 7.0015 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 10.1841 | 4.2094 | yes | 26.4151 | 1.9021 | 8.6995 | 2 | 116.0160 | no |
+| 04 | yes | yes | 12.8365 | 0 | no | 28.7539 | 3.6026 | 10.4510 | 2 | 150.5358 | yes |
+| 05 | yes | yes | 14.8588 | 0.3484 | yes | 25.5462 | 2.5076 | 7.9800 | 2 | 114.8757 | yes |
+| 06 | yes | yes | 14.0808 | 4.6514 | yes | 41.7498 | 5.3610 | 12.4327 | 6 | 207.9363 | yes |
+| 07 | yes | yes | 13.1389 | 0 | yes | 25.1059 | 2.4007 | 7.2776 | 3 | 111.7824 | yes |
+| 08 | yes | yes | 4.3494 | 0 | no | 32.4924 | 4.4350 | 11.8710 | 3 | 178.0601 | yes |
+| 09 | yes | yes | 3.6158 | 9.0077 | no | 48.4800 | 10.7602 | 14.3295 | 11 | 305.8973 | yes |
+| 10 | yes | yes | 5.2387 | 0 | yes | 51.7827 | 4.8036 | 18.8342 | 7 | 271.3783 | yes |
+| 11 | yes | yes | 7.0216 | 0 | no | 72.0248 | 9.1965 | 25.5299 | 12 | 407.2640 | yes |
+| 12 | yes | yes | 6.0132 | 8.3296 | yes | 31.3922 | 4.5156 | 9.3189 | 2 | 148.3452 | yes |
+
+[CSV](results/WGRRT/metrics.csv) · [JSON](results/WGRRT/metrics.json) · [validation](results/WGRRT/validation.json).
+<!-- /results:WGRRT -->
