@@ -549,26 +549,26 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- /results:TEB -->
 
 <!-- results:SE2_NMPC -->
-## SE(2)-aware quasi-time-optimal NLP: measured results
+## SE2_NMPC: measured results
 
-The paper's wrapped-angle Crank-Nicolson OCP realization produced 11/12 native successes; 11 execution optimizations succeeded and 9 attained the terminal tolerance. The disclosed static adapter uses 200 intervals, the common rear-axle bicycle model, exact rectangular obstacle distances, and the article's 0.2 m safety gap. Endpoint-gap failures are retained without changing that margin. Independent checks cover native flags, all discrete dynamics, control/rate bounds, distance duals, objective, arbitrary 2*pi shifts, exact output fields and constant-input arc replay defects. See [the equation mapping and distinction from the complete feedback/ROS system](planners/SE2_NMPC/README.md).
+11/12 native solves and 11/12 evaluations succeeded; 11 executions attained the terminal tolerance, 11 had zero measured collision frames, and 11 passed both checks. The wrapped-angle Crank-Nicolson OCP uses common nodal speed/steering, exact rest endpoints and 0.01 m physical clearance. Shared interval distance-dual normals and a corner-rotation remainder bound cover the submitted linear pose reference between nodes. The uniform budget is 30 CPU seconds; native and execution outcomes remain separate. See [the formulation and numerical settings](planners/SE2_NMPC/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 7.8356 | 0 | yes | 11.3913 | 12.9701 | 1.9599 | 2 | 159.2999 | no |
-| 02 | yes | yes | 116.1620 | 0 | no | 34.8347 | 6.7210 | 10.8879 | 6 | 206.0891 | no |
-| 03 | yes | yes | 4.6276 | 0 | yes | 10.3257 | 9.6308 | 2.1921 | 1 | 123.2287 | no |
-| 04 | yes | yes | 6.8677 | 0 | yes | 10.6366 | 12.5414 | 1.6604 | 1 | 147.0185 | no |
-| 05 | yes | yes | 4.9319 | 0 | yes | 10.0682 | 9.3863 | 1.9591 | 1 | 118.4546 | no |
-| 06 | no | no | 3.2914 | — | — | — | — | — | — | — | — |
-| 07 | yes | yes | 6.4520 | 0 | yes | 9.4558 | 7.7980 | 1.9245 | 1 | 102.2255 | no |
-| 08 | yes | yes | 7.8346 | 0 | no | 38.3453 | 5.0375 | 15.0450 | 3 | 215.8256 | no |
-| 09 | yes | yes | 21.4934 | 0 | yes | 23.1925 | 9.2072 | 6.6716 | 5 | 183.7876 | no |
-| 10 | yes | yes | 41.9220 | 0 | yes | 16.8175 | 13.8226 | 3.9551 | 0 | 177.7768 | no |
-| 11 | yes | yes | 16.9598 | 0 | yes | 17.2038 | 13.5500 | 3.2030 | 4 | 187.5305 | no |
-| 12 | yes | yes | 20.6143 | 0 | yes | 17.5768 | 10.1333 | 4.2701 | 4 | 164.0338 | no |
+| 01 | yes | yes | 9.4775 | 0 | yes | 10.6016 | 14.2443 | 1.8748 | 2 | 171.1909 | no |
+| 02 | yes | yes | 24.2263 | 0 | yes | 12.8841 | 14.3825 | 2.3022 | 3 | 181.8477 | no |
+| 03 | yes | yes | 0.9682 | 0 | yes | 9.5519 | 12.1499 | 1.9870 | 1 | 146.3688 | no |
+| 04 | yes | yes | 4.5111 | 0 | yes | 10.1452 | 14.3122 | 1.5792 | 1 | 163.9142 | no |
+| 05 | yes | yes | 3.0969 | 0 | yes | 9.2296 | 12.1235 | 1.7691 | 1 | 143.9257 | no |
+| 06 | yes | yes | 3.2333 | 0 | yes | 10.3363 | 13.2711 | 1.9382 | 1 | 157.0934 | no |
+| 07 | yes | yes | 6.7170 | 0 | yes | 8.6795 | 9.9878 | 1.7330 | 1 | 122.2076 | no |
+| 08 | yes | yes | 25.6177 | 0 | yes | 12.5537 | 14.8534 | 2.6778 | 3 | 190.3116 | no |
+| 09 | yes | yes | 5.2437 | 0 | yes | 15.4150 | 18.2425 | 2.7177 | 3 | 224.6022 | no |
+| 10 | yes | yes | 6.4470 | 0 | yes | 11.2932 | 16.0069 | 1.3532 | 1 | 178.6009 | no |
+| 11 | no | no | 30.6373 | — | — | — | — | — | — | — | — |
+| 12 | yes | yes | 9.0013 | 0 | yes | 11.7906 | 16.3017 | 1.8678 | 2 | 191.6952 | no |
 
 [CSV](results/SE2_NMPC/metrics.csv) · [JSON](results/SE2_NMPC/metrics.json) · [validation](results/SE2_NMPC/validation.json).
 <!-- /results:SE2_NMPC -->
