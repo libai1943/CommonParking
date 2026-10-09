@@ -20,6 +20,8 @@ switch name
         canonical = 'CPRM'; planner = @cprm.Plan;kind='path';
     case "DL_IAPS_PJSO"
         canonical = 'DL_IAPS_PJSO'; planner = @dliaps.Plan;kind='trajectory';
+    case "ETA3"
+        canonical = 'Eta3'; planner = @eta3.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"

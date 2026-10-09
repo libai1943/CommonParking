@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 8,
+  "evaluation_success_count": 8,
+  "terminal_reached_count": 8,
+  "unit": {
+    "passed": true,
+    "random_endpoint_tests": 100,
+    "maximum_endpoint_error": 9.9764640992816567E-13,
+    "curvature_derivative_relative_error": 1.4275071606879221E-8,
+    "straight_nlp_exitflag": 2
+  },
+  "independent_checks": [
+    {
+      "maximum_sampled_constraint_violation": 7.51926550468518E-8,
+      "objectives": [
+        0.30081735392946912,
+        0.91563448955578508,
+        10.333475786982934
+      ],
+      "objective": 3.4335783109707716,
+      "maneuvers": 3,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.3008781805073637,
+      "dense_maximum_curvature_derivative": 0.91727488111230537,
+      "minimum_dense_parameter_speed": 0.89833469756974149,
+      "dense_reference_collision_percent": 0,
+      "adaptive_quadrature_length_error": 6.2172489379008766E-15,
+      "adaptive_mileage_inversion_error": 6.2172489379008766E-15,
+      "maximum_cusp_pose_and_curvature_error": 4.5963233219481481E-14,
+      "maximum_task_endpoint_error": 2.6520853127408958E-15
+    },
+    {},
+    {
+      "maximum_sampled_constraint_violation": 2.0063900119104972E-7,
+      "objectives": [
+        0.30081726533219943,
+        0.78970405486584716,
+        10.903766486731518
+      ],
+      "objective": 3.5794793896587245,
+      "maneuvers": 2,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30082432178957064,
+      "dense_maximum_curvature_derivative": 0.78976783825847263,
+      "minimum_dense_parameter_speed": 2.0509959981269881,
+      "dense_reference_collision_percent": 0.24975024975024976,
+      "adaptive_quadrature_length_error": 4.4408920985006262E-16,
+      "adaptive_mileage_inversion_error": 1.7763568394002505E-15,
+      "maximum_cusp_pose_and_curvature_error": 8.18789480661053E-15,
+      "maximum_task_endpoint_error": 4.3742787170231168E-14
+    },
+    {
+      "maximum_sampled_constraint_violation": 3.135921294861177E-8,
+      "objectives": [
+        0.300817310096027,
+        0.76983575798004444,
+        11.718537246599062
+      ],
+      "objective": 3.8199369806237411,
+      "maneuvers": 2,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30093445674376657,
+      "dense_maximum_curvature_derivative": 0.76983575798004633,
+      "minimum_dense_parameter_speed": 4.7427245617116816,
+      "dense_reference_collision_percent": 0,
+      "adaptive_quadrature_length_error": 2.6645352591003757E-15,
+      "adaptive_mileage_inversion_error": 2.6645352591003757E-15,
+      "maximum_cusp_pose_and_curvature_error": 1.865174681370263E-14,
+      "maximum_task_endpoint_error": 1.1790568521519162E-13
+    },
+    {
+      "maximum_sampled_constraint_violation": 3.3958180711834984E-10,
+      "objectives": [
+        0.30081727907639588,
+        0.87817323365082078,
+        11.156480160782479
+      ],
+      "objective": 3.6729873345031057,
+      "maneuvers": 2,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30084613695352153,
+      "dense_maximum_curvature_derivative": 0.87871857166768153,
+      "minimum_dense_parameter_speed": 1.5419035167237336,
+      "dense_reference_collision_percent": 0.29970029970029971,
+      "adaptive_quadrature_length_error": 3.5527136788005009E-15,
+      "adaptive_mileage_inversion_error": 3.5527136788005009E-15,
+      "maximum_cusp_pose_and_curvature_error": 2.0469737016526324E-15,
+      "maximum_task_endpoint_error": 6.6946448384896939E-14
+    },
+    {
+      "maximum_sampled_constraint_violation": 6.4209979555585051E-9,
+      "objectives": [
+        0.30081728515781203,
+        0.66313450078245184,
+        13.06759646736484
+      ],
+      "objective": 4.2033144829448483,
+      "maneuvers": 2,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.3008414312263113,
+      "dense_maximum_curvature_derivative": 0.66364574087993355,
+      "minimum_dense_parameter_speed": 2.4029773830069017,
+      "dense_reference_collision_percent": 0.19980019980019981,
+      "adaptive_quadrature_length_error": 8.8817841970012523E-16,
+      "adaptive_mileage_inversion_error": 2.6645352591003757E-15,
+      "maximum_cusp_pose_and_curvature_error": 4.7739590058881731E-15,
+      "maximum_task_endpoint_error": 6.9944050551384862E-14
+    },
+    {},
+    {
+      "maximum_sampled_constraint_violation": 2.4040455182117171E-8,
+      "objectives": [
+        0.30081730277726926,
+        1.3448584035725528,
+        12.549491518715541
+      ],
+      "objective": 4.1842277877178065,
+      "maneuvers": 3,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30096662854796885,
+      "dense_maximum_curvature_derivative": 1.3454270840271927,
+      "minimum_dense_parameter_speed": 0.851718316791964,
+      "dense_reference_collision_percent": 0.26640026640026643,
+      "adaptive_quadrature_length_error": 2.2204460492503131E-15,
+      "adaptive_mileage_inversion_error": 2.2204460492503131E-15,
+      "maximum_cusp_pose_and_curvature_error": 1.50712775592865E-13,
+      "maximum_task_endpoint_error": 2.7912843046155639E-15
+    },
+    {},
+    {
+      "maximum_sampled_constraint_violation": 6.000031332886735E-8,
+      "objectives": [
+        0.3008173387371274,
+        1.2136011310501615,
+        19.663301156412306
+      ],
+      "objective": 6.292119242502288,
+      "maneuvers": 3,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30084950890246376,
+      "dense_maximum_curvature_derivative": 1.2136011310501589,
+      "minimum_dense_parameter_speed": 2.8131485635783431,
+      "dense_reference_collision_percent": 0.6327006327006327,
+      "adaptive_quadrature_length_error": 1.7763568394002505E-15,
+      "adaptive_mileage_inversion_error": 1.7763568394002505E-15,
+      "maximum_cusp_pose_and_curvature_error": 1.5099033134902129E-14,
+      "maximum_task_endpoint_error": 1.9095836023552692E-14
+    },
+    {},
+    {
+      "maximum_sampled_constraint_violation": 8.0971762628223587E-10,
+      "objectives": [
+        0.30081725544211746,
+        0.96241426436179589,
+        15.999755191414199
+      ],
+      "objective": 5.142818038017678,
+      "maneuvers": 2,
+      "dense_parameter_intervals_per_curve": 1000,
+      "dense_maximum_curvature": 0.30103995939849376,
+      "dense_maximum_curvature_derivative": 0.96270222129971916,
+      "minimum_dense_parameter_speed": 3.2333083995788821,
+      "dense_reference_collision_percent": 1.2987012987012987,
+      "adaptive_quadrature_length_error": 3.5527136788005009E-15,
+      "adaptive_mileage_inversion_error": 3.5527136788005009E-15,
+      "maximum_cusp_pose_and_curvature_error": 1.2545520178264269E-14,
+      "maximum_task_endpoint_error": 2.0872192862952943E-14
+    }
+  ]
+}

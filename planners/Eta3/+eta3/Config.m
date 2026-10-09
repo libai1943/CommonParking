@@ -1,0 +1,9 @@
+function o=Config()
+o.search=struct('xyResolution',.2,'thetaResolution',pi/36,'step',.5, ...
+ 'collisionStep',.04,'clearance',.12,'heuristicWeight',1,'switchPenalty',1.5, ...
+ 'reversePenalty',.05,'maxExpanded',100000,'maxSeconds',180,'analyticEvery',5, ...
+ 'steeringSamples',3,'variableStep',true,'stepScale',.1,'maximumStep',1);
+o.intervals=100;o.weights=[.5,.2,.3];o.curvatureDerivativeMax=2.5;
+o.clearance=0;o.minimumSpeed=1e-5;o.minimumEta=.01;o.maximumManeuvers=12;
+o.maxIterations=300;o.maxEvaluations=50000;o.maxSeconds=180;o.outputSpacing=.02;
+end

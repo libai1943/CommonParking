@@ -33,6 +33,8 @@ SLiFS and DL-IAPS/PJSO additionally need MATLAB Optimization Toolbox (`quadprog`
 
 Saved results can be loaded uniformly with `[result,metrics,evaluationStatus] = LoadPublishedResult('LamirauxSmooth',2)`. Most are single MAT files. Two larger artifacts are stored in lossless binary chunks because of the publication transport's request-size limit; the loader checks their byte count and SHA-256 before loading a temporary MAT file outside the repository. No samples or precision are discarded. The stored result has the same standard structure as a fresh planner call.
 
+Eta3 needs MATLAB Optimization Toolbox (`fmincon`) and Navigation Toolbox for its disclosed initialization adapter. Its planner has no AMPL dependency.
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -66,6 +68,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Eta3 spline optimization](planners/Eta3/README.md) (`Eta3`) | Path | Lini, Piazzi & Consolini, CDC/ECC 2011; geometric nonlinear program with disclosed online initialization | Implemented and tested on all 12 cases |
 | [DL-IAPS + PJSO](planners/DL_IAPS_PJSO/README.md) (`DL_IAPS_PJSO`) | Trajectory | Zhou et al., RAL 2021; dual-loop path smoothing and piecewise-jerk speed QPs | Implemented and tested on all 12 cases |
 | [C-PRM](planners/CPRM/README.md) (`CPRM`) | Path | Song & Amato, IROS 2001; lazy customized roadmap and cubic smoothing | Implemented and tested on all 12 cases |
 | [Smooth canonical curves](planners/LamirauxSmooth/README.md) (`LamirauxSmooth`) | Path | Lamiraux & Laumond, TRA 2001; smooth steering and holonomic-path approximation | Implemented and tested on all 12 cases |
@@ -416,3 +419,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/DL_IAPS_PJSO/metrics.csv) · [JSON](results/DL_IAPS_PJSO/metrics.json) · [validation](results/DL_IAPS_PJSO/validation.json).
 <!-- /results:DL_IAPS_PJSO -->
+
+<!-- results:Eta3 -->
+## Multi-optimization of eta3 splines: measured results
+
+The simplified seventh-degree eta3 curve family and its 8h-4-variable nonlinear program produced 8/12 native successes; 8 execution optimizations succeeded and 8 attained the terminal tolerance. The article's 100-interval parameter mesh, objective weights and curvature-derivative limit are retained. An explicitly disclosed Hybrid A* adapter supplies the maneuver sequence and initial cusp estimates in place of unavailable offline lookup tables. Full-body collision and curvature constraints are sampled, so between-node or execution violations can remain and are reported. Independent checks verified polynomial endpoint geometry, native constraints/objective, cusp curvature, exact mileage sampling and adaptive quadrature. See [the complete paper mapping and finite numerical choices](planners/Eta3/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 8.7410 | 0 | yes | 31.6879 | 1.2656 | 7.5693 | 2 | 98.3495 | yes |
+| 02 | no | no | 131.3805 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 4.9868 | 0 | yes | 17.2725 | 2.4074 | 4.5224 | 1 | 74.2979 | no |
+| 04 | yes | yes | 6.1550 | 0.9240 | yes | 26.8398 | 1.2483 | 6.6922 | 1 | 84.4051 | no |
+| 05 | yes | yes | 4.9347 | 0 | yes | 11.9759 | 5.2095 | 2.7239 | 1 | 84.3345 | no |
+| 06 | yes | yes | 7.0705 | 0 | yes | 18.0864 | 2.9304 | 3.6381 | 1 | 70.6848 | no |
+| 07 | no | no | 4.3623 | — | — | — | — | — | — | — | — |
+| 08 | yes | yes | 5.9058 | 0 | yes | 34.6574 | 1.3320 | 10.1009 | 2 | 124.3293 | yes |
+| 09 | no | no | 98.8114 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 19.1833 | 0.5676 | yes | 19.9088 | 6.4715 | 5.8381 | 2 | 133.0960 | no |
+| 11 | no | no | 24.1854 | — | — | — | — | — | — | — | — |
+| 12 | yes | yes | 53.8764 | 1.5570 | yes | 20.9361 | 3.1975 | 3.2891 | 1 | 69.8659 | no |
+
+[CSV](results/Eta3/metrics.csv) · [JSON](results/Eta3/metrics.json) · [validation](results/Eta3/validation.json).
+<!-- /results:Eta3 -->
