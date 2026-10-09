@@ -78,6 +78,6 @@ exportgraphics(fig,fullfile(tempdir,'HA_CG_overview.pdf'),'ContentType','vector'
 set(fig,'Visible','on');
 ```
 
-[Recorded software and non-identifying host details](ENVIRONMENT.json) accompany the timing data.
+[Timing scope and comparability](ENVIRONMENT.json) accompany the measurements.
 
-[Mechanism-level assessment of all forty methods](METHOD_CATEGORIES.md) and [LIOM refinement study](LIOM_REFINEMENT.md) distinguish recorded outcomes from broader research claims.
+[Mechanism-level assessment of all forty methods](METHOD_CATEGORIES.md) and [LIOM formulation and settings](../planners/LIOM/README.md) distinguish recorded outcomes from broader research claims.

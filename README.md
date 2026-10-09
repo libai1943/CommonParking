@@ -4,7 +4,7 @@ A MATLAB benchmark for motion planning in 12 static terminal-parking scenes. The
 
 [Forty-method result index and verification](docs/RESULT_INDEX.md) · [Evaluation protocol](evaluation/README.md) · [Result contract](docs/RESULT_FORMAT.md)
 
-[Assessment by method category](docs/METHOD_CATEGORIES.md) · [LIOM refinement and native/executed endpoint comparison](docs/LIOM_REFINEMENT.md)
+[Assessment by method category](docs/METHOD_CATEGORIES.md) · [LIOM formulation and endpoint interpretation](planners/LIOM/README.md)
 
 ## Quick start
 
@@ -324,7 +324,7 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- results:LIOM -->
 ## LIOM: measured results
 
-LIOM now uses exactly three uniformly spaced covering discs and 201 states (200 intervals), with no disc-count escalation. The paper's fault-tolerant initialization, fixed 1e9 penalty and iterative corridor reconstruction are retained. An equivalent sparse objective expression and short inner solves permit useful outer iterations. 8/12 calls passed both the native solve flag and the paper infeasibility threshold; all eight executions had zero measured collision frames and attained the terminal tolerance. Cases 3 and 6 fail the fixed-cover endpoint precheck; cases 2 and 10 exhaust the outer budget. Native X/Y endpoint errors are zero in every accepted solution. The terminal column below describes the independently tracked execution, not the native hard endpoint constraints. Independent checks recomputed penalty components, objective, corridor geometry and hard bounds. See [the source mapping and settings](planners/LIOM/README.md) and [the full before/after study](docs/LIOM_REFINEMENT.md), including the rejected coarse-mesh trial and timing limitations.
+LIOM uses exactly three uniformly spaced covering discs and 201 states (200 intervals), with no disc-count escalation. The paper's fault-tolerant initialization, fixed 1e9 penalty and iterative corridor reconstruction are retained. An equivalent sparse objective expression and short inner solves permit useful outer iterations. 8/12 calls passed both the native solve flag and the paper infeasibility threshold; all eight executions had zero measured collision frames and attained the terminal tolerance. Cases 3 and 6 fail the fixed-cover endpoint precheck; cases 2 and 10 exhaust the outer budget. Native X/Y endpoint errors are zero in every accepted solution. The terminal column below describes the independently tracked execution, not the native hard endpoint constraints. Independent checks recomputed penalty components, objective, corridor geometry and hard bounds. See [the source mapping and settings](planners/LIOM/README.md).
 
 Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
 

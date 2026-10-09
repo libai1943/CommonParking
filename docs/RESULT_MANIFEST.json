@@ -2012,11 +2012,6 @@
       "sha256": "28e30b914d26ce351f206d462c328b82f0005bc2b3a3319bc5fc284b983c7a48"
     },
     {
-      "path": "results/LIOM/refinement_study.json",
-      "bytes": 51404,
-      "sha256": "e66885252cf78ce16906163e373f494f706b92653b1f63fffff246c689a44604"
-    },
-    {
       "path": "results/LIOM/validation.json",
       "bytes": 8614,
       "sha256": "a04737f86dac13bcf0c38704cff83bee1c3becc0159a427bbf41bcb85e5929ea"

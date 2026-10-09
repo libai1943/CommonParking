@@ -1,22 +1,4 @@
 {
-  "matlab_release": "R2024a",
-  "ipopt_version": "3.13.4",
-  "host": {
-    "Processor": [
-      {
-        "Name": "12th Gen Intel(R) Core(TM) i9-12900",
-        "NumberOfCores": 16,
-        "NumberOfLogicalProcessors": 24
-      }
-    ],
-    "OS": [
-      {
-        "Caption": "Microsoft Windows 10 专业版",
-        "Version": "10.0.19045",
-        "TotalVisibleMemorySize": 100270908
-      }
-    ]
-  },
   "timing_scope": "Complete public planner wall time, excluding evaluation and one-time native compilation. Thread and worker counts differ by method and are documented in its README. Concurrent development load, process startup, wall-time stopping and one recorded trial per task preclude controlled performance or statistical success-rate claims.",
-  "liom_refinement_timing_note": "The October 10 LIOM rerun includes an idempotent shared setup-path fix. Other 39 methods retain their previous measurements; no controlled cross-method speed ranking is implied."
+  "timing_comparability": "Recorded calls were collected in separate sessions with different setup overheads; no controlled cross-method runtime ranking is implied."
 }
