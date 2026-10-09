@@ -667,23 +667,23 @@
     {
       "planner": "SLiFS",
       "cases": 12,
-      "planner_success": 6,
-      "evaluation_success": 6,
-      "terminal_reached": 6,
-      "zero_collision_execution": 6,
+      "planner_success": 10,
+      "evaluation_success": 10,
+      "terminal_reached": 9,
+      "zero_collision_execution": 7,
       "screen_codes": [
         "valid",
-        "planner_failed",
-        "planner_failed",
         "valid",
-        "valid",
-        "planner_failed",
         "planner_failed",
         "valid",
         "valid",
         "planner_failed",
         "valid",
-        "planner_failed"
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid"
       ]
     },
     {
@@ -821,23 +821,23 @@
     {
       "planner": "TriangleArea",
       "cases": 12,
-      "planner_success": 4,
-      "evaluation_success": 4,
-      "terminal_reached": 0,
-      "zero_collision_execution": 0,
+      "planner_success": 11,
+      "evaluation_success": 11,
+      "terminal_reached": 9,
+      "zero_collision_execution": 4,
       "screen_codes": [
-        "planner_failed",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
         "planner_failed",
         "valid",
         "valid",
-        "planner_failed",
         "valid",
-        "planner_failed",
-        "planner_failed",
-        "planner_failed",
-        "valid",
-        "planner_failed",
-        "planner_failed"
+        "valid"
       ]
     },
     {
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "7f2194de7e8b10c768af011e7e4c61d8c9affc64",
+  "source_commit": "703d8f18c5edfeab15ddf530892e0ae93f994e36",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {

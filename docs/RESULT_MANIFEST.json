@@ -2468,78 +2468,78 @@
     },
     {
       "path": "results/SLiFS/Case01.mat",
-      "bytes": 14132,
-      "sha256": "1d3c1bf589ff794e19801d0307876d91e4e562cacf62726094f22be23adef0c2"
+      "bytes": 14139,
+      "sha256": "bf4c5a7d17f8cfa53d150a5fe196742d9d5fd06fb4bdd052ce35f72a0b78a1ac"
     },
     {
       "path": "results/SLiFS/Case02.mat",
-      "bytes": 1005,
-      "sha256": "1e89595192c36396edcbdf9de5061e374456254a97c7624e1baea1e9aec40a45"
+      "bytes": 14064,
+      "sha256": "753e7aeb17a90a81609d435a47e8c92a4456f59097d7824f34ce44ea0ae0c3bc"
     },
     {
       "path": "results/SLiFS/Case03.mat",
-      "bytes": 1004,
-      "sha256": "303632dfc445b18f0c4e9fadd520124862081936929ca7a96fc91e3ecec995ee"
+      "bytes": 1006,
+      "sha256": "fc82aae937de4c7c62a4925fa7a67c4e9888a787a53bf65d0398fbee9472eccb"
     },
     {
       "path": "results/SLiFS/Case04.mat",
-      "bytes": 14133,
-      "sha256": "df777a6e0a41c514c2c03d25ec2f231b1fe56dcae949d312cf8249cc9fbc2bb9"
+      "bytes": 14137,
+      "sha256": "c82b4ac9552478593c297ee2b02df07677128db7930b1fccd08917191feccfda"
     },
     {
       "path": "results/SLiFS/Case05.mat",
-      "bytes": 14101,
-      "sha256": "35a5f0a09704cc55bcd23b6dc3a28690ef9aa1dee2bfeaae80fa3278eebda578"
+      "bytes": 14106,
+      "sha256": "5cd8ae1e556bef809e345e5b0236ba0cc2801d1fd4e034259f556cc15670203a"
     },
     {
       "path": "results/SLiFS/Case06.mat",
-      "bytes": 1006,
-      "sha256": "633f873fa65c29499482222b6148bc333d5353729334e127c741f7c26f85c4e4"
+      "bytes": 1007,
+      "sha256": "03f3e579401ba10358e220b6633bef9a2dcbb2b70e823dd4026104e58f9b3f65"
     },
     {
       "path": "results/SLiFS/Case07.mat",
-      "bytes": 1004,
-      "sha256": "ef948034a22720ae7e98dadcbf1ad5e25928f4fdd59e256f13dc7ca8d432a008"
+      "bytes": 14117,
+      "sha256": "dbaa418a8cedb9f36ff0ef1487f2ed054b4e74304c6b0766590b5d52e2f0258f"
     },
     {
       "path": "results/SLiFS/Case08.mat",
-      "bytes": 14146,
-      "sha256": "4ec987f1caef310cf1367fffa2104a17d43c2ffc9fa6c0966fcc196a5d2b2018"
+      "bytes": 14049,
+      "sha256": "178d8c0a783872f2cb9603c1c62b23f1066266e44a132a0841ed3df29be0c1d6"
     },
     {
       "path": "results/SLiFS/Case09.mat",
-      "bytes": 14114,
-      "sha256": "e6de547c10a6788bfbe7f60dda3f985c259aeb62b94f4526b24fd5ecd369e934"
+      "bytes": 14173,
+      "sha256": "8c7c8fa72a42c28283408093d5f6bf48af3ab31d39da67a11dfdd5763acdecf7"
     },
     {
       "path": "results/SLiFS/Case10.mat",
-      "bytes": 1007,
-      "sha256": "dc1d4a86de34c48ab16cc3d272b53e098e7bae351af34b8f2a5e43684239bc1b"
+      "bytes": 14090,
+      "sha256": "30e2e4fc28d1038e4d9306800cf41ceff46a129ef6c45a7217c4466adc4b32eb"
     },
     {
       "path": "results/SLiFS/Case11.mat",
-      "bytes": 14080,
-      "sha256": "62929e2b7318f45359840b0612d24b1adcb7ba34521e7c6cfc597dbdff23d8a8"
+      "bytes": 14061,
+      "sha256": "76f073ae36c21ba503190eaa47f02a12dd627348d1e8528fa1497e2e8a1cbc75"
     },
     {
       "path": "results/SLiFS/Case12.mat",
-      "bytes": 1010,
-      "sha256": "a6de1834a82b05372481836a7f10d3eec5872f5c1e82a0e587368d99b4b86847"
+      "bytes": 14146,
+      "sha256": "2fa4e219d6e08aa4d5cc6aa8805eda1a88457d54a8aea899930b74142c50477f"
     },
     {
       "path": "results/SLiFS/metrics.csv",
-      "bytes": 1254,
-      "sha256": "995565cd4ad0419c9c02e6836e96402a8631e7c2e6c25417fc55456858940136"
+      "bytes": 1604,
+      "sha256": "c3fb8abfef06d525f6c7c2e43cab0206d04568e22632721b1d171f3cbc056f80"
     },
     {
       "path": "results/SLiFS/metrics.json",
-      "bytes": 9291,
-      "sha256": "f6cc4352111a0cb09bb85c97fa81a2126cf54b9e0ccbf50c4469136531aca7b2"
+      "bytes": 11933,
+      "sha256": "e22d31222c7ef281fd1585dfa67838be7ce8ad84d3ac5f337d6fa2093842383d"
     },
     {
       "path": "results/SLiFS/validation.json",
-      "bytes": 3218,
-      "sha256": "8a3d3da1c730c53b132fdfd47e9edf1d38627e646b8b02ad4049b87af61b5c4b"
+      "bytes": 5094,
+      "sha256": "09d04fd39071c495f0fdeee6f1ef85ea6afa4fe9a436f50613b9bc81ca55a52e"
     },
     {
       "path": "results/SmoothBiRRT/Case01.mat",
@@ -2918,78 +2918,78 @@
     },
     {
       "path": "results/TriangleArea/Case01.mat",
-      "bytes": 13782,
-      "sha256": "326d9d179c175cfee7c93e20be20f4a85400865f4a83f34592ce3a8eea1ab32a"
+      "bytes": 13055,
+      "sha256": "de2448bf603e542c6f553381ad4991a1124cda986d14ece143b570cfa97fdf21"
     },
     {
       "path": "results/TriangleArea/Case02.mat",
-      "bytes": 13203,
-      "sha256": "12d91c2fc2c5f675f27bb0bd76310e5137d9c37029366e29abb9440af2f5b1b8"
+      "bytes": 13164,
+      "sha256": "9360411af959e8717d14b892d89c0a74f36ff29a64657c710fd41bdba33a4abb"
     },
     {
       "path": "results/TriangleArea/Case03.mat",
-      "bytes": 10919,
-      "sha256": "3d56aa6f8821f8fbfc6f5c8ea99784726634402c955310ce92201a846bf52ece"
+      "bytes": 13580,
+      "sha256": "afb26a3eda31dff3db5f7bdf702596c07e484550e4014d46f2b803f84fc7b72f"
     },
     {
       "path": "results/TriangleArea/Case04.mat",
-      "bytes": 10820,
-      "sha256": "112d0f438bae52d81f253800af8f07bb3b0b72caf70370ba1d2ef2926a825dc6"
+      "bytes": 10675,
+      "sha256": "6eb04d7429f9cb0d53a7ef300c76c59cf47fa5bb199adb9ee81d3c601ad8bfb9"
     },
     {
       "path": "results/TriangleArea/Case05.mat",
-      "bytes": 13768,
-      "sha256": "b276c5c406bd80669a425eb2d27b9c172170407d5d8f8664700a4a55c38dde74"
+      "bytes": 10565,
+      "sha256": "fc7ad4e2778b30247d36f76df50df728e7468f33ab3e3eddacff2eaa8ad7ddd1"
     },
     {
       "path": "results/TriangleArea/Case06.mat",
-      "bytes": 10968,
-      "sha256": "20de1714aa5db8cf0a6c031a054645509be94b16e23d4a02dcdfe38efa095efa"
+      "bytes": 11056,
+      "sha256": "0e347a308f883dc30e025bac7b0b87ae2bf452daee016b310d0872b0575df332"
     },
     {
       "path": "results/TriangleArea/Case07.mat",
-      "bytes": 13713,
-      "sha256": "0ed389428cf9a0314aeca7a2a52cb30edfde78b722a94f1fcfd476ff93502a46"
+      "bytes": 10543,
+      "sha256": "4b9567858bc8ba03d1f52c79f38a22f02ec974b2e66933f4f3ae849d41cabc13"
     },
     {
       "path": "results/TriangleArea/Case08.mat",
-      "bytes": 13786,
-      "sha256": "ee0d8362b0d9813e4e83f9f4a37d2339c15c304af747d57719501c65444dec2b"
+      "bytes": 13132,
+      "sha256": "0c503468e7f7222fa00c53098b5024a930c50e725f5407bd31683ed3fddf0405"
     },
     {
       "path": "results/TriangleArea/Case09.mat",
-      "bytes": 13400,
-      "sha256": "de606cb8beccc310e02c9d98c06551870f80d8ae04c7b1274944dd8ba245751a"
+      "bytes": 13497,
+      "sha256": "096644b30d3e19cd7dba60b39633e252965c86f8bd2e8b109db6ef9c512079e0"
     },
     {
       "path": "results/TriangleArea/Case10.mat",
-      "bytes": 10801,
-      "sha256": "47e94d84e8af542769f5b61a94fb5e3f43f313250b36c291fc17943c6e31d0c8"
+      "bytes": 10898,
+      "sha256": "28f72a58642081eb5a77703846940114ae059bb0989a32278feca84a0a0ef88e"
     },
     {
       "path": "results/TriangleArea/Case11.mat",
-      "bytes": 13724,
-      "sha256": "3792aa0548a212125804ccbdc7ace336c78eb5ffe44719d6e64ab9e5c7e04909"
+      "bytes": 10569,
+      "sha256": "9d09d4cfd01c4fa674543216dd3343a0008802a8468dd4e6a226e0fe996af2ea"
     },
     {
       "path": "results/TriangleArea/Case12.mat",
-      "bytes": 13725,
-      "sha256": "95758d2e96a1ebb03d4ad51b410712d7bbb5693e3f9e340c971f2214c0c32a32"
+      "bytes": 13622,
+      "sha256": "3251b6d18bf54ab021d4d3877d5250aa77c9b62ec2b8eefbb06dc069a97d1db6"
     },
     {
       "path": "results/TriangleArea/metrics.csv",
-      "bytes": 1204,
-      "sha256": "0b769851880c4828fd86726478b06930be7313caeeb14364651fb678f8a044a3"
+      "bytes": 1779,
+      "sha256": "f170d38c82b490456246c5765c8fe765c2b650eafe566a23dfefc84d82dc6ef2"
     },
     {
       "path": "results/TriangleArea/metrics.json",
-      "bytes": 8232,
-      "sha256": "4de314670326bd39556118875563529de4d5cd3d3dc6b374026d6ccd751f6a07"
+      "bytes": 12804,
+      "sha256": "80817f28d1bf5426170e368003cc0098072023cac388aeb86bc798671801a1c3"
     },
     {
       "path": "results/TriangleArea/validation.json",
-      "bytes": 532,
-      "sha256": "d543928a64006a02fcdcc10add30f707c239535b7d55820db14b8d7351fc7572"
+      "bytes": 18662,
+      "sha256": "01a42c902fa01149d5510f452ca4e4f42a37ecac3c0d4faf4b56331e4ce0880a"
     },
     {
       "path": "results/VPF/Case01.mat",

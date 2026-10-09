@@ -39,13 +39,13 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [RTR_TTS](../planners/RTR_TTS/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/RTR_TTS/metrics.json) · [CSV](../results/RTR_TTS/metrics.csv) |
 | [SE2_NMPC](../planners/SE2_NMPC/README.md) | 11 | 11 | 9 | 11 | [JSON](../results/SE2_NMPC/metrics.json) · [CSV](../results/SE2_NMPC/metrics.csv) |
 | [Sinusoid_RTR](../planners/Sinusoid_RTR/README.md) | 12 | 12 | 12 | 11 | [JSON](../results/Sinusoid_RTR/metrics.json) · [CSV](../results/Sinusoid_RTR/metrics.csv) |
-| [SLiFS](../planners/SLiFS/README.md) | 6 | 6 | 6 | 6 | [JSON](../results/SLiFS/metrics.json) · [CSV](../results/SLiFS/metrics.csv) |
+| [SLiFS](../planners/SLiFS/README.md) | 10 | 10 | 9 | 7 | [JSON](../results/SLiFS/metrics.json) · [CSV](../results/SLiFS/metrics.csv) |
 | [SmoothBiRRT](../planners/SmoothBiRRT/README.md) | 6 | 6 | 4 | 6 | [JSON](../results/SmoothBiRRT/metrics.json) · [CSV](../results/SmoothBiRRT/metrics.csv) |
 | [STC](../planners/STC/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/STC/metrics.json) · [CSV](../results/STC/metrics.csv) |
 | [TDR_OBCA](../planners/TDR_OBCA/README.md) | 12 | 12 | 8 | 7 | [JSON](../results/TDR_OBCA/metrics.json) · [CSV](../results/TDR_OBCA/metrics.csv) |
 | [TEB](../planners/TEB/README.md) | 11 | 11 | 0 | 4 | [JSON](../results/TEB/metrics.json) · [CSV](../results/TEB/metrics.csv) |
 | [TPCKC](../planners/TPCKC/README.md) | 5 | 5 | 5 | 5 | [JSON](../results/TPCKC/metrics.json) · [CSV](../results/TPCKC/metrics.csv) |
-| [TriangleArea](../planners/TriangleArea/README.md) | 4 | 4 | 0 | 0 | [JSON](../results/TriangleArea/metrics.json) · [CSV](../results/TriangleArea/metrics.csv) |
+| [TriangleArea](../planners/TriangleArea/README.md) | 11 | 11 | 9 | 4 | [JSON](../results/TriangleArea/metrics.json) · [CSV](../results/TriangleArea/metrics.csv) |
 | [VPF](../planners/VPF/README.md) | 3 | 3 | 2 | 3 | [JSON](../results/VPF/metrics.json) · [CSV](../results/VPF/metrics.csv) |
 | [WGRRT](../planners/WGRRT/README.md) | 11 | 11 | 6 | 5 | [JSON](../results/WGRRT/metrics.json) · [CSV](../results/WGRRT/metrics.csv) |
 
@@ -80,4 +80,4 @@ set(fig,'Visible','on');
 
 [Timing scope and comparability](ENVIRONMENT.json) accompany the measurements.
 
-[Mechanism-level assessment of all forty methods](METHOD_CATEGORIES.md) and [LIOM formulation and settings](../planners/LIOM/README.md) distinguish recorded outcomes from broader research claims.
+[Mechanism-level assessment of all forty methods](METHOD_CATEGORIES.md) distinguishes recorded outcomes from broader research claims.

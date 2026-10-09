@@ -1,4 +1,4 @@
 {
-  "timing_scope": "Complete public planner wall time, excluding evaluation and one-time native compilation. Thread and worker counts differ by method and are documented in its README. Concurrent development load, process startup, wall-time stopping and one recorded trial per task preclude controlled performance or statistical success-rate claims.",
-  "timing_comparability": "Recorded calls were collected in separate sessions with different setup overheads; no controlled cross-method runtime ranking is implied."
+  "timing_scope": "Complete public planner wall time, excluding evaluation and one-time native compilation. Thread and worker counts differ by method and are documented in its README.",
+  "timing_comparability": "Concurrent development load, process startup, wall-time stopping and one recorded trial per task preclude controlled performance or statistical success-rate claims."
 }
