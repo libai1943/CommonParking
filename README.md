@@ -75,6 +75,8 @@ Sinusoid_RTR uses base MATLAB, RTR_TTS geometric-search helpers and the shared C
 
 KinoDeform uses base MATLAB and the shared CC_PRM distance-query module (`BuildCCSteer` once). Its input shooting, sensitivities, deformation and integration are implemented in MATLAB. [Paper mapping and dependencies](planners/KinoDeform/README.md).
 
+BIAGT uses base MATLAB after `BuildBIAGT` and the shared `BuildCCSteer` distance module are built once. Its complete search runs in MATLAB; the small native gateway supplies batch RS curves. [Source and build instructions](planners/BIAGT/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -108,6 +110,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Bidirectional improved A-search](planners/BIAGT/README.md) (`BIAGT`) | Path | Wang, Hansen & Ahn, TCST 2024; static prioritized bidirectional search | Implemented and tested on all 12 cases |
 | [Kinodynamic tree deformation](planners/KinoDeform/README.md) (`KinoDeform`) | Trajectory | Lamiraux, Ferre & Vallee, ICRA 2004; input-space trees and variational trajectory deformation | Implemented and tested on all 12 cases |
 | [Sinusoidal steering + RTR](planners/Sinusoid_RTR/README.md) (`Sinusoid_RTR`) | Path | Murray & Sastry, CDC 1990 steering construction, with disclosed RTR obstacle adapter | Implemented and tested on all 12 cases |
 | [RTR + TTS](planners/RTR_TTS/README.md) (`RTR_TTS`) | Path | Kiss & Tevesz, JAT 2017; RT trees and continuous-curvature local approximation | Implemented and tested on all 12 cases |
@@ -1082,3 +1085,28 @@ Planning time includes setup, case loading, both exploration trees, every attemp
 
 [CSV](results/KinoDeform/metrics.csv) · [JSON](results/KinoDeform/metrics.json) · [validation](results/KinoDeform/validation.json).
 <!-- /results:KinoDeform -->
+
+<!-- results:BIAGT -->
+## Bidirectional improved A-search guided tree: measured results
+
+The paper's static path-planning layer produced 8/12 native paths; 8 execution optimizations succeeded and 6 attained the terminal tolerance. Prioritized forward/reverse modes and insertion-time sharing of opposite-tree arrival costs follow the 2024 algorithm. The preceding 2019 numerical defaults, omitted tie/metric choices and exact-target RS attachment are explicitly disclosed. Dynamic-obstacle scheduling is outside these static tasks. All native successes pass full-body continuous swept-arc checks, while steering discontinuities and execution failures remain measurable. Independent verification covers 300 random RS pairs/reversals, ODE integration, shortest-length comparisons, search costs, density, shared heuristics, both mode expansions and between-sample collisions. See [the paper-to-code mapping and exact-target adapter](planners/BIAGT/README.md).
+
+Planning time includes setup, case loading, both input-space trees, all shared-heuristic queries, continuous-body checks, terminal attachments and path conversion. The one-time native builds are excluded. One deterministic run under the published wall-time budget is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 142.3542 | 1.8335 | no | 32.9417 | 4.2881 | 10.1924 | 4 | 164.8047 | yes |
+| 02 | yes | yes | 115.5168 | 6.8883 | no | 50.5333 | 9.1487 | 13.4229 | 11 | 280.7155 | yes |
+| 03 | yes | yes | 14.5601 | 0.5384 | yes | 37.3333 | 3.2336 | 12.1767 | 6 | 184.1025 | no |
+| 04 | yes | yes | 15.7791 | 0 | yes | 52.5913 | 10.6179 | 14.1929 | 10 | 298.1079 | yes |
+| 05 | yes | yes | 14.7054 | 3.2447 | yes | 31.5264 | 4.6403 | 8.9378 | 4 | 155.7810 | yes |
+| 06 | yes | yes | 27.9983 | 6.1544 | yes | 43.1549 | 4.8809 | 12.9434 | 6 | 208.2437 | yes |
+| 07 | yes | yes | 14.3660 | 0 | yes | 28.8328 | 3.7904 | 8.7043 | 4 | 144.9469 | yes |
+| 08 | no | no | 194.3309 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 194.3442 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 194.3317 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 15.9429 | 4.5225 | yes | 33.8953 | 3.6567 | 8.8590 | 6 | 155.1570 | yes |
+| 12 | no | no | 194.6962 | — | — | — | — | — | — | — | — |
+
+[CSV](results/BIAGT/metrics.csv) · [JSON](results/BIAGT/metrics.json) · [validation](results/BIAGT/validation.json).
+<!-- /results:BIAGT -->

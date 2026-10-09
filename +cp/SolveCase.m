@@ -74,6 +74,8 @@ switch name
         canonical = 'RTR_TTS'; planner = @rtr.Plan;kind='path';
     case "TDR_OBCA"
         canonical='TDR_OBCA';planner=@tdr.Plan;kind='trajectory';
+    case "BIAGT"
+        canonical = 'BIAGT'; planner = @biagt.Plan;kind='path';
     case "KINODEFORM"
         canonical='KinoDeform';planner=@kdf.Plan;kind='trajectory';
     otherwise

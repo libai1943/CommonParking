@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 8,
+  "evaluation_success_count": 8,
+  "terminal_reached_count": 6,
+  "unit": {
+    "passed": true,
+    "random_connections": 300,
+    "ODE_connections": 30,
+    "shortest_length_comparisons": 30,
+    "endpoint_error": 1.9451107391432743E-13,
+    "ODE_error": 1.1448619829934614E-12,
+    "shortest_length_error": 7.1054273576010019E-15,
+    "branch_error": 0,
+    "heuristic_error": 0,
+    "minimum_node_distance": 0.087530302215150291,
+    "mode_expansions": [
+      104,
+      54
+    ],
+    "thin_obstacle_rejected": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "arc_count": 46,
+      "ODE_error": 2.042810365310288E-14,
+      "endpoint_error": 3.9634961979118088E-14,
+      "minimum_dense_clearance": 0.025134206937345027,
+      "length": 9.85845458776116
+    },
+    {
+      "passed": true,
+      "arc_count": 53,
+      "ODE_error": 5.773159728050814E-15,
+      "endpoint_error": 2.1760371282653068E-14,
+      "minimum_dense_clearance": 0.0019306354872909992,
+      "length": 9.8028237695018881
+    },
+    {
+      "passed": true,
+      "arc_count": 56,
+      "ODE_error": 1.4210854715202004E-14,
+      "endpoint_error": 9.3258734068513149E-15,
+      "minimum_dense_clearance": 0.0020082054626805457,
+      "length": 10.599304993399286
+    },
+    {
+      "passed": true,
+      "arc_count": 57,
+      "ODE_error": 2.0872192862952943E-14,
+      "endpoint_error": 8.2156503822261584E-15,
+      "minimum_dense_clearance": 0.014473376676315652,
+      "length": 11.592368149927069
+    },
+    {
+      "passed": true,
+      "arc_count": 54,
+      "ODE_error": 1.865174681370263E-14,
+      "endpoint_error": 3.5360603334311236E-14,
+      "minimum_dense_clearance": 4.69302977972319E-5,
+      "length": 10.632341990157656
+    },
+    {
+      "passed": true,
+      "arc_count": 68,
+      "ODE_error": 1.1102230246251565E-14,
+      "endpoint_error": 4.8183679268731794E-14,
+      "minimum_dense_clearance": 0.00062498478740125041,
+      "length": 12.841316164007942
+    },
+    {
+      "passed": true,
+      "arc_count": 47,
+      "ODE_error": 3.1530333899354446E-14,
+      "endpoint_error": 4.2072819362304504E-14,
+      "minimum_dense_clearance": 0.1766300604231803,
+      "length": 9.5147870118777735
+    },
+    {},
+    {},
+    {},
+    {
+      "passed": true,
+      "arc_count": 30,
+      "ODE_error": 7.9047879353311146E-14,
+      "endpoint_error": 1.0014211682118912E-13,
+      "minimum_dense_clearance": 0.0040799153974485636,
+      "length": 6.3915664933165486
+    },
+    {}
+  ]
+}
