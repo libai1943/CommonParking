@@ -37,6 +37,8 @@ Eta3 needs MATLAB Optimization Toolbox (`fmincon`) and Navigation Toolbox for it
 
 SE2_NMPC uses the external AMPL/Ipopt runtime (MA97), plus Navigation Toolbox for its disclosed Hybrid A* cold start. Its configuration and all model equations are contained in its planner folder.
 
+HyperplaneOCP uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/HyperplaneOCP/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -70,6 +72,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
 | [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
 | [Waypoint-guided two-stage RRT](planners/WGRRT/README.md) (`WGRRT`) | Path | Wang, Jha & Akemi, CASE 2017; geometric exploration, guided bi-RRT and value iteration | Implemented and tested on all 12 cases |
 | [SE(2)-aware nonlinear MPC](planners/SE2_NMPC/README.md) (`SE2_NMPC`) | Trajectory | Roesmann, Makarow & Bertram, ECC 2021; static quasi-time-optimal OCP realization | Implemented and tested on all 12 cases |
@@ -550,3 +553,28 @@ Planning times include all online construction, search and any smoothing stages.
 
 [CSV](results/OSEHS/metrics.csv) · [JSON](results/OSEHS/metrics.json) · [validation](results/OSEHS/validation.json).
 <!-- /results:OSEHS -->
+
+<!-- results:HyperplaneOCP -->
+## Primal separating-hyperplane optimal control: measured results
+
+The paper's polytope separation and five-state RK4 OCP produced 6/12 native trajectories; 6 execution optimizations succeeded and all 6 attained the terminal tolerance. Cases 3 and 4 had zero measured collision frames; executions 6, 7, 10 and 11 had small nonzero collision percentages. No positive obstacle margin is added to the article's half-space constraints. The retained time/energy objective weights 1, 100 and 200 yield comparatively slow maneuvers. The other six native failures are retained. Independent checks verify the hyperplane inequalities, normal magnitudes, full objective, RK4 dynamics, endpoints, output fields and adaptive ODE replay. See [the original formulation and disclosed single-car initialization and mesh choices](planners/HyperplaneOCP/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 12.9175 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 9.2320 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 5.5350 | 0 | yes | 47.0475 | 0.1294 | 2.8646 | 1 | 34.9403 | no |
+| 04 | yes | yes | 9.2239 | 0 | yes | 49.4143 | 0.1524 | 1.2257 | 1 | 18.7810 | no |
+| 05 | no | no | 10.3893 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 25.2883 | 0.4952 | yes | 51.4894 | 0.1314 | 7.7732 | 1 | 84.0464 | no |
+| 07 | yes | yes | 7.6161 | 0.6759 | yes | 46.4567 | 0.0876 | 8.2183 | 1 | 88.0587 | no |
+| 08 | no | no | 13.1997 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 13.7464 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 24.8153 | 0.2825 | yes | 51.3303 | 0.1548 | 2.0119 | 1 | 26.6664 | no |
+| 11 | yes | yes | 13.3299 | 0.5036 | yes | 66.9110 | 0.2115 | 9.3019 | 1 | 100.1337 | no |
+| 12 | no | no | 65.7592 | — | — | — | — | — | — | — | — |
+
+[CSV](results/HyperplaneOCP/metrics.csv) · [JSON](results/HyperplaneOCP/metrics.json) · [validation](results/HyperplaneOCP/validation.json).
+<!-- /results:HyperplaneOCP -->
