@@ -1,0 +1,243 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 10,
+  "evaluation_success_count": 10,
+  "terminal_reached_count": 0,
+  "unit": {
+    "passed": true,
+    "signed_area_affine_error": 1.0658141036401503E-14,
+    "random_rotational_envelopes": 40,
+    "shoelace_cancellation_retained": true
+  },
+  "independent_checks": [
+    {
+      "success": true,
+      "dynamics_residual": 1.9838816742601822E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 4.2313344827960009E-8,
+      "objective": 10.620790415178766,
+      "selected_iteration": 2,
+      "accepted_objectives": [
+        11.06485374245713,
+        10.620790415178758
+      ],
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 9.57686655311818E-7,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 508,
+      "total_obstacle_pairs": 600,
+      "maximum_euler_ode_interval_pose_error": 0.061059801863486918,
+      "continuous_input_replay_final_error": [
+        -0.5255220796290494,
+        0.453742416739208,
+        -0.024405891466611096
+      ],
+      "continuous_input_replay_collision_percent": 0,
+      "replay_maximum_step_s": 0.001
+    },
+    {},
+    {
+      "success": true,
+      "dynamics_residual": 1.9383852301047E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 0,
+      "objective": 10.274179824595425,
+      "selected_iteration": 1,
+      "accepted_objectives": 10.274179824595425,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 0.74906422781777593,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 587,
+      "total_obstacle_pairs": 600,
+      "maximum_euler_ode_interval_pose_error": 0.048620710891594587,
+      "continuous_input_replay_final_error": [
+        -0.60069493030321364,
+        0.60239194700072018,
+        -0.089770956796394907
+      ],
+      "continuous_input_replay_collision_percent": 15.628345108113894,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 2.0529790316532737E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 1.1725178872268316E-7,
+      "objective": 10.961464709405202,
+      "selected_iteration": 2,
+      "accepted_objectives": [
+        11.286430505730889,
+        10.961464709405206
+      ],
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 1.3963293568381374,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 643,
+      "total_obstacle_pairs": 800,
+      "maximum_euler_ode_interval_pose_error": 0.058525323606634261,
+      "continuous_input_replay_final_error": [
+        -0.5706343802825703,
+        0.35145939356547573,
+        -0.04757811483589558
+      ],
+      "continuous_input_replay_collision_percent": 0,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 2.439529996718301E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 1.2326153608910317E-7,
+      "objective": 9.8826931622874454,
+      "selected_iteration": 1,
+      "accepted_objectives": 9.8826931622874472,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 0.463285273932895,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 421,
+      "total_obstacle_pairs": 800,
+      "maximum_euler_ode_interval_pose_error": 0.053104871639176543,
+      "continuous_input_replay_final_error": [
+        -0.39532780511478216,
+        0.66945444282626743,
+        -0.037062565795742353
+      ],
+      "continuous_input_replay_collision_percent": 16.428016428016427,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 2.4059474569527659E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 1.1340036776275042E-7,
+      "objective": 11.013780102226303,
+      "selected_iteration": 1,
+      "accepted_objectives": 11.013780102226296,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 9.5461451898870564E-7,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 687,
+      "total_obstacle_pairs": 1000,
+      "maximum_euler_ode_interval_pose_error": 0.061645425629763384,
+      "continuous_input_replay_final_error": [
+        -0.95208913631040115,
+        -0.074266302341682744,
+        -0.074795796781130353
+      ],
+      "continuous_input_replay_collision_percent": 35.386605632401235,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 2.279947299748189E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 0,
+      "objective": 9.3291914292093452,
+      "selected_iteration": 1,
+      "accepted_objectives": 9.32919142920935,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 0.095159707833204266,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 794,
+      "total_obstacle_pairs": 1200,
+      "maximum_euler_ode_interval_pose_error": 0.0476597920988695,
+      "continuous_input_replay_final_error": [
+        0.66104986619546668,
+        -0.1656179130968807,
+        -0.09861436254674838
+      ],
+      "continuous_input_replay_collision_percent": 0,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 1.9484004861770876E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 1.1834969093627024E-7,
+      "objective": 13.224490085404625,
+      "selected_iteration": 1,
+      "accepted_objectives": 13.22449008540463,
+      "termination": "optimization_failed",
+      "minimum_original_mutual_vertex_area_excess_m2": 9.88474101681902E-7,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 771,
+      "total_obstacle_pairs": 1200,
+      "maximum_euler_ode_interval_pose_error": 0.057023291327265357,
+      "continuous_input_replay_final_error": [
+        -0.57757057972751258,
+        0.72938996172631221,
+        -0.058248984196062573
+      ],
+      "continuous_input_replay_collision_percent": 21.701879886874064,
+      "replay_maximum_step_s": 0.001
+    },
+    {},
+    {
+      "success": true,
+      "dynamics_residual": 2.4714277471749035E-8,
+      "boundary_residual": 2.4492935982947064E-16,
+      "maximum_inequality_violation": 4.5364773271217018E-8,
+      "objective": 16.46092280178787,
+      "selected_iteration": 1,
+      "accepted_objectives": 16.460922801787863,
+      "termination": "reference_vertex_collision",
+      "minimum_original_mutual_vertex_area_excess_m2": 9.5463523308580989E-7,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 542,
+      "total_obstacle_pairs": 800,
+      "maximum_euler_ode_interval_pose_error": 0.055298359815306064,
+      "continuous_input_replay_final_error": [
+        1.020125961448306,
+        0.99732895757059858,
+        0.19157463024805743
+      ],
+      "continuous_input_replay_collision_percent": 3.5931709899417679,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 1.7065464597010305E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 1.1849856829115879E-7,
+      "objective": 8.70955824493898,
+      "selected_iteration": 1,
+      "accepted_objectives": 8.7095582449389823,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 9.8810246895730813E-7,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 699,
+      "total_obstacle_pairs": 1000,
+      "maximum_euler_ode_interval_pose_error": 0.050967861249159752,
+      "continuous_input_replay_final_error": [
+        -0.065741958612274942,
+        -0.16851919035297569,
+        0.080386391509236876
+      ],
+      "continuous_input_replay_collision_percent": 6.6962587190868739,
+      "replay_maximum_step_s": 0.001
+    },
+    {
+      "success": true,
+      "dynamics_residual": 3.1721630655567878E-8,
+      "boundary_residual": 0,
+      "maximum_inequality_violation": 3.2497755597660216E-7,
+      "objective": 12.386550751617008,
+      "selected_iteration": 1,
+      "accepted_objectives": 12.386550751617014,
+      "termination": "path_gap_converged",
+      "minimum_original_mutual_vertex_area_excess_m2": 0.0011056016563240068,
+      "native_node_collision_percent": 0,
+      "retained_obstacle_pairs": 778,
+      "total_obstacle_pairs": 1000,
+      "maximum_euler_ode_interval_pose_error": 0.0555145038685283,
+      "continuous_input_replay_final_error": [
+        -0.34612225989754419,
+        0.26666864981092697,
+        -0.021046990736115712
+      ],
+      "continuous_input_replay_collision_percent": 19.446654291523028,
+      "replay_maximum_step_s": 0.001
+    }
+  ]
+}

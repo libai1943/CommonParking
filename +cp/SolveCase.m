@@ -34,6 +34,8 @@ switch name
         canonical = 'VPF'; planner = @vpf.Plan;kind='trajectory';
     case "RITP"
         canonical = 'RITP'; planner = @ritp.Plan;kind='trajectory';
+    case "ANYTIMEPSRO"
+        canonical = 'AnytimePSRO'; planner = @psro.Plan;kind='trajectory';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

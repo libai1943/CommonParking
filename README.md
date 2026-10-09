@@ -43,6 +43,8 @@ VPF uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical s
 
 RITP needs MATLAB Optimization Toolbox and Parallel Computing Toolbox, plus Navigation Toolbox for Hybrid A* initialization. The planner itself has no AMPL dependency.
 
+AnytimePSRO uses the external AMPL/Ipopt runtime with MA27. All frozen-sign constraints and the explicit-Euler model are provided in [its planner folder](planners/AnytimePSRO/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -76,6 +78,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
 | [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs and parallel collision-weight iterations | Implemented and tested on all 12 cases |
 | [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
 | [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
@@ -634,3 +637,28 @@ Planning times include Hybrid A* and process-pool creation/shutdown. Up to four 
 
 [CSV](results/RITP/metrics.csv) · [JSON](results/RITP/metrics.json) · [validation](results/RITP/validation.json).
 <!-- /results:RITP -->
+
+<!-- results:AnytimePSRO -->
+## Anytime predefined-space rapid optimization: measured results
+
+Frozen-sign triangle-area half-spaces, logarithmically growing trust regions, explicit-Euler OCPs and anytime pool selection produced 10/12 native trajectories; 10 execution optimizations succeeded and 0 attained the strict terminal tolerance. Cases 2 and 9 reached the NLP iteration limit. **Six executions have nonzero collision percentages and none attains the common terminal tolerance in this configuration.** The paper's discrete model is retained; 200 nodes and explicitly chosen, otherwise unpublished objective weights are used uniformly. The full-body evaluator does not inherit the planner's vertex-exclusion approximation. Independent checks verify selected pool cost, native equations/constraints, original triangle areas, exact output timestamps and continuous-input ODE replay. See [the complete formulation, pruning envelope and disclosed numerical choices](planners/AnytimePSRO/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 22.0654 | 2.0406 | no | 16.5131 | 4.4926 | 3.3359 | 1 | 83.2852 | no |
+| 02 | no | no | 135.2308 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 17.8663 | 0 | no | 12.5094 | 6.4693 | 2.6981 | 1 | 96.6744 | no |
+| 04 | yes | yes | 23.6117 | 0 | no | 13.2667 | 7.3118 | 2.1738 | 1 | 99.8560 | no |
+| 05 | yes | yes | 8.4365 | 0 | no | 12.1301 | 6.5122 | 2.4023 | 1 | 94.1454 | no |
+| 06 | yes | yes | 21.4399 | 3.1844 | no | 14.5067 | 6.1067 | 2.8969 | 1 | 95.0367 | no |
+| 07 | yes | yes | 12.5452 | 0 | no | 10.4907 | 6.6362 | 2.0658 | 1 | 92.0199 | no |
+| 08 | yes | yes | 10.9139 | 3.1730 | no | 19.1913 | 6.0064 | 4.4567 | 3 | 119.6308 | no |
+| 09 | no | no | 38.6320 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 46.3188 | 2.5582 | no | 19.3873 | 8.8041 | 5.5491 | 2 | 153.5317 | no |
+| 11 | yes | yes | 34.4461 | 4.5146 | no | 10.8965 | 6.0814 | 2.4039 | 2 | 94.8532 | no |
+| 12 | yes | yes | 20.4381 | 0.3453 | no | 14.7662 | 8.4538 | 2.5145 | 2 | 119.6833 | no |
+
+[CSV](results/AnytimePSRO/metrics.csv) · [JSON](results/AnytimePSRO/metrics.json) · [validation](results/AnytimePSRO/validation.json).
+<!-- /results:AnytimePSRO -->
