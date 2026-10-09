@@ -73,6 +73,8 @@ RTR_TTS uses base MATLAB and the shared CC_PRM clothoid/distance module (`BuildC
 
 Sinusoid_RTR uses base MATLAB, RTR_TTS geometric-search helpers and the shared CC_PRM distance-query module (`BuildCCSteer` once). All sinusoidal integrations and mileage inversion are implemented in MATLAB. [Paper scope and dependencies](planners/Sinusoid_RTR/README.md).
 
+KinoDeform uses base MATLAB and the shared CC_PRM distance-query module (`BuildCCSteer` once). Its input shooting, sensitivities, deformation and integration are implemented in MATLAB. [Paper mapping and dependencies](planners/KinoDeform/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -106,6 +108,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Kinodynamic tree deformation](planners/KinoDeform/README.md) (`KinoDeform`) | Trajectory | Lamiraux, Ferre & Vallee, ICRA 2004; input-space trees and variational trajectory deformation | Implemented and tested on all 12 cases |
 | [Sinusoidal steering + RTR](planners/Sinusoid_RTR/README.md) (`Sinusoid_RTR`) | Path | Murray & Sastry, CDC 1990 steering construction, with disclosed RTR obstacle adapter | Implemented and tested on all 12 cases |
 | [RTR + TTS](planners/RTR_TTS/README.md) (`RTR_TTS`) | Path | Kiss & Tevesz, JAT 2017; RT trees and continuous-curvature local approximation | Implemented and tested on all 12 cases |
 | [TDR-OBCA](planners/TDR_OBCA/README.md) (`TDR_OBCA`) | Trajectory | He et al., ACC 2021; temporal and dual initialization with printed fixed-time NLP | Implemented and tested on all 12 cases |
@@ -1054,3 +1057,28 @@ Planning time includes setup, case loading, RTR search, all nonlinear sinusoidal
 
 [CSV](results/Sinusoid_RTR/metrics.csv) · [JSON](results/Sinusoid_RTR/metrics.json) · [validation](results/Sinusoid_RTR/validation.json).
 <!-- /results:Sinusoid_RTR -->
+
+<!-- results:KinoDeform -->
+## Input-space exploration with trajectory deformation: measured results
+
+The five-state input-shooting trees and variational trajectory deformation produced 9/12 native trajectories; 9 execution optimizations succeeded and 9 attained the terminal tolerance. The method uses no other planner for initialization or repair. Unsuccessful deformation attempts resume native exploration, and finite-budget failures remain failures. The unpublished input basis, conditioning, finite-range obstacle potential and integration settings are explicitly disclosed. Independent checks verify RK4 derivatives, the active obstacle-potential gradient, terminal sensitivities, forward/backward ODE integration, complete-body clearance, branch joins, exact zero-speed cusps and all exported fields. See [the original algorithm and numerical choices](planners/KinoDeform/README.md).
+
+Planning time includes setup, case loading, both exploration trees, every attempted deformation, fine integration-mesh refinement and output conversion. An in-flight expansion/deformation can exceed the outer search deadline. The one-time distance-module build is excluded. One seeded run per case is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 141.8438 | 0 | yes | 30.7978 | 15.2238 | 4.5105 | 6 | 227.3436 | no |
+| 02 | no | no | 222.6116 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 104.0943 | 0 | yes | 31.2593 | 11.4707 | 2.6619 | 3 | 156.3259 | no |
+| 04 | no | no | 194.3913 | — | — | — | — | — | — | — | — |
+| 05 | yes | yes | 52.3601 | 0 | yes | 46.6762 | 17.1377 | 4.2854 | 8 | 254.2312 | no |
+| 06 | yes | yes | 51.8038 | 0 | yes | 59.6281 | 27.3787 | 6.2798 | 10 | 386.5857 | no |
+| 07 | yes | yes | 124.2314 | 0 | yes | 47.6841 | 17.5943 | 5.2732 | 14 | 298.6746 | no |
+| 08 | yes | yes | 36.9701 | 0 | yes | 61.7175 | 20.2781 | 9.5243 | 14 | 368.0248 | no |
+| 09 | yes | yes | 140.2471 | 0 | yes | 51.7424 | 25.4054 | 6.0963 | 6 | 345.0172 | no |
+| 10 | yes | yes | 43.9717 | 0 | yes | 55.4149 | 20.6998 | 5.8604 | 13 | 330.6028 | no |
+| 11 | yes | yes | 25.2003 | 0 | yes | 56.0718 | 27.0636 | 6.3651 | 7 | 369.2873 | no |
+| 12 | no | no | 194.1731 | — | — | — | — | — | — | — | — |
+
+[CSV](results/KinoDeform/metrics.csv) · [JSON](results/KinoDeform/metrics.json) · [validation](results/KinoDeform/validation.json).
+<!-- /results:KinoDeform -->

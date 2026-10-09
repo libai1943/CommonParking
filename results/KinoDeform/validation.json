@@ -1,0 +1,257 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 9,
+  "evaluation_success_count": 9,
+  "terminal_reached_count": 9,
+  "unit": {
+    "passed": true,
+    "random_steps": 40,
+    "RK4_Jacobian_error": 3.8338270925974971E-10,
+    "RK4_ODE_error": 2.0294492752981341E-9,
+    "potential_gradient_error": 5.9705601573867284E-11,
+    "terminal_sensitivity_error": 4.3856087511562336E-10,
+    "deformation_iterations": 46,
+    "deformation_join_error": 9.9346352108384273E-11,
+    "thin_obstacle_rejected": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "ODE_error": 2.8027358212057152E-11,
+      "output_error": 0,
+      "join_error": [
+        1.1381562359247255E-11,
+        -1.1592948823135885E-11,
+        2.0255241928168743E-11,
+        -4.8849813083506888E-15,
+        -3.7067571234672414E-12
+      ],
+      "minimum_dense_clearance": 0.030951451254469298,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.0669749929944339,
+        0.69999940846317077,
+        0.97626552241803477,
+        0.49336448845312142
+      ],
+      "interior_cusps": 6,
+      "duration": 30.737221854026409,
+      "native_nodes": [
+        8068,
+        7619
+      ],
+      "deformation_attempts": 5
+    },
+    {},
+    {
+      "passed": true,
+      "ODE_error": 1.6077805753411667E-11,
+      "output_error": 0,
+      "join_error": [
+        8.9261931179862586E-14,
+        -2.0872192862952943E-14,
+        -1.3322676295501878E-15,
+        -1.3211653993039363E-14,
+        6.9388939039072284E-17
+      ],
+      "minimum_dense_clearance": 0.1650435547954987,
+      "peak_speed_steering_acceleration_steering_rate": [
+        1.3665133320325984,
+        0.69612985943587236,
+        0.99554475096592931,
+        0.49500195634015187
+      ],
+      "interior_cusps": 3,
+      "duration": 31.167970191324954,
+      "native_nodes": [
+        6726,
+        6915
+      ],
+      "deformation_attempts": 1
+    },
+    {},
+    {
+      "passed": true,
+      "ODE_error": 3.3775648944356362E-11,
+      "output_error": 0,
+      "join_error": [
+        -7.4340533728900482E-13,
+        -2.6645352591003757E-14,
+        -1.0103029524088925E-14,
+        4.163336342344337E-14,
+        -5.3290705182007514E-15
+      ],
+      "minimum_dense_clearance": 0.0711453648768492,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.1076858592703185,
+        0.61503249516983849,
+        0.95247687733167707,
+        0.49999977850287131
+      ],
+      "interior_cusps": 8,
+      "duration": 46.511088251123184,
+      "native_nodes": [
+        4008,
+        3724
+      ],
+      "deformation_attempts": 1
+    },
+    {
+      "passed": true,
+      "ODE_error": 7.1124883760376179E-11,
+      "output_error": 0,
+      "join_error": [
+        1.2789769243681803E-13,
+        -1.219913059458122E-12,
+        -4.2854608750531042E-14,
+        4.5519144009631418E-14,
+        1.099120794378905E-14
+      ],
+      "minimum_dense_clearance": 0.00011858841554690525,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.4639609899265791,
+        0.6913295549937013,
+        0.99879879129715954,
+        0.48292661732051817
+      ],
+      "interior_cusps": 10,
+      "duration": 59.235916631979904,
+      "native_nodes": [
+        2840,
+        2461
+      ],
+      "deformation_attempts": 2
+    },
+    {
+      "passed": true,
+      "ODE_error": 3.1760816199266628E-11,
+      "output_error": 0,
+      "join_error": [
+        2.3603341503530828E-13,
+        3.7836400679225335E-13,
+        -1.8540724511240114E-14,
+        -6.6613381477509392E-16,
+        -7.2719608112947753E-15
+      ],
+      "minimum_dense_clearance": 0.12768801910595906,
+      "peak_speed_steering_acceleration_steering_rate": [
+        1.4182339509393656,
+        0.66117748941661714,
+        0.97276470033171514,
+        0.49643785887324215
+      ],
+      "interior_cusps": 14,
+      "duration": 47.431659151389461,
+      "native_nodes": [
+        5429,
+        5215
+      ],
+      "deformation_attempts": 7
+    },
+    {
+      "passed": true,
+      "ODE_error": 4.3890224787901388E-11,
+      "output_error": 0,
+      "join_error": [
+        1.2434497875801753E-13,
+        9.1038288019262836E-15,
+        -4.4408920985006262E-15,
+        -3.5860203695392556E-14,
+        4.163336342344337E-15
+      ],
+      "minimum_dense_clearance": 0.080083764127179546,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.1071444732404316,
+        0.67265926025357659,
+        0.95403553620465487,
+        0.48695160964088685
+      ],
+      "interior_cusps": 14,
+      "duration": 61.426891104620864,
+      "native_nodes": [
+        1563,
+        1531
+      ],
+      "deformation_attempts": 1
+    },
+    {
+      "passed": true,
+      "ODE_error": 8.8380858187520062E-11,
+      "output_error": 0,
+      "join_error": [
+        -6.7501559897209518E-14,
+        -3.8191672047105385E-14,
+        -1.4377388168895777E-14,
+        4.2604808569990382E-14,
+        1.021405182655144E-14
+      ],
+      "minimum_dense_clearance": 0.14703787367436982,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.4374224625927488,
+        0.6702028205664966,
+        0.9856975356118195,
+        0.49563679765244978
+      ],
+      "interior_cusps": 6,
+      "duration": 51.488132830617921,
+      "native_nodes": [
+        8637,
+        7064
+      ],
+      "deformation_attempts": 1
+    },
+    {
+      "passed": true,
+      "ODE_error": 1.8705037518884637E-11,
+      "output_error": 0,
+      "join_error": [
+        5.5511151231257827E-15,
+        -9.6367358537463588E-14,
+        -1.7763568394002505E-15,
+        -4.4408920985006262E-16,
+        2.1094237467877974E-15
+      ],
+      "minimum_dense_clearance": 0.0003514644715316706,
+      "peak_speed_steering_acceleration_steering_rate": [
+        1.5863192755347608,
+        0.67945502998966334,
+        0.99866304943818829,
+        0.49698566872395877
+      ],
+      "interior_cusps": 13,
+      "duration": 55.038340515187052,
+      "native_nodes": [
+        3129,
+        3396
+      ],
+      "deformation_attempts": 1
+    },
+    {
+      "passed": true,
+      "ODE_error": 6.1865179645792523E-11,
+      "output_error": 0,
+      "join_error": [
+        2.1049828546892968E-13,
+        2.8066438062523957E-13,
+        -5.773159728050814E-14,
+        -1.6209256159527285E-14,
+        -2.7755575615628914E-16
+      ],
+      "minimum_dense_clearance": 0.0819279205627721,
+      "peak_speed_steering_acceleration_steering_rate": [
+        2.4001392868145235,
+        0.664002926003145,
+        0.99999641736657341,
+        0.47937645780611166
+      ],
+      "interior_cusps": 9,
+      "duration": 55.730329098144523,
+      "native_nodes": [
+        1655,
+        1092
+      ],
+      "deformation_attempts": 1
+    },
+    {}
+  ]
+}
