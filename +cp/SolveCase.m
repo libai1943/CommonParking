@@ -36,6 +36,8 @@ switch name
         canonical = 'RITP'; planner = @ritp.Plan;kind='trajectory';
     case "ANYTIMEPSRO"
         canonical = 'AnytimePSRO'; planner = @psro.Plan;kind='trajectory';
+    case "DPGRID"
+        canonical = 'DPGrid'; planner = @dpgrid.Plan;kind='path';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

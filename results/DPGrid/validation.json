@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 10,
+  "evaluation_success_count": 10,
+  "terminal_reached_count": 9,
+  "unit": {
+    "passed": true,
+    "straight_length_error": 0,
+    "heading_tolerance_retained": true,
+    "long_arc_around_obstacle": true,
+    "two_arc_lexicographic_layer": true,
+    "exact_cusps": true,
+    "dense_sweep_checks": 36
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "arcs": 5,
+      "ode_position_join_error_m": 9.893470408029521E-13,
+      "maximum_heading_jump_rad": 0.0089053227035518212,
+      "ode_arc_error": 7.2386541205560206E-13,
+      "inflated_dense_clearance_lower_bound_m": 0.037373994236385988,
+      "dense_poses": 19327,
+      "length_m": 19.319909202739311,
+      "gear_changes": 2,
+      "budget_exhausted": false
+    },
+    {},
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 4.5931629603977119E-12,
+      "maximum_heading_jump_rad": 0.0089053227035516,
+      "ode_arc_error": 3.56503715437384E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.25595494870110258,
+      "dense_poses": 25849,
+      "length_m": 25.84383093431428,
+      "gear_changes": 1,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 3.7985289393962091E-12,
+      "maximum_heading_jump_rad": 0.0071927527067965572,
+      "ode_arc_error": 3.751665644813329E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.27219963299081851,
+      "dense_poses": 31512,
+      "length_m": 31.505980442785436,
+      "gear_changes": 1,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 8.51919805177848E-12,
+      "maximum_heading_jump_rad": 0.0097825260239521854,
+      "ode_arc_error": 8.37019342725398E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.047638054343437042,
+      "dense_poses": 41812,
+      "length_m": 41.80605197520417,
+      "gear_changes": 3,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 5,
+      "ode_position_join_error_m": 3.350759032379752E-12,
+      "maximum_heading_jump_rad": 0.0089053227035522653,
+      "ode_arc_error": 3.3502089991088724E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.013853866600295639,
+      "dense_poses": 33924,
+      "length_m": 33.916166874050219,
+      "gear_changes": 2,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 3.2548539119593129E-12,
+      "maximum_heading_jump_rad": 0.008905322703550933,
+      "ode_arc_error": 3.255173908200959E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.12251906678778768,
+      "dense_poses": 24304,
+      "length_m": 24.297619595344564,
+      "gear_changes": 2,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 5,
+      "ode_position_join_error_m": 2.1271485613236238E-12,
+      "maximum_heading_jump_rad": 0.0095524600522199025,
+      "ode_arc_error": 2.1218582446635992E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.135887786560267,
+      "dense_poses": 24467,
+      "length_m": 24.459560493418632,
+      "gear_changes": 4,
+      "budget_exhausted": false
+    },
+    {},
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 8.2135007092132214E-12,
+      "maximum_heading_jump_rad": 0.0096101348349082686,
+      "ode_arc_error": 8.1681328367722017E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.15399811185040058,
+      "dense_poses": 50032,
+      "length_m": 50.026374071036528,
+      "gear_changes": 2,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 4,
+      "ode_position_join_error_m": 1.424883188415185E-12,
+      "maximum_heading_jump_rad": 0.0050442678190227852,
+      "ode_arc_error": 1.4193091146808001E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.1132074240150871,
+      "dense_poses": 28859,
+      "length_m": 28.853833816736362,
+      "gear_changes": 2,
+      "budget_exhausted": false
+    },
+    {
+      "passed": true,
+      "arcs": 6,
+      "ode_position_join_error_m": 1.1190259449634469E-12,
+      "maximum_heading_jump_rad": 0.0041840760020743772,
+      "ode_arc_error": 1.0174083797664935E-12,
+      "inflated_dense_clearance_lower_bound_m": 0.12631930590827611,
+      "dense_poses": 28864,
+      "length_m": 28.85617513087562,
+      "gear_changes": 5,
+      "budget_exhausted": false
+    }
+  ]
+}

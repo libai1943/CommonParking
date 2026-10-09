@@ -45,6 +45,8 @@ RITP needs MATLAB Optimization Toolbox and Parallel Computing Toolbox, plus Navi
 
 AnytimePSRO uses the external AMPL/Ipopt runtime with MA27. All frozen-sign constraints and the explicit-Euler model are provided in [its planner folder](planners/AnytimePSRO/README.md).
 
+DPGrid needs a one-time C++ module build with `BuildDPGrid`; it uses base MATLAB for its planner and has no optimizer or Navigation Toolbox dependency. [Build instructions and source](planners/DPGrid/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -78,6 +80,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Backward dynamic programming](planners/DPGrid/README.md) (`DPGrid`) | Path | Schildbach & Borrelli, IV 2016; finite pose grid with continuous steering arcs | Implemented and tested on all 12 cases |
 | [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
 | [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs and parallel collision-weight iterations | Implemented and tested on all 12 cases |
 | [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
@@ -662,3 +665,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/AnytimePSRO/metrics.csv) · [JSON](results/AnytimePSRO/metrics.json) · [validation](results/AnytimePSRO/validation.json).
 <!-- /results:AnytimePSRO -->
+
+<!-- results:DPGrid -->
+## Backward dynamic programming on a pose grid: measured results
+
+The backward finite-grid search produced 10/12 native paths; 10 execution optimizations succeeded and 9 attained the terminal tolerance. The primary objective minimizes arc count, with length as a tie-breaker, so a returned route can be long. Native failures remain failures. **The article permits up to 0.01 rad of heading mismatch between individually feasible arcs; this is preserved and corrected only by the independent execution evaluator.** Continuous full-body arc sweeps, independent ODE integration, angular joins, mileage spacing and exact cusp positions were checked. See [the goal-aligned fine grid, paper scope and disclosed search limits](planners/DPGrid/README.md).
+
+Planning times include MATLAB grid construction/filtering, the single-threaded C++ search and output sampling; the one-time module build is excluded. Numerical-library threads are fixed to one. Other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 11.9542 | 0 | yes | 15.7068 | 9.6811 | 1.1625 | 2 | 118.4358 | no |
+| 02 | no | no | 9.2944 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 9.7421 | 0 | yes | 22.4365 | 5.1284 | 3.2836 | 1 | 89.1201 | no |
+| 04 | yes | yes | 10.1895 | 0 | yes | 20.8016 | 8.9722 | 1.8669 | 1 | 113.3919 | no |
+| 05 | yes | yes | 10.7125 | 0 | yes | 55.3759 | 2.8338 | 11.8881 | 4 | 167.2191 | no |
+| 06 | yes | yes | 10.7530 | 0 | yes | 37.1116 | 5.2784 | 7.4763 | 3 | 142.5472 | no |
+| 07 | yes | yes | 9.9686 | 0 | yes | 26.6435 | 5.5788 | 2.7733 | 2 | 93.5211 | no |
+| 08 | yes | yes | 10.8872 | 0 | yes | 44.9453 | 2.7340 | 13.0193 | 5 | 182.5328 | no |
+| 09 | no | no | 8.9542 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 9.2931 | 0 | yes | 44.2227 | 4.7564 | 5.1416 | 3 | 113.9803 | no |
+| 11 | yes | yes | 9.4360 | 0 | yes | 19.4739 | 14.1983 | 0.7040 | 2 | 159.0234 | no |
+| 12 | yes | yes | 10.0866 | 0 | no | 38.5449 | 6.5558 | 7.1224 | 5 | 161.7818 | no |
+
+[CSV](results/DPGrid/metrics.csv) · [JSON](results/DPGrid/metrics.json) · [validation](results/DPGrid/validation.json).
+<!-- /results:DPGrid -->
