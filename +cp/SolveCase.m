@@ -46,6 +46,8 @@ switch name
         canonical = 'SmoothBiRRT'; planner = @sfrrt.Plan;kind='path';
     case "DUBINSGRID"
         canonical = 'DubinsGrid'; planner = @dgrid.Plan;kind='path';
+    case "BICCHITANGENTS"
+        canonical = 'BicchiTangents'; planner = @btangent.Plan;kind='path';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

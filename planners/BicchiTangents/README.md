@@ -1,0 +1,29 @@
+# Obstacle-supported circular-arc and tangent graph
+
+Antonio Bicchi, Giuseppe Casalino and Corrado Santilli, *Planning Shortest Bounded-Curvature Paths for a Class of Nonholonomic Vehicles among Obstacles*, ICRA 1995, vol. 2, pp. 1349–1354. [DOI](https://doi.org/10.1109/ROBOT.1995.525466) · [Author-hosted paper](https://www.centropiaggio.unipi.it/sites/default/files/1995_ICRA_0.pdf).
+
+`RunPlanner('BicchiTangents',caseId)` independently implements Algorithm 1 and the three-circle vertex construction in Remark 2/Figure 5. This is an obstacle-supported geometric graph, not a pose-grid search or a Hybrid A* refinement. It returns a path made of exact straight segments and circular arcs. All settings, geometry construction and graph search are local to this planner folder.
+
+## Construction and paper scope
+
+The basic method places a circle of radius `max(minimumTurningRadius,halfWidth)` at each polygon vertex, plus two minimum-radius circles tangent to the body orientation at each task endpoint. For the benchmark car, the minimum turning radius exceeds half its width. Remark 2 therefore replaces each vertex circle with three circles of minimum turning radius. Their centers are displaced by `minimumTurningRadius-halfWidth` along the vertex's **inward** angle bisector and the two inward edge normals. Figure 5 is explicit about this sign: the free-side part of the circle is then half a width away from the vertex. A center can lie beyond the opposite edge of a small polygon; it is a geometric support, not an obstacle or a waypoint.
+
+Every circle pair contributes its real interior and exterior common tangents (up to four). Each tangent point has two body orientations. Each segment is traversable in either direction, but its collision test uses the corresponding body orientation and signed travel. Circular arcs connect tangent points on the same circle with consistent body heading. The exact start and goal are separate vertices linked at zero cost to their supporting circles; no task-pose snapping occurs.
+
+The implementation connects adjacent tangent points around a circle rather than explicitly storing every long circular subarc. Any long arc is the concatenation of these adjacent arcs, with the same signed motion, collision status and length. This reduces graph size without changing the set of geometric routes. Dijkstra minimizes total length on the resulting directed graph, with no reversal penalty. Coincident supporting circles and numerically identical angles are merged (circle coordinates at 1e-9 m, angles at 1e-10 rad).
+
+**The article does not establish completeness or global optimality for this rectangular car.** Its sufficient shortest-path result concerns a restricted circular robot and a regular path without reversals. Remark 1 explicitly describes failures when obstacle circles do not provide enough room to construct an inversion. The optional free-cell search and auxiliary Reeds–Shepp inversion circles suggested there are not included in this implementation; their placement procedure is not specified in the article. This release measures Algorithm 1 with the fully specified Remark 2 vertex heuristic. Failure of that graph is reported as a native failure, without substituting a different planner.
+
+## Vehicle and collision checking
+
+The common rear-axle reference, physical rectangular footprint and turning-radius limit are used without a disc approximation or obstacle inflation. Directed straight edges are checked against the convex hull of the starting and ending rectangles. Circular edges check initial polygon intersection and all continuous contacts between rotating body vertices and obstacle edges, and between obstacle vertices and rotating body edges. This is an analytic sweep test for the fixed steering arc; touching is blocked. The own-source geometry is also used by other CommonParking graph methods and is copied into this folder so the planner remains self-contained.
+
+The construction has no extra XY grid or artificial workspace boundary. All supports are determined by the supplied obstacle vertices and task poses. For the frozen convex polygon obstacles, native edge tests use the complete physical rectangle. The later common evaluator still runs independently and may produce collisions or terminal error when tracking a curvature-discontinuous path.
+
+## Configuration, output and build
+
+The native graph construction and Dijkstra search share a 180 s budget. The current bounded circle-pair or edge operation is completed before checking the deadline. Every graph edge is verified against its exact target pose before insertion. Only a complete start-to-goal graph route is returned as successful. The output retains exact primitive geometry and cusp locations, with uniform mileage separately within each gear run at a maximum spacing of 0.05 m. Native path length and all graph counts are recorded in `result.solver`.
+
+Run `SetupCommonParking` and then `BuildBicchiTangents` once with a configured MATLAB C++ compiler. On Windows, an existing portable Zig compiler can be supplied as `BuildBicchiTangents('absolute/path/to/zig.exe')`. MEX output and compiler caches are outside the repository; `COMMONPARKING_BICCHI_TANGENTS_DIR` optionally selects that directory. The planner itself requires only base MATLAB. The one-time compilation is excluded from online timing; circle generation, full graph construction, collision checking, Dijkstra and output sampling are included.
+
+`TestBicchiTangents` checks exact forward and reverse straight solutions, rigid-rotation invariance of graph length, and the direction/size of the Figure 5 offsets. Release verification independently integrates each arc, checks endpoint and inter-edge continuity, verifies exact cusps and mileage spacing, and repeats continuous and dense full-body collision checks.

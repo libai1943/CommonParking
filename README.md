@@ -55,6 +55,8 @@ SmoothBiRRT needs MATLAB Navigation Toolbox for its Reeds–Shepp curves. Search
 
 DubinsGrid needs a one-time C++ module build with `BuildDubinsGrid` and MATLAB Optimization Toolbox for Frenet-offset SQP. Its native search has no Navigation Toolbox dependency; that toolbox is used only by the independent analytic-curve test. [Source and build instructions](planners/DubinsGrid/README.md).
 
+BicchiTangents needs a one-time C++ module build with `BuildBicchiTangents` and otherwise uses base MATLAB. [Source, theorem scope and build instructions](planners/BicchiTangents/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -88,6 +90,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Bicchi tangent graph](planners/BicchiTangents/README.md) (`BicchiTangents`) | Path | Bicchi, Casalino & Santilli, ICRA 1995; obstacle-supported circles and tangents | Implemented and tested on all 12 cases |
 | [Dubins grid + Frenet SQP](planners/DubinsGrid/README.md) (`DubinsGrid`) | Path | Siedentop et al., FAS 2015; Dubins lattice and normal-offset smoothing | Implemented and tested on all 12 cases |
 | [Smooth-feedback Bi-RRT*](planners/SmoothBiRRT/README.md) (`SmoothBiRRT`) | Path | Jhang, Lian & Hao, CASE 2020; third-tree smoothing and search feedback | Implemented and tested on all 12 cases |
 | [Finite-element Bellman graph](planners/GraphBellman/README.md) (`GraphBellman`) | Path | Laurini, Consolini & Locatelli, TAC 2021; Model 1 and selective Bellman updates | Implemented and tested on all 12 cases |
@@ -802,3 +805,28 @@ Planning times include grid construction, the single-threaded native A* search, 
 
 [CSV](results/DubinsGrid/metrics.csv) · [JSON](results/DubinsGrid/metrics.json) · [validation](results/DubinsGrid/validation.json).
 <!-- /results:DubinsGrid -->
+
+<!-- results:BicchiTangents -->
+## Bicchi obstacle-supported tangent graph: measured results
+
+Algorithm 1 with the three-circle vertex heuristic of Remark 2 produced 10/12 native paths; 10 execution optimizations succeeded and 8 attained the strict terminal tolerance. **This finite geometric graph is not complete for a rectangular car; the optional auxiliary inversion-circle search is outside the implemented scope.** Native failures remain failures. Every returned native edge passed continuous full-rectangle collision checking; release verification independently integrates the arcs, verifies supporting circles, joins, endpoint poses and exact cusps, and repeats dense and continuous body checks. Execution collisions and endpoint error are measured separately. See [the original theorem's scope, Figure 5 construction and full implementation details](planners/BicchiTangents/README.md).
+
+Planning times include all support-circle construction, the complete directed graph and continuous collision tests, Dijkstra and exact path sampling. The one-time C++ build is excluded. Other development jobs were active, so these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 6.8209 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 7.1400 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 7.2029 | 0 | yes | 27.0531 | 1.5846 | 5.3108 | 2 | 78.9540 | no |
+| 04 | yes | yes | 7.1874 | 0 | no | 31.8218 | 1.2144 | 7.3096 | 2 | 95.2399 | yes |
+| 05 | yes | yes | 8.0171 | 0 | yes | 26.0465 | 2.1156 | 5.5278 | 2 | 86.4348 | no |
+| 06 | yes | yes | 5.8493 | 0 | yes | 28.4264 | 2.3416 | 6.2654 | 2 | 96.0703 | no |
+| 07 | yes | yes | 5.7355 | 0 | yes | 23.5689 | 2.0800 | 4.9758 | 3 | 85.5583 | no |
+| 08 | yes | yes | 6.2501 | 0 | yes | 31.6384 | 2.7789 | 8.5741 | 3 | 128.5300 | no |
+| 09 | yes | yes | 5.9357 | 0 | no | 25.6385 | 3.3216 | 3.8248 | 2 | 81.4632 | no |
+| 10 | yes | yes | 5.8524 | 0 | yes | 35.2666 | 3.2140 | 6.3074 | 3 | 110.2141 | no |
+| 11 | yes | yes | 5.9780 | 0 | yes | 24.2388 | 2.1259 | 5.8131 | 3 | 94.3900 | no |
+| 12 | yes | yes | 5.7120 | 0 | yes | 29.6296 | 3.1990 | 8.0540 | 2 | 122.5293 | no |
+
+[CSV](results/BicchiTangents/metrics.csv) · [JSON](results/BicchiTangents/metrics.json) · [validation](results/BicchiTangents/validation.json).
+<!-- /results:BicchiTangents -->
