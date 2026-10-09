@@ -3,256 +3,325 @@
   "cases": 12,
   "planner_success_count": 12,
   "evaluation_success_count": 12,
-  "terminal_reached_count": 8,
+  "terminal_reached_count": 12,
+  "zero_collision_count": 5,
+  "joint_count": 5,
   "unit": {
-    "passed": true,
-    "speed_QPs": 4,
-    "profile_residual": 9.5391359741792137E-14,
-    "speed_ODE_error": 9.9475983006414026E-14,
-    "dual_QPs": 6,
-    "dual_objective_error": 7.984564398544336E-12,
-    "dual_feasibility_error": 2.2204460492503131E-16
+    "temporal_and_dual": {
+      "passed": true,
+      "speed_QPs": 4,
+      "profile_residual": 9.5391359741792137E-14,
+      "speed_ODE_error": 9.9475983006414026E-14,
+      "dual_QPs": 6,
+      "dual_objective_error": 7.984564398544336E-12,
+      "dual_feasibility_error": 2.2204460492503131E-16
+    },
+    "benchmark_adapter": {
+      "passed": true,
+      "five_state_euler_residual": 1.1316902276403695E-15,
+      "exact_terminal_and_steering_checks": true
+    }
   },
   "independent_checks": [
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999259186733215E-8,
-        "bound_residual": 1.2899176493608167E-7,
-        "dual_residual": 3.7632517368990648E-7,
-        "objective": -3329.3235963614852
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.5738022637116273E-7,
-      "terminal_pose_error": [
-        -0.0015938385627056739,
-        0.00038973981544876413,
-        0.0024857661553160941
+      "success": true,
+      "dynamics_residual": 2.4999179443555009E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.7455667190045006E-7,
+      "objective": -3266.4071819018718,
+      "independent_five_state_residual": 2.49991794392182E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        6.6613381477509392E-16
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0065860484542063572
+      "minimum_geometric_node_clearance": 0.0099998573302362281,
+      "independent_control_replay_max_state_error": [
+        0.28102999019888719,
+        0.15984459101793469,
+        0.031241633395819424,
+        2.3475555721574892E-8,
+        1.3415337507538538E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.016262394191040055,
+      "maximum_executed_reference_heading_difference_rad": 0.026531760916262748
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999242960455081E-8,
-        "bound_residual": 8.6531159904090771E-8,
-        "dual_residual": 4.3574133812285254E-7,
-        "objective": -4118.1333655289118
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.573801979494533E-7,
-      "terminal_pose_error": [
-        -0.00045479156125161069,
-        0.00099881308891081044,
-        0.00011106569756569318
+      "success": true,
+      "dynamics_residual": 2.4998743476320473E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.54006525427053E-7,
+      "objective": -2311.2868806577521,
+      "independent_five_state_residual": 2.4998743648058097E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        3.8857805861880479E-16
       ],
-      "independent_control_ODE_error": 7.1054273576010019E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.015991415754597366
+      "minimum_geometric_node_clearance": 0.0099998573283635039,
+      "independent_control_replay_max_state_error": [
+        0.28130815931352848,
+        0.16508873756242881,
+        0.032132363201369918,
+        2.3392713099923412E-8,
+        1.3864052794687609E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.4232620165825941,
+      "maximum_executed_reference_position_difference_m": 0.018063809067205117,
+      "maximum_executed_reference_heading_difference_rad": 0.02761391339646746
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4998843375576008E-8,
-        "bound_residual": 1.5396998886973989E-7,
-        "dual_residual": 3.0039191578623559E-7,
-        "objective": -2543.4778930724674
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 0.35707914526680984,
-      "terminal_pose_error": [
-        0.00062732367035300829,
-        0.00095313356546311567,
-        -1.06950881444412E-5
+      "success": true,
+      "dynamics_residual": 2.4998781990651087E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.0162736308625426E-7,
+      "objective": -2577.7960951338828,
+      "independent_five_state_residual": 2.4998781944680915E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        2.2204460492503131E-16
       ],
-      "independent_control_ODE_error": 2.6645352591003757E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0045033754785448465
+      "minimum_geometric_node_clearance": 0.35595494870110267,
+      "independent_control_replay_max_state_error": [
+        0.096372841623095784,
+        0.1752748619526967,
+        0.026051436855445753,
+        2.3119897107903853E-8,
+        1.331241683555362E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.0077344010601601478,
+      "maximum_executed_reference_heading_difference_rad": 0.022132985601825972
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.499891336494621E-8,
-        "bound_residual": 1.495202121004624E-7,
-        "dual_residual": 2.9001672352535479E-7,
-        "objective": -2575.1258886779024
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.3319268606718566E-7,
-      "terminal_pose_error": [
-        0.00020096816722553479,
-        0.000716325941135354,
-        -3.6147536167208116E-5
+      "success": true,
+      "dynamics_residual": 2.4998661881433376E-8,
+      "bound_residual": 0,
+      "dual_residual": 2.8469161250654906E-7,
+      "objective": -2493.4654843732333,
+      "independent_five_state_residual": 2.4998661911791037E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        6.6613381477509392E-16
       ],
-      "independent_control_ODE_error": 5.3290705182007514E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0030102031764234205
+      "minimum_geometric_node_clearance": 0.0099998331440787069,
+      "independent_control_replay_max_state_error": [
+        0.073664801634407917,
+        0.080791368358497984,
+        0.013888745400338964,
+        2.245784758159175E-8,
+        1.3320344272038653E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.20040080160320639,
+      "maximum_executed_reference_position_difference_m": 0.0052661084405735328,
+      "maximum_executed_reference_heading_difference_rad": 0.0089860213003819522
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4998349623835125E-8,
-        "bound_residual": 1.4958113025986819E-7,
-        "dual_residual": 3.3242155694779285E-7,
-        "objective": -4503.4254774467427
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.5739186739264284E-7,
-      "terminal_pose_error": [
-        0.0010555272117511727,
-        0.0011014359999160783,
-        0.00040510878525884531
+      "success": true,
+      "dynamics_residual": 2.4998636679804398E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.3333650861777642E-7,
+      "objective": -4535.0016478337475,
+      "independent_five_state_residual": 2.4998637061443563E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        3.3861802251067274E-15
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0047152790351283613
+      "minimum_geometric_node_clearance": 0.009999857338942264,
+      "independent_control_replay_max_state_error": [
+        0.0968211433129067,
+        0.13219379281210397,
+        0.024478321769079658,
+        2.3582002572908323E-8,
+        1.3684908095612514E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.0071682468143987287,
+      "maximum_executed_reference_heading_difference_rad": 0.019149444189170754
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999488401275527E-8,
-        "bound_residual": 1.4011450955031535E-7,
-        "dual_residual": 3.2622482493138705E-7,
-        "objective": -4871.4695580427151
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 0.1517832040419691,
-      "terminal_pose_error": [
-        -0.00054512235728743086,
-        0.0014831892820330594,
-        -6.0937395224058832E-5
+      "success": true,
+      "dynamics_residual": 2.4999428529029477E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.2734046051530186E-7,
+      "objective": -4911.92861025234,
+      "independent_five_state_residual": 2.4999428523391626E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        2.0672352718520415E-13
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0055520889026343667
+      "minimum_geometric_node_clearance": 0.15178320404196632,
+      "independent_control_replay_max_state_error": [
+        0.17154017599029903,
+        0.15486092306338683,
+        0.028749111415157236,
+        2.3997632325745144E-8,
+        1.3935046117019567E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.00882658910525176,
+      "maximum_executed_reference_heading_difference_rad": 0.025044001703233839
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999224164726219E-8,
-        "bound_residual": 1.6077864639640893E-7,
-        "dual_residual": 3.1432558067479022E-7,
-        "objective": -5738.3793481051516
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.5738021710080048E-7,
-      "terminal_pose_error": [
-        0.00086666705210308454,
-        -0.001747710028018904,
-        0.00012047966374395536
+      "success": true,
+      "dynamics_residual": 2.4999216034077287E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.139603155233317E-7,
+      "objective": -5723.9889059688057,
+      "independent_five_state_residual": 2.4999216039281458E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        2.0672352718520415E-13
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0041345771903305018
+      "minimum_geometric_node_clearance": 0.0099998573302120253,
+      "independent_control_replay_max_state_error": [
+        0.11109958952263888,
+        0.11825637510646558,
+        0.024423592429612784,
+        2.3871450594015187E-8,
+        1.3926270137076813E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.0065944121482756374,
+      "maximum_executed_reference_heading_difference_rad": 0.018158444981489774
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.49995857244667E-8,
-        "bound_residual": 1.2009734129403427E-7,
-        "dual_residual": 2.9592048811366567E-7,
-        "objective": -6602.3405164197338
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 9.0769005312019146E-7,
-      "terminal_pose_error": [
-        -0.0016011022830877408,
-        0.0012685352447674714,
-        0.0050999768096251785
+      "success": true,
+      "dynamics_residual": 2.4999638198117125E-8,
+      "bound_residual": 0,
+      "dual_residual": 2.926746596187968E-7,
+      "objective": -6441.1945147856322,
+      "independent_five_state_residual": 2.4999638362048493E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        3.8857805861880479E-16
       ],
-      "independent_control_ODE_error": 5.3290705182007514E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0078115429684162407
+      "minimum_geometric_node_clearance": 0.0099999076400147935,
+      "independent_control_replay_max_state_error": [
+        0.19071400747454814,
+        0.264803955411951,
+        0.033758205820065612,
+        2.4521453756420897E-8,
+        1.7383120165526122E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.15490152688647929,
+      "maximum_executed_reference_position_difference_m": 0.010513557371032154,
+      "maximum_executed_reference_heading_difference_rad": 0.02996088549690407
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999482232598846E-8,
-        "bound_residual": 1.1334517413530421E-7,
-        "dual_residual": 3.90382897563768E-7,
-        "objective": -4682.1827056192515
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 9.0769027316639495E-7,
-      "terminal_pose_error": [
-        -0.00078859863844926714,
-        0.0016357458526895519,
-        0.0062246755535206866
+      "success": true,
+      "dynamics_residual": 2.499877083811386E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.9646636906809363E-7,
+      "objective": -3950.1338471556492,
+      "independent_five_state_residual": 2.4998770435658013E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        7.7715611723760958E-16
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0092987631287075878
+      "minimum_geometric_node_clearance": 0.0099998573303543559,
+      "independent_control_replay_max_state_error": [
+        0.13257170457809142,
+        0.23802781485853153,
+        0.042493893694672824,
+        2.3706988372396154E-8,
+        1.3546216037774172E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.52071743290756145,
+      "maximum_executed_reference_position_difference_m": 0.018368643258726954,
+      "maximum_executed_reference_heading_difference_rad": 0.029899306169806853
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4998617551008628E-8,
-        "bound_residual": 9.6628068990689542E-8,
-        "dual_residual": 4.670396656081266E-7,
-        "objective": -6714.7101317674142
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.573804770595217E-7,
-      "terminal_pose_error": [
-        -6.2859692957717428E-5,
-        0.0013220419269763806,
-        0.00034858154198083092
+      "success": true,
+      "dynamics_residual": 2.4998547163736229E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.1933718602772387E-7,
+      "objective": -4015.5888425265575,
+      "independent_five_state_residual": 2.4998547212308486E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        3.1086244689504383E-15
       ],
-      "independent_control_ODE_error": 7.1054273576010019E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.012514269485031093
+      "minimum_geometric_node_clearance": 0.0099998276429025257,
+      "independent_control_replay_max_state_error": [
+        0.11228107158819878,
+        0.20016746627146098,
+        0.032928428301864487,
+        2.3964592532621509E-8,
+        9.5177903336463032E-9
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.21510245669647912,
+      "maximum_executed_reference_position_difference_m": 0.00792688687448028,
+      "maximum_executed_reference_heading_difference_rad": 0.023817870667270258
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4999471451292443E-8,
-        "bound_residual": 1.0054355026323236E-7,
-        "dual_residual": 4.4255072140231277E-7,
-        "objective": -10127.874352452325
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 9.0969087918058023E-7,
-      "terminal_pose_error": [
-        0.0013797944865826528,
-        -0.0016015798816848559,
-        0.00047025457892857503
+      "success": true,
+      "dynamics_residual": 2.4999395172031758E-8,
+      "bound_residual": 0,
+      "dual_residual": 2.3964195072778693E-7,
+      "objective": -3819.3027496462323,
+      "independent_five_state_residual": 2.4999395189378992E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        1.7319479184152442E-14
       ],
-      "independent_control_ODE_error": 1.0658141036401503E-14,
-      "continuous_hold_vs_Euler_node_defect": 0.011544701310807426
+      "minimum_geometric_node_clearance": 0.00999990964002162,
+      "independent_control_replay_max_state_error": [
+        0.076454083867232292,
+        0.11570822675445447,
+        0.020939452432305217,
+        2.4132030596035747E-8,
+        1.4033548767500292E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.18795310122617023,
+      "maximum_executed_reference_position_difference_m": 0.00505061192125276,
+      "maximum_executed_reference_heading_difference_rad": 0.016009331259508208
     },
     {
-      "passed": true,
-      "native_check": {
-        "success": true,
-        "dynamics_residual": 2.4998548828203404E-8,
-        "bound_residual": 1.3072772864219928E-7,
-        "dual_residual": 3.2262887827982922E-7,
-        "objective": -5544.7686120254421
-      },
-      "native_nodes_collision_free": true,
-      "native_nodes_collision_percent": 0,
-      "minimum_native_SAT_gap_m": 8.841902338074803E-7,
-      "terminal_pose_error": [
-        0.0010276953724925875,
-        0.0012780031922554613,
-        -0.004076080707947404
+      "success": true,
+      "dynamics_residual": 2.4999370001194121E-8,
+      "bound_residual": 0,
+      "dual_residual": 3.1568712088869688E-7,
+      "objective": -5110.0146964497326,
+      "independent_five_state_residual": 2.4999369992520504E-8,
+      "native_terminal_error": [
+        0,
+        0,
+        -2.6645352591003757E-15
       ],
-      "independent_control_ODE_error": 3.5527136788005009E-15,
-      "continuous_hold_vs_Euler_node_defect": 0.0063426391641326907
+      "minimum_geometric_node_clearance": 0.0099998841399754346,
+      "independent_control_replay_max_state_error": [
+        0.21936669616286961,
+        0.16447832734518464,
+        0.030525682198655923,
+        2.3856643771580366E-8,
+        1.3985460456389376E-8
+      ],
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0.42139978013924512,
+      "maximum_executed_reference_position_difference_m": 0.0091258176949110675,
+      "maximum_executed_reference_heading_difference_rad": 0.025800346831086451
     }
   ]
 }

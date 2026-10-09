@@ -3,16 +3,18 @@
   "cases": 12,
   "planner_success_count": 2,
   "evaluation_success_count": 2,
-  "terminal_reached_count": 0,
+  "terminal_reached_count": 2,
+  "zero_collision_count": 2,
+  "joint_count": 2,
   "unit": {
     "model_jacobian_error": 1.1102230246251565E-16,
     "point_potential_gradient_error": 3.0597524514064389E-10,
     "collocation_jacobian_error": 3.3044189606812324E-10,
     "curved_fixture_sqp_success": true,
-    "curved_fixture_time_s": 5.6518681919596974,
-    "curved_constraint_residual": 7.4940054162198066E-16,
+    "curved_fixture_time_s": 5.6638582307933474,
+    "curved_constraint_residual": 7.7715611723760958E-16,
     "native_node_interpolation_error": 0,
-    "dense_derivative_error": 1.187442949523998E-9,
+    "dense_derivative_error": 1.0509300096828156E-9,
     "exact_off_grid_cusps": true,
     "coincident_timestamp_merge": true
   },
@@ -20,53 +22,61 @@
     {},
     {},
     {
-      "collocation_residual": 8.72565908416334E-16,
+      "collocation_residual": 8.3266726846886741E-16,
       "endpoint_residual": 0,
       "output_field_error": 0,
       "nodes": 101,
       "obstacle_points": 166,
       "mesh": {
         "passed": true,
-        "max_ode_defect": 2.1886182924868436E-5,
+        "max_ode_defect": 2.2801809274053397E-5,
         "max_point_potential": 0,
-        "max_bound_violation": 4.2188474935755949E-15,
+        "max_bound_violation": 2.6645352591003757E-15,
         "samples": 1001,
-        "step_s": 0.00943371536175604
+        "step_s": 0.009511195151905058
       },
       "independent_integration_max_pose_error": [
-        6.1739503998126111E-7,
-        2.057441275127303E-7,
-        1.4078141830076163E-7
+        6.6845042479002359E-7,
+        1.8768886267395146E-7,
+        1.3227557982276039E-7
       ],
       "native_node_collision_percent": 0,
       "independent_replay_collision_percent": 0,
-      "native_time_s": 9.43371536175604
+      "native_time_s": 9.5111951519050582,
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.00019677601776677323,
+      "maximum_executed_reference_heading_difference_rad": 9.3077488589388122E-5
     },
     {},
     {},
     {},
     {
-      "collocation_residual": 8.6042284408449632E-16,
+      "collocation_residual": 7.4940054162198066E-16,
       "endpoint_residual": 0,
       "output_field_error": 0,
       "nodes": 101,
       "obstacle_points": 178,
       "mesh": {
         "passed": true,
-        "max_ode_defect": 2.1624537878461858E-5,
+        "max_ode_defect": 2.0052535514847314E-5,
         "max_point_potential": 0,
-        "max_bound_violation": 1.5543122344752192E-15,
+        "max_bound_violation": 4.6629367034256575E-15,
         "samples": 901,
-        "step_s": 0.0095944238492347862
+        "step_s": 0.0096104775687346315
       },
       "independent_integration_max_pose_error": [
-        6.0627266679214031E-7,
-        1.6735285068847361E-7,
-        1.0963204322145259E-7
+        6.5092311052339369E-7,
+        1.6738421315665164E-7,
+        9.964084202174206E-8
       ],
       "native_node_collision_percent": 0,
       "independent_replay_collision_percent": 0,
-      "native_time_s": 8.6349814643113074
+      "native_time_s": 8.6494298118611681,
+      "native_node_collision_count": 0,
+      "linear_reference_collision_percent": 0,
+      "maximum_executed_reference_position_difference_m": 0.00014962499142195102,
+      "maximum_executed_reference_heading_difference_rad": 0.00015156531520865713
     },
     {},
     {},

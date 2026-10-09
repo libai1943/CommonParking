@@ -4,7 +4,7 @@ A MATLAB benchmark for motion planning in 12 static terminal-parking scenes. The
 
 [Forty-method result index and verification](docs/RESULT_INDEX.md) · [Evaluation protocol](evaluation/README.md) · [Result contract](docs/RESULT_FORMAT.md)
 
-[Assessment by method category](docs/METHOD_CATEGORIES.md) · [LIOM formulation and endpoint interpretation](planners/LIOM/README.md)
+[Assessment by method category](docs/METHOD_CATEGORIES.md) · [Vehicle-model alignment and outstanding gaps](docs/MODEL_ALIGNMENT.md) · [LIOM formulation and endpoint interpretation](planners/LIOM/README.md)
 
 ## Quick start
 
@@ -999,26 +999,26 @@ Planning time includes setup, case loading, the complete directed roadmap, conti
 <!-- /results:CC_PRM -->
 
 <!-- results:TDR_OBCA -->
-## TDR-OBCA printed formulation: measured results
+## TDR_OBCA: measured results
 
-Temporal constant-jerk QPs, the analytically solved distance-dual QP and the printed fixed-time Euler NLP produced 12/12 native trajectories; 12 execution optimizations succeeded and 8 attained the strict terminal tolerance. **This follows the printed absolute-state and negative-distance objective, not later Apollo source variants.** Terminal pose remains soft; a disclosed hard terminal-zero-speed condition enforces the benchmark rest-to-rest task. The standalone call has no previous MPC cycle, so the prior-cycle input is zero. Unpublished weights and modified temporal-QP choices are explicit and uniform across cases. Independent tests verify the dual QP against numerical optimization, constant-jerk integration, all NLP constraints/objective, full-body node clearance and continuous-input integration. See [the equation mapping, source differences and static-task adaptations](planners/TDR_OBCA/README.md).
+12/12 native solves and 12/12 evaluations succeeded; 12 executions attained the terminal tolerance, 5 had zero measured collision frames, and 5 passed both checks. The temporal QP and distance-dual NLP use the common five-state rear bicycle, 200-node explicit Euler, exact task/rest endpoints and 0.01 m separation. Steering and steering rate are native state/input quantities. Native feasibility and executed collision/terminal outcomes are checked separately. See [the formulation and numerical settings](planners/TDR_OBCA/README.md).
 
-Planning time includes Hybrid A*, all phase speed QPs, exact distance-dual initialization, the final NLP and output conversion. Numerical-library threads are fixed to one. These measurements differ from the paper's deployed Apollo pipeline and are not controlled hardware comparisons.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 18.0075 | 0 | yes | 20.1525 | 8.6977 | 3.2329 | 2 | 129.3063 | no |
-| 02 | yes | yes | 126.9965 | 5.9594 | yes | 32.3844 | 8.0820 | 3.9160 | 2 | 129.9797 | no |
-| 03 | yes | yes | 15.7545 | 0 | yes | 14.4890 | 10.4108 | 1.3004 | 1 | 122.1123 | no |
-| 04 | yes | yes | 17.1182 | 2.1611 | yes | 14.9446 | 13.2139 | 0.9071 | 1 | 146.2097 | no |
-| 05 | yes | yes | 16.0026 | 0 | yes | 15.7975 | 9.7419 | 1.3714 | 1 | 116.1331 | no |
-| 06 | yes | yes | 15.4161 | 0 | yes | 16.0909 | 11.0483 | 1.4982 | 1 | 130.4651 | no |
-| 07 | yes | yes | 15.1623 | 0.8323 | yes | 13.8151 | 14.7484 | 1.9326 | 1 | 171.8099 | no |
-| 08 | yes | yes | 23.5755 | 1.7383 | no | 21.1118 | 11.5006 | 3.3848 | 3 | 163.8541 | no |
-| 09 | yes | yes | 33.8492 | 0 | no | 23.9964 | 9.1230 | 3.3475 | 2 | 134.7048 | no |
-| 10 | yes | yes | 55.0737 | 0 | yes | 25.1172 | 10.8360 | 3.2955 | 0 | 141.3156 | no |
-| 11 | yes | yes | 26.7340 | 0.0067 | no | 29.7624 | 8.1489 | 5.2289 | 1 | 138.7784 | no |
-| 12 | yes | yes | 27.9476 | 0 | no | 25.1404 | 4.9107 | 2.9813 | 1 | 83.9197 | no |
+| 01 | yes | yes | 3.9567 | 0 | yes | 19.5838 | 9.4782 | 3.1469 | 2 | 136.2511 | no |
+| 02 | yes | yes | 11.5960 | 4.4801 | yes | 20.7128 | 8.7197 | 3.5870 | 2 | 133.0669 | no |
+| 03 | yes | yes | 0.7865 | 0 | yes | 14.6291 | 10.4435 | 1.2797 | 1 | 122.2318 | no |
+| 04 | yes | yes | 0.6791 | 1.2780 | yes | 14.6305 | 13.3580 | 0.9393 | 1 | 147.9727 | no |
+| 05 | yes | yes | 0.6614 | 0 | yes | 15.1823 | 11.2858 | 1.2979 | 1 | 130.8371 | no |
+| 06 | yes | yes | 1.4116 | 0 | yes | 16.2231 | 11.0460 | 1.4740 | 1 | 130.2002 | no |
+| 07 | yes | yes | 1.1228 | 0 | yes | 13.8201 | 14.7525 | 1.9275 | 1 | 171.8000 | no |
+| 08 | yes | yes | 1.5926 | 1.6937 | yes | 19.8952 | 13.8166 | 3.2883 | 3 | 186.0489 | no |
+| 09 | yes | yes | 4.0722 | 1.1255 | yes | 27.0977 | 15.8262 | 5.2506 | 2 | 220.7671 | no |
+| 10 | yes | yes | 5.2133 | 0.5423 | yes | 18.6242 | 12.2659 | 0.6856 | 1 | 134.5156 | no |
+| 11 | yes | yes | 3.4228 | 1.2152 | yes | 11.8488 | 13.1560 | 2.0380 | 1 | 156.9403 | no |
+| 12 | yes | yes | 4.3179 | 0.2349 | yes | 17.8773 | 13.2372 | 2.2139 | 1 | 159.5115 | no |
 
 [CSV](results/TDR_OBCA/metrics.csv) · [JSON](results/TDR_OBCA/metrics.json) · [validation](results/TDR_OBCA/validation.json).
 <!-- /results:TDR_OBCA -->
@@ -1149,26 +1149,26 @@ Planning time includes setup, case loading, Hybrid A*, the tracking OCP, every s
 <!-- /results:IndirectOCP -->
 
 <!-- results:PointPotentialOCP -->
-## Point-potential optimal control: measured results
+## PointPotentialOCP: measured results
 
-The direct-collocation/SQP method produced 2/12 native trajectories; 2 execution optimizations succeeded and 0 attained the terminal tolerance. The printed point-potential constraints, obstacle-free initialization and mesh-refinement loop are retained. MATLAB SQP replaces SNOPT, with disclosed interpolation, finite budgets and an optional deterministic initial-guess perturbation. Native success requires a positive solver flag and sampled mesh-accuracy checks. The printed potential has nonsmooth and potentially discontinuous branches; point exclusion is not full-polygon avoidance. Independent 1 ms integration of the native linear controls differed from native XY by at most 6.17395e-07 m. All failed initializations, obstacle solves and mesh checks remain failures; they do not establish scene infeasibility or original-SNOPT performance. See [the formula, solver replacement and explicit numerical choices](planners/PointPotentialOCP/README.md).
+2/12 native solves and 2/12 evaluations succeeded; 2 executions attained the terminal tolerance, 2 had zero measured collision frames, and 2 passed both checks. The point-potential SQP retains Hermite-Simpson pose collocation and linear speed/steering, with both endpoint speed and steering fixed to zero under the common limits. Each SQP call has a 60 s between-iteration budget. Native convergence, sampled mesh accuracy and common execution checks remain separate. See [the formulation and numerical settings](planners/PointPotentialOCP/README.md).
 
-Planning time includes setup, case loading, obstacle-free initialization and retry when needed, every obstacle OCP and mesh-refinement attempt, mesh checks and trajectory conversion. Numerical-library threads are fixed to one; concurrent development jobs were active. These are not SNOPT timings or controlled hardware comparisons.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | no | no | 74.8212 | — | — | — | — | — | — | — | — |
-| 02 | no | no | 71.5620 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 35.1346 | 0 | no | 13.6604 | 4.1211 | 3.0136 | 1 | 76.3469 | no |
-| 04 | no | no | 49.1338 | — | — | — | — | — | — | — | — |
-| 05 | no | no | 57.9407 | — | — | — | — | — | — | — | — |
-| 06 | no | no | 72.3712 | — | — | — | — | — | — | — | — |
-| 07 | yes | yes | 31.4435 | 0 | no | 10.0114 | 6.4971 | 2.0426 | 1 | 90.3974 | no |
-| 08 | no | no | 103.2027 | — | — | — | — | — | — | — | — |
-| 09 | no | no | 50.0144 | — | — | — | — | — | — | — | — |
-| 10 | no | no | 113.1856 | — | — | — | — | — | — | — | — |
-| 11 | no | no | 38.9558 | — | — | — | — | — | — | — | — |
-| 12 | no | no | 44.3944 | — | — | — | — | — | — | — | — |
+| 01 | no | no | 54.8588 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 44.3152 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 8.6760 | 0 | yes | 9.5333 | 12.1839 | 1.9791 | 1 | 146.6305 | no |
+| 04 | no | no | 13.9502 | — | — | — | — | — | — | — | — |
+| 05 | no | no | 8.7728 | — | — | — | — | — | — | — | — |
+| 06 | no | no | 27.6160 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 7.0079 | 0 | yes | 8.6661 | 10.0008 | 1.7290 | 1 | 122.2986 | no |
+| 08 | no | no | 26.3509 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 28.3844 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 33.2255 | — | — | — | — | — | — | — | — |
+| 11 | no | no | 9.4444 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 13.4382 | — | — | — | — | — | — | — | — |
 
 [CSV](results/PointPotentialOCP/metrics.csv) · [JSON](results/PointPotentialOCP/metrics.json) · [validation](results/PointPotentialOCP/validation.json).
 <!-- /results:PointPotentialOCP -->

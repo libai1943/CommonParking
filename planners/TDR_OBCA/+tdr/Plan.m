@@ -10,7 +10,7 @@ if ~temporal.success,result.status.code='temporal_QP_failed';result.status.messa
 result.diagnostics.initial=initial;result.diagnostics.dual_seed=dual;result.diagnostics.native=native;
 if ~isempty(q),result.trajectory=q;end
 if solver.success
- result.status=struct('success',true,'code','solved','message','TDR-OBCA printed objective and fixed-time NLP converged; terminal pose is soft.');
+ result.status=struct('success',true,'code','solved','message','TDR-OBCA fixed-time NLP with the common five-state bicycle and exact terminal state converged.');
 else
  result.status.code='optimization_failed';result.status.message=solver.message;
 end

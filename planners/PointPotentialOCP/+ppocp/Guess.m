@@ -8,5 +8,5 @@ end
 if perturbed
     q(3,:)=.05*sin(2*pi*phase);q(4,:)=.25*sin(2*pi*phase);q(5,:)=.05*sin(pi*phase);
 end
-q(:,1)=[a;t.theta0;0;0];q(1:4,end)=[b;t.thetaf;0];z=[q(:);o.initialTime];
+q(:,1)=[a;t.theta0;0;0];q(:,end)=[b;t.thetaf;0;0];z=[q(:);o.initialTime];
 end

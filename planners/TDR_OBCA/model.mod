@@ -6,7 +6,8 @@ param lw;param vmax;param amax;param phimax;param wmax;param epsilon;
 param h >0;param weights{1..6};param boundary{1..8};
 param previous_phi{1..N-1} default 0;param previous_a{1..N-1} default 0;
 var x{1..N};var y{1..N};var theta{1..N};var v{1..N} >= -vmax, <= vmax;
-var phi{1..N-1} >= -phimax, <= phimax;var a{1..N-1} >= -amax, <= amax;
+var phi{1..N} >= -phimax, <= phimax;var a{1..N-1} >= -amax, <= amax;
+var omega{1..N-1} >=-wmax,<=wmax;
 var lambda{2..N,1..E} >=0;var mu{2..N,1..M,1..4} >=0;var d{2..N,1..M} <= -epsilon;
 minimize cost:
  sum{i in 2..N}(weights[1]*(x[i]^2+y[i]^2+v[i]^2+theta[i]^2)
@@ -19,11 +20,12 @@ subject to dx{i in 1..N-1}: x[i+1]=x[i]+h*v[i]*cos(theta[i]);
 subject to dy{i in 1..N-1}: y[i+1]=y[i]+h*v[i]*sin(theta[i]);
 subject to dh{i in 1..N-1}: theta[i+1]=theta[i]+h*v[i]*tan(phi[i])/lw;
 subject to dv{i in 1..N-1}: v[i+1]=v[i]+h*a[i];
-subject to steering_rate{i in 2..N-1}: -wmax <= (phi[i]-phi[i-1])/h <= wmax;
-subject to first_steering_rate: -wmax <= phi[1]/h <= wmax;
+subject to steering_flow{i in 1..N-1}:phi[i+1]=phi[i]+h*omega[i];
+subject to start_phi:phi[1]=0;subject to goal_phi:phi[N]=0;
+subject to goal_x:x[N]=boundary[5];subject to goal_y:y[N]=boundary[6];subject to goal_heading:theta[N]=boundary[7];
 subject to start_x:x[1]=boundary[1];subject to start_y:y[1]=boundary[2];
 subject to start_v:v[1]=boundary[4];subject to start_heading:theta[1]=boundary[3];
-# Benchmark rest-to-rest requirement; terminal pose remains soft as in Eq. (9).
+# Whole-task benchmark boundary: exact pose and zero speed/steering at both ends.
 subject to terminal_rest:v[N]=0;
 subject to dual_x{i in 2..N,j in 1..M}:
  mu[i,j,1]-mu[i,j,2]+cos(theta[i])*sum{k in first[j]..last[j]}A[k,1]*lambda[i,k]

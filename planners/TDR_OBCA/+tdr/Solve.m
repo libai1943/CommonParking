@@ -12,8 +12,9 @@ fprintf(f,'param A: 1 2 :=\n');fprintf(f,'%d %.17g %.17g\n',[(1:E)',A]');fprintf
 vector(f,'b',b);vector(f,'g',[v.lw+v.lf,v.lr,v.lb/2,v.lb/2]);vector(f,'weights',o.weights);
 vector(f,'boundary',[c.task.x0,c.task.y0,c.task.theta0,0,c.task.xf,c.task.yf,initial.theta(end),0]);clear closer;
 f=fopen(fullfile(folder,'initial.run'),'w');closer=onCleanup(@()fclose(f));
-for key={'x','y','theta','v','phi','a'}
- name=key{1};n=N-ismember(name,{'phi','a'});fprintf(f,['let ',name,'[%d]:=%.17g;\n'],[(1:n)',initial.(name)(1:n)]');
+initial.phi([1 end])=0;initial.omega=[diff(initial.phi)./diff(initial.t);0];
+for key={'x','y','theta','v','phi','a','omega'}
+ name=key{1};n=N-ismember(name,{'omega','a'});fprintf(f,['let ',name,'[%d]:=%.17g;\n'],[(1:n)',initial.(name)(1:n)]');
 end
 for e=1:E,fprintf(f,['let lambda[%d,',num2str(e),']:=%.17g;\n'],[(2:N)',lambda(2:N,e)]');end
 for j=1:M
@@ -26,8 +27,8 @@ fprintf(f,'reset;model model.mod;data data.dat;include initial.run;\noption solv
 fprintf(f,'option ipopt_options "tol=%.9g acceptable_tol=%.9g max_iter=%d max_cpu_time=%.9g print_level=3 linear_solver=ma97 mu_strategy=adaptive";\n',o.tolerance,o.tolerance,o.maxIterations,o.maxCpuSeconds);
 fprintf(f,'solve;\nprintf "%%d\\n%%s\\n%%s\\n",solve_result_num,solve_result,solve_message > "status.txt";\n');
 fprintf(f,'printf "%%.17g\\n",cost > "objective.txt";\n');
-fprintf(f,'printf {i in 1..N} "%%.17g %%.17g %%.17g %%.17g\\n",x[i],y[i],theta[i],v[i] > "states.txt";\n');
-fprintf(f,'printf {i in 1..N-1} "%%.17g %%.17g\\n",phi[i],a[i] > "controls.txt";\n');
+fprintf(f,'printf {i in 1..N} "%%.17g %%.17g %%.17g %%.17g %%.17g\\n",x[i],y[i],theta[i],v[i],phi[i] > "states.txt";\n');
+fprintf(f,'printf {i in 1..N-1} "%%.17g %%.17g\\n",omega[i],a[i] > "controls.txt";\n');
 fprintf(f,'printf {i in 2..N,j in 1..E} "%%.17g\\n",lambda[i,j] > "lambda.txt";\n');
 fprintf(f,'printf {i in 2..N,j in 1..M,k in 1..4} "%%.17g\\n",mu[i,j,k] > "mu.txt";\n');
 fprintf(f,'printf {i in 2..N,j in 1..M} "%%.17g\\n",d[i,j] > "d.txt";\n');clear closer;
@@ -43,10 +44,10 @@ for j=1:numel(files)
  file=fullfile(folder,[files{j},'.txt']);if ~isfile(file),solver.success=false;return;end
  data{j}=readmatrix(file,'FileType','text');if ~isreal(data{j})||any(~isfinite(data{j}),'all'),solver.success=false;solver.message='Invalid native output.';return;end
 end
-X=data{1};U=data{2};assert(isequal(size(X),[N,4])&&isequal(size(U),[N-1,2]));
+X=data{1};U=data{2};assert(isequal(size(X),[N,5])&&isequal(size(U),[N-1,2]));
 lambda=reshape(data{3},E,N-1)';mu=permute(reshape(data{4},4,M,N-1),[3,2,1]);d=reshape(data{5},M,N-1)';
-phi=[U(:,1);U(end,1)];q=struct('t',initial.t,'x',X(:,1),'y',X(:,2),'theta',X(:,3),'v',X(:,4), ...
- 'phi',phi,'a',[U(:,2);0],'omega',[diff(phi)./diff(initial.t);0]);
+phi=X(:,5);q=struct('t',initial.t,'x',X(:,1),'y',X(:,2),'theta',X(:,3),'v',X(:,4), ...
+ 'phi',phi,'a',[U(:,2);0],'omega',[U(:,1);0]);
 check=tdr.Check(c,q,lambda,mu,d,o,initial.theta(end));solver.check=check;solver.objective=data{6};
 solver.success=solver.success&&check.success&&abs(check.objective-data{6})<1e-5*max(1,abs(data{6}));
 native=struct('lambda',lambda,'mu',mu,'d',d,'check',check,'goal_heading',initial.theta(end));

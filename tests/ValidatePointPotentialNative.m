@@ -2,8 +2,8 @@ function check=ValidatePointPotentialNative(c,result)
 assert(result.status.success&&result.solver.success);o=result.diagnostics.options;n=result.diagnostics.native;z=n.z;N=size(n.local_states,1);v=c.vehicle;
 [local,points,frame]=ppocp.Frame(c,o);assert(isequal(points,result.diagnostics.local_points)&&isequal(frame,n.frame));ctx=struct('grid',linspace(0,1,N),'points',points,'vehicle',v);
 [ineq,eq]=ppocp.Constraints(z,ctx);residual=max([0;ineq;abs(eq)]);assert(residual<=o.constraintTolerance);mesh=ppocp.MeshCheck(z,points,v,o);assert(mesh.passed);
-start=[local.task.x0,local.task.y0,local.task.theta0,0,0];goal=[local.task.xf,local.task.yf,local.task.thetaf,0];q=n.local_states;
-endpoint=max([abs(q(1,:)-start),abs(q(end,1:4)-goal)]);assert(endpoint<1e-10);
+start=[local.task.x0,local.task.y0,local.task.theta0,0,0];goal=[local.task.xf,local.task.yf,local.task.thetaf,0,0];q=n.local_states;
+endpoint=max([abs(q(1,:)-start),abs(q(end,:)-goal)]);assert(endpoint<1e-10);
 [expected,~]=ppocp.Output(z,v,frame,o);fieldError=0;
 for item={'t','x','y','theta','v','phi','a','omega'},f=item{1};fieldError=max(fieldError,max(abs(expected.(f)-result.trajectory.(f))));end
 assert(fieldError<1e-12);assert(all(result.trajectory.v(n.cusp_indices)==0));
