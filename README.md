@@ -71,6 +71,8 @@ TDR_OBCA uses MATLAB Navigation/Optimization Toolboxes and the external AMPL/Ipo
 
 RTR_TTS uses base MATLAB and the shared CC_PRM clothoid/distance module (`BuildCCSteer` once). It does not call the CC-family connector or roadmap search. [Algorithm, numerical choices and dependencies](planners/RTR_TTS/README.md).
 
+Sinusoid_RTR uses base MATLAB, RTR_TTS geometric-search helpers and the shared CC_PRM distance-query module (`BuildCCSteer` once). All sinusoidal integrations and mileage inversion are implemented in MATLAB. [Paper scope and dependencies](planners/Sinusoid_RTR/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -104,6 +106,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Sinusoidal steering + RTR](planners/Sinusoid_RTR/README.md) (`Sinusoid_RTR`) | Path | Murray & Sastry, CDC 1990 steering construction, with disclosed RTR obstacle adapter | Implemented and tested on all 12 cases |
 | [RTR + TTS](planners/RTR_TTS/README.md) (`RTR_TTS`) | Path | Kiss & Tevesz, JAT 2017; RT trees and continuous-curvature local approximation | Implemented and tested on all 12 cases |
 | [TDR-OBCA](planners/TDR_OBCA/README.md) (`TDR_OBCA`) | Trajectory | He et al., ACC 2021; temporal and dual initialization with printed fixed-time NLP | Implemented and tested on all 12 cases |
 | [CC-Steer + directed PRM](planners/CC_PRM/README.md) (`CC_PRM`) | Path | Fraichard & Scheuer, TRO 2004; continuous-curvature connector with disclosed roadmap adapter | Implemented and tested on all 12 cases |
@@ -1026,3 +1029,28 @@ Planning time includes setup, case loading, both RT trees, all sampled/analytic 
 
 [CSV](results/RTR_TTS/metrics.csv) · [JSON](results/RTR_TTS/metrics.json) · [validation](results/RTR_TTS/validation.json).
 <!-- /results:RTR_TTS -->
+
+<!-- results:Sinusoid_RTR -->
+## Nonlinear sinusoidal steering with RTR adapter: measured results
+
+The nonlinear three-stage sinusoidal steering construction, combined with an explicitly separate RTR obstacle-search adapter, produced 12/12 native paths; 12 execution optimizations succeeded and 12 attained the terminal tolerance. **The 1990 article supplies a steering construction, not this complete obstacle planner; the benchmark combination is named Sinusoid_RTR to make that distinction explicit.** Exact nonlinear integrals, physical wheelbase normalization and harmonic symmetries are retained. Every native path passed continuous full-body checks, but case 6 has 0.1106% collision frames after execution. Cases 5 and 12 require approximately 728 s and 922 s of execution with 274 and 230 reversals, respectively. These long maneuvers are retained; no steering-rate or time-optimality claim is made for the native path. Independent validation covers eighty connection queries, twenty-seven near-chart-boundary cases, shrinking maneuvers, every submitted phase's physical ODE, exact cusps and continuous full-rectangle collision checks. See [the source equations, amplitude selection and obstacle adapter](planners/Sinusoid_RTR/README.md).
+
+Planning time includes setup, case loading, RTR search, all nonlinear sinusoidal connections, quadrature, recursive approximation and mileage inversion. The one-time distance-module build is excluded. One seeded run per case is reported; these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 12.1527 | 0 | yes | 103.7097 | 15.7286 | 11.6994 | 28 | 414.2804 | no |
+| 02 | yes | yes | 17.2838 | 0 | yes | 238.1713 | 38.4511 | 12.9046 | 92 | 973.5572 | no |
+| 03 | yes | yes | 11.9971 | 0 | yes | 58.2963 | 5.5677 | 9.3139 | 7 | 183.8153 | no |
+| 04 | yes | yes | 11.0596 | 0 | yes | 52.3684 | 6.2847 | 6.7859 | 7 | 165.7065 | no |
+| 05 | yes | yes | 22.0817 | 0 | yes | 728.4463 | 71.2543 | 36.3144 | 274 | 2445.6866 | no |
+| 06 | yes | yes | 10.8300 | 0.1106 | yes | 138.3262 | 9.6220 | 22.5155 | 16 | 401.3749 | no |
+| 07 | yes | yes | 10.5817 | 0 | yes | 73.4828 | 6.5370 | 10.2364 | 10 | 217.7338 | no |
+| 08 | yes | yes | 11.4148 | 0 | yes | 162.0044 | 14.3978 | 17.9257 | 25 | 448.2354 | no |
+| 09 | yes | yes | 12.0338 | 0 | yes | 158.4920 | 16.2135 | 12.5647 | 40 | 487.7821 | no |
+| 10 | yes | yes | 10.6654 | 0 | yes | 124.3588 | 10.0609 | 20.1924 | 12 | 362.5335 | no |
+| 11 | yes | yes | 10.3852 | 0 | yes | 36.9679 | 4.4032 | 3.7345 | 2 | 91.3772 | no |
+| 12 | yes | yes | 19.7805 | 0 | yes | 921.9265 | 92.6744 | 72.0638 | 230 | 2797.3822 | no |
+
+[CSV](results/Sinusoid_RTR/metrics.csv) · [JSON](results/Sinusoid_RTR/metrics.json) · [validation](results/Sinusoid_RTR/validation.json).
+<!-- /results:Sinusoid_RTR -->

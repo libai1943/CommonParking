@@ -68,6 +68,8 @@ switch name
         canonical='BiRRT_HCR';planner=@bhcr.Plan;kind='path';
     case "CC_PRM"
         canonical='CC_PRM';planner=@ccp.Plan;kind='path';
+    case "SINUSOID_RTR"
+        canonical = 'Sinusoid_RTR'; planner = @sinsteer.Plan;kind='path';
     case "RTR_TTS"
         canonical = 'RTR_TTS'; planner = @rtr.Plan;kind='path';
     case "TDR_OBCA"
