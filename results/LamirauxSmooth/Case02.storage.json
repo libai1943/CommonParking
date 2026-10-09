@@ -1,0 +1,11 @@
+{
+  "format": "mat-v7-chunks-v1",
+  "bytes": 202342,
+  "sha256": "72b5c825b38ee5f03219046b06aae06e959dda22e4512a35bbe9dc4a8f870d19",
+  "parts": [
+    "Case02.part001.data",
+    "Case02.part002.data",
+    "Case02.part003.data",
+    "Case02.part004.data"
+  ]
+}
