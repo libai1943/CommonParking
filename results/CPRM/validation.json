@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 7,
+  "evaluation_success_count": 7,
+  "terminal_reached_count": 4,
+  "unit": {
+    "passed": true,
+    "fillet_connections": 200,
+    "maximum_fillet_endpoint_error": 1.2434497875801753E-14,
+    "spline_span_curvature_bound_gap": 1.5101964123687139E-10,
+    "thin_barrier_rejected": true
+  },
+  "independent_checks": [
+    {},
+    {},
+    {
+      "continuous_pieces_checked": 18,
+      "accepted_cubic_spans": 0,
+      "maximum_pose_join_error": 1.2212453270876722E-15,
+      "adaptive_quadrature_length_error": 2.2204460492503131E-16,
+      "adaptive_position_integral_error": 8.8817841970012523E-16,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 6.6613381477509392E-16,
+      "path_length_m": 16.180027684448415,
+      "gear_changes": 2,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "continuous_pieces_checked": 28,
+      "accepted_cubic_spans": 4,
+      "maximum_pose_join_error": 4.1078251911130792E-15,
+      "adaptive_quadrature_length_error": 4.4408920985006262E-16,
+      "adaptive_position_integral_error": 8.8817841970012523E-16,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 2.2204460492503131E-16,
+      "path_length_m": 26.901175230144577,
+      "gear_changes": 5,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {},
+    {
+      "continuous_pieces_checked": 24,
+      "accepted_cubic_spans": 0,
+      "maximum_pose_join_error": 2.6645352591003757E-15,
+      "adaptive_quadrature_length_error": 2.2204460492503131E-16,
+      "adaptive_position_integral_error": 8.8817841970012523E-16,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 2.2204460492503131E-16,
+      "path_length_m": 18.017253242286333,
+      "gear_changes": 4,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "continuous_pieces_checked": 24,
+      "accepted_cubic_spans": 7,
+      "maximum_pose_join_error": 1.0880185641326534E-14,
+      "adaptive_quadrature_length_error": 8.8817841970012523E-16,
+      "adaptive_position_integral_error": 1.7763568394002505E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 9.9920072216264089E-16,
+      "path_length_m": 26.908887375647769,
+      "gear_changes": 6,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "continuous_pieces_checked": 19,
+      "accepted_cubic_spans": 4,
+      "maximum_pose_join_error": 6.283862319378386E-14,
+      "adaptive_quadrature_length_error": 4.4408920985006262E-16,
+      "adaptive_position_integral_error": 1.2434497875801753E-14,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 6.106226635438361E-16,
+      "path_length_m": 18.063503174369835,
+      "gear_changes": 4,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {},
+    {
+      "continuous_pieces_checked": 11,
+      "accepted_cubic_spans": 3,
+      "maximum_pose_join_error": 3.5527136788005009E-15,
+      "adaptive_quadrature_length_error": 8.8817841970012523E-16,
+      "adaptive_position_integral_error": 1.7763568394002505E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 2.4492935982947064E-16,
+      "path_length_m": 22.586380054336217,
+      "gear_changes": 4,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {
+      "continuous_pieces_checked": 29,
+      "accepted_cubic_spans": 4,
+      "maximum_pose_join_error": 3.9968028886505635E-15,
+      "adaptive_quadrature_length_error": 1.7763568394002505E-15,
+      "adaptive_position_integral_error": 4.4408920985006262E-15,
+      "maximum_curvature": 0.30081727873681408,
+      "maximum_endpoint_error": 1.6653345369377348E-15,
+      "path_length_m": 31.962567882871504,
+      "gear_changes": 15,
+      "dense_reference_step_m": 0.01,
+      "dense_reference_collision_percent": 0
+    },
+    {}
+  ]
+}

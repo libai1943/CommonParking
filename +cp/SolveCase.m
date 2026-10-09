@@ -16,6 +16,8 @@ switch name
         canonical = 'LaumondRS'; planner = @laumond.Plan;kind='path';
     case "LAMIRAUXSMOOTH"
         canonical = 'LamirauxSmooth'; planner = @lamiraux.Plan;kind='path';
+    case "CPRM"
+        canonical = 'CPRM'; planner = @cprm.Plan;kind='path';
     case "BIRRT_HC"
         canonical = 'BiRRT_HC'; planner = @bihc.Plan;kind='path';
     case "TRIANGLEAREA"

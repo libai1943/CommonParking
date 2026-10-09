@@ -66,6 +66,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [C-PRM](planners/CPRM/README.md) (`CPRM`) | Path | Song & Amato, IROS 2001; lazy customized roadmap and cubic smoothing | Implemented and tested on all 12 cases |
 | [Smooth canonical curves](planners/LamirauxSmooth/README.md) (`LamirauxSmooth`) | Path | Lamiraux & Laumond, TRA 2001; smooth steering and holonomic-path approximation | Implemented and tested on all 12 cases |
 | [Geometric subdivision + RS](planners/LaumondRS/README.md) (`LaumondRS`) | Path | Laumond et al., TRA 1994; recursive shortest-curve approximation and shortening | Implemented and tested on all 12 cases |
 | [SLiFS](planners/SLiFS/README.md) (`SLiFS`) | Trajectory | Sun et al., TITS 2022; L1 convexification within circle-centre feasible sets | Implemented and tested on all 12 cases |
@@ -364,3 +365,28 @@ Planning times include all online construction, search and smoothing stages. MAT
 
 [CSV](results/LamirauxSmooth/metrics.csv) · [JSON](results/LamirauxSmooth/metrics.json) · [validation](results/LamirauxSmooth/validation.json).
 <!-- /results:LamirauxSmooth -->
+
+<!-- results:CPRM -->
+## Customizable probabilistic roadmaps: measured results
+
+Seven of the 12 fixed-seed calls found a validated roadmap path. All seven execution optimizations succeeded with zero measured collision frames; four attained the terminal tolerance. The five native query failures remain failures. The planner rebuilds the roadmap for every call, so these timings include construction and do not measure multi-query reuse. The paper's cubic smoothing is attempted on eligible sections; retained circular sections and endpoint attachments can have curvature jumps. Independent checks verified tangent fillets, spline basis conversion and curvature extrema, continuous footprint clearance, exact cusps, endpoint poses and mileage quadrature. See [the two roadmap levels, lazy query, partial smoothing and disclosed adapters](planners/CPRM/README.md).
+
+Planning times include all online construction, search and smoothing stages. MATLAB uses its default numerical-library thread setting for this geometric method. Other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 5.6941 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 3.9149 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 4.1164 | 0 | yes | 39.1141 | 3.4155 | 9.3815 | 3 | 142.9694 | no |
+| 04 | yes | yes | 3.8328 | 0 | yes | 59.5745 | 3.9753 | 10.9954 | 6 | 179.7067 | no |
+| 05 | no | no | 3.8658 | — | — | — | — | — | — | — | — |
+| 06 | yes | yes | 3.6858 | 0 | no | 47.6390 | 4.1116 | 13.3332 | 5 | 199.4480 | yes |
+| 07 | yes | yes | 4.1042 | 0 | yes | 72.7273 | 4.1483 | 11.3261 | 7 | 189.7439 | no |
+| 08 | yes | yes | 3.6303 | 0 | no | 52.2235 | 4.4123 | 12.5614 | 5 | 194.7377 | yes |
+| 09 | no | no | 3.9503 | — | — | — | — | — | — | — | — |
+| 10 | yes | yes | 4.9054 | 0 | yes | 58.9474 | 3.5718 | 17.7339 | 5 | 238.0568 | no |
+| 11 | yes | yes | 3.7912 | 0 | no | 115.7534 | 4.5756 | 22.1000 | 16 | 346.7559 | no |
+| 12 | no | no | 3.3167 | — | — | — | — | — | — | — | — |
+
+[CSV](results/CPRM/metrics.csv) · [JSON](results/CPRM/metrics.json) · [validation](results/CPRM/validation.json).
+<!-- /results:CPRM -->
