@@ -374,24 +374,24 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- results:SLiFS -->
 ## SLiFS: measured results
 
-Six cases passed the native QP/iteration criteria and independent evaluation; all six had 0% measured collision frames and attained the terminal tolerance. The other six are blocked at an endpoint by the paper's five-circle vehicle cover plus its retained 0.1 m safety margin. The implementation uses the paper's L1 linearization/feasible-set iterations and first-step perturbation, with its explicitly permitted Hybrid A* initializer. MATLAB quadprog replaces the article's CPLEX backend. Independent checks recomputed the nonlinear discrete residuals, original objective, affine and physical circle distances, motion bounds and swept footprints. See [the paper mapping and executable interpretations of the pseudocode](planners/SLiFS/README.md).
+10/12 native solves and 10/12 evaluations succeeded; 9 executions attained the terminal tolerance, 7 had zero measured collision frames, and 6 passed both checks. The L1 successive-linearization QPs, circle-centre feasible sets and first-step perturbations use 200 states, three full-body covering circles and 0.01 m optimization clearance. The fixed QP budget is 300; lack of convergence remains failure. Hybrid A* supplies the initial path. Analytic derivatives, physical and affine circle distances, discrete dynamics, endpoints, controls and swept footprints are independently checked. See [the formulation and numerical settings](planners/SLiFS/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 22.3384 | 0 | yes | 15.2124 | 5.0855 | 2.1903 | 2 | 82.7580 | no |
-| 02 | no | no | 1.7766 | — | — | — | — | — | — | — | — |
-| 03 | no | no | 1.7381 | — | — | — | — | — | — | — | — |
-| 04 | yes | yes | 5.8933 | 0 | yes | 14.3939 | 4.8198 | 0.8757 | 1 | 61.9549 | no |
-| 05 | yes | yes | 3.8016 | 0 | yes | 26.5562 | 2.4348 | 3.4800 | 3 | 74.1480 | no |
-| 06 | no | no | 1.7182 | — | — | — | — | — | — | — | — |
-| 07 | no | no | 1.6436 | — | — | — | — | — | — | — | — |
-| 08 | yes | yes | 4.5597 | 0 | yes | 16.2578 | 7.4657 | 2.9942 | 3 | 119.5986 | no |
-| 09 | yes | yes | 9.0320 | 0 | yes | 29.9632 | 5.0637 | 5.6174 | 6 | 136.8114 | no |
-| 10 | no | no | 1.6056 | — | — | — | — | — | — | — | — |
-| 11 | yes | yes | 8.2909 | 0 | yes | 24.3149 | 8.5387 | 2.2126 | 4 | 127.5124 | no |
-| 12 | no | no | 1.7198 | — | — | — | — | — | — | — | — |
+| 01 | yes | yes | 3.7534 | 0 | yes | 15.9581 | 4.3133 | 1.9252 | 2 | 72.3849 | no |
+| 02 | yes | yes | 49.9279 | 0 | no | 56.0965 | 3.5686 | 5.4422 | 12 | 150.1075 | no |
+| 03 | no | no | 0.0334 | — | — | — | — | — | — | — | — |
+| 04 | yes | yes | 2.4252 | 0 | yes | 23.4879 | 1.3023 | 1.9107 | 1 | 37.1294 | no |
+| 05 | yes | yes | 3.5353 | 0 | yes | 23.5809 | 1.8216 | 2.8930 | 3 | 62.1466 | no |
+| 06 | no | no | 0.0279 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 12.9428 | 0 | yes | 13.0500 | 5.4335 | 2.2924 | 2 | 87.2594 | no |
+| 08 | yes | yes | 3.6193 | 0 | yes | 14.1425 | 10.0136 | 2.6862 | 3 | 141.9978 | no |
+| 09 | yes | yes | 6.5819 | 0.0631 | yes | 25.3497 | 5.4061 | 3.7124 | 3 | 106.1858 | no |
+| 10 | yes | yes | 24.0729 | 0.1597 | yes | 30.6831 | 8.3110 | 2.9452 | 4 | 132.5619 | no |
+| 11 | yes | yes | 4.3993 | 1.7276 | yes | 23.8467 | 4.5864 | 3.8290 | 5 | 109.1543 | no |
+| 12 | yes | yes | 21.1027 | 0 | yes | 17.1793 | 5.2529 | 2.0343 | 1 | 77.8717 | no |
 
 [CSV](results/SLiFS/metrics.csv) · [JSON](results/SLiFS/metrics.json) · [validation](results/SLiFS/validation.json).
 <!-- /results:SLiFS -->

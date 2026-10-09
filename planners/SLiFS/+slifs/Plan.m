@@ -5,7 +5,7 @@ task=c.task;offset=c.vehicle.length-c.vehicle.length/(2*options.circles)-c.vehic
 ends=[task.x0 task.y0 task.theta0 0 0;task.xf task.yf task.thetaf 0 0];
 ends=[ends,ends(:,1)+offset*cos(ends(:,3)),ends(:,2)+offset*sin(ends(:,3))];endpointOptions=options;endpointOptions.nodes=2;
 [~,~,endpointGap]=slifs.FeasibleSet([ends(:);1],c,endpointOptions);
-if endpointGap<0,result.status.code='endpoint_circle_cover_blocked';result.status.message='The paper five-circle cover and 0.1 m clearance block a task endpoint.';result.solver.endpoint_clearance_excess=endpointGap;return;end
+if endpointGap<0,result.status.code='endpoint_circle_cover_blocked';result.status.message=sprintf('The %d-circle vehicle cover with %.3g m clearance blocks a task endpoint.',options.circles,options.clearance);result.solver.endpoint_clearance_excess=endpointGap;return;end
 [z,initialization]=slifs.Initialize(c,options);result.solver.search_success=initialization.success;
 if ~initialization.success,result.status.code='initialization_failed';result.status.message='Hybrid A* initialization failed.';return;end
 qp=slifs.Prepare(z,c,options);history=cell(0,1);total=0;outer=0;converged=false;nativeSuccess=false;

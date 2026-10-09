@@ -1,10 +1,10 @@
 function report=TestSLiFS()
 % Independent directional derivatives and convex support geometry checks.
 cfg=BenchmarkConfig();v=cfg.vehicle;N=17;prior=rng;clean=onCleanup(@()rng(prior));rng(177);
-q=randn(N,7);q(:,5)=.3*q(:,5);z=[q(:);12];[g,A]=slifs.Residual(z,N,v,5); %#ok<ASGLU>
+q=randn(N,7);q(:,5)=.3*q(:,5);z=[q(:);12];[g,A]=slifs.Residual(z,N,v,3); %#ok<ASGLU>
 directions=randn(numel(z),15);error=0;
 for j=1:size(directions,2)
- d=directions(:,j);eps=1e-6;numeric=(slifs.Residual(z+eps*d,N,v,5)-slifs.Residual(z-eps*d,N,v,5))/(2*eps);
+ d=directions(:,j);eps=1e-6;numeric=(slifs.Residual(z+eps*d,N,v,3)-slifs.Residual(z-eps*d,N,v,3))/(2*eps);
  error=max(error,max(abs(numeric-A*d)));
 end
 assert(error<1e-7);
