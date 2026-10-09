@@ -4,6 +4,8 @@ A MATLAB benchmark for motion planning in 12 static terminal-parking scenes. The
 
 [Forty-method result index and verification](docs/RESULT_INDEX.md) · [Evaluation protocol](evaluation/README.md) · [Result contract](docs/RESULT_FORMAT.md)
 
+[Assessment by method category](docs/METHOD_CATEGORIES.md) · [LIOM refinement and native/executed endpoint comparison](docs/LIOM_REFINEMENT.md)
+
 ## Quick start
 
 ```matlab
@@ -322,24 +324,24 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- results:LIOM -->
 ## LIOM: measured results
 
-The paper's fault-tolerant initialization, fixed 1e9 penalty, 51 states (50 intervals) and iterative corridor reconstruction are retained, with the requested full-body multi-disc extension. 9/12 calls passed both the native solve flag and the paper infeasibility threshold; 9 evaluator calls succeeded and 4 executions attained the terminal tolerance. Long-duration local solutions and failures remain in the table; no global time-optimality claim is made. Independent checks recomputed every accepted penalty component, objective, corridor geometry and hard bounds. See [the complete paper mapping and numerical settings](planners/LIOM/README.md).
+LIOM now uses exactly three uniformly spaced covering discs and 201 states (200 intervals), with no disc-count escalation. The paper's fault-tolerant initialization, fixed 1e9 penalty and iterative corridor reconstruction are retained. An equivalent sparse objective expression and short inner solves permit useful outer iterations. 8/12 calls passed both the native solve flag and the paper infeasibility threshold; all eight executions had zero measured collision frames and attained the terminal tolerance. Cases 3 and 6 fail the fixed-cover endpoint precheck; cases 2 and 10 exhaust the outer budget. Native X/Y endpoint errors are zero in every accepted solution. The terminal column below describes the independently tracked execution, not the native hard endpoint constraints. Independent checks recomputed penalty components, objective, corridor geometry and hard bounds. See [the source mapping and settings](planners/LIOM/README.md) and [the full before/after study](docs/LIOM_REFINEMENT.md), including the rejected coarse-mesh trial and timing limitations.
 
 Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
 
-| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Executed terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 33.9847 | 0 | yes | 123.1058 | 4.0606 | 26.5106 | 9 | 350.7120 | no |
-| 02 | no | no | 1021.2213 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 26.5475 | 0 | yes | 11.4635 | 9.5801 | 1.7384 | 2 | 123.1845 | no |
-| 04 | yes | yes | 7.1940 | 0 | no | 14.5930 | 7.8905 | 2.1156 | 3 | 115.0603 | no |
-| 05 | yes | yes | 75.6834 | 0 | no | 12.4712 | 7.6956 | 2.2545 | 2 | 109.5008 | no |
-| 06 | no | no | 768.6065 | — | — | — | — | — | — | — | — |
-| 07 | yes | yes | 51.4130 | 0 | yes | 11.1934 | 7.2629 | 2.1998 | 1 | 99.6268 | no |
-| 08 | yes | yes | 7.1454 | 0 | no | 31.7136 | 5.4020 | 9.0605 | 10 | 194.6253 | no |
-| 09 | yes | yes | 69.8413 | 0 | yes | 32.8238 | 7.8812 | 7.8397 | 4 | 177.2083 | no |
-| 10 | no | no | 1233.4159 | — | — | — | — | — | — | — | — |
-| 11 | yes | yes | 92.6447 | 0 | no | 17.2039 | 10.9135 | 3.5026 | 4 | 164.1607 | no |
-| 12 | yes | yes | 12.0446 | 0 | no | 50.2205 | 7.8552 | 10.7869 | 3 | 201.4210 | no |
+| 01 | yes | yes | 3.1443 | 0 | yes | 12.1781 | 11.0293 | 1.8077 | 2 | 138.3707 | no |
+| 02 | no | no | 9.2176 | — | — | — | — | — | — | — | — |
+| 03 | no | no | 0.0553 | — | — | — | — | — | — | — | — |
+| 04 | yes | yes | 2.2070 | 0 | yes | 10.8358 | 11.5626 | 1.4164 | 1 | 134.7901 | no |
+| 05 | yes | yes | 2.4297 | 0 | yes | 11.1283 | 8.0685 | 2.1016 | 1 | 106.7003 | no |
+| 06 | no | no | 0.0162 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 4.0850 | 0 | yes | 11.1047 | 5.5423 | 2.5576 | 1 | 85.9991 | no |
+| 08 | yes | yes | 3.6125 | 0 | yes | 15.3511 | 12.5474 | 2.7820 | 3 | 168.2938 | no |
+| 09 | yes | yes | 5.5034 | 0 | yes | 23.2299 | 8.0120 | 5.0419 | 4 | 150.5391 | no |
+| 10 | no | no | 12.5997 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 4.6869 | 0 | yes | 13.8963 | 12.0408 | 3.1178 | 3 | 166.5851 | no |
+| 12 | yes | yes | 4.9977 | 0 | yes | 13.7126 | 11.4099 | 2.3961 | 2 | 148.0598 | no |
 
 [CSV](results/LIOM/metrics.csv) · [JSON](results/LIOM/metrics.json) · [validation](results/LIOM/validation.json).
 <!-- /results:LIOM -->

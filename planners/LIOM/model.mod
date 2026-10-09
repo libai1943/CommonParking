@@ -23,9 +23,21 @@ var heading_penalty=(sin(theta[N])-sin(boundary[6]))^2+(cos(theta[N])-cos(bounda
 var infeasibility=dynamic_penalty+geometry_penalty+heading_penalty;
 var nominal_cost=tf+weight_energy*h*sum{i in 1..N-1}(a[i]^2+(v[i]*w[i])^2);
 # Divide the WHOLE objective by weight_penalty; the minimizer is unchanged.
-# Explicit scaling also keeps Ipopt's absolute dual/complementarity tests in
-# the same numerical units as its relative convergence test.
-minimize compound_cost: nominal_cost/weight_penalty+infeasibility;
+# Keep each nonlinear term local in the AMPL expression graph. Referencing
+# the aggregate defined variables above here can make ASL report an almost
+# dense Hessian. They remain available for independent post-solve reporting.
+# This distributed sum is EXACTLY nominal_cost/weight_penalty+infeasibility.
+minimize compound_cost:
+ tf/weight_penalty + sum{i in 1..N-1} (tf/(N-1))*weight_energy/weight_penalty*(a[i]^2+(v[i]*w[i])^2)
+ + sum{i in 1..N-1} (tf/(N-1))*(
+ ((x[i+1]-x[i])*(N-1)/tf-v[i]*cos(theta[i]))^2+
+ ((y[i+1]-y[i])*(N-1)/tf-v[i]*sin(theta[i]))^2+
+ ((theta[i+1]-theta[i])*(N-1)/tf-v[i]*tan(phi[i])/lw)^2+
+ ((v[i+1]-v[i])*(N-1)/tf-a[i])^2+((phi[i+1]-phi[i])*(N-1)/tf-w[i])^2)
+ + sum{i in 2..N,j in 1..D} (tf/(N-1))*(
+ (cx[i,j]-x[i]-offset[j,1]*cos(theta[i])+offset[j,2]*sin(theta[i]))^2+
+ (cy[i,j]-y[i]-offset[j,1]*sin(theta[i])-offset[j,2]*cos(theta[i]))^2)
+ + (sin(theta[N])-sin(boundary[6]))^2+(cos(theta[N])-cos(boundary[6]))^2;
 subject to start_x:x[1]=boundary[1];subject to start_y:y[1]=boundary[2];
 subject to start_theta:theta[1]=boundary[3];
 subject to finish_x:x[N]=boundary[4];subject to finish_y:y[N]=boundary[5];

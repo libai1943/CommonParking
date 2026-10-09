@@ -40,7 +40,7 @@ fprintf(f,'printf {i in 1..N} "%%.17g %%.17g %%.17g %%.17g %%.17g %%.17g %%.17g 
 fprintf(f,'printf {j in 1..D,i in 1..N} "%%.17g %%.17g\\n",cx[i,j],cy[i,j] > "centres.txt";\n');
 clear closeFile;
 old=pwd;restore=onCleanup(@()cd(old));cd(folder);
-[process,log]=cp.RunAmpl(runtime,folder,'solve.run',2*options.maxCpuSeconds+30);
+[process,log]=cp.RunAmpl(runtime,folder,'solve.run',options.maxWallSeconds);
 f=fopen('solver.log','w');fprintf(f,'%s',log);fclose(f);
 solver=struct('success',false,'process_exit_code',process,'solve_result_num',NaN,'message','', ...
     'infeasibility',inf,'working_directory',folder);trajectory=[];
@@ -64,4 +64,13 @@ if isfile('candidate.txt')&&isfile('centres.txt')
 else
     solver.success=false;solver.message=[solver.message,' Solver did not write complete candidate output.'];
 end
+check=liom.CheckCandidate(c,trajectory,boxes,discs,options);
+solver.candidate_check=check;
+costMatches=check.valid&&abs(check.infeasibility-solver.infeasibility)<=1e-10*max(1,check.infeasibility);
+solver.success=solver.success&&costMatches;
+% A time/iteration limit is an inexact INNER solve, not a failed LIOM outer
+% iteration. Preserve its native flag; only a valid bounded iterate continues.
+solver.continue_outer=costMatches&&process==0&&(solver.success||ismember(solver.solve_result_num,[400 401]));
+tokens=regexp(log,'Number of Iterations[. ]*:\s*(\d+)','tokens','once');
+solver.iterations=NaN;if ~isempty(tokens),solver.iterations=str2double(tokens{1});end
 end
