@@ -908,5 +908,8 @@
     }
   },
   "hashed_result_artifacts": 628,
-  "readme_links_present": true
+  "readme_links_present": true,
+  "manifest_byte_representation": "Committed Git blob bytes, as delivered by git archive; working-tree text newline conversion may change raw hashes.",
+  "result_artifacts_match_committed_bytes": true,
+  "text_newline_normalization_verified": true
 }
