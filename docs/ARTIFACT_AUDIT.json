@@ -7,20 +7,20 @@
     {
       "planner": "AnytimePSRO",
       "cases": 12,
-      "planner_success": 10,
-      "evaluation_success": 10,
-      "terminal_reached": 0,
-      "zero_collision_execution": 4,
+      "planner_success": 12,
+      "evaluation_success": 12,
+      "terminal_reached": 12,
+      "zero_collision_execution": 6,
       "screen_codes": [
         "valid",
-        "planner_failed",
         "valid",
         "valid",
         "valid",
         "valid",
         "valid",
         "valid",
-        "planner_failed",
+        "valid",
+        "valid",
         "valid",
         "valid",
         "valid"
@@ -383,8 +383,8 @@
       "cases": 12,
       "planner_success": 12,
       "evaluation_success": 12,
-      "terminal_reached": 4,
-      "zero_collision_execution": 10,
+      "terminal_reached": 12,
+      "zero_collision_execution": 5,
       "screen_codes": [
         "valid",
         "valid",
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "703d8f18c5edfeab15ddf530892e0ae93f994e36",
+  "source_commit": "81ddb77f67d47328d78bfb9b3a97587b2b47dca6",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {

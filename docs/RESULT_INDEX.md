@@ -8,7 +8,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 
 | Implementation and source mapping | Native success | Evaluated | Terminal attained | Zero collision frames | Twelve-case data |
 |---|---:|---:|---:|---:|---|
-| [AnytimePSRO](../planners/AnytimePSRO/README.md) | 10 | 10 | 0 | 4 | [JSON](../results/AnytimePSRO/metrics.json) · [CSV](../results/AnytimePSRO/metrics.csv) |
+| [AnytimePSRO](../planners/AnytimePSRO/README.md) | 12 | 12 | 12 | 6 | [JSON](../results/AnytimePSRO/metrics.json) · [CSV](../results/AnytimePSRO/metrics.csv) |
 | [BIAGT](../planners/BIAGT/README.md) | 8 | 8 | 6 | 2 | [JSON](../results/BIAGT/metrics.json) · [CSV](../results/BIAGT/metrics.csv) |
 | [BicchiTangents](../planners/BicchiTangents/README.md) | 10 | 10 | 8 | 10 | [JSON](../results/BicchiTangents/metrics.json) · [CSV](../results/BicchiTangents/metrics.csv) |
 | [BiRRT_HC](../planners/BiRRT_HC/README.md) | 11 | 11 | 5 | 11 | [JSON](../results/BiRRT_HC/metrics.json) · [CSV](../results/BiRRT_HC/metrics.csv) |
@@ -23,7 +23,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [DubinsGrid](../planners/DubinsGrid/README.md) | 11 | 11 | 10 | 5 | [JSON](../results/DubinsGrid/metrics.json) · [CSV](../results/DubinsGrid/metrics.csv) |
 | [Eta3](../planners/Eta3/README.md) | 8 | 8 | 8 | 5 | [JSON](../results/Eta3/metrics.json) · [CSV](../results/Eta3/metrics.csv) |
 | [GraphBellman](../planners/GraphBellman/README.md) | 8 | 8 | 0 | 8 | [JSON](../results/GraphBellman/metrics.json) · [CSV](../results/GraphBellman/metrics.csv) |
-| [H_OBCA](../planners/H_OBCA/README.md) | 12 | 12 | 4 | 10 | [JSON](../results/H_OBCA/metrics.json) · [CSV](../results/H_OBCA/metrics.csv) |
+| [H_OBCA](../planners/H_OBCA/README.md) | 12 | 12 | 12 | 5 | [JSON](../results/H_OBCA/metrics.json) · [CSV](../results/H_OBCA/metrics.csv) |
 | [HA_CG](../planners/HA_CG/README.md) | 12 | 12 | 7 | 12 | [JSON](../results/HA_CG/metrics.json) · [CSV](../results/HA_CG/metrics.csv) |
 | [HJBA](../planners/HJBA/README.md) | 12 | 12 | 5 | 10 | [JSON](../results/HJBA/metrics.json) · [CSV](../results/HJBA/metrics.csv) |
 | [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 6 | 6 | 6 | 2 | [JSON](../results/HyperplaneOCP/metrics.json) · [CSV](../results/HyperplaneOCP/metrics.csv) |
