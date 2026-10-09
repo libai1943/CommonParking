@@ -53,6 +53,8 @@ GraphBellman needs a one-time C++ module build with `BuildGraphBellman`. The pla
 
 SmoothBiRRT needs MATLAB Navigation Toolbox for its Reeds–Shepp curves. Search, smoothing, feedback and disc collision checking are plain MATLAB in [its planner folder](planners/SmoothBiRRT/README.md).
 
+DubinsGrid needs a one-time C++ module build with `BuildDubinsGrid` and MATLAB Optimization Toolbox for Frenet-offset SQP. Its native search has no Navigation Toolbox dependency; that toolbox is used only by the independent analytic-curve test. [Source and build instructions](planners/DubinsGrid/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -86,6 +88,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Dubins grid + Frenet SQP](planners/DubinsGrid/README.md) (`DubinsGrid`) | Path | Siedentop et al., FAS 2015; Dubins lattice and normal-offset smoothing | Implemented and tested on all 12 cases |
 | [Smooth-feedback Bi-RRT*](planners/SmoothBiRRT/README.md) (`SmoothBiRRT`) | Path | Jhang, Lian & Hao, CASE 2020; third-tree smoothing and search feedback | Implemented and tested on all 12 cases |
 | [Finite-element Bellman graph](planners/GraphBellman/README.md) (`GraphBellman`) | Path | Laurini, Consolini & Locatelli, TAC 2021; Model 1 and selective Bellman updates | Implemented and tested on all 12 cases |
 | [Barraquand-Latombe Dijkstra](planners/BL_Dijkstra/README.md) (`BL_Dijkstra`) | Path | Barraquand & Latombe, Algorithmica 1993; minimum-reversal indexed search | Implemented and tested on all 12 cases |
@@ -774,3 +777,28 @@ Planning times include all RS queries, tree construction, third-tree smoothing, 
 
 [CSV](results/SmoothBiRRT/metrics.csv) · [JSON](results/SmoothBiRRT/metrics.json) · [validation](results/SmoothBiRRT/validation.json).
 <!-- /results:SmoothBiRRT -->
+
+<!-- results:DubinsGrid -->
+## Dubins lattice with Frenet-offset SQP: measured results
+
+Forward/backward Dubins edges, a three-dimensional A* grid and scalar Frenet-offset smoothing produced 11/12 native paths. The SQP was accepted in 11 cases; 11 execution optimizations succeeded and 10 attained the strict terminal tolerance. **The paper's three width-diameter discs under-cover the physical rectangle, and the Dubins heuristic is inadmissible. Six executions collide; those same six native paths already intersect the physical obstacles while satisfying the sampled disc constraints.** Native failures and unsuccessful smoothing attempts are retained; a failed smoother returns the original search path, as allowed by the paper. Independent tests compare 186 analytic curves with MATLAB Dubins distances and ODE integration, recompute selected lattice edges, check the sampled SQP, and measure dense physical collisions separately. See [the complete paper mapping, cusp discretization and solver replacement](planners/DubinsGrid/README.md).
+
+Planning times include grid construction, the single-threaded native A* search, Frenet-offset SQP and output conversion. The one-time C++ module build is excluded; numerical-library threads are fixed to one for SQP. Other development jobs were active, so these wall times are not controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 6.8086 | 0.7781 | yes | 24.1601 | 2.0432 | 6.4463 | 2 | 94.8958 | no |
+| 02 | no | no | 91.6572 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 6.7591 | 0 | yes | 25.6881 | 1.9657 | 6.6546 | 1 | 91.2029 | no |
+| 04 | yes | yes | 7.0481 | 0 | yes | 26.5403 | 2.1937 | 6.7787 | 2 | 99.7242 | no |
+| 05 | yes | yes | 6.9503 | 0 | yes | 23.2899 | 1.9416 | 5.5614 | 2 | 85.0296 | no |
+| 06 | yes | yes | 6.6697 | 0 | yes | 28.5714 | 2.3662 | 6.9798 | 2 | 103.4603 | no |
+| 07 | yes | yes | 7.0134 | 0 | yes | 21.0309 | 2.0149 | 4.4276 | 2 | 74.4253 | no |
+| 08 | yes | yes | 7.6214 | 2.9758 | yes | 31.2849 | 2.3344 | 8.0680 | 3 | 119.0242 | no |
+| 09 | yes | yes | 8.4296 | 2.9748 | no | 26.4540 | 2.1738 | 4.7567 | 2 | 79.3055 | no |
+| 10 | yes | yes | 6.4809 | 7.6667 | yes | 25.5638 | 2.5493 | 3.9657 | 2 | 75.1501 | no |
+| 11 | yes | yes | 6.4091 | 5.1737 | yes | 17.2979 | 1.4540 | 5.0361 | 2 | 74.9007 | no |
+| 12 | yes | yes | 6.8431 | 1.6239 | yes | 28.5714 | 2.1537 | 7.2594 | 2 | 104.1310 | no |
+
+[CSV](results/DubinsGrid/metrics.csv) · [JSON](results/DubinsGrid/metrics.json) · [validation](results/DubinsGrid/validation.json).
+<!-- /results:DubinsGrid -->
