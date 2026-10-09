@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 3,
+  "evaluation_success_count": 3,
+  "terminal_reached_count": 2,
+  "unit": {
+    "passed": true,
+    "rk4_exact_arc_error": 7.66053886991358E-14,
+    "signed_radius_formula_error": 1.0547118733938987E-15,
+    "monotone_cover_outside_samples": 0,
+    "collinear_disjoint_score_is_zero": true,
+    "interior_reversal_uncovered_excursion_m": 0.125
+  },
+  "independent_checks": [
+    {},
+    {},
+    {
+      "success": true,
+      "dynamics_error": 2.87650125940786E-9,
+      "boundary_error": 0,
+      "maximum_inequality_violation": 9.9414561027799664E-9,
+      "minimum_segment_score": 0.0022109340684684418,
+      "tf": 10.093037286051619,
+      "alpha_used": 1.0198251194952872,
+      "required_alpha": 1.0198251194953685,
+      "internal_speed_reversals": 1,
+      "maximum_cover_distance_at_used_alpha_m": 5.9336216495786687E-14,
+      "native_node_collision_percent": 0,
+      "exact_interval_endpoint_error": 8.069546257871707E-7,
+      "exact_global_replay_final_error": [
+        -3.9202206203459156E-7,
+        -6.542414560772869E-6,
+        -3.3119027520456257E-8,
+        -9.1923135769889086E-12
+      ],
+      "exact_global_replay_collision_percent": 0,
+      "exact_global_replay_minimum_separating_gap_m": 0.099285310827757489,
+      "replay_maximum_step_s": 0.001,
+      "cover_hull_maximum_uncovered_corner_distance_m": 0.00024516603588994521,
+      "cover_hull_uncovered_corner_percent": 0.36909448818897639
+    },
+    {
+      "success": true,
+      "dynamics_error": 2.6410221232175957E-9,
+      "boundary_error": 0,
+      "maximum_inequality_violation": 9.9320047741713324E-9,
+      "minimum_segment_score": 1.0115160293617703E-9,
+      "tf": 10.607013145415412,
+      "alpha_used": 1.0161519328479507,
+      "required_alpha": 1.0160534038527704,
+      "internal_speed_reversals": 1,
+      "maximum_cover_distance_at_used_alpha_m": -7.1952081829796538E-5,
+      "native_node_collision_percent": 0,
+      "exact_interval_endpoint_error": 1.1072453487415146E-6,
+      "exact_global_replay_final_error": [
+        1.8833117179650749E-6,
+        -6.3994135566236565E-6,
+        -1.6091761700920415E-8,
+        -1.4126699809935417E-11
+      ],
+      "exact_global_replay_collision_percent": 0,
+      "exact_global_replay_minimum_separating_gap_m": 0.012245913756741444,
+      "replay_maximum_step_s": 0.001,
+      "cover_hull_maximum_uncovered_corner_distance_m": 0.00010505114084040018,
+      "cover_hull_uncovered_corner_percent": 0.2808988764044944
+    },
+    {},
+    {},
+    {
+      "success": true,
+      "dynamics_error": 3.1752656060035633E-9,
+      "boundary_error": 0,
+      "maximum_inequality_violation": 9.94470961135363E-9,
+      "minimum_segment_score": 0.0035365276460989645,
+      "tf": 9.2647001998244427,
+      "alpha_used": 1.024248759691355,
+      "required_alpha": 1.0242487596913545,
+      "internal_speed_reversals": 1,
+      "maximum_cover_distance_at_used_alpha_m": -3.3306690738754696E-16,
+      "native_node_collision_percent": 0,
+      "exact_interval_endpoint_error": 7.2956117680433863E-7,
+      "exact_global_replay_final_error": [
+        9.83144003000036E-7,
+        4.1204800265252917E-6,
+        -3.6826087956853826E-8,
+        -2.3083190914263696E-9
+      ],
+      "exact_global_replay_collision_percent": 0,
+      "exact_global_replay_minimum_separating_gap_m": 0.25425519149813836,
+      "replay_maximum_step_s": 0.001,
+      "cover_hull_maximum_uncovered_corner_distance_m": 0.0014630391166154312,
+      "cover_hull_uncovered_corner_percent": 0.72961373390557938
+    },
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}

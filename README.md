@@ -39,6 +39,8 @@ SE2_NMPC uses the external AMPL/Ipopt runtime (MA97), plus Navigation Toolbox fo
 
 HyperplaneOCP uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/HyperplaneOCP/README.md).
 
+VPF uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/VPF/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -72,6 +74,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
 | [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
 | [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
 | [Waypoint-guided two-stage RRT](planners/WGRRT/README.md) (`WGRRT`) | Path | Wang, Jha & Akemi, CASE 2017; geometric exploration, guided bi-RRT and value iteration | Implemented and tested on all 12 cases |
@@ -578,3 +581,28 @@ Planning times include initialization and optimization. Numerical-library thread
 
 [CSV](results/HyperplaneOCP/metrics.csv) · [JSON](results/HyperplaneOCP/metrics.json) · [validation](results/HyperplaneOCP/validation.json).
 <!-- /results:HyperplaneOCP -->
+
+<!-- results:VPF -->
+## Virtual protection frame optimization: measured results
+
+The paper's RK4 multiple shooting, twelve-segment frame constraints and width-enlargement loop produced 3/12 native trajectories; 3 execution optimizations succeeded and 2 attained the terminal tolerance. A fixed 40-interval mesh is used, close to the article's 35-46 intervals, after a documented development comparison with 200 intervals. Native and execution failures remain in the table. **The printed frame-cover test is not an unconditional certificate when speed reverses inside an interval.** A reproducible bounded-input unit example demonstrates this limitation; release validation also measures exact between-node motion, frame coverage and full-body collisions for actual outputs. See [the equation mapping, literal segment predicate, numerical settings and limitations](planners/VPF/README.md).
+
+Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | no | no | 23.0495 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 175.0301 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 33.8591 | 0 | yes | 25.6874 | 2.5041 | 7.1020 | 2 | 106.0615 | no |
+| 04 | yes | yes | 69.1121 | 0 | no | 16.5889 | 5.3639 | 3.2660 | 1 | 91.2987 | no |
+| 05 | no | no | 98.3843 | — | — | — | — | — | — | — | — |
+| 06 | no | no | 209.4883 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 83.3225 | 0 | yes | 19.2899 | 2.4407 | 5.0800 | 2 | 85.2064 | no |
+| 08 | no | no | 217.3814 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 40.9268 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 255.2736 | — | — | — | — | — | — | — | — |
+| 11 | no | no | 143.6594 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 203.9460 | — | — | — | — | — | — | — | — |
+
+[CSV](results/VPF/metrics.csv) · [JSON](results/VPF/metrics.json) · [validation](results/VPF/validation.json).
+<!-- /results:VPF -->

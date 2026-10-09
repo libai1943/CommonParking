@@ -30,6 +30,8 @@ switch name
         canonical = 'WGRRT'; planner = @wgrrt.Plan;kind='path';
     case "OSEHS"
         canonical = 'OSEHS'; planner = @osehs.Plan;kind='path';
+    case "VPF"
+        canonical = 'VPF'; planner = @vpf.Plan;kind='trajectory';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"
