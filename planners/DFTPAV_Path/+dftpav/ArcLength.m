@@ -1,0 +1,6 @@
+function distance=ArcLength(C,left,right)
+% Eight-point Gauss integration on small local intervals, vectorized.
+x=[-.9602898564975363;-.7966664774136267;-.525532409916329;-.1834346424956498;.1834346424956498;.525532409916329;.7966664774136267;.9602898564975363];
+w=[.1012285362903763;.2223810344533745;.3137066458778873;.362683783378362;.362683783378362;.3137066458778873;.2223810344533745;.1012285362903763];
+left=left(:);right=right(:);u=(left+right)/2+(right-left)/2*x';speed=vecnorm(dftpav.Basis(u(:),1)*C,2,2);distance=(right-left)/2.*(reshape(speed,size(u))*w);
+end

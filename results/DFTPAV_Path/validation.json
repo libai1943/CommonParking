@@ -1,0 +1,272 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 11,
+  "evaluation_success_count": 11,
+  "terminal_reached_count": 8,
+  "unit": {
+    "passed": true,
+    "objective": 31307.245227477135,
+    "full_adjoint_relative_error": 1.3322807480809102E-7,
+    "C4_join_error": 1.5543122344752192E-15,
+    "minimum_jerk_quintic_verified": true,
+    "time_map_verified": true,
+    "exact_cusp_export_verified": true
+  },
+  "independent_checks": [
+    {
+      "passed": true,
+      "objective_error": 9.0949470177292824E-13,
+      "objective_terms": [
+        29.776803797342481,
+        5649.2715243275725,
+        282.69040851414752
+      ],
+      "native_time_s": 11.298543048655144,
+      "path_length_m": 9.61999069141104,
+      "maximum_C4_join_error": 1.7763568394002505E-15,
+      "boundary_state_error": 2.3832707530896265E-16,
+      "maximum_independent_ode_error": 1.4551693183761927E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.0502625361315214,
+        1.0062588939534387,
+        0.89883700128509725,
+        68.33983959975096
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {},
+    {
+      "passed": true,
+      "objective_error": 0,
+      "objective_terms": [
+        22.367180773656973,
+        4977.8311759192784,
+        29.137537927495067
+      ],
+      "native_time_s": 9.9556623518385567,
+      "path_length_m": 10.897179313331428,
+      "maximum_C4_join_error": 1.3322676295501878E-15,
+      "boundary_state_error": 1.3183898417423734E-16,
+      "maximum_independent_ode_error": 1.7770784843662568E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.1898961886935204,
+        1.0039903735864077,
+        0.75429615360194724,
+        49.194506522510189
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 0,
+      "objective_terms": [
+        21.098533916848179,
+        5121.442388353149,
+        137.61783232502617
+      ],
+      "native_time_s": 10.242884776706298,
+      "path_length_m": 11.357979988467648,
+      "maximum_C4_join_error": 1.3322676295501878E-15,
+      "boundary_state_error": 3.1571967262777889E-16,
+      "maximum_independent_ode_error": 2.0378254639297211E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.1714576396943031,
+        1.0032433319841225,
+        0.80128309929362629,
+        47.360212118012278
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 1.8189894035458565E-12,
+      "objective_terms": [
+        18.490628031403233,
+        4719.5095610227,
+        102.63329127380277
+      ],
+      "native_time_s": 9.4390191220454,
+      "path_length_m": 10.786572992606597,
+      "maximum_C4_join_error": 1.2212453270876722E-15,
+      "boundary_state_error": 8.8817841970012523E-16,
+      "maximum_independent_ode_error": 3.1180391601992596E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.500019810419607,
+        1.0099262562350746,
+        0.8401109583333688,
+        58.738157150605986
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 0,
+      "objective_terms": [
+        18.390720804459104,
+        5473.8449219896565,
+        43.77456353358982
+      ],
+      "native_time_s": 10.947689843979314,
+      "path_length_m": 13.139039669406994,
+      "maximum_C4_join_error": 1.3322676295501878E-15,
+      "boundary_state_error": 2.2204460492503131E-16,
+      "maximum_independent_ode_error": 4.701883327129508E-11,
+      "native_dense_collision_percent": 0.175284837861525,
+      "native_dense_peak_v_a_phi_omega": [
+        2.4840869136070944,
+        1.0029489203601227,
+        0.770778090754607,
+        42.264224494247834
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 3.637978807091713E-12,
+      "objective_terms": [
+        27.4885033780887,
+        4278.383879306366,
+        162.26993865109492
+      ],
+      "native_time_s": 8.5567677586127324,
+      "path_length_m": 9.35165535749404,
+      "maximum_C4_join_error": 1.7763568394002505E-15,
+      "boundary_state_error": 8.8817841970012523E-16,
+      "maximum_independent_ode_error": 4.553291077513677E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.3250839957172884,
+        1.0055973856898783,
+        0.84245955306373532,
+        57.087022693502526
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 9.0949470177292824E-13,
+      "objective_terms": [
+        38.675331266183555,
+        5834.8128363475125,
+        607.802036318739
+      ],
+      "native_time_s": 11.669625672695025,
+      "path_length_m": 11.406351203003897,
+      "maximum_C4_join_error": 2.2204460492503131E-15,
+      "boundary_state_error": 3.5744616921307483E-16,
+      "maximum_independent_ode_error": 2.5654589563828267E-11,
+      "native_dense_collision_percent": 0.61919504643962853,
+      "native_dense_peak_v_a_phi_omega": [
+        2.3222301199862145,
+        1.0138996694052032,
+        0.95006827856481657,
+        67.646126477962966
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 2.1827872842550278E-11,
+      "objective_terms": [
+        34.939991573496158,
+        6442.8128228172509,
+        300.90137490044219
+      ],
+      "native_time_s": 12.885625645634502,
+      "path_length_m": 13.39468561451266,
+      "maximum_C4_join_error": 1.3322676295501878E-15,
+      "boundary_state_error": 4.4408920985006262E-16,
+      "maximum_independent_ode_error": 1.9330870237865838E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.2374231225094614,
+        1.0086942980387206,
+        0.95517433343480207,
+        73.795622584460574
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 5.4569682106375694E-12,
+      "objective_terms": [
+        32.658111124727029,
+        8189.049362692529,
+        215.53559920193496
+      ],
+      "native_time_s": 16.378098725385058,
+      "path_length_m": 18.789827962744695,
+      "maximum_C4_join_error": 1.7763568394002505E-15,
+      "boundary_state_error": 2.2204460492503131E-16,
+      "maximum_independent_ode_error": 6.8399508279526344E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.5001972201745137,
+        1.0063236985275459,
+        0.79835137761246777,
+        38.417261575071791
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 6.8173358158674091E-7,
+      "objective_terms": [
+        43.489820431583759,
+        5477.1981247877657,
+        363.56622381257955
+      ],
+      "native_time_s": 10.954396249575531,
+      "path_length_m": 7.5033866470025519,
+      "maximum_C4_join_error": 8.8817841970012523E-16,
+      "boundary_state_error": 4.4408920985006262E-16,
+      "maximum_independent_ode_error": 1.1279879252867886E-9,
+      "native_dense_collision_percent": 2.2277227722772279,
+      "native_dense_peak_v_a_phi_omega": [
+        1.6228375288921673,
+        1.010266761822497,
+        1.4074134890632952,
+        622.74647860269442
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    },
+    {
+      "passed": true,
+      "objective_error": 9.0949470177292824E-13,
+      "objective_terms": [
+        17.77729186570355,
+        5814.28089354088,
+        37.884293546283772
+      ],
+      "native_time_s": 11.628561787081761,
+      "path_length_m": 14.778374294745468,
+      "maximum_C4_join_error": 8.8817841970012523E-16,
+      "boundary_state_error": 8.8817841970012523E-16,
+      "maximum_independent_ode_error": 1.8024248760184491E-11,
+      "native_dense_collision_percent": 0,
+      "native_dense_peak_v_a_phi_omega": [
+        2.5001334291812944,
+        1.0078993731406685,
+        0.78032053879443186,
+        45.72418354338496
+      ],
+      "submitted_kind": "path",
+      "native_nonzero_endpoint_speed_mps": 0.05
+    }
+  ]
+}

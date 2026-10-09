@@ -50,6 +50,8 @@ switch name
         canonical = 'BicchiTangents'; planner = @btangent.Plan;kind='path';
     case "TPCKC"
         canonical = 'TPCKC'; planner = @tpckc.Plan;kind='trajectory';
+    case "DFTPAV_PATH"
+        canonical = 'DFTPAV_Path'; planner = @dftpav.Plan;kind='path';
     case "HYPERPLANEOCP"
         canonical = 'HyperplaneOCP'; planner = @hpocp.Plan;kind='trajectory';
     case "BIRRT_HC"

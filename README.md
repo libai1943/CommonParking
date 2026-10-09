@@ -59,6 +59,8 @@ BicchiTangents needs a one-time C++ module build with `BuildBicchiTangents` and 
 
 TPCKC uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/TPCKC/README.md).
 
+DFTPAV_Path needs MATLAB Navigation and Optimization Toolboxes. Its static MINCO formulation and explicit geometric-output adapter are documented in [its planner folder](planners/DFTPAV_Path/README.md). The planner does not need AMPL.
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -92,6 +94,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [DFTPAV static geometry](planners/DFTPAV_Path/README.md) (`DFTPAV_Path`) | Path | Han et al., TITS 2024; MINCO, movable gear changes and explicit geometric-output adapter | Implemented and tested on all 12 cases |
 | [Cumulative key constraints](planners/TPCKC/README.md) (`TPCKC`) | Trajectory | Guo et al., TVT 2025; implicit-Euler NLP and cumulative vertex constraints | Implemented and tested on all 12 cases |
 | [Bicchi tangent graph](planners/BicchiTangents/README.md) (`BicchiTangents`) | Path | Bicchi, Casalino & Santilli, ICRA 1995; obstacle-supported circles and tangents | Implemented and tested on all 12 cases |
 | [Dubins grid + Frenet SQP](planners/DubinsGrid/README.md) (`DubinsGrid`) | Path | Siedentop et al., FAS 2015; Dubins lattice and normal-offset smoothing | Implemented and tested on all 12 cases |
@@ -858,3 +861,28 @@ Planning times include Hybrid A*, path-to-trajectory initialization, geometric S
 
 [CSV](results/TPCKC/metrics.csv) · [JSON](results/TPCKC/metrics.json) · [validation](results/TPCKC/validation.json).
 <!-- /results:TPCKC -->
+
+<!-- results:DFTPAV_Path -->
+## DFTPAV static optimization, geometric path submission: measured results
+
+The static MINCO and movable gear-shift optimization produced 11/12 native paths; 11 execution optimizations succeeded and 8 attained the strict terminal tolerance. **These measurements evaluate the optimized geometry under the common path protocol, not the article's original timed trajectory.** The native optimization retains the paper's nonzero gear-switch speed; the path adapter allows the common executor to stop at every exact cusp. Native time histories remain available as diagnostics. The complete analytic adjoint agrees with finite differences to 1.4e-7; independent checks recompute the polynomial objective, penalties, C4 joins, boundary states, arc lengths and continuous bicycle motion. Soft-penalty residuals, physical intersections and native failures are preserved. See [the paper mapping, solver replacement and explicit geometric-output scope](planners/DFTPAV_Path/README.md).
+
+Planning times include Hybrid A*, all corridor construction, the full analytic-gradient BFGS optimization, regularity checks and arc-length output conversion. Numerical-library threads are fixed to one; these are not controlled hardware comparisons. The native polynomial duration is diagnostic only; the execution time below belongs to the common path executor.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 13.3589 | 0 | no | 28.7436 | 1.8291 | 8.6906 | 2 | 115.1973 | no |
+| 02 | no | no | 64.5078 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 10.7165 | 0 | yes | 21.2121 | 1.6366 | 5.8126 | 1 | 79.4919 | no |
+| 04 | yes | yes | 10.8810 | 0 | yes | 25.8065 | 1.7978 | 7.0594 | 1 | 93.5717 | no |
+| 05 | yes | yes | 11.1913 | 0 | yes | 22.9508 | 1.4013 | 6.4179 | 1 | 83.1921 | no |
+| 06 | yes | yes | 11.2034 | 0.7038 | yes | 23.1594 | 1.5350 | 5.1761 | 1 | 72.1111 | no |
+| 07 | yes | yes | 9.6754 | 0 | yes | 23.4613 | 3.7918 | 7.3316 | 4 | 131.2335 | yes |
+| 08 | yes | yes | 14.9028 | 2.5674 | no | 31.1588 | 2.8771 | 11.2693 | 5 | 166.4645 | yes |
+| 09 | yes | yes | 20.4718 | 0 | yes | 32.2168 | 2.1507 | 10.3371 | 2 | 134.8785 | no |
+| 10 | yes | yes | 30.6739 | 0 | yes | 32.4933 | 1.8294 | 11.3061 | 3 | 146.3555 | no |
+| 11 | yes | yes | 21.2547 | 3.3004 | no | 22.5716 | 1.6185 | 5.5364 | 4 | 91.5486 | no |
+| 12 | yes | yes | 16.8445 | 0 | yes | 23.1998 | 1.8430 | 4.7260 | 1 | 70.6905 | no |
+
+[CSV](results/DFTPAV_Path/metrics.csv) · [JSON](results/DFTPAV_Path/metrics.json) · [validation](results/DFTPAV_Path/validation.json).
+<!-- /results:DFTPAV_Path -->
