@@ -77,6 +77,8 @@ KinoDeform uses base MATLAB and the shared CC_PRM distance-query module (`BuildC
 
 BIAGT uses base MATLAB after `BuildBIAGT` and the shared `BuildCCSteer` distance module are built once. Its complete search runs in MATLAB; the small native gateway supplies batch RS curves. [Source and build instructions](planners/BIAGT/README.md).
 
+IndirectOCP uses MATLAB and Navigation Toolbox for its HA initialization. Its canonical state/costate solver is implemented in MATLAB without proprietary PINS or a direct NLP backend. [Formulation and disclosed numerical replacement](planners/IndirectOCP/README.md).
+
 ## Scenes and common vehicle
 
 The twelve case MAT files are in `cases/`; `CaseCatalog.csv` describes them and `SHA256.json` records their immutable hashes. Polygon obstacles use explicit vertex fields. Positions refer to the rear-axle midpoint; metres, seconds and radians are used. Goal orientation is compared modulo 2*pi. Tasks start and finish at rest.
@@ -110,6 +112,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
+| [Indirect optimal control](planners/IndirectOCP/README.md) (`IndirectOCP`) | Trajectory | Pagot et al., Access 2023; planning component with an open canonical-equation solver | Implemented and tested on all 12 cases |
 | [Bidirectional improved A-search](planners/BIAGT/README.md) (`BIAGT`) | Path | Wang, Hansen & Ahn, TCST 2024; static prioritized bidirectional search | Implemented and tested on all 12 cases |
 | [Kinodynamic tree deformation](planners/KinoDeform/README.md) (`KinoDeform`) | Trajectory | Lamiraux, Ferre & Vallee, ICRA 2004; input-space trees and variational trajectory deformation | Implemented and tested on all 12 cases |
 | [Sinusoidal steering + RTR](planners/Sinusoid_RTR/README.md) (`Sinusoid_RTR`) | Path | Murray & Sastry, CDC 1990 steering construction, with disclosed RTR obstacle adapter | Implemented and tested on all 12 cases |
@@ -1110,3 +1113,28 @@ Planning time includes setup, case loading, both input-space trees, all shared-h
 
 [CSV](results/BIAGT/metrics.csv) · [JSON](results/BIAGT/metrics.json) · [validation](results/BIAGT/validation.json).
 <!-- /results:BIAGT -->
+
+<!-- results:IndirectOCP -->
+## Indirect optimal-control planning: measured results
+
+The paper's planning component produced 7/12 native trajectories; 7 execution optimizations succeeded and 7 attained the terminal tolerance. Hybrid A* followed by an indirect tracking OCP initializes the complete soft-obstacle OCP on 500 nodes. The independently written canonical boundary-value solver replaces proprietary PINS; the learned execution controller is excluded. Every accepted result reaches the full obstacle objective and final regularization target. Native convergence is a first-order discrete criterion, not a minimum or continuous collision certificate. Midpoint barriers permit nodal overshoot: the largest measured steering and speed excesses were 0.0078142 rad and 0.00795622 m/s. Independent 1 ms integration of native interval controls differed from native positions by at most 0.00170569 m. These deviations and all failures are retained. The table reports the common evaluator, not that native replay. See [the exact formulation, solver replacement and numerical settings](planners/IndirectOCP/README.md).
+
+Planning time includes setup, case loading, Hybrid A*, the tracking OCP, every successful and failed obstacle/barrier continuation attempt, and exact-cusp output conversion. Numerical-library threads are fixed to one; other development jobs were active. These are not PINS timings or controlled hardware comparisons.
+
+| Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
+|---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
+| 01 | yes | yes | 76.6596 | 0 | yes | 28.4264 | 1.8087 | 7.8288 | 3 | 111.3756 | no |
+| 02 | no | no | 160.4380 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 28.7685 | 0 | yes | 19.5614 | 2.0655 | 3.7084 | 2 | 67.7393 | no |
+| 04 | no | no | 75.0500 | — | — | — | — | — | — | — | — |
+| 05 | yes | yes | 28.8096 | 0 | yes | 22.3108 | 1.6907 | 4.7264 | 2 | 74.1712 | no |
+| 06 | yes | yes | 33.4944 | 0 | yes | 27.7093 | 1.8654 | 5.7647 | 2 | 86.3003 | no |
+| 07 | yes | yes | 33.8929 | 0 | yes | 18.5299 | 1.5216 | 4.4445 | 2 | 69.6609 | no |
+| 08 | no | no | 143.4001 | — | — | — | — | — | — | — | — |
+| 09 | yes | yes | 75.7406 | 0 | yes | 37.0861 | 2.2960 | 8.5830 | 5 | 133.7901 | no |
+| 10 | yes | yes | 101.7199 | 0 | yes | 24.5752 | 8.6483 | 5.4092 | 3 | 155.5756 | no |
+| 11 | no | no | 94.4126 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 79.4657 | — | — | — | — | — | — | — | — |
+
+[CSV](results/IndirectOCP/metrics.csv) · [JSON](results/IndirectOCP/metrics.json) · [validation](results/IndirectOCP/validation.json).
+<!-- /results:IndirectOCP -->

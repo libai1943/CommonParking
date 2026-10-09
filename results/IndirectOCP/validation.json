@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "cases": 12,
+  "planner_success_count": 7,
+  "evaluation_success_count": 7,
+  "terminal_reached_count": 7,
+  "unit": {
+    "canonical_jacobian_relative_error": 5.1910216030398942E-16,
+    "hamiltonian_gradient_relative_error": 6.3882300451125013E-16,
+    "control_stationarity_error": 4.2632564145606011E-14,
+    "boundary_value_jacobian_relative_error": 8.274552075087E-11,
+    "straight_rest_to_rest_time_s": 4.0039692833676961,
+    "straight_residual": 2.1094237467877974E-15,
+    "exact_off_grid_cusps": true
+  },
+  "independent_checks": [
+    {
+      "canonical_residual": 3.8119455655167764E-10,
+      "time_transversality_residual": 7.4384942649885488E-14,
+      "fixed_endpoint_residual": 1.6653345369377348E-16,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 1.5069900882735965E-10,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00012100728593611443,
+        3.1131935523731613E-5,
+        2.0098019125613931E-5,
+        3.1619928897441696E-11,
+        2.5413005033669833E-13
+      ],
+      "node_speed_bound_excess": 0.0040561159009615544,
+      "node_steering_bound_excess": 0.0049062382104675395,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 11.346798102092979
+    },
+    {},
+    {
+      "canonical_residual": 6.3440391828706311E-11,
+      "time_transversality_residual": 1.6653345369377348E-14,
+      "fixed_endpoint_residual": 2.2204460492503131E-16,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 7.7555739608214935E-10,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00014891507748249211,
+        8.1247211436652478E-5,
+        2.6761760472115981E-5,
+        4.7073456244106637E-14,
+        7.1054273576010019E-15
+      ],
+      "node_speed_bound_excess": 0.0037723968787650719,
+      "node_steering_bound_excess": 0.0023772663714749509,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 9.9654394026995465
+    },
+    {},
+    {
+      "canonical_residual": 5.73908403300738E-8,
+      "time_transversality_residual": 8.88078499627909E-12,
+      "fixed_endpoint_residual": 5.5511151231257827E-17,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 4.6059511760176974E-10,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00017796708767181535,
+        0.00016757020828195301,
+        2.5138545564518111E-5,
+        1.4557244298885053E-12,
+        3.6755105625729811E-9
+      ],
+      "node_speed_bound_excess": 0.00088963249986262483,
+      "node_steering_bound_excess": 0.0015219589307141623,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 9.3142269723369626
+    },
+    {
+      "canonical_residual": 3.4391613323251496E-8,
+      "time_transversality_residual": 1.3654077868352488E-11,
+      "fixed_endpoint_residual": 0,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 6.4705574231993523E-11,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00014558757802901612,
+        7.3901607648974021E-5,
+        2.4719954318852544E-5,
+        1.8014345570804835E-10,
+        5.8710514228010879E-10
+      ],
+      "node_speed_bound_excess": 0.00521503716156424,
+      "node_steering_bound_excess": 0,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 11.011934633616779
+    },
+    {
+      "canonical_residual": 1.9945822771205712E-11,
+      "time_transversality_residual": 4.9960036108132044E-15,
+      "fixed_endpoint_residual": 0,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 4.8485304660061956E-10,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00017943267346903655,
+        7.3648240315047169E-5,
+        3.2292276730183644E-5,
+        2.6645352591003757E-14,
+        9.5479180117763462E-15
+      ],
+      "node_speed_bound_excess": 0.005449265539135606,
+      "node_steering_bound_excess": 0.0028246545594495798,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 8.45449693687444
+    },
+    {},
+    {
+      "canonical_residual": 1.4279917692761046E-8,
+      "time_transversality_residual": 1.865174681370263E-14,
+      "fixed_endpoint_residual": 3.3306690738754696E-16,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 4.05987066187663E-9,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.00024895753442555346,
+        0.0001525919460135805,
+        4.3371170378891932E-5,
+        3.730349362740526E-14,
+        2.7849944572722052E-12
+      ],
+      "node_speed_bound_excess": 0.0071005433602961965,
+      "node_steering_bound_excess": 0.00781419791268878,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 15.888036655270973
+    },
+    {
+      "canonical_residual": 7.2909782031227444E-10,
+      "time_transversality_residual": 5.7287508070658077E-14,
+      "fixed_endpoint_residual": 0,
+      "free_steering_costate_residual": 0,
+      "control_stationarity_residual": 1.4913581480868743E-10,
+      "output_field_error": 0,
+      "independent_integration_max_state_error": [
+        0.0017056919088333511,
+        0.0013489917833706677,
+        0.00021487552798404863,
+        1.8820944802655504E-11,
+        1.3778977958622818E-12
+      ],
+      "node_speed_bound_excess": 0.0079562230804564038,
+      "node_steering_bound_excess": 0.0019000988937342145,
+      "midpoint_speed_bound_excess": 0,
+      "midpoint_steering_bound_excess": 0,
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 17.751665617253874
+    },
+    {},
+    {}
+  ]
+}
