@@ -26,7 +26,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [H_OBCA](../planners/H_OBCA/README.md) | 12 | 12 | 12 | 5 | [JSON](../results/H_OBCA/metrics.json) · [CSV](../results/H_OBCA/metrics.csv) |
 | [HA_CG](../planners/HA_CG/README.md) | 12 | 12 | 7 | 12 | [JSON](../results/HA_CG/metrics.json) · [CSV](../results/HA_CG/metrics.csv) |
 | [HJBA](../planners/HJBA/README.md) | 12 | 12 | 5 | 10 | [JSON](../results/HJBA/metrics.json) · [CSV](../results/HJBA/metrics.csv) |
-| [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 6 | 6 | 6 | 2 | [JSON](../results/HyperplaneOCP/metrics.json) · [CSV](../results/HyperplaneOCP/metrics.csv) |
+| [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/HyperplaneOCP/metrics.json) · [CSV](../results/HyperplaneOCP/metrics.csv) |
 | [IndirectOCP](../planners/IndirectOCP/README.md) | 7 | 7 | 7 | 7 | [JSON](../results/IndirectOCP/metrics.json) · [CSV](../results/IndirectOCP/metrics.csv) |
 | [KinoDeform](../planners/KinoDeform/README.md) | 9 | 9 | 9 | 9 | [JSON](../results/KinoDeform/metrics.json) · [CSV](../results/KinoDeform/metrics.csv) |
 | [LamirauxSmooth](../planners/LamirauxSmooth/README.md) | 12 | 11 | 11 | 9 | [JSON](../results/LamirauxSmooth/metrics.json) · [CSV](../results/LamirauxSmooth/metrics.csv) |
@@ -34,7 +34,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [LaumondRS](../planners/LaumondRS/README.md) | 12 | 12 | 4 | 4 | [JSON](../results/LaumondRS/metrics.json) · [CSV](../results/LaumondRS/metrics.csv) |
 | [LIOM](../planners/LIOM/README.md) | 8 | 8 | 8 | 8 | [JSON](../results/LIOM/metrics.json) · [CSV](../results/LIOM/metrics.csv) |
 | [OSEHS](../planners/OSEHS/README.md) | 10 | 10 | 6 | 9 | [JSON](../results/OSEHS/metrics.json) · [CSV](../results/OSEHS/metrics.csv) |
-| [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 2 | 2 | 2 | 2 | [JSON](../results/PointPotentialOCP/metrics.json) · [CSV](../results/PointPotentialOCP/metrics.csv) |
+| [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 3 | 3 | 3 | 3 | [JSON](../results/PointPotentialOCP/metrics.json) · [CSV](../results/PointPotentialOCP/metrics.csv) |
 | [RITP](../planners/RITP/README.md) | 10 | 10 | 10 | 10 | [JSON](../results/RITP/metrics.json) · [CSV](../results/RITP/metrics.csv) |
 | [RTR_TTS](../planners/RTR_TTS/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/RTR_TTS/metrics.json) · [CSV](../results/RTR_TTS/metrics.csv) |
 | [SE2_NMPC](../planners/SE2_NMPC/README.md) | 11 | 11 | 11 | 11 | [JSON](../results/SE2_NMPC/metrics.json) · [CSV](../results/SE2_NMPC/metrics.csv) |

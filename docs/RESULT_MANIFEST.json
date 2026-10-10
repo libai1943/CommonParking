@@ -1348,78 +1348,78 @@
     },
     {
       "path": "results/HyperplaneOCP/Case01.mat",
-      "bytes": 1189,
-      "sha256": "6e532892009bade6b7f11cdefbae90bed5fce19f466f0216250c4d7bbe9c3374"
+      "bytes": 14121,
+      "sha256": "96942335ebd2585ee6749f5b6c150406c7f2c927541547f32146cf8230df548f"
     },
     {
       "path": "results/HyperplaneOCP/Case02.mat",
-      "bytes": 1185,
-      "sha256": "eaa2667c62f28516900554c7c9400a3508ae71c6d680d66dae2586149d36a43c"
+      "bytes": 14096,
+      "sha256": "8dde157f3797352c8065800c92324f4428e089e0083a407136e899fe31b45ca4"
     },
     {
       "path": "results/HyperplaneOCP/Case03.mat",
-      "bytes": 13999,
-      "sha256": "4fa7ca36a89b3550030d98c92fd478afd030f31c5e083c7272e4a961c67623d2"
+      "bytes": 14101,
+      "sha256": "0a3cd15f5a08f09ff2dc039e18fc25edb25ffcbd640cee4dc2f627132503e479"
     },
     {
       "path": "results/HyperplaneOCP/Case04.mat",
-      "bytes": 14020,
-      "sha256": "12b2816288d7afd3a68e3f48c328677e5970c447e5b0a37f06e5895e0358cbf0"
+      "bytes": 14123,
+      "sha256": "be71679d71d7fb59ff9616f03ad3878afe2b6405c996c2868464d864ffbb36ce"
     },
     {
       "path": "results/HyperplaneOCP/Case05.mat",
-      "bytes": 1190,
-      "sha256": "64b8df424d8903694e929b599d7679f42ba6aeac4784a9ffcdb76c1957f3ac21"
+      "bytes": 14082,
+      "sha256": "f5bfe6176e6a1add2c86fdc35606c2a1c2933c69c18ac191c6f14816a2ca1e8e"
     },
     {
       "path": "results/HyperplaneOCP/Case06.mat",
-      "bytes": 14033,
-      "sha256": "7f3e91b114d4881ae3fbabf5e0426d15a44533dbca24bb5d8608ecdcafad3581"
+      "bytes": 14099,
+      "sha256": "e2927bb974e6e5bba41e393838e291f29988e7482893e85375c7bcc4790ac91e"
     },
     {
       "path": "results/HyperplaneOCP/Case07.mat",
-      "bytes": 13820,
-      "sha256": "2b9f9df0fe05c64332800dcca0d75c34e519920e00f04025ed306cf997ecdef5"
+      "bytes": 13863,
+      "sha256": "13333861a79b6d6bd880b9bccd7d0e185b1a40d4d5d23dcc0569c31f2eb4bc5a"
     },
     {
       "path": "results/HyperplaneOCP/Case08.mat",
-      "bytes": 1183,
-      "sha256": "ff0742b93f9dae8da464ab106a13d6661fe4ea17effe865df6e7584f5e8f4bdc"
+      "bytes": 14107,
+      "sha256": "d799300db3648f5eb1d756e4cf5765e40b3f53a5a06c4ec0899a23103cf9b3a5"
     },
     {
       "path": "results/HyperplaneOCP/Case09.mat",
-      "bytes": 1186,
-      "sha256": "6d0a5027427a43ec2b2cb420e91ab72a84796626997aa0b0133a5aab9660d8fa"
+      "bytes": 14102,
+      "sha256": "3df6a6e00df00e31ef557dea4996dcd8d103a849c50ad8b44715fc9b84bfa6fc"
     },
     {
       "path": "results/HyperplaneOCP/Case10.mat",
-      "bytes": 14034,
-      "sha256": "4c4696e2d8f7d1fea4688cf65665cd7bee2e6d073c7be06a5bafa02f007cf492"
+      "bytes": 14099,
+      "sha256": "ed268c2ebc73a9b34c0e57cacf970c95cc5f5591625f29eb6162570d809e4e5b"
     },
     {
       "path": "results/HyperplaneOCP/Case11.mat",
-      "bytes": 13986,
-      "sha256": "51512153c147a92127b241a7f965f01a2c24add2bd7eed9158aba6bab08bcf6e"
+      "bytes": 14128,
+      "sha256": "438e3f3c7903605d06142532020fea36458f8f4b21f553f942925e43a137ab3a"
     },
     {
       "path": "results/HyperplaneOCP/Case12.mat",
-      "bytes": 1201,
-      "sha256": "812c8c12964f716175eb176d84523376ab87fa971c2c775e3e112bb3e1792a82"
+      "bytes": 14105,
+      "sha256": "e078df31bb52e354d41b12f83123b4cec53441550502f0ff934a1be4754e3dbf"
     },
     {
       "path": "results/HyperplaneOCP/metrics.csv",
-      "bytes": 1359,
-      "sha256": "e89391d164724b6681e3a02d5ea5f97c99dfe51a40c39b4a47841f40c691951c"
+      "bytes": 1710,
+      "sha256": "ddf6b18444b85be8a1a0dcf65bd707652735215723950f4ec4f8eb4c69b202b2"
     },
     {
       "path": "results/HyperplaneOCP/metrics.json",
-      "bytes": 9421,
-      "sha256": "97bf540a21d72894da7929c5ac2bab9865b04313c5fec2b37e73167ce2fa90f6"
+      "bytes": 12912,
+      "sha256": "c147335210cdf5716d98816c564a7f79c7b8295ad1059c8474d16878c224b353"
     },
     {
       "path": "results/HyperplaneOCP/validation.json",
-      "bytes": 6185,
-      "sha256": "ae2fabf1e9370601e8d23cf3d0d8614a228a5e4516d0b157446dd9aa929d2d19"
+      "bytes": 15963,
+      "sha256": "9e0f655524fca5b4bfda0d3dab785960cf3cd68e516b62a3e1d09a08ad583a7d"
     },
     {
       "path": "results/IndirectOCP/Case01.mat",
@@ -2093,78 +2093,78 @@
     },
     {
       "path": "results/PointPotentialOCP/Case01.mat",
-      "bytes": 135780,
-      "sha256": "e3303761b29afe76174df95a2ca9c184a1a6905af2c62b9be193564b10f97335"
+      "bytes": 58764,
+      "sha256": "de36d656da6f45b870e82f937ee5f61c195fad6306262a236ca65fcc11c4bcc6"
     },
     {
       "path": "results/PointPotentialOCP/Case02.mat",
-      "bytes": 143014,
-      "sha256": "f3854a9a3b74055f958ab0fec32947cd9efa2c3f52cb9a8b7b8ac95087586af4"
+      "bytes": 45615,
+      "sha256": "d261f521f04c6e35865f5ffa936c9995cc1ebeb4ce5ff51bf038db0b1a3acd6c"
     },
     {
       "path": "results/PointPotentialOCP/Case03.mat",
-      "bytes": 32817,
-      "sha256": "ff5878a5e708702f3c12740e86339dd599a271eef994c51443630f7f1b33a10e"
+      "bytes": 32720,
+      "sha256": "a15973127a10554a8cd3ec6dc83c6a6748fa4793368001102150e8a24adcf3a5"
     },
     {
       "path": "results/PointPotentialOCP/Case04.mat",
-      "bytes": 31116,
-      "sha256": "7a7e2520aa303563c542eabbae3c785610d02898003aadc9dc880d391955dd75"
+      "bytes": 30447,
+      "sha256": "370f5aeda8abdeeb8af4f549bcd65d57e2e7547a7b9c1678dac9c6dbc09296c8"
     },
     {
       "path": "results/PointPotentialOCP/Case05.mat",
-      "bytes": 45841,
-      "sha256": "1a4bf8624ff828f2bfd8c8614acd9c75fa7a5dedaec788c83aec17c51096a539"
+      "bytes": 32602,
+      "sha256": "641a7084a151b31dae7c514c738f27679592d6f409702861b5239a8c046a8c62"
     },
     {
       "path": "results/PointPotentialOCP/Case06.mat",
-      "bytes": 289411,
-      "sha256": "e1b0eb76521a54443e0f2ee94412181a759f7b94369006e1a75776857149bd3d"
+      "bytes": 34338,
+      "sha256": "544b246654469458581bcde43208d9e904c1fd5e6cca0bf916156117f63f217f"
     },
     {
       "path": "results/PointPotentialOCP/Case07.mat",
-      "bytes": 31606,
-      "sha256": "9603cf4c87b870d4094ffbdde3cad2c84056a0b9b7d57930bf1e5d19fd6dd371"
+      "bytes": 31509,
+      "sha256": "e3548a9b52790c22d8507b1507e8b465007184db60edb28f33504892aba064a0"
     },
     {
       "path": "results/PointPotentialOCP/Case08.mat",
-      "bytes": 29309,
-      "sha256": "453b5464485270ac4bc556480982cfa249a723c0cbeae0a02aa6d518d5396891"
+      "bytes": 65929,
+      "sha256": "9c8c5165b258f854d0ac737e33495201cfdde903dbe3dcee6a176e45380062ed"
     },
     {
       "path": "results/PointPotentialOCP/Case09.mat",
-      "bytes": 36087,
-      "sha256": "6ca37d92bedea7bbb7c53954ba60c99ddd1fd768e720c7b7b786903f5eae11a2"
+      "bytes": 69381,
+      "sha256": "d906506d4e338ccb79db65bb625d3e413fc8662803af9d697bcb506110da972b"
     },
     {
       "path": "results/PointPotentialOCP/Case10.mat",
-      "bytes": 61964,
-      "sha256": "d3e2c19cc3942a7656a6b5cc0d42d5c1f5343ad8240d9d24355955672480cc5c"
+      "bytes": 46615,
+      "sha256": "6f06c5c77e8b7f26d38333c060e76db883c171e54dfed22e11d15649601e3968"
     },
     {
       "path": "results/PointPotentialOCP/Case11.mat",
-      "bytes": 41807,
-      "sha256": "3c8e7960a9c81e19c9e4f88d4051157a8f08c1d86b57545f33bcfffceca6cb00"
+      "bytes": 28777,
+      "sha256": "8e304f4ada3f67144207a2a6ff6e9566a3dacfd31937beaeab47fadba0509bc1"
     },
     {
       "path": "results/PointPotentialOCP/Case12.mat",
-      "bytes": 59193,
-      "sha256": "81263c444b4024ec3f04f1a372193470b6517d4b3ab51718bb51b0f26be10b30"
+      "bytes": 33332,
+      "sha256": "3684dcf39ea9ac959032b7781d81287ad46568396f9be30e37b503f7f163843e"
     },
     {
       "path": "results/PointPotentialOCP/metrics.csv",
-      "bytes": 979,
-      "sha256": "18adf18fcbf3f71b74f8b5ab9f03f197b978f212eb0f64b379a6f17424e79efb"
+      "bytes": 1055,
+      "sha256": "fbf886df92e07ee0cd825e0809901eb677fd2fbcf9bccd7427c94c773c82ff40"
     },
     {
       "path": "results/PointPotentialOCP/metrics.json",
-      "bytes": 6855,
-      "sha256": "dcdaea0b37b370aa94ac7584fdfe0f9d206aecdbbe83575073aeaf2a29fae1e5"
+      "bytes": 7468,
+      "sha256": "3a8bcf1a61f9f32b15ea48d94e8334e72f0a8efba2ad3b8b90367ca183bf6d73"
     },
     {
       "path": "results/PointPotentialOCP/validation.json",
-      "bytes": 2720,
-      "sha256": "d37d0182c8767062a08f151bde8653599e59837d88960c7f5ca88574e429ee95"
+      "bytes": 2966,
+      "sha256": "9bc5c404172b7cd3f8f0b27bf7a45c1dea98e6cd97b3d0a1099c4eb8f170ab16"
     },
     {
       "path": "results/RITP/Case01.mat",

@@ -403,23 +403,23 @@
     {
       "planner": "HyperplaneOCP",
       "cases": 12,
-      "planner_success": 6,
-      "evaluation_success": 6,
-      "terminal_reached": 6,
-      "zero_collision_execution": 2,
+      "planner_success": 12,
+      "evaluation_success": 12,
+      "terminal_reached": 12,
+      "zero_collision_execution": 12,
       "screen_codes": [
-        "planner_failed",
-        "planner_failed",
         "valid",
         "valid",
-        "planner_failed",
         "valid",
         "valid",
-        "planner_failed",
-        "planner_failed",
         "valid",
         "valid",
-        "planner_failed"
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid",
+        "valid"
       ]
     },
     {
@@ -579,16 +579,16 @@
     {
       "planner": "PointPotentialOCP",
       "cases": 12,
-      "planner_success": 2,
-      "evaluation_success": 2,
-      "terminal_reached": 2,
-      "zero_collision_execution": 2,
+      "planner_success": 3,
+      "evaluation_success": 3,
+      "terminal_reached": 3,
+      "zero_collision_execution": 3,
       "screen_codes": [
         "planner_failed",
         "planner_failed",
         "valid",
         "planner_failed",
-        "planner_failed",
+        "valid",
         "planner_failed",
         "valid",
         "planner_failed",
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "cdb5608bdd22d83c9e2eec6c4a2035d330fef900",
+  "source_commit": "7b28ab935a7083eae1386fc1d89c8b3175cf8e30",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {
