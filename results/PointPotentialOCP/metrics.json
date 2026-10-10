@@ -2,7 +2,7 @@
   {
     "case_id": 1,
     "planner_success": false,
-    "computation_time_s": 54.8587638,
+    "computation_time_s": 93.1217478,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -19,7 +19,7 @@
   {
     "case_id": 2,
     "planner_success": false,
-    "computation_time_s": 44.3151692,
+    "computation_time_s": 130.040763,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -36,7 +36,7 @@
   {
     "case_id": 3,
     "planner_success": true,
-    "computation_time_s": 8.6760148,
+    "computation_time_s": 20.4625428,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -68,7 +68,7 @@
   {
     "case_id": 4,
     "planner_success": false,
-    "computation_time_s": 13.9502139,
+    "computation_time_s": 26.4279589,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -84,25 +84,40 @@
   },
   {
     "case_id": 5,
-    "planner_success": false,
-    "computation_time_s": 8.7727941,
-    "evaluation_success": false,
-    "code": "planner_failed",
-    "message": "Planner reported failure.",
+    "planner_success": true,
+    "computation_time_s": 30.1962845,
+    "evaluation_success": true,
+    "code": "evaluated",
+    "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
     "metrics": {
-      "collision_percent": null,
-      "terminal_reached": null,
-      "execution_time_s": null,
-      "control_effort_integral": null,
-      "steering_integral": null,
-      "gear_changes": null,
-      "smoothness_cost": null
-    }
+      "collision_percent": 0,
+      "terminal_reached": true,
+      "execution_time_s": 9.219769443835867,
+      "control_effort_integral": 12.136226012562421,
+      "steering_integral": 1.7644743372469476,
+      "gear_changes": 1,
+      "smoothness_cost": 144.0070034980937
+    },
+    "terminal_error": [
+      2.543495504636617e-05,
+      1.9300966766333527e-05,
+      3.0676620448311094e-06
+    ],
+    "reference_time": 9.197681189209243,
+    "integration": {
+      "max_pose_defect": 8.919284853470266e-07,
+      "max_state_defect": 8.919284853470266e-07,
+      "integrator": "RK4, <=1 ms, split at control knots",
+      "max_dynamic_violation": 0,
+      "max_speed": 2.496399863171934,
+      "max_steering": 0.7006531542486917
+    },
+    "time_upper_bound_active": false
   },
   {
     "case_id": 6,
     "planner_success": false,
-    "computation_time_s": 27.6160393,
+    "computation_time_s": 25.2553015,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -119,7 +134,7 @@
   {
     "case_id": 7,
     "planner_success": true,
-    "computation_time_s": 7.0078578,
+    "computation_time_s": 18.5486025,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -151,7 +166,7 @@
   {
     "case_id": 8,
     "planner_success": false,
-    "computation_time_s": 26.3509032,
+    "computation_time_s": 12.1606983,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -168,7 +183,7 @@
   {
     "case_id": 9,
     "planner_success": false,
-    "computation_time_s": 28.3844426,
+    "computation_time_s": 37.2194251,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -185,7 +200,7 @@
   {
     "case_id": 10,
     "planner_success": false,
-    "computation_time_s": 33.2254867,
+    "computation_time_s": 27.8741974,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -202,7 +217,7 @@
   {
     "case_id": 11,
     "planner_success": false,
-    "computation_time_s": 9.4444225,
+    "computation_time_s": 52.8128371,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",
@@ -219,7 +234,7 @@
   {
     "case_id": 12,
     "planner_success": false,
-    "computation_time_s": 13.4382056,
+    "computation_time_s": 9.680145,
     "evaluation_success": false,
     "code": "planner_failed",
     "message": "Planner reported failure.",

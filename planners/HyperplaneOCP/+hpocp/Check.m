@@ -5,9 +5,16 @@ v=c.vehicle;excess=[abs(z(:,4))-v.vmax;abs(z(:,5))-v.phimax;abs(u(:,1))-v.amax;a
 frames=hpocp.Frames(z(:,1:3),v);polygons=parking.PolygonData(c);minimumNormal=inf;minimumSupport=inf;
 for j=1:polygons.count
  p=reshape(planes(:,j,:),[],3);norms=hypot(p(:,1),p(:,2));minimumNormal=min(minimumNormal,min(norms));
- body=p(:,1).*frames(:,:,1)+p(:,2).*frames(:,:,2)-p(:,3);obstacle=p(:,3)-p(:,1:2)*polygons.vertices{j}';
- excess=[excess;o.normalMinimum^2-norms.^2;-body(:);-obstacle(:)]; %#ok<AGROW>
- minimumSupport=min(minimumSupport,min([min(body,[],2)./max(norms,realmin);min(obstacle,[],2)./max(norms,realmin)]));
+ rho=hypot(max(v.lw+v.lf,v.lr),v.lb/2);vv=max(abs(z(1:end-1,4)),abs(z(2:end,4)));pp=max(abs(z(1:end-1,5)),abs(z(2:end,5)));
+ aa=abs(u(:,1));ww=abs(u(:,2));kk=tan(pp)/v.lw;
+ curvatureBound=aa+vv.^2.*kk+rho*(aa.*kk+vv.*ww./(v.lw*cos(pp).^2)+(vv.*kk).^2);
+ reserve=max(rho/8*diff(z(:,3)).^2,h^2/8*curvatureBound)+o.supportTolerance;
+ for side=0:1
+  body=p(:,1).*frames(1+side:end-1+side,:,1)+p(:,2).*frames(1+side:end-1+side,:,2)-p(:,3)-reserve;
+  obstacle=p(:,3)-p(:,1:2)*polygons.vertices{j}';
+  excess=[excess;abs(norms.^2-1);-body(:);-obstacle(:)];
+  minimumSupport=min(minimumSupport,min([min(body,[],2)./max(norms,realmin);min(obstacle,[],2)./max(norms,realmin)]));
+ end
 end
 inequality=max([0;excess]);endpoint=max(abs(boundary),[],'all');objective=h*sum(o.timeWeight+o.accelerationWeight*u(:,1).^2+o.steeringRateWeight*u(:,2).^2);
 report=struct('success',dynamic<=o.feasibilityTolerance&&endpoint<=o.feasibilityTolerance&&inequality<=o.feasibilityTolerance, ...

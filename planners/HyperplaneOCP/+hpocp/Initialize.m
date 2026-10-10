@@ -1,12 +1,15 @@
 function [z,u,h,planes]=Initialize(c,o)
-% Linear single-car state guess (VII-A-5) and geometric plane guess (VI-B).
-t=c.task;fraction=linspace(0,1,o.intervals+1)';dtheta=atan2(sin(t.thetaf-t.theta0),cos(t.thetaf-t.theta0));
-z=[t.x0+(t.xf-t.x0)*fraction,t.y0+(t.yf-t.y0)*fraction,t.theta0+dtheta*fraction,zeros(o.intervals+1,2)];
-u=zeros(o.intervals,2);h=o.initialTime/o.intervals;polygons=parking.PolygonData(c);planes=zeros(o.intervals+1,polygons.count,3);
-for j=1:polygons.count
- P=polygons.vertices{j};Q=P([2:end 1],:);cross=P(:,1).*Q(:,2)-Q(:,1).*P(:,2);centroid=sum((P+Q).*cross,1)/(3*sum(cross));
- normal=z(:,1:2)-centroid;zero=vecnorm(normal,2,2)<1e-12;normal(zero,:)=repmat([1 0],nnz(zero),1);normal=normal./vecnorm(normal,2,2);
- point=o.hyperplaneFraction*z(:,1:2)+(1-o.hyperplaneFraction)*centroid;
- planes(:,j,1:2)=reshape(normal,[],1,2);planes(:,j,3)=sum(normal.*point,2);
+% Common-model search seed; geometric separating normals have unit norm.
+raw=parking.SearchHybridAStar(c,o.search);assert(raw.success,'Hybrid A* initialization failed.');
+q=hpocp.Seed(c,raw,o.intervals+1);h=q.t(end)/o.intervals;z=[q.x q.y q.theta q.v q.phi];
+u=[diff(q.v)/h,diff(q.phi)/h];polygons=parking.PolygonData(c);planes=zeros(o.intervals,polygons.count,3);
+frames=hpocp.Frames(z(:,1:3),c.vehicle);
+for i=1:size(z,1)-1
+ B=[reshape(frames(i:i+1,:,1)',[],1),reshape(frames(i:i+1,:,2)',[],1)];
+ for j=1:polygons.count
+  A=polygons.vertices{j};edge=[diff([A;A(1,:)]);diff([B;B(1,:)])];edge=edge(vecnorm(edge,2,2)>1e-12,:);axes=[-edge(:,2),edge(:,1)]./vecnorm(edge,2,2);axes=[axes;-axes];
+  pa=A*axes';pb=B*axes';gaps=min(pb,[],1)-max(pa,[],1);[~,k]=max(gaps);normal=axes(k,:);mu=.5*(min(pb(:,k))+max(pa(:,k)));
+  planes(i,j,:)=[normal,mu];
+ end
 end
 end

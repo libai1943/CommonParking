@@ -1,20 +1,21 @@
 {
   "passed": true,
   "cases": 12,
-  "planner_success_count": 2,
-  "evaluation_success_count": 2,
-  "terminal_reached_count": 2,
-  "zero_collision_count": 2,
-  "joint_count": 2,
+  "planner_success_count": 3,
+  "evaluation_success_count": 3,
+  "terminal_reached_count": 3,
+  "zero_collision_count": 3,
+  "joint_count": 3,
   "unit": {
     "model_jacobian_error": 1.1102230246251565E-16,
-    "point_potential_gradient_error": 3.0597524514064389E-10,
-    "collocation_jacobian_error": 3.3044189606812324E-10,
+    "point_potential_gradient_error": 2.0306534231906426E-10,
+    "collocation_jacobian_error": 3.0343905166319018E-10,
     "curved_fixture_sqp_success": true,
     "curved_fixture_time_s": 5.6638582307933474,
     "curved_constraint_residual": 7.7715611723760958E-16,
     "native_node_interpolation_error": 0,
     "dense_derivative_error": 1.0509300096828156E-9,
+    "boundary_and_branch_continuity": true,
     "exact_off_grid_cusps": true,
     "coincident_timestamp_merge": true
   },
@@ -42,14 +43,32 @@
       ],
       "native_node_collision_percent": 0,
       "independent_replay_collision_percent": 0,
-      "native_time_s": 9.5111951519050582,
-      "native_node_collision_count": 0,
-      "linear_reference_collision_percent": 0,
-      "maximum_executed_reference_position_difference_m": 0.00019677601776677323,
-      "maximum_executed_reference_heading_difference_rad": 9.3077488589388122E-5
+      "native_time_s": 9.5111951519050582
     },
     {},
-    {},
+    {
+      "collocation_residual": 8.0491169285323849E-16,
+      "endpoint_residual": 0,
+      "output_field_error": 0,
+      "nodes": 101,
+      "obstacle_points": 168,
+      "mesh": {
+        "passed": true,
+        "max_ode_defect": 2.0957217712336274E-5,
+        "max_point_potential": 0,
+        "max_bound_violation": 1.3322676295501878E-15,
+        "samples": 1001,
+        "step_s": 0.009197681189209243
+      },
+      "independent_integration_max_pose_error": [
+        9.5416782697199665E-7,
+        3.4456674669058884E-7,
+        1.1450956538539003E-7
+      ],
+      "native_node_collision_percent": 0,
+      "independent_replay_collision_percent": 0,
+      "native_time_s": 9.1976811892092432
+    },
     {},
     {
       "collocation_residual": 7.4940054162198066E-16,
@@ -72,11 +91,7 @@
       ],
       "native_node_collision_percent": 0,
       "independent_replay_collision_percent": 0,
-      "native_time_s": 8.6494298118611681,
-      "native_node_collision_count": 0,
-      "linear_reference_collision_percent": 0,
-      "maximum_executed_reference_position_difference_m": 0.00014962499142195102,
-      "maximum_executed_reference_heading_difference_rad": 0.00015156531520865713
+      "native_time_s": 8.6494298118611681
     },
     {},
     {},

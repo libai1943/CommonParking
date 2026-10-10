@@ -1,6 +1,6 @@
 # Forty-method assessment by mechanism
 
-This is a descriptive assessment of the **current CommonParking implementations and settings**, across the same 12 frozen microscopic terminal-parking tasks. There are 480 recorded calls: 367 planner successes, 366 successful evaluations, and 227 executions that both attain the terminal tolerance and have zero measured collision frames. The latter is a conjunction of two published checks, **not a weighted score**. It does not imply optimality or continuous-time collision certification.
+This is a descriptive assessment of the **current CommonParking implementations and settings**, across the same 12 frozen microscopic terminal-parking tasks. There are 480 recorded calls: 374 planner successes, 373 successful evaluations, and 238 executions that both attain the terminal tolerance and have zero measured collision frames. The latter is a conjunction of two published checks, **not a weighted score**. It does not imply optimality or continuous-time collision certification.
 
 Native success, evaluation success, collision rate, terminal attainment, execution duration and smoothness remain separate fields. Terminal tolerance is 1 cm in each coordinate and 1 degree modulo 2*pi; measured collisions use full-rectangle frames at 1 ms. The executor is a local, obstacle-free tracking NLP plus independent integration, not a physical vehicle or a proof of globally best tracking. See the [protocol](../evaluation/README.md).
 
@@ -13,7 +13,7 @@ The four groups below are mutually exclusive **bookkeeping choices**, not a clai
 | Analytic geometry and constructive steering | 5 | 60 | 58 | 57 | 47 | 46 | 41 |
 | Sampling / roadmaps / exploration trees | 7 | 84 | 58 | 58 | 42 | 52 | 38 |
 | Discrete search / value / reachability | 9 | 108 | 85 | 85 | 45 | 67 | 34 |
-| Numerical optimization and optimization-dominant hybrids | 19 | 228 | 166 | 166 | 156 | 120 | 114 |
+| Numerical optimization and optimization-dominant hybrids | 19 | 228 | 173 | 173 | 163 | 131 | 125 |
 
 All outcome columns use the group's total call count as denominator; the last three count successfully evaluated executions only. These are counts from one recorded run per method and task. They are not estimated sampling success probabilities or evidence that one entire research category dominates another. Methods, meshes, native objectives, collision approximations and finite budgets differ. Some implementations reproduce a selected paper component or replace a numerical backend; their individual source mappings are essential context.
 
@@ -25,13 +25,13 @@ All outcome columns use the group's total call count as denominator; the last th
 
 **Sampling methods show a coverage-versus-executability distinction.** BiRRT_HC finds eleven native paths and all eleven have zero collision frames, while five reach the terminal tolerance. BiRRT_HCR and CC_PRM each solve seven tasks and pass both checks in all seven. KinoDeform passes both checks in all nine solved tasks. These observations motivate checking curvature/control continuity and exact connections alongside search coverage; they do not establish causation from a single comparison or eliminate the effects of budgets and random seeds.
 
-**The numerical methods have the widest spread in this implementation set.** STC and DL_IAPS_PJSO pass both checks in all twelve. SE2_NMPC passes in eleven; RITP in ten; LIOM in eight; IndirectOCP in seven. DL_IAPS_PJSO includes an explicit steering-rate clock adapter; its case-6 execution lasts about 113.2 s, so complete coverage is not a claim of shortest maneuvers. AnytimePSRO passes both checks in six and H_OBCA in five; both attain the terminal tolerance in all twelve cases with their documented common-model adapters. Initialization, body representation, transcription and solver settings materially affect the outcome. LIOM uses a sparse local objective, verified inexact inner iterates, exactly three covering discs and 201 states. All eight solved tasks pass both execution checks. See the [LIOM formulation and settings](../planners/LIOM/README.md).
+**The numerical methods have the widest spread in this implementation set.** STC, DL_IAPS_PJSO and HyperplaneOCP pass both checks in all twelve. SE2_NMPC passes in eleven; RITP in ten; LIOM in eight; IndirectOCP in seven. DL_IAPS_PJSO includes an explicit steering-rate clock adapter; its case-6 execution lasts about 113.2 s, so complete coverage is not a claim of shortest maneuvers. AnytimePSRO passes both checks in six and H_OBCA in five; both attain the terminal tolerance in all twelve cases with their documented common-model adapters. Initialization, body representation, transcription and solver settings materially affect the outcome. LIOM uses a sparse local objective, verified inexact inner iterates, exactly three covering discs and 201 states. All eight solved tasks pass both execution checks. See the [LIOM formulation and settings](../planners/LIOM/README.md).
 
 TEB's explicit five-state benchmark adapter passes both execution checks in seven tasks, and eleven executions attain the terminal tolerance. It retains topology exploration and soft-penalty sparse LM; its native completion flag is not a hard-feasibility certificate. Common-model adaptation and native residual reporting are necessary context for these measurements.
 
 Several weak outcomes have specific scope mismatches. BOMP's printed formulation has no acceleration bound and uses a 15-node global polynomial, whose between-node overshoots are documented. TriangleArea uses the common rear-axle model and 200-state Euler dynamics. Its vertex-only exclusion and the gap between discrete feasibility and executed motion must be distinguished from solver convergence. LatticeOCP and some circle-based methods reject endpoints that the physical rectangle can occupy. Soft penalties and sampled or under-covering collision approximations can leave physical intersections. These measurements do not isolate the merits of pseudospectral methods, triangle-area constraints, lattices or optimization as broad classes.
 
-**Complete coverage and maneuver efficiency are different dimensions.** STC, DL_IAPS_PJSO and RTR_TTS pass all twelve. For STC and RTR_TTS, on those same twelve tasks, their median execution durations are approximately 13.4 and 24.1 seconds. RTR_TTS needs 18, 24 and 21 gear changes in cases 2, 9 and 12. STC's planner wall-time median is approximately 4.4 seconds, but its case-2 time is 70.8 seconds. These separate dimensions remain preferable to declaring a universal winner.
+**Complete coverage and maneuver efficiency are different dimensions.** STC, DL_IAPS_PJSO, HyperplaneOCP and RTR_TTS pass all twelve. For STC and RTR_TTS, on those same twelve tasks, their median execution durations are approximately 13.4 and 24.1 seconds. RTR_TTS needs 18, 24 and 21 gear changes in cases 2, 9 and 12. STC's planner wall-time median is approximately 4.4 seconds, but its case-2 time is 70.8 seconds. These separate dimensions remain preferable to declaring a universal winner.
 
 ## Use in a survey
 
@@ -87,7 +87,7 @@ Each method has twelve attempted tasks. `Both` means successfully evaluated, ter
 | [LIOM](../planners/LIOM/README.md) | 8 | 8 | 8 | 8 | 8 | 3.849 |
 | [H_OBCA](../planners/H_OBCA/README.md) | 12 | 12 | 12 | 5 | 5 | 1.635 |
 | [TDR_OBCA](../planners/TDR_OBCA/README.md) | 12 | 12 | 12 | 5 | 5 | 2.508 |
-| [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 6 | 6 | 6 | 2 | 2 | 13.059 |
+| [HyperplaneOCP](../planners/HyperplaneOCP/README.md) | 12 | 12 | 12 | 12 | 12 | 7.994 |
 | [TriangleArea](../planners/TriangleArea/README.md) | 11 | 11 | 9 | 4 | 2 | 11.199 |
 | [BOMP](../planners/BOMP/README.md) | 2 | 2 | 0 | 0 | 0 | 31.796 |
 | [SLiFS](../planners/SLiFS/README.md) | 10 | 10 | 9 | 7 | 6 | 4.076 |
@@ -101,7 +101,9 @@ Each method has twelve attempted tasks. `Both` means successfully evaluated, ter
 | [TPCKC](../planners/TPCKC/README.md) | 5 | 5 | 5 | 5 | 5 | 14.593 |
 | [DFTPAV_Path](../planners/DFTPAV_Path/README.md) | 11 | 11 | 8 | 8 | 7 | 14.131 |
 | [IndirectOCP](../planners/IndirectOCP/README.md) | 7 | 7 | 7 | 7 | 7 | 76.200 |
-| [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 2 | 2 | 2 | 2 | 2 | 20.151 |
+| [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 3 | 3 | 3 | 3 | 3 | 27.151 |
+
+HyperplaneOCP attains the terminal tolerance in 12 tasks and passes both execution checks in 12. Its disclosed search initialization, unit plane normals and interval corner-motion bounds accompany the paper's primal separation and RK4 OCP; the retained control-effort weights yield a median executed duration of about 56.2 seconds despite complete task coverage. PointPotentialOCP passes both checks in 3 tasks with its continuous normalized point-field adaptation. Finite SQP and mesh-accuracy failures remain distinct from execution collisions.
 
 ## Post-hoc tolerance diagnostic
 
@@ -109,8 +111,8 @@ This reclassifies existing measured terminal errors only; it does not change the
 
 | Each-coordinate threshold | Joint count / 480 |
 |---|---:|
-| 1 cm | 227 |
-| 2 cm | 230 |
-| 5 cm | 238 |
+| 1 cm | 238 |
+| 2 cm | 241 |
+| 5 cm | 249 |
 
 [All per-case measurements](RESULT_INDEX.md) retain individual times, collision percentages, effort, steering integrals, gear changes, failure codes and native/evaluation flags.

@@ -118,7 +118,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [HA+CG](planners/HA_CG/README.md) (`HA_CG`) | Path | Dolgov, Thrun, Montemerlo & Diebel, IJRR 2010 | Implemented and tested on all 12 cases |
 | [STC](planners/STC/README.md) (`STC`) | Trajectory | Li et al., ECC 2020; documented multi-disc extension | Implemented and tested on all 12 cases |
 | [H-OBCA](planners/H_OBCA/README.md) (`H_OBCA`) | Trajectory | Zhang, Liniger, Sakai & Borrelli, CDC 2018 | Implemented and tested on all 12 cases |
-| [Point-potential optimal control](planners/PointPotentialOCP/README.md) (`PointPotentialOCP`) | Trajectory | Kondak & Hommel, ICRA 2001; direct collocation, point potentials and SQP with disclosed backend replacement | Implemented and tested on all 12 cases |
+| [Point-potential optimal control](planners/PointPotentialOCP/README.md) (`PointPotentialOCP`) | Trajectory | Kondak & Hommel, ICRA 2001; direct collocation, continuous point potentials and SQP with disclosed numerical adaptations | Implemented and tested on all 12 cases |
 | [Indirect optimal control](planners/IndirectOCP/README.md) (`IndirectOCP`) | Trajectory | Pagot et al., Access 2023; planning component with an open canonical-equation solver | Implemented and tested on all 12 cases |
 | [Bidirectional improved A-search](planners/BIAGT/README.md) (`BIAGT`) | Path | Wang, Hansen & Ahn, TCST 2024; static prioritized bidirectional search | Implemented and tested on all 12 cases |
 | [Kinodynamic tree deformation](planners/KinoDeform/README.md) (`KinoDeform`) | Trajectory | Lamiraux, Ferre & Vallee, ICRA 2004; input-space trees and variational trajectory deformation | Implemented and tested on all 12 cases |
@@ -139,7 +139,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
 | [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs, collision-weight iterations and physical flatness mapping | Implemented and tested on all 12 cases |
 | [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
-| [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
+| [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes, interval motion bounds and time/energy OCP with disclosed search initialization | Implemented and tested on all 12 cases |
 | [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
 | [Waypoint-guided two-stage RRT](planners/WGRRT/README.md) (`WGRRT`) | Path | Wang, Jha & Akemi, CASE 2017; geometric exploration, guided bi-RRT and value iteration | Implemented and tested on all 12 cases |
 | [SE(2)-aware nonlinear MPC](planners/SE2_NMPC/README.md) (`SE2_NMPC`) | Trajectory | Roesmann, Makarow & Bertram, ECC 2021; static quasi-time-optimal OCP realization | Implemented and tested on all 12 cases |
@@ -624,26 +624,26 @@ Planning times include all online construction, search and any smoothing stages.
 <!-- /results:OSEHS -->
 
 <!-- results:HyperplaneOCP -->
-## Primal separating-hyperplane optimal control: measured results
+## HyperplaneOCP: measured results
 
-The paper's polytope separation and five-state RK4 OCP produced 6/12 native trajectories; 6 execution optimizations succeeded and all 6 attained the terminal tolerance. Cases 3 and 4 had zero measured collision frames; executions 6, 7, 10 and 11 had small nonzero collision percentages. No positive obstacle margin is added to the article's half-space constraints. The retained time/energy objective weights 1, 100 and 200 yield comparatively slow maneuvers. The other six native failures are retained. Independent checks verify the hyperplane inequalities, normal magnitudes, full objective, RK4 dynamics, endpoints, output fields and adaptive ODE replay. See [the original formulation and disclosed single-car initialization and mesh choices](planners/HyperplaneOCP/README.md).
+12/12 native solves and 12/12 evaluations succeeded; 12 executions attained the terminal tolerance, 12 had zero measured collision frames, and 12 passed both checks. The primal separating-plane RK4 OCP uses the common five-state car, a bounded search seed, unit normals and shared interval planes with bounds on corner rotation and physical corner acceleration. The fixed 60 CPU-second NLP budget, 200 intervals and original time/energy objective are uniform across cases. Native constraints, linearly interpolated reference geometry and independent execution outcomes are checked separately. See [the formulation and numerical settings](planners/HyperplaneOCP/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | no | no | 12.9175 | — | — | — | — | — | — | — | — |
-| 02 | no | no | 9.2320 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 5.5350 | 0 | yes | 47.0475 | 0.1294 | 2.8646 | 1 | 34.9403 | no |
-| 04 | yes | yes | 9.2239 | 0 | yes | 49.4143 | 0.1524 | 1.2257 | 1 | 18.7810 | no |
-| 05 | no | no | 10.3893 | — | — | — | — | — | — | — | — |
-| 06 | yes | yes | 25.2883 | 0.4952 | yes | 51.4894 | 0.1314 | 7.7732 | 1 | 84.0464 | no |
-| 07 | yes | yes | 7.6161 | 0.6759 | yes | 46.4567 | 0.0876 | 8.2183 | 1 | 88.0587 | no |
-| 08 | no | no | 13.1997 | — | — | — | — | — | — | — | — |
-| 09 | no | no | 13.7464 | — | — | — | — | — | — | — | — |
-| 10 | yes | yes | 24.8153 | 0.2825 | yes | 51.3303 | 0.1548 | 2.0119 | 1 | 26.6664 | no |
-| 11 | yes | yes | 13.3299 | 0.5036 | yes | 66.9110 | 0.2115 | 9.3019 | 1 | 100.1337 | no |
-| 12 | no | no | 65.7592 | — | — | — | — | — | — | — | — |
+| 01 | yes | yes | 7.6359 | 0 | yes | 57.0365 | 0.1581 | 7.1863 | 2 | 83.4439 | no |
+| 02 | yes | yes | 3.3553 | 0 | yes | 97.5998 | 0.2274 | 23.4210 | 4 | 256.4840 | no |
+| 03 | yes | yes | 3.3735 | 0 | yes | 47.0475 | 0.1294 | 2.8646 | 1 | 34.9403 | no |
+| 04 | yes | yes | 1.4508 | 0 | yes | 49.4143 | 0.1524 | 1.2257 | 1 | 18.7810 | no |
+| 05 | yes | yes | 2.0555 | 0 | yes | 55.2663 | 0.1189 | 6.8732 | 2 | 79.9218 | no |
+| 06 | yes | yes | 7.1934 | 0 | yes | 51.4667 | 0.1301 | 7.9341 | 1 | 85.6416 | no |
+| 07 | yes | yes | 13.9918 | 0 | yes | 47.0397 | 0.0873 | 8.4373 | 1 | 90.2464 | no |
+| 08 | yes | yes | 35.8958 | 0 | yes | 69.0940 | 0.1929 | 9.5645 | 3 | 112.5731 | no |
+| 09 | yes | yes | 49.0036 | 0 | yes | 62.9733 | 0.1743 | 1.9620 | 2 | 31.3632 | no |
+| 10 | yes | yes | 34.0232 | 0 | yes | 51.1717 | 0.1535 | 2.1202 | 1 | 27.7370 | no |
+| 11 | yes | yes | 8.3524 | 0 | yes | 71.4411 | 0.3277 | 5.7241 | 0 | 60.5181 | no |
+| 12 | yes | yes | 45.6799 | 0 | yes | 62.0470 | 0.1659 | 3.5384 | 2 | 47.0430 | no |
 
 [CSV](results/HyperplaneOCP/metrics.csv) · [JSON](results/HyperplaneOCP/metrics.json) · [validation](results/HyperplaneOCP/validation.json).
 <!-- /results:HyperplaneOCP -->
@@ -1151,24 +1151,24 @@ Planning time includes setup, case loading, Hybrid A*, the tracking OCP, every s
 <!-- results:PointPotentialOCP -->
 ## PointPotentialOCP: measured results
 
-2/12 native solves and 2/12 evaluations succeeded; 2 executions attained the terminal tolerance, 2 had zero measured collision frames, and 2 passed both checks. The point-potential SQP retains Hermite-Simpson pose collocation and linear speed/steering, with both endpoint speed and steering fixed to zero under the common limits. Each SQP call has a 60 s between-iteration budget. Native convergence, sampled mesh accuracy and common execution checks remain separate. See [the formulation and numerical settings](planners/PointPotentialOCP/README.md).
+3/12 native solves and 3/12 evaluations succeeded; 3 executions attained the terminal tolerance, 3 had zero measured collision frames, and 3 passed both checks. The point-potential SQP uses a boundary-continuous normalized potential with the same point-exclusion feasible set, Hermite-Simpson pose collocation and linear speed/steering, with both endpoint speed and steering fixed to zero under the common limits. Each SQP call has a 60 s between-iteration budget. Native convergence, sampled mesh accuracy and common execution checks remain separate. See [the formulation and numerical settings](planners/PointPotentialOCP/README.md).
 
 Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | no | no | 54.8588 | — | — | — | — | — | — | — | — |
-| 02 | no | no | 44.3152 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 8.6760 | 0 | yes | 9.5333 | 12.1839 | 1.9791 | 1 | 146.6305 | no |
-| 04 | no | no | 13.9502 | — | — | — | — | — | — | — | — |
-| 05 | no | no | 8.7728 | — | — | — | — | — | — | — | — |
-| 06 | no | no | 27.6160 | — | — | — | — | — | — | — | — |
-| 07 | yes | yes | 7.0079 | 0 | yes | 8.6661 | 10.0008 | 1.7290 | 1 | 122.2986 | no |
-| 08 | no | no | 26.3509 | — | — | — | — | — | — | — | — |
-| 09 | no | no | 28.3844 | — | — | — | — | — | — | — | — |
-| 10 | no | no | 33.2255 | — | — | — | — | — | — | — | — |
-| 11 | no | no | 9.4444 | — | — | — | — | — | — | — | — |
-| 12 | no | no | 13.4382 | — | — | — | — | — | — | — | — |
+| 01 | no | no | 93.1217 | — | — | — | — | — | — | — | — |
+| 02 | no | no | 130.0408 | — | — | — | — | — | — | — | — |
+| 03 | yes | yes | 20.4625 | 0 | yes | 9.5333 | 12.1839 | 1.9791 | 1 | 146.6305 | no |
+| 04 | no | no | 26.4280 | — | — | — | — | — | — | — | — |
+| 05 | yes | yes | 30.1963 | 0 | yes | 9.2198 | 12.1362 | 1.7645 | 1 | 144.0070 | no |
+| 06 | no | no | 25.2553 | — | — | — | — | — | — | — | — |
+| 07 | yes | yes | 18.5486 | 0 | yes | 8.6661 | 10.0008 | 1.7290 | 1 | 122.2986 | no |
+| 08 | no | no | 12.1607 | — | — | — | — | — | — | — | — |
+| 09 | no | no | 37.2194 | — | — | — | — | — | — | — | — |
+| 10 | no | no | 27.8742 | — | — | — | — | — | — | — | — |
+| 11 | no | no | 52.8128 | — | — | — | — | — | — | — | — |
+| 12 | no | no | 9.6801 | — | — | — | — | — | — | — | — |
 
 [CSV](results/PointPotentialOCP/metrics.csv) · [JSON](results/PointPotentialOCP/metrics.json) · [validation](results/PointPotentialOCP/validation.json).
 <!-- /results:PointPotentialOCP -->
