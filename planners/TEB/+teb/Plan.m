@@ -1,5 +1,5 @@
 function result=Plan(c)
-o=teb.Config();env=teb.Prepare(c);result=cp.EmptyResult('TEB',c.id,'trajectory');
+o=teb.Config();o.vehicle=c.vehicle;env=teb.Prepare(c);result=cp.EmptyResult('TEB',c.id,'trajectory');
 state=rng;previous=maxNumCompThreads(1);cleanupRng=onCleanup(@()rng(state));cleanupThreads=onCleanup(@()maxNumCompThreads(previous));rng(o.seedBase+c.id); %#ok<NASGU>
 raw=parking.SearchHybridAStar(c,o.search);result.diagnostics=struct('options',o,'search',raw,'cycles',{{}});
 candidates=struct('pose',{},'dt',{},'cost',{},'signature',{},'origin',{},'solver',{});

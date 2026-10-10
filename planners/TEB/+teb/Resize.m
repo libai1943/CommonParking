@@ -9,6 +9,7 @@ while k<=numel(b.dt)
   b.pose=[b.pose(1:k,:);middle;b.pose(k+1:end,:)];b.dt=[b.dt(1:k-1);b.dt(k)/2;b.dt(k)/2;b.dt(k+1:end)];k=k+2;
  elseif b.dt(k)<o.dt-o.hysteresis&&n>o.minimumPoses
   if k<numel(b.dt)
+   if b.pose(k,4)*b.pose(k+2,4)<0,k=k+1;continue;end
    b.dt(k+1)=b.dt(k+1)+b.dt(k);b.dt(k)=[];b.pose(k+1,:)=[];
   else
    b.dt(k-1)=b.dt(k-1)+b.dt(k);b.dt(k)=[];b.pose(k,:)=[];k=k+1;

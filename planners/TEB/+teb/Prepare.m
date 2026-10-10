@@ -15,7 +15,4 @@ for j=1:R
  A(j)=f0/prod(delta);
 end
 env.residues=A/max([1;abs(A)]); % Common nonzero scale does not change equivalence.
-env.yawRateMax=c.vehicle.vmax*c.vehicle.kappa_max;
-env.yawAccelerationMax=c.vehicle.amax*c.vehicle.kappa_max+ ...
- c.vehicle.vmax*(1+tan(c.vehicle.phimax)^2)*c.vehicle.wmax/c.vehicle.lw;
 end

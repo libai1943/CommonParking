@@ -1,16 +1,16 @@
 function [b,info]=Optimize(b,env,o)
-% Sparse, diagonally scaled Levenberg-Marquardt on the fixed penalty objective.
+% Sparse LM: column scaling of the damped normal equations, fixed penalties.
 z=teb.Pack(b);[pattern,colors]=teb.Pattern(size(b.pose,1),numel(env.polygons));
 r=teb.Residual(z,b,env,o);cost=r'*r;initial=cost;mu=1e-3;accepted=0;rejected=0;code='iteration_budget';
 for iteration=1:o.lmIterations
  J=teb.Jacobian(z,r,b,env,o,pattern,colors);g=J'*r;H=J'*J;
  if any(~isfinite(r))||any(~isfinite(nonzeros(J))),code='nonfinite_model';break;end
  if norm(g,Inf)<o.gradientTolerance,code='stationary';break;end
- diagonal=max(full(diag(H)),1e-6);taken=false;
+ diagonal=max(full(diag(H)),1e-6);scale=spdiags(1./sqrt(diagonal),0,numel(z),numel(z));Hs=scale*H*scale;gs=scale*g;taken=false;
  for attempt=1:o.lmTrials
-  step=-(H+spdiags(mu*diagonal,0,numel(z),numel(z)))\g;trial=z+step;
+  step=-scale*((Hs+mu*speye(numel(z)))\gs);trial=z+step;
   if norm(step)<=o.stepTolerance*(1+norm(z)),code='small_step';break;end
-  dt=trial(3*(size(b.pose,1)-2)+1:end);
+  dt=trial(5*(size(b.pose,1)-2)+1:end);
   if all(dt>o.minimumDt)&&all(isfinite(trial))
    next=teb.Residual(trial,b,env,o);nextCost=next'*next;prediction=-2*g'*step-step'*H*step;
    if isfinite(nextCost)&&nextCost<cost&&prediction>0

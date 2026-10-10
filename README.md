@@ -524,26 +524,26 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- /results:Eta3 -->
 
 <!-- results:TEB -->
-## Timed elastic bands in distinctive topologies: measured results
+## TEB: measured results
 
-The paper's sampling-based topology discovery and fixed-weight, soft-constraint LM produced 11/12 finite native outputs; 11 execution optimizations succeeded and 0 attained the terminal tolerance. **This configuration performed poorly on the terminal-parking tasks: several outputs already overlap obstacles at native nodes, and seven executions have nonzero collision percentages.** Ten static planning cycles retain the paper's four resize/optimization calls and five LM iterations per call. Native completion does not certify convergence or feasibility. These measurements concern this handwritten static adapter with the article's suggested penalty weights, not all TEB settings or the authors' complete ROS stack. The full penalty objective, positive time grid, topology exploration, selected candidate, exact output poses, LM descent history and sparse derivatives were checked independently. See [the paper equations, signed homology calculation and whole-trajectory adapter](planners/TEB/README.md).
+12/12 native solves and 12/12 evaluations succeeded; 11 executions attained the terminal tolerance, 8 had zero measured collision frames, and 7 passed both checks. The topology exploration and sparse LM elastic-band optimizer use the common five-state rear bicycle, explicit nodal speed/steering, exact rest endpoints, 0.01 m footprint clearance and fixed soft penalties. Native completion is not a hard-feasibility certificate; independent checks report residuals and the unchanged evaluator measures executed collisions and terminal attainment. See [the formulation and numerical settings](planners/TEB/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 7.0006 | 57.3084 | no | 43.4073 | 31.9059 | 10.5404 | 33 | 589.4633 | yes |
-| 02 | yes | yes | 124.0682 | 0 | no | 45.3531 | 12.9049 | 13.4895 | 20 | 363.9433 | yes |
-| 03 | yes | yes | 5.8231 | 0 | no | 28.9049 | 9.7629 | 8.2922 | 9 | 225.5515 | yes |
-| 04 | yes | yes | 9.3074 | 0 | no | 27.0431 | 6.4456 | 7.5374 | 4 | 159.8299 | yes |
-| 05 | yes | yes | 6.5739 | 70.5149 | no | 89.5890 | 55.2758 | 17.2289 | 61 | 1030.0471 | yes |
-| 06 | yes | yes | 9.9094 | 45.0499 | no | 36.5534 | 23.6713 | 9.3345 | 11 | 385.0575 | yes |
-| 07 | no | no | 5.6947 | — | — | — | — | — | — | — | — |
-| 08 | yes | yes | 6.0059 | 46.6086 | no | 37.9767 | 26.5128 | 8.9838 | 23 | 469.9658 | yes |
-| 09 | yes | yes | 26.1409 | 46.1875 | no | 34.5298 | 20.1499 | 8.3960 | 23 | 400.4593 | yes |
-| 10 | yes | yes | 44.4696 | 80.3127 | no | 62.2922 | 55.1081 | 14.5452 | 28 | 836.5323 | yes |
-| 11 | yes | yes | 17.1053 | 0 | no | 33.8941 | 5.5014 | 6.9570 | 5 | 149.5844 | no |
-| 12 | yes | yes | 18.6970 | 65.4293 | no | 70.6080 | 41.8616 | 18.7534 | 42 | 816.1508 | yes |
+| 01 | yes | yes | 2.5000 | 0 | yes | 18.3134 | 5.0979 | 4.2078 | 4 | 113.0577 | no |
+| 02 | yes | yes | 3.0927 | 0 | yes | 24.3355 | 2.5142 | 5.3586 | 2 | 88.7275 | no |
+| 03 | yes | yes | 2.4067 | 0 | yes | 14.6191 | 3.9966 | 3.3273 | 1 | 78.2391 | no |
+| 04 | yes | yes | 2.4178 | 0 | yes | 17.5705 | 5.2807 | 4.7829 | 2 | 110.6364 | no |
+| 05 | yes | yes | 1.9784 | 0 | yes | 12.6987 | 4.7077 | 2.5551 | 1 | 77.6284 | no |
+| 06 | yes | yes | 5.0119 | 0.4940 | yes | 14.9789 | 5.0005 | 2.8258 | 1 | 83.2635 | no |
+| 07 | yes | yes | 2.3702 | 0 | no | 12.9148 | 3.1598 | 3.1964 | 1 | 68.5622 | no |
+| 08 | yes | yes | 2.5440 | 0 | yes | 18.5189 | 5.9806 | 5.2765 | 2 | 122.5710 | no |
+| 09 | yes | yes | 3.7505 | 0.3394 | yes | 25.0412 | 4.7025 | 5.6909 | 3 | 118.9335 | no |
+| 10 | yes | yes | 6.2344 | 0.2679 | yes | 15.6755 | 5.2194 | 1.5618 | 1 | 72.8122 | no |
+| 11 | yes | yes | 2.4758 | 0 | yes | 14.4925 | 2.3480 | 3.7089 | 2 | 70.5683 | no |
+| 12 | yes | yes | 5.8910 | 0.7937 | yes | 15.3690 | 6.4148 | 2.5337 | 2 | 99.4843 | no |
 
 [CSV](results/TEB/metrics.csv) · [JSON](results/TEB/metrics.json) · [validation](results/TEB/validation.json).
 <!-- /results:TEB -->
