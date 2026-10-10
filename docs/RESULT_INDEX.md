@@ -18,7 +18,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [CC_PRM](../planners/CC_PRM/README.md) | 7 | 7 | 7 | 7 | [JSON](../results/CC_PRM/metrics.json) · [CSV](../results/CC_PRM/metrics.csv) |
 | [CPRM](../planners/CPRM/README.md) | 7 | 7 | 4 | 7 | [JSON](../results/CPRM/metrics.json) · [CSV](../results/CPRM/metrics.csv) |
 | [DFTPAV_Path](../planners/DFTPAV_Path/README.md) | 11 | 11 | 8 | 8 | [JSON](../results/DFTPAV_Path/metrics.json) · [CSV](../results/DFTPAV_Path/metrics.csv) |
-| [DL_IAPS_PJSO](../planners/DL_IAPS_PJSO/README.md) | 10 | 10 | 10 | 8 | [JSON](../results/DL_IAPS_PJSO/metrics.json) · [CSV](../results/DL_IAPS_PJSO/metrics.csv) |
+| [DL_IAPS_PJSO](../planners/DL_IAPS_PJSO/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/DL_IAPS_PJSO/metrics.json) · [CSV](../results/DL_IAPS_PJSO/metrics.csv) |
 | [DPGrid](../planners/DPGrid/README.md) | 10 | 10 | 9 | 10 | [JSON](../results/DPGrid/metrics.json) · [CSV](../results/DPGrid/metrics.csv) |
 | [DubinsGrid](../planners/DubinsGrid/README.md) | 11 | 11 | 10 | 5 | [JSON](../results/DubinsGrid/metrics.json) · [CSV](../results/DubinsGrid/metrics.csv) |
 | [Eta3](../planners/Eta3/README.md) | 8 | 8 | 8 | 5 | [JSON](../results/Eta3/metrics.json) · [CSV](../results/Eta3/metrics.csv) |
@@ -35,7 +35,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [LIOM](../planners/LIOM/README.md) | 8 | 8 | 8 | 8 | [JSON](../results/LIOM/metrics.json) · [CSV](../results/LIOM/metrics.csv) |
 | [OSEHS](../planners/OSEHS/README.md) | 10 | 10 | 6 | 9 | [JSON](../results/OSEHS/metrics.json) · [CSV](../results/OSEHS/metrics.csv) |
 | [PointPotentialOCP](../planners/PointPotentialOCP/README.md) | 2 | 2 | 2 | 2 | [JSON](../results/PointPotentialOCP/metrics.json) · [CSV](../results/PointPotentialOCP/metrics.csv) |
-| [RITP](../planners/RITP/README.md) | 12 | 12 | 5 | 12 | [JSON](../results/RITP/metrics.json) · [CSV](../results/RITP/metrics.csv) |
+| [RITP](../planners/RITP/README.md) | 10 | 10 | 10 | 10 | [JSON](../results/RITP/metrics.json) · [CSV](../results/RITP/metrics.csv) |
 | [RTR_TTS](../planners/RTR_TTS/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/RTR_TTS/metrics.json) · [CSV](../results/RTR_TTS/metrics.csv) |
 | [SE2_NMPC](../planners/SE2_NMPC/README.md) | 11 | 11 | 11 | 11 | [JSON](../results/SE2_NMPC/metrics.json) · [CSV](../results/SE2_NMPC/metrics.csv) |
 | [Sinusoid_RTR](../planners/Sinusoid_RTR/README.md) | 12 | 12 | 12 | 11 | [JSON](../results/Sinusoid_RTR/metrics.json) · [CSV](../results/Sinusoid_RTR/metrics.csv) |

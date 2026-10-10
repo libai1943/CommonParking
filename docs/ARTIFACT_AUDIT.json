@@ -227,19 +227,19 @@
     {
       "planner": "DL_IAPS_PJSO",
       "cases": 12,
-      "planner_success": 10,
-      "evaluation_success": 10,
-      "terminal_reached": 10,
-      "zero_collision_execution": 8,
+      "planner_success": 12,
+      "evaluation_success": 12,
+      "terminal_reached": 12,
+      "zero_collision_execution": 12,
       "screen_codes": [
         "valid",
-        "planner_failed",
         "valid",
         "valid",
         "valid",
         "valid",
         "valid",
-        "planner_failed",
+        "valid",
+        "valid",
         "valid",
         "valid",
         "valid",
@@ -601,10 +601,10 @@
     {
       "planner": "RITP",
       "cases": 12,
-      "planner_success": 12,
-      "evaluation_success": 12,
-      "terminal_reached": 5,
-      "zero_collision_execution": 12,
+      "planner_success": 10,
+      "evaluation_success": 10,
+      "terminal_reached": 10,
+      "zero_collision_execution": 10,
       "screen_codes": [
         "valid",
         "valid",
@@ -615,9 +615,9 @@
         "valid",
         "valid",
         "valid",
+        "planner_failed",
         "valid",
-        "valid",
-        "valid"
+        "planner_failed"
       ]
     },
     {
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "55814833b4b961c4b279f3fc75aae5838df0c1d7",
+  "source_commit": "d281c1b686156177f7e59ced5af845ae3dcbc066",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {
