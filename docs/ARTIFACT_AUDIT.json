@@ -777,10 +777,10 @@
     {
       "planner": "TEB",
       "cases": 12,
-      "planner_success": 11,
-      "evaluation_success": 11,
-      "terminal_reached": 0,
-      "zero_collision_execution": 4,
+      "planner_success": 12,
+      "evaluation_success": 12,
+      "terminal_reached": 11,
+      "zero_collision_execution": 8,
       "screen_codes": [
         "valid",
         "valid",
@@ -788,7 +788,7 @@
         "valid",
         "valid",
         "valid",
-        "planner_failed",
+        "valid",
         "valid",
         "valid",
         "valid",
@@ -885,7 +885,7 @@
       ]
     }
   ],
-  "source_commit": "d281c1b686156177f7e59ced5af845ae3dcbc066",
+  "source_commit": "cdb5608bdd22d83c9e2eec6c4a2035d330fef900",
   "csv_rows_checked": 480,
   "csv_json_agreement": true,
   "assets": {

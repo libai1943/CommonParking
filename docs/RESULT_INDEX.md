@@ -43,7 +43,7 @@ The detailed per-method tables in the root README retain all dimensions, failure
 | [SmoothBiRRT](../planners/SmoothBiRRT/README.md) | 6 | 6 | 4 | 6 | [JSON](../results/SmoothBiRRT/metrics.json) · [CSV](../results/SmoothBiRRT/metrics.csv) |
 | [STC](../planners/STC/README.md) | 12 | 12 | 12 | 12 | [JSON](../results/STC/metrics.json) · [CSV](../results/STC/metrics.csv) |
 | [TDR_OBCA](../planners/TDR_OBCA/README.md) | 12 | 12 | 12 | 5 | [JSON](../results/TDR_OBCA/metrics.json) · [CSV](../results/TDR_OBCA/metrics.csv) |
-| [TEB](../planners/TEB/README.md) | 11 | 11 | 0 | 4 | [JSON](../results/TEB/metrics.json) · [CSV](../results/TEB/metrics.csv) |
+| [TEB](../planners/TEB/README.md) | 12 | 12 | 11 | 8 | [JSON](../results/TEB/metrics.json) · [CSV](../results/TEB/metrics.csv) |
 | [TPCKC](../planners/TPCKC/README.md) | 5 | 5 | 5 | 5 | [JSON](../results/TPCKC/metrics.json) · [CSV](../results/TPCKC/metrics.csv) |
 | [TriangleArea](../planners/TriangleArea/README.md) | 11 | 11 | 9 | 4 | [JSON](../results/TriangleArea/metrics.json) · [CSV](../results/TriangleArea/metrics.csv) |
 | [VPF](../planners/VPF/README.md) | 3 | 3 | 2 | 3 | [JSON](../results/VPF/metrics.json) · [CSV](../results/VPF/metrics.csv) |
