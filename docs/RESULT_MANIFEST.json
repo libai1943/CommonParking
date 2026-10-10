@@ -1203,73 +1203,83 @@
     },
     {
       "path": "results/HA_CG/Case01.mat",
-      "bytes": 7634,
-      "sha256": "961c8b43714036a948364ba293ce4442b0f81454bdbefe40fc635c959091f774"
+      "bytes": 8060,
+      "sha256": "b61326d9601a2b959dacf55d0ef3c3a3af5b0e707ae48428456b8e9a730e61d2"
     },
     {
       "path": "results/HA_CG/Case02.mat",
-      "bytes": 10177,
-      "sha256": "9fc3e4c00de638f8eee51c97404a75b7a53ddeada7ade61d16936af6f5fe11a1"
+      "bytes": 10671,
+      "sha256": "9d943b4db47ade8d7e242a126dd76181d1d2e10e12a7a03b65740441a4dcbf4e"
     },
     {
       "path": "results/HA_CG/Case03.mat",
-      "bytes": 8943,
-      "sha256": "2709b09ab6712ee985fa21c3b202e7c08823258f43f5d12c3d0a6fcfd9e291e6"
+      "bytes": 9481,
+      "sha256": "e939e44215d66794c32c172cc0fc65aafe3bf8edbe1d9893297727b581f356c8"
     },
     {
       "path": "results/HA_CG/Case04.mat",
-      "bytes": 9875,
-      "sha256": "13b2e5d27f792b70407bd886b4ed028e3c66d063cbb86550f12ee6cbdb96e3c8"
+      "bytes": 10421,
+      "sha256": "705c5de475f49802fc2a17641d2ba62a2cdeda1f747233a00d49963861880336"
     },
     {
       "path": "results/HA_CG/Case05.mat",
-      "bytes": 11644,
-      "sha256": "9b9f4ffdd14b31f92064640ca0af1dcfd5b5eceb7a198234a617d84a51722486"
+      "bytes": 12133,
+      "sha256": "032d81c35fe6d85dfa1bb3b3709b0772914d0121d3588eb7d9d09309b42adfe7"
     },
     {
       "path": "results/HA_CG/Case06.mat",
-      "bytes": 10833,
-      "sha256": "a02362dd110b7b9ff5eb4e7563a2d511373ba7a7f9c15ae940de6745aaf929ba"
+      "bytes": 11279,
+      "sha256": "fa9e9534cb143ccb5edcf276ce2f78da47306f142bc3fcd08535cda6fa4443e4"
     },
     {
       "path": "results/HA_CG/Case07.mat",
-      "bytes": 8291,
-      "sha256": "eb1acef2244256a80032f5b7d9b08884fcbac3eee58aa348c6fadb9d26c48457"
+      "bytes": 8760,
+      "sha256": "0b93427b05b03cc001690527e0f74daf21551aa1569ca1b1460baa412d166c9a"
     },
     {
       "path": "results/HA_CG/Case08.mat",
-      "bytes": 8991,
-      "sha256": "29b175dbf14ac330722174b75b84a3da91fbe3298cfd53cbc3e4deba2cfa2cd7"
+      "bytes": 9549,
+      "sha256": "22eebb677a46e70129a9c327bb9b762569283032628d880252cab66698162dd9"
     },
     {
       "path": "results/HA_CG/Case09.mat",
-      "bytes": 10646,
-      "sha256": "289de12954139367f8585786ec87406e7db54f1484d7a1d87021846a6dc8c993"
+      "bytes": 11094,
+      "sha256": "fa59810a91110a8afe93c101c9511b2a76e4700fff030ec551e631887bd015ea"
     },
     {
       "path": "results/HA_CG/Case10.mat",
-      "bytes": 15874,
-      "sha256": "225d7d1ab0364e1c0049cc2e689a8188c0af3d31a2ce6b6b7d930ef63264f63c"
+      "bytes": 16373,
+      "sha256": "541e97ae79c99e8686ba663f2633c012f7817cb6b289b085a3f6e2e02684d64e"
     },
     {
       "path": "results/HA_CG/Case11.mat",
-      "bytes": 10790,
-      "sha256": "185f277af5c8948db131f15137fcc573ba73c2812eef515a3c33d88f8ee20f78"
+      "bytes": 11280,
+      "sha256": "45630cd95d636869df177ecd4e104b169a00e96297eb0f4662568721eca69bff"
     },
     {
       "path": "results/HA_CG/Case12.mat",
-      "bytes": 14137,
-      "sha256": "8f1d2912bb5d5599fe067440b7c0959d9b4daca368b7eb8322d22c47bbde283b"
+      "bytes": 14579,
+      "sha256": "2da5548e7e3ab7519fe50eb160981f137b7a3cf6ba633bdf5f7546f0e6a5cab5"
     },
     {
       "path": "results/HA_CG/metrics.csv",
-      "bytes": 1666,
-      "sha256": "fe60778338a3177b16a17e65564c2d7934b8004c178182ce8bc7388a249f4804"
+      "bytes": 1668,
+      "sha256": "6a619ee1cda28a0718929bf40c6eaff451881452be2603ffbf300c4243307793"
     },
     {
       "path": "results/HA_CG/metrics.json",
-      "bytes": 14717,
-      "sha256": "9747758ba4abcc98ed83f3de294462bab1941666ba24ed81899a001991852f8d"
+      "bytes": 17033,
+      "sha256": "0f128682bc6557c71e48152e503c98ed685918e341572ba63f3246b8a79edf76"
+    },
+    {
+      "path": "results/HA_CG/stages.csv",
+      "bytes": 1007,
+      "sha256": "4f1d4cf4fa85aa70bad84cceebe4cb2e63b8713be52697d324747c0c6817d469"
+    },
+    {
+      "path": "results/HA_CG/validation.json",
+      "bytes": 9452,
+      "sha256": "a267e48d57b66553faac415eea6cce786974be28ee6f856e7ba449d83c78084d"
     },
     {
       "path": "results/HJBA/Case01.mat",
