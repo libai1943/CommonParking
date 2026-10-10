@@ -16,8 +16,15 @@ if ~isempty(i)
     dd=B-A;terms(3)=opt.wSmooth*sum(dd.^2,'all');z=2*opt.wSmooth*dd;
     G=add(G,i-1,d1.*z);G=add(G,i,-(d1+d2).*z);G=add(G,i+1,d2.*z);
 end
-[dist,dg]=parking.NearestObstacle(P,c);ex=max(0,opt.obstacleRange-dist);
-terms(1)=opt.wObstacle*sum(ex.^2);G=G-2*opt.wObstacle*ex.*dg;
+% The fine pass disables both terms. Do not traverse obstacle polygons for
+% a value and gradient whose weights are exactly zero.
+if opt.wObstacle>0 || opt.wVoronoi>0
+    [dist,dg]=parking.NearestObstacle(P,c);
+end
+if opt.wObstacle>0
+    ex=max(0,opt.obstacleRange-dist);
+    terms(1)=opt.wObstacle*sum(ex.^2);G=G-2*opt.wObstacle*ex.*dg;
+end
 if opt.wVoronoi>0&&~isempty(field.points)
     dv=zeros(n,1);vg=zeros(n,2);
     for begin=1:80:n

@@ -21,7 +21,7 @@ save('my_result.mat','result','evaluation');   % explicit output destination
 
 `RunMe.m` shows the separate loading, planning, evaluation and plotting steps. `RunPlanner` itself neither saves files nor opens plots. Its only inputs are a method name and an integer case ID from 1 to 12. Algorithm settings are inside each planner's `Config.m`. Public `result` objects have exactly two possible kinds: `path` or `trajectory`; see [the complete result contract](docs/RESULT_FORMAT.md).
 
-MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for Reeds-Shepp and Dubins primitives. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, LIOM, H-OBCA, TriangleArea, BOMP, LatticeOCP and evaluation need a separately installed AMPL/Ipopt runtime:
+MATLAB R2024a was used for validation. HA+CG needs Navigation Toolbox for terminal-connection normalization and independent Dubins checks; its repeated Reeds–Shepp geometry is computed directly in MATLAB. H-OBCA additionally uses Optimization Toolbox for its geometric dual seed. STC, LIOM, H-OBCA, TriangleArea, BOMP, LatticeOCP and evaluation need a separately installed AMPL/Ipopt runtime:
 
 ```matlab
 setpref('CommonParking','AmplDirectory','path/to/your/ampl-and-ipopt-folder');
@@ -160,26 +160,28 @@ Each planner has its own folder. References are named by author/title/DOI, not b
 
 ## HA+CG: measured results
 
-These are local MATLAB R2024a / Ipopt 3.13.4 results, not universal runtime claims. Planning times measure actual public calls including search and CG, with no cached search reuse. The public path files retain compact diagnostics; running the planner returns full stage diagnostics. All 12 planner calls and evaluator calls succeeded; 7 tracked executions satisfy the terminal tolerance and all have 0% measured collision frames. Five outputs retain the Hybrid A* path after unsuccessful safe CG modifications. Stage exit flags are preserved; this is not described as universal CG convergence.
+All 12 public planner calls and evaluator calls succeeded; 7 executed motions satisfy the terminal tolerance and all have 0% measured collision frames. 5 outputs retain the Hybrid A* path after safe CG modifications were not accepted. Search and CG exit flags are preserved; this is not described as universal CG convergence.
 
-“Time cap” indicates that the tracker's upper duration bound is active. Those durations are constrained by this explicit protocol choice and should not be interpreted as unconstrained optimal parking times. Re-run the full suite if the evaluator parameters change; do not mix tables from different protocols.
+Planning time includes setup, loading, fresh search, both CG stages and output conversion. No saved path is reused. The [stage table](results/HA_CG/stages.csv) separates search from smoothing; search loop and heuristic setup are components of search wall time. HA+CG explicitly supplies its numerical Reeds–Shepp and prepared-polygon geometry backend; other shared-search callers retain their existing backend and settings. See [the complete implementation and numerical settings](planners/HA_CG/README.md).
+
+These are individual local MATLAB R2024a runs, not a controlled comparison with paper runtimes. Evaluator time is excluded. “Time cap” indicates that the tracker's upper duration bound is active; these execution durations should not be interpreted as unconstrained optimal maneuver times.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 1.450 | 0.0000 | no | 29.612 | 5.1215 | 9.9565 | 3 | 165.7801 | yes |
-| 02 | yes | yes | 64.080 | 0.0000 | no | 39.677 | 4.1608 | 13.5013 | 5 | 201.6213 | yes |
-| 03 | yes | yes | 1.210 | 0.0000 | yes | 27.370 | 2.9868 | 8.6961 | 2 | 126.8293 | yes |
-| 04 | yes | yes | 2.675 | 0.0000 | yes | 28.426 | 2.4628 | 9.7320 | 2 | 131.9476 | yes |
-| 05 | yes | yes | 4.257 | 0.0000 | yes | 23.529 | 2.2197 | 5.9837 | 2 | 92.0345 | no |
-| 06 | yes | yes | 2.843 | 0.0000 | yes | 27.166 | 1.8783 | 6.8183 | 1 | 91.9663 | no |
-| 07 | yes | yes | 2.307 | 0.0000 | yes | 24.015 | 2.4006 | 7.0273 | 2 | 104.2791 | yes |
-| 08 | yes | yes | 1.166 | 0.0000 | no | 32.527 | 5.1720 | 12.3039 | 3 | 189.7585 | yes |
-| 09 | yes | yes | 7.276 | 0.0000 | no | 35.272 | 3.8738 | 13.2112 | 3 | 185.8498 | yes |
-| 10 | yes | yes | 17.152 | 0.0000 | yes | 40.550 | 2.2842 | 13.9299 | 2 | 172.1409 | no |
-| 11 | yes | yes | 6.382 | 0.0000 | no | 39.610 | 2.2076 | 9.3231 | 3 | 130.3073 | no |
-| 12 | yes | yes | 7.075 | 0.0000 | yes | 29.753 | 2.8080 | 7.1454 | 2 | 109.5341 | no |
+| 01 | yes | yes | 1.3966 | 0 | no | 29.6125 | 5.1215 | 9.9565 | 3 | 165.7801 | yes |
+| 02 | yes | yes | 30.5421 | 0 | no | 39.6767 | 4.1608 | 13.5013 | 5 | 201.6213 | yes |
+| 03 | yes | yes | 1.7509 | 0 | yes | 27.3701 | 2.9868 | 8.6961 | 2 | 126.8293 | yes |
+| 04 | yes | yes | 1.6745 | 0 | yes | 28.4261 | 2.4628 | 9.7320 | 2 | 131.9476 | yes |
+| 05 | yes | yes | 2.3437 | 0 | yes | 23.5294 | 2.2197 | 5.9837 | 2 | 92.0345 | no |
+| 06 | yes | yes | 4.1246 | 0 | yes | 27.1662 | 1.8783 | 6.8183 | 1 | 91.9663 | no |
+| 07 | yes | yes | 2.7515 | 0 | yes | 24.0146 | 2.4006 | 7.0273 | 2 | 104.2791 | yes |
+| 08 | yes | yes | 2.0834 | 0 | no | 32.5268 | 5.1720 | 12.3039 | 3 | 189.7585 | yes |
+| 09 | yes | yes | 5.1218 | 0 | no | 35.2720 | 3.8738 | 13.2112 | 3 | 185.8498 | yes |
+| 10 | yes | yes | 10.3351 | 0 | yes | 40.5505 | 2.2842 | 13.9299 | 2 | 172.1409 | no |
+| 11 | yes | yes | 8.1905 | 0 | no | 39.6095 | 2.2076 | 9.3231 | 3 | 130.3073 | no |
+| 12 | yes | yes | 8.7318 | 0 | yes | 29.7531 | 2.8080 | 7.1454 | 2 | 109.5341 | no |
 
-Raw machine-readable data: [CSV](results/HA_CG/metrics.csv), [JSON with diagnostics](results/HA_CG/metrics.json). Each `results/HA_CG/CaseNN.mat` contains the standard `result`, measured `metrics`, and `evaluationStatus`; call `EvaluateResult` to regenerate full tracking diagnostics.
+Raw data: [CSV](results/HA_CG/metrics.csv), [JSON with stage timings](results/HA_CG/metrics.json), [validation](results/HA_CG/validation.json). Each `results/HA_CG/CaseNN.mat` contains the standard `result`, measured `metrics`, and `evaluationStatus`; call `EvaluateResult` to regenerate full tracking diagnostics.
 
 ![Twelve HA+CG paths with translucent footprints](results/HA_CG/HA_CG_overview.png)
 

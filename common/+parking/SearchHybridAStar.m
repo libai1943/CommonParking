@@ -1,8 +1,12 @@
-function result=SearchHybridAStar(c,opt)
+function result=SearchHybridAStar(c,opt,geometry)
 % Weighted hybrid A*: continuous poses, exact bicycle primitives, RS connection.
 % Dolgov et al. (2010) (Dolgov et al.2010), Sec.2: shared ordinary Hybrid A* front end.
 % Requires Navigation Toolbox; scene generation/plotting does not.
 if nargin<2, opt=struct(); end
+% Optional exact geometry backend, explicitly supplied by a caller. Existing
+% two-argument callers retain the Navigation Toolbox geometry and settings.
+if nargin<3,geometry=[];end
+customGeometry=~isempty(geometry);
 defaults=struct('xyResolution',0.2,'thetaResolution',pi/36,'step',0.5, ...
     'collisionStep',0.04,'clearance',0.12,'heuristicWeight',1.0, ...
     'switchPenalty',1.5,'reversePenalty',0.05,'maxExpanded',100000,'maxSeconds',180, ...
@@ -12,7 +16,7 @@ defaults=struct('xyResolution',0.2,'thetaResolution',pi/36,'step',0.5, ...
 keys=fieldnames(defaults);
 for j=1:numel(keys), if ~isfield(opt,keys{j}),opt.(keys{j})=defaults.(keys{j});end,end
 v=c.vehicle; t=c.task; start=[t.x0 t.y0 t.theta0]; goal=[t.xf t.yf t.thetaf];
-assert(parking.FootprintClearance([start;goal],c,opt.clearance),'Start or goal is blocked.');
+assert(free([start;goal]),'Start or goal is blocked.');
 rs=reedsSheppConnection('MinTurningRadius',v.turning_radius_min,'ReverseCost',1);
 allxy=[start(1:2);goal(1:2)];
 for j=1:c.obstacle.num_obs, o=c.obstacle.obs{j};allxy=[allxy;o.x' o.y'];end %#ok<AGROW>
@@ -26,20 +30,25 @@ nt=ceil(2*pi/opt.thetaResolution); best=sparse(prod(dims)*nt*2,1);
 cap=600000; Q=zeros(cap,3); G=inf(cap,1); parent=zeros(cap,1); prim=zeros(cap,2); dir=zeros(cap,1);
 Q(1,:)=start; G(1)=0; count=1; expanded=0; open=1; priority=0;
 finish=0; tail=zeros(0,2); clock=tic;bestPartial=1;bestRemaining=inf;
-if opt.returnPartial,[~,remaining]=connect(rs,start,goal);bestRemaining=remaining(1);end
+if opt.returnPartial,remaining=distance(start);bestRemaining=remaining(1);end
 while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
     [~,pos]=min(priority); cur=open(pos);open(pos)=[];priority(pos)=[];
     q0=Q(cur,:); key=index(q0,max(dir(cur),-1));
     if best(key)>0 && G(cur)>best(key)+1e-9,continue;end
     expanded=expanded+1;
     if expanded==1 || mod(expanded,opt.analyticEvery)==0
-        [paths,costs]=connect(rs,q0,goal,'PathSegments','all');
+        if customGeometry,[paths,costs]=geometry.candidates(q0,goal,v.kappa_max);
+        else,[paths,costs]=connect(rs,q0,goal,'PathSegments','all');end
         [~,order]=sort(costs(:));
         for ii=order'
             if ~isfinite(costs(ii)),continue;end
-            p=paths{ii}; pp=fromRS(p,v.kappa_max);
+            if customGeometry,pp=paths{ii};else,pp=fromRS(paths{ii},v.kappa_max);end
             qq=parking.SamplePrimitives(q0,pp,opt.collisionStep);
-            if parking.FootprintClearance(qq,c,opt.clearance)
+            if free(qq)
+                if customGeometry && isfield(geometry,'canonical')
+                    [pp,found]=geometry.canonical(q0,goal,opt.clearance,opt.collisionStep);
+                    if ~found,break;end
+                end
                 finish=cur;tail=pp;break;
             end
         end
@@ -47,7 +56,8 @@ while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
     end
     step=opt.step;
     if opt.variableStep
-        obstacleDistance=parking.NearestObstacle(q0(1:2),c);
+        if customGeometry,obstacleDistance=geometry.obstacleDistance(q0(1:2));
+        else,obstacleDistance=parking.NearestObstacle(q0(1:2),c);end
         if isempty(field.points),voronoiDistance=0;else,voronoiDistance=min(vecnorm(field.points-q0(1:2),2,2));end
         step=max(opt.xyResolution,min(opt.maximumStep,opt.stepScale*(obstacleDistance+voronoiDistance)));
     end
@@ -61,8 +71,8 @@ while ~isempty(open) && expanded<opt.maxExpanded && toc(clock)<opt.maxSeconds
                 +opt.steeringChangePenalty*abs(atan(v.lw*kap)-atan(v.lw*prim(cur,2)));
             key=index(q1,direction);
             if best(key)>0 && ng>=best(key)-1e-9,continue;end
-            if ~parking.FootprintClearance(sample,c,opt.clearance),continue;end
-            if opt.nonholonomicHeuristic,[~,h]=connect(rs,q1,goal);else,h=norm(q1(1:2)-goal(1:2));end
+            if ~free(sample),continue;end
+            if opt.nonholonomicHeuristic,h=distance(q1);else,h=norm(q1(1:2)-goal(1:2));end
             ij=round((q1(1:2)-H.lower)/H.ds)+1;
             if all(ij>=1)&&ij(1)<=H.nx&&ij(2)<=H.ny
                 dh=H.distance(ij(1)+(ij(2)-1)*H.nx);
@@ -79,6 +89,7 @@ end
 result=struct('success',finish>0,'expanded',expanded,'runtime',toc(clock),'options',opt);
 result.heuristic_setup_time=setupTime;result.reference='Dolgov et al.2010, Dolgov et al. (2010), Sec.2';
 result.search_bounds=[lower;upper];
+if customGeometry,result.geometry_backend='caller_supplied_exact_geometry';else,result.geometry_backend='matlab_navigation';end
 result.partial=false;
 if finish==0
     if ~opt.returnPartial,result.primitives=zeros(0,2);return;end
@@ -90,6 +101,14 @@ result.primitives=[p;tail];
 [result.poses,result.direction,result.curvature,result.signed_step]=parking.SamplePrimitives(start,result.primitives,0.02);
 result.path_length=sum(abs(result.primitives(:,1)));
 result.gear_changes=sum(diff(result.direction)~=0);
+    function ok=free(q)
+        if customGeometry,ok=geometry.free(q,opt.clearance);
+        else,ok=parking.FootprintClearance(q,c,opt.clearance);end
+    end
+    function h=distance(q)
+        if customGeometry,h=geometry.distance(q,goal,v.kappa_max);
+        else,[~,h]=connect(rs,q,goal);end
+    end
     function id=index(q,d)
         ij=floor((q(1:2)-lower)/opt.xyResolution)+1;
         it=mod(round(mod(q(3),2*pi)/(2*pi)*nt),nt)+1;

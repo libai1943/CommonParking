@@ -2,7 +2,7 @@
   {
     "case_id": 1,
     "planner_success": true,
-    "computation_time_s": 1.4499676,
+    "computation_time_s": 1.3965855,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -10,10 +10,17 @@
       "collision_percent": 0,
       "terminal_reached": false,
       "execution_time_s": 29.612486533161743,
-      "control_effort_integral": 5.121464172084811,
-      "steering_integral": 9.956541847264432,
+      "control_effort_integral": 5.121464172084809,
+      "steering_integral": 9.956541847264429,
       "gear_changes": 3,
-      "smoothness_cost": 165.78006019349243
+      "smoothness_cost": 165.78006019349237
+    },
+    "timings": {
+      "search_wall_s": 0.1804227,
+      "search_loop_s": 0.1351822,
+      "heuristic_setup_s": 0.0296541,
+      "cg_wall_s": 1.1386068,
+      "output_wall_s": 0.032042
     },
     "search_expanded": 65,
     "solver": {
@@ -41,7 +48,7 @@
   {
     "case_id": 2,
     "planner_success": true,
-    "computation_time_s": 64.079587,
+    "computation_time_s": 30.5420648,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -49,10 +56,17 @@
       "collision_percent": 0,
       "terminal_reached": false,
       "execution_time_s": 39.67668990019152,
-      "control_effort_integral": 4.160848534574974,
-      "steering_integral": 13.501277731764576,
+      "control_effort_integral": 4.160848534574972,
+      "steering_integral": 13.501277731764572,
       "gear_changes": 5,
-      "smoothness_cost": 201.6212626633955
+      "smoothness_cost": 201.62126266339544
+    },
+    "timings": {
+      "search_wall_s": 26.6824286,
+      "search_loop_s": 26.6119459,
+      "heuristic_setup_s": 0.0553436,
+      "cg_wall_s": 3.8159185,
+      "output_wall_s": 0.0110229
     },
     "search_expanded": 25630,
     "solver": {
@@ -80,7 +94,7 @@
   {
     "case_id": 3,
     "planner_success": true,
-    "computation_time_s": 1.2099439,
+    "computation_time_s": 1.7508995,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -88,10 +102,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 27.370063697690483,
-      "control_effort_integral": 2.9868149411882188,
-      "steering_integral": 8.696117019679324,
+      "control_effort_integral": 2.986814941188218,
+      "steering_integral": 8.696117019679322,
       "gear_changes": 2,
-      "smoothness_cost": 126.82931960867542
+      "smoothness_cost": 126.8293196086754
+    },
+    "timings": {
+      "search_wall_s": 0.2592159,
+      "search_loop_s": 0.218835,
+      "heuristic_setup_s": 0.0281328,
+      "cg_wall_s": 1.457192,
+      "output_wall_s": 0.0056643
     },
     "search_expanded": 135,
     "solver": {
@@ -119,7 +140,7 @@
   {
     "case_id": 4,
     "planner_success": true,
-    "computation_time_s": 2.6754837,
+    "computation_time_s": 1.6744661,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -131,6 +152,13 @@
       "steering_integral": 9.731981762507658,
       "gear_changes": 2,
       "smoothness_cost": 131.94757393812665
+    },
+    "timings": {
+      "search_wall_s": 0.6454223,
+      "search_loop_s": 0.6098419,
+      "heuristic_setup_s": 0.0312276,
+      "cg_wall_s": 1.0010877,
+      "output_wall_s": 0.0034275
     },
     "search_expanded": 415,
     "solver": {
@@ -158,7 +186,7 @@
   {
     "case_id": 5,
     "planner_success": true,
-    "computation_time_s": 4.2574071,
+    "computation_time_s": 2.3437072,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -166,10 +194,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 23.52941256946633,
-      "control_effort_integral": 2.219706005191917,
-      "steering_integral": 5.983740506492278,
+      "control_effort_integral": 2.2197060051919175,
+      "steering_integral": 5.983740506492275,
       "gear_changes": 2,
-      "smoothness_cost": 92.03446511684196
+      "smoothness_cost": 92.03446511684191
+    },
+    "timings": {
+      "search_wall_s": 0.1382742,
+      "search_loop_s": 0.1011113,
+      "heuristic_setup_s": 0.0333547,
+      "cg_wall_s": 2.1662494,
+      "output_wall_s": 0.0074976
     },
     "search_expanded": 55,
     "solver": {
@@ -197,7 +232,7 @@
   {
     "case_id": 6,
     "planner_success": true,
-    "computation_time_s": 2.8425432,
+    "computation_time_s": 4.1246254,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -205,10 +240,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 27.166157944657627,
-      "control_effort_integral": 1.878329932669204,
+      "control_effort_integral": 1.8783299326692036,
       "steering_integral": 6.818296429649409,
       "gear_changes": 1,
-      "smoothness_cost": 91.96626362318614
+      "smoothness_cost": 91.96626362318612
+    },
+    "timings": {
+      "search_wall_s": 0.5584928,
+      "search_loop_s": 0.5265077,
+      "heuristic_setup_s": 0.0290469,
+      "cg_wall_s": 3.5384925,
+      "output_wall_s": 0.0033164
     },
     "search_expanded": 365,
     "solver": {
@@ -236,7 +278,7 @@
   {
     "case_id": 7,
     "planner_success": true,
-    "computation_time_s": 2.307212,
+    "computation_time_s": 2.7514619,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -244,10 +286,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 24.01458159852909,
-      "control_effort_integral": 2.4006188877906913,
-      "steering_integral": 7.027289377302095,
+      "control_effort_integral": 2.4006188877906918,
+      "steering_integral": 7.027289377302096,
       "gear_changes": 2,
       "smoothness_cost": 104.27908265092788
+    },
+    "timings": {
+      "search_wall_s": 0.0511928,
+      "search_loop_s": 0.0138112,
+      "heuristic_setup_s": 0.0346213,
+      "cg_wall_s": 2.6739902,
+      "output_wall_s": 0.0022075
     },
     "search_expanded": 1,
     "solver": {
@@ -275,7 +324,7 @@
   {
     "case_id": 8,
     "planner_success": true,
-    "computation_time_s": 1.1659498,
+    "computation_time_s": 2.0833821,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -283,10 +332,17 @@
       "collision_percent": 0,
       "terminal_reached": false,
       "execution_time_s": 32.52677985037241,
-      "control_effort_integral": 5.1719884638956035,
-      "steering_integral": 12.303858493389312,
+      "control_effort_integral": 5.171988463895603,
+      "steering_integral": 12.303858493389313,
       "gear_changes": 3,
       "smoothness_cost": 189.75846957284915
+    },
+    "timings": {
+      "search_wall_s": 0.042458,
+      "search_loop_s": 0.017412,
+      "heuristic_setup_s": 0.0221271,
+      "cg_wall_s": 2.0146242,
+      "output_wall_s": 0.0025832
     },
     "search_expanded": 1,
     "solver": {
@@ -314,7 +370,7 @@
   {
     "case_id": 9,
     "planner_success": true,
-    "computation_time_s": 7.2759899,
+    "computation_time_s": 5.1218251,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -326,6 +382,13 @@
       "steering_integral": 13.21118310668463,
       "gear_changes": 3,
       "smoothness_cost": 185.84982811198967
+    },
+    "timings": {
+      "search_wall_s": 4.0055902,
+      "search_loop_s": 3.9696467,
+      "heuristic_setup_s": 0.0329022,
+      "cg_wall_s": 1.0900744,
+      "output_wall_s": 0.0029282
     },
     "search_expanded": 3390,
     "solver": {
@@ -353,7 +416,7 @@
   {
     "case_id": 10,
     "planner_success": true,
-    "computation_time_s": 17.1524423,
+    "computation_time_s": 10.335123,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -361,10 +424,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 40.55047967312603,
-      "control_effort_integral": 2.2842125267587607,
-      "steering_integral": 13.92987276590205,
+      "control_effort_integral": 2.2842125267587603,
+      "steering_integral": 13.929872765902045,
       "gear_changes": 2,
-      "smoothness_cost": 172.14085292660812
+      "smoothness_cost": 172.14085292660803
+    },
+    "timings": {
+      "search_wall_s": 8.7395035,
+      "search_loop_s": 8.7064519,
+      "heuristic_setup_s": 0.0296463,
+      "cg_wall_s": 1.5672262,
+      "output_wall_s": 0.0051704
     },
     "search_expanded": 8020,
     "solver": {
@@ -392,7 +462,7 @@
   {
     "case_id": 11,
     "planner_success": true,
-    "computation_time_s": 6.3820984,
+    "computation_time_s": 8.1904698,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -401,9 +471,16 @@
       "terminal_reached": false,
       "execution_time_s": 39.609523775661835,
       "control_effort_integral": 2.2076420498697527,
-      "steering_integral": 9.32309246251708,
+      "steering_integral": 9.323092462517081,
       "gear_changes": 3,
       "smoothness_cost": 130.30734512386834
+    },
+    "timings": {
+      "search_wall_s": 2.5969738,
+      "search_loop_s": 2.5700236,
+      "heuristic_setup_s": 0.0240357,
+      "cg_wall_s": 5.5671407,
+      "output_wall_s": 0.0035639
     },
     "search_expanded": 2165,
     "solver": {
@@ -431,7 +508,7 @@
   {
     "case_id": 12,
     "planner_success": true,
-    "computation_time_s": 7.0746647,
+    "computation_time_s": 8.7317565,
     "evaluation_success": true,
     "code": "evaluated",
     "message": "Tracking succeeded. Collision and terminal attainment are separate measured outcomes.",
@@ -439,10 +516,17 @@
       "collision_percent": 0,
       "terminal_reached": true,
       "execution_time_s": 29.753086399263914,
-      "control_effort_integral": 2.8080182694842315,
-      "steering_integral": 7.145388019237595,
+      "control_effort_integral": 2.808018269484232,
+      "steering_integral": 7.145388019237599,
       "gear_changes": 2,
-      "smoothness_cost": 109.53406288721825
+      "smoothness_cost": 109.53406288721831
+    },
+    "timings": {
+      "search_wall_s": 3.0968938,
+      "search_loop_s": 3.0693707,
+      "heuristic_setup_s": 0.0242071,
+      "cg_wall_s": 5.6067721,
+      "output_wall_s": 0.0051804
     },
     "search_expanded": 2415,
     "solver": {

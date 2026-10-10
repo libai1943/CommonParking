@@ -69,7 +69,7 @@ Each method has twelve attempted tasks. `Both` means successfully evaluated, ter
 
 | Method and source mapping | Planner | Evaluated | Terminal | Zero collision | Both | Median plan (s) |
 |---|---:|---:|---:|---:|---:|---:|
-| [HA_CG](../planners/HA_CG/README.md) | 12 | 12 | 7 | 12 | 7 | 3.550 |
+| [HA_CG](../planners/HA_CG/README.md) | 12 | 12 | 7 | 12 | 7 | 3.438 |
 | [DPGrid](../planners/DPGrid/README.md) | 10 | 10 | 9 | 10 | 9 | 10.028 |
 | [BL_Dijkstra](../planners/BL_Dijkstra/README.md) | 12 | 12 | 0 | 9 | 0 | 41.478 |
 | [GraphBellman](../planners/GraphBellman/README.md) | 8 | 8 | 0 | 8 | 0 | 36.487 |
