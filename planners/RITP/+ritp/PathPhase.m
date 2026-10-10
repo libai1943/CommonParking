@@ -9,7 +9,9 @@ for iteration=1:o.maximumIterations
  if any(~isfinite([g.theta;g.phi]))||min(g.parameter_speed)<o.derivativeTolerance
   phase.code='singular_polynomial';return;
  end
- [index,obstacle]=ritp.VertexCollision([g.x g.y g.theta],c);
+ [~,gap]=parking.FootprintClearance([g.x g.y g.theta],c,o.search.clearance);
+ index=find(gap<=o.search.clearance,1);if isempty(index),index=0;end
+ obstacle=NaN;
  phase.history{iteration}=struct('collision_sample',index,'obstacle',obstacle,'qp',solver);
  phase.geometry=g;
  if index==0,phase.success=true;phase.code='solved';return;end

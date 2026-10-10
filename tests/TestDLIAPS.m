@@ -36,7 +36,32 @@ for gear=[-1,1]
  end
 end
 assert(maxIntegrationError<1e-7);
+% Steering interpolation imposes a speed cap. Test the whole quadratic
+% speed polynomial, not just its knots, against this cap and omega_max.
+p=dliaps.Profile([linspace(0,2,41)',zeros(41,1)],1);
+p.kappa=tan(.3*sin(4*pi*p.s/p.s(end)))/v.lw;
+[speed,info]=dliaps.Speed(p,v,o);assert(info.success);
+q=dliaps.Trajectory(p,speed,v,o);assert(max(abs(q.omega))<=v.wmax+1e-7);
+continuousSpeedExcess=0;
+for k=1:numel(speed.jerk)
+ h=speed.t(k+1)-speed.t(k);tau=[0;h];
+ if abs(speed.jerk(k))>1e-12
+  critical=-speed.a(k)/speed.jerk(k);if critical>0&&critical<h,tau(end+1)=critical;end
+ end
+ values=speed.v(k)+speed.a(k)*tau+.5*speed.jerk(k)*tau.^2;
+ continuousSpeedExcess=max(continuousSpeedExcess,max([0;-values;values-info.speed_cap]));
+end
+assert(continuousSpeedExcess<1e-7);
+% A steering-slope change lies inside a cubic-distance time cell. Its
+% rate maximum is at the crossing, not at a QP or output-grid timestamp.
+testPath=struct('s',[0;.25;1],'kappa',tan([0;.1;.2])/v.lw);
+testSpeed=struct('t',[0;1],'s',[0;1],'v',[0;0],'a',[6;-6],'jerk',-12);
+rootValues=roots([-2 3 0 -.25]);crossing=real(rootValues(abs(imag(rootValues))<1e-10&real(rootValues)>0&real(rootValues)<1));
+expectedPeak=.4*(6*crossing-6*crossing^2);
+peak=dliaps.SteeringPeak(testPath,testSpeed,v.lw);peakError=abs(peak-expectedPeak);assert(peakError<1e-10);
 report=struct('passed',true,'quartic_gradient_relative_error',maximumDerivativeError, ...
- 'maximum_speed_qp_residual',maxSpeedResidual,'speed_integration_error',maxIntegrationError);
+ 'maximum_speed_qp_residual',maxSpeedResidual,'speed_integration_error',maxIntegrationError, ...
+ 'maximum_continuous_speed_excess',continuousSpeedExcess,'maximum_test_steering_rate',max(abs(q.omega)), ...
+ 'interior_steering_peak_error',peakError);
 disp(report);
 end

@@ -50,9 +50,9 @@ for penalty=1:o.maxPenaltyIterations
   if converged||radius<o.xTolerance,subConverged=true;break;end
  end
  if lastFlag<=0||toc(timer)>o.maxOptimizationSeconds,break;end
- if ~subConverged,reason='subproblem_iteration_limit';break;end
+ if ~subConverged,reason='subproblem_iteration_limit';end
  violation=max(dliaps.CurvatureConstraint(P,kappaMax,scale));
- if violation<=o.constraintTolerance,success=true;reason='converged';break;end
+ if subConverged&&violation<=o.constraintTolerance,success=true;reason='converged';break;end
  mu=mu*o.penaltyFactor;radius=o.initialTrust;
 end
 info=struct('success',success,'code',reason,'exitflag',lastFlag,'qp_calls',total, ...

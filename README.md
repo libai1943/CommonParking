@@ -45,7 +45,7 @@ HyperplaneOCP uses the external AMPL/Ipopt runtime (MA97). Its complete model, n
 
 VPF uses the external AMPL/Ipopt runtime (MA97). Its complete model, numerical settings and paper-to-code mapping are in [its planner folder](planners/VPF/README.md).
 
-RITP needs MATLAB Optimization Toolbox and Parallel Computing Toolbox, plus Navigation Toolbox for Hybrid A* initialization. The planner itself has no AMPL dependency.
+RITP needs MATLAB Optimization Toolbox, plus Navigation Toolbox for Hybrid A* initialization. The planner itself has no AMPL dependency.
 
 AnytimePSRO uses the external AMPL/Ipopt runtime with MA27. All frozen-sign constraints and the explicit-Euler model are provided in [its planner folder](planners/AnytimePSRO/README.md).
 
@@ -137,7 +137,7 @@ Planner success, evaluation success and terminal attainment are three different 
 | [Barraquand-Latombe Dijkstra](planners/BL_Dijkstra/README.md) (`BL_Dijkstra`) | Path | Barraquand & Latombe, Algorithmica 1993; minimum-reversal indexed search | Implemented and tested on all 12 cases |
 | [Backward dynamic programming](planners/DPGrid/README.md) (`DPGrid`) | Path | Schildbach & Borrelli, IV 2016; finite pose grid with continuous steering arcs | Implemented and tested on all 12 cases |
 | [Anytime PSRO](planners/AnytimePSRO/README.md) (`AnytimePSRO`) | Trajectory | Chen et al., TVT 2025; frozen triangle signs, trust regions and iterative OCPs | Implemented and tested on all 12 cases |
-| [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs and parallel collision-weight iterations | Implemented and tested on all 12 cases |
+| [Rapid iterative trajectory planning](planners/RITP/README.md) (`RITP`) | Trajectory | Li et al., RAS 2024; polynomial QPs, collision-weight iterations and physical flatness mapping | Implemented and tested on all 12 cases |
 | [Virtual protection frames](planners/VPF/README.md) (`VPF`) | Trajectory | Zhang et al., IET ITS 2021; RK4 multiple shooting and iterative protection frames | Implemented and tested on all 12 cases |
 | [Primal hyperplane OCP](planners/HyperplaneOCP/README.md) (`HyperplaneOCP`) | Trajectory | Fan, Murgovski & Liang, TITS 2024; polytope separating planes and time/energy OCP | Implemented and tested on all 12 cases |
 | [Orientation-aware space exploration](planners/OSEHS/README.md) (`OSEHS`) | Path | Chen, Rickert & Knoll, IV 2015; directed circles and guided heuristic search | Implemented and tested on all 12 cases |
@@ -474,26 +474,26 @@ Planning times include all online construction, search and smoothing stages. MAT
 <!-- /results:CPRM -->
 
 <!-- results:DL_IAPS_PJSO -->
-## DL-IAPS with piecewise-jerk speed optimization: measured results
+## DL_IAPS_PJSO: measured results
 
-Ten calls returned trajectories and all ten passed execution optimization and attained the terminal tolerance. Case 2 exhausted the initializer's search budget; case 8 had an unsuccessful speed QP. Case 6 has a small nonzero executed collision percentage, retained in the table. The implementation follows the paper's complete quartic curvature linearization, penalty/trust-region loops and separate constant-jerk speed QPs. A uniform 20% search-curvature reserve supplies smoothing room; the optimization uses the full common vehicle limit. Independent checks recompute the discrete path constraints, full-footprint node checks, longitudinal polynomial dynamics, bounds, exact cusps and endpoint poses. These discrete constraints do not prove continuous bicycle feasibility or safety. See [the equations, endpoint-sign interpretation and differences from the Apollo source snapshot](planners/DL_IAPS_PJSO/README.md).
+12/12 native solves and 12/12 evaluations succeeded; 12 executions attained the terminal tolerance, 12 had zero measured collision frames, and 12 passed both checks. The dual-loop path QPs and piecewise-jerk speed QP use common curvature and longitudinal limits, verified steering-rate adaptation and explicit steering transitions at rest. Native discrete geometry remains an approximation; the common execution evaluator measures collisions and terminal attainment independently. See [the formulation and numerical settings](planners/DL_IAPS_PJSO/README.md).
 
-Planning times include initialization and optimization. Numerical-library threads are fixed to one for this method; other development jobs were active, so these wall times are not a controlled hardware comparison.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 4.3112 | 0 | yes | 21.8958 | 3.7957 | 4.8320 | 2 | 96.2765 | no |
-| 02 | no | no | 182.8249 | — | — | — | — | — | — | — | — |
-| 03 | yes | yes | 17.6811 | 0 | yes | 15.2711 | 6.4778 | 2.4219 | 1 | 93.9978 | no |
-| 04 | yes | yes | 7.4755 | 0 | yes | 17.6826 | 5.2086 | 3.5917 | 1 | 93.0027 | no |
-| 05 | yes | yes | 4.1344 | 0 | yes | 15.4969 | 5.8138 | 2.1961 | 1 | 85.0993 | no |
-| 06 | yes | yes | 13.0686 | 0.0579 | yes | 22.4598 | 5.0240 | 3.3501 | 3 | 98.7409 | no |
-| 07 | yes | yes | 17.9400 | 0 | yes | 19.9878 | 3.1578 | 3.0109 | 2 | 71.6863 | no |
-| 08 | no | no | 3.5384 | — | — | — | — | — | — | — | — |
-| 09 | yes | yes | 60.9611 | 0 | yes | 22.7370 | 5.7102 | 3.3701 | 3 | 105.8027 | no |
-| 10 | yes | yes | 168.7406 | 0 | yes | 24.8709 | 9.9732 | 4.6281 | 2 | 156.0133 | no |
-| 11 | yes | yes | 24.8487 | 0.0789 | yes | 21.5333 | 5.0647 | 3.3075 | 2 | 93.7216 | no |
-| 12 | yes | yes | 28.3866 | 0 | yes | 21.1665 | 7.0589 | 3.5510 | 2 | 116.0986 | no |
+| 01 | yes | yes | 1.0803 | 0 | yes | 34.2439 | 1.3168 | 7.1676 | 2 | 94.8440 | no |
+| 02 | yes | yes | 11.2452 | 0 | yes | 39.6255 | 1.5092 | 6.6828 | 3 | 96.9205 | no |
+| 03 | yes | yes | 2.2728 | 0 | yes | 30.3660 | 0.9937 | 5.1870 | 1 | 66.8062 | no |
+| 04 | yes | yes | 2.7807 | 0 | yes | 31.5251 | 1.1777 | 6.3547 | 1 | 80.3231 | no |
+| 05 | yes | yes | 2.5751 | 0 | yes | 28.8292 | 2.0138 | 4.8261 | 1 | 73.3987 | no |
+| 06 | yes | yes | 4.7963 | 0 | yes | 113.2194 | 0.3993 | 16.0991 | 1 | 169.9840 | no |
+| 07 | yes | yes | 13.2676 | 0 | yes | 26.9488 | 0.7958 | 5.0220 | 1 | 63.1783 | no |
+| 08 | yes | yes | 0.6628 | 0 | yes | 43.8840 | 1.5411 | 9.1783 | 3 | 122.1935 | no |
+| 09 | yes | yes | 17.4988 | 0 | yes | 32.7273 | 1.4517 | 3.5948 | 1 | 55.4651 | no |
+| 10 | yes | yes | 17.7647 | 0 | yes | 40.7040 | 4.8716 | 4.2167 | 3 | 105.8827 | no |
+| 11 | yes | yes | 2.0917 | 0 | yes | 29.5834 | 0.6667 | 6.0942 | 2 | 77.6092 | no |
+| 12 | yes | yes | 11.8178 | 0 | yes | 42.8958 | 1.0119 | 7.2459 | 2 | 92.5779 | no |
 
 [CSV](results/DL_IAPS_PJSO/metrics.csv) · [JSON](results/DL_IAPS_PJSO/metrics.json) · [validation](results/DL_IAPS_PJSO/validation.json).
 <!-- /results:DL_IAPS_PJSO -->
@@ -674,26 +674,26 @@ Planning times include initialization and optimization. Numerical-library thread
 <!-- /results:VPF -->
 
 <!-- results:RITP -->
-## Rapid iterative trajectory planning: measured results
+## RITP: measured results
 
-The printed quintic path QP, iterative reference weights, x-only terminal alignment and quintic velocity QP produced 12/12 native trajectories; 12 execution optimizations succeeded and 5 attained the terminal tolerance. Independent gear phases run in parallel. **The printed constraints do not guarantee exact terminal tangents, curvature continuity or full polygon separation, and the reference-distance velocity mapping can disagree with the optimized position derivative.** These limitations and all native/evaluator failures remain visible. Independent checks recompute QP objectives, stationarity, time-law coefficients, output fields, cusp jumps, dense footprint intersections and physical derivative discrepancies. See [the equations and explicit differences from the later author code](planners/RITP/README.md).
+10/12 native solves and 10/12 evaluations succeeded; 10 executions attained the terminal tolerance, 10 had zero measured collision frames, and 10 passed both checks. Weighted polynomial path QPs and the quintic time-law QP use exact rear-axle endpoint tangents, complete sampled footprint checks, the physical flatness chain rule, common steering/rate limits and timed standstill steering at cusps. Gear phases run serially. Polynomial degrees 9 then 10 and 30 collision-weight iterations are uniform numerical choices. See [the formulation and numerical settings](planners/RITP/README.md).
 
-Planning times include Hybrid A* and process-pool creation/shutdown. Up to four workers process independent gear phases, each with one numerical-library thread. Other development jobs were active; these are not controlled hardware comparisons or the paper's optimization-only timings.
+Planning time is measured through the public RunPlanner entry point, including setup, case loading, initialization, all solver attempts and result conversion. Evaluation time is excluded. One run per case and concurrent machine load do not support a controlled comparison with timings in the original paper.
 
 | Case | Planner | Evaluator | Plan time (s) | Collision (%) | Terminal | Execution (s) | Effort integral | Steering integral | Gear changes | Smoothness | Time cap |
 |---:|:---:|:---:|---:|---:|:---:|---:|---:|---:|---:|---:|:---:|
-| 01 | yes | yes | 35.4536 | 0 | no | 46.2810 | 4.5301 | 15.9511 | 9 | 249.8120 | no |
-| 02 | yes | yes | 152.9583 | 0 | no | 50.5647 | 1.5272 | 17.6283 | 5 | 216.5559 | no |
-| 03 | yes | yes | 20.6998 | 0 | no | 34.0499 | 1.9141 | 10.8933 | 4 | 148.0745 | no |
-| 04 | yes | yes | 19.9788 | 0 | yes | 36.2373 | 1.5756 | 12.2840 | 2 | 148.5960 | no |
-| 05 | yes | yes | 19.5910 | 0 | no | 38.8889 | 3.2211 | 9.8529 | 6 | 160.7400 | no |
-| 06 | yes | yes | 21.1244 | 0 | yes | 32.0000 | 1.1481 | 7.8043 | 1 | 94.5239 | no |
-| 07 | yes | yes | 18.7907 | 0 | no | 33.7349 | 2.6880 | 10.2129 | 4 | 149.0086 | no |
-| 08 | yes | yes | 21.3217 | 0 | no | 51.9084 | 5.2302 | 19.7952 | 11 | 305.2544 | no |
-| 09 | yes | yes | 44.3541 | 0 | no | 52.8302 | 5.9903 | 19.3621 | 13 | 318.5241 | no |
-| 10 | yes | yes | 59.8835 | 0 | yes | 45.3299 | 1.0864 | 15.0881 | 3 | 176.7445 | no |
-| 11 | yes | yes | 34.8318 | 0 | yes | 48.0460 | 1.0886 | 11.8320 | 4 | 149.2061 | no |
-| 12 | yes | yes | 71.3482 | 0 | yes | 45.5285 | 4.5350 | 11.3474 | 11 | 213.8235 | no |
+| 01 | yes | yes | 0.6525 | 0 | yes | 44.0020 | 0.5529 | 11.6737 | 2 | 132.2661 | no |
+| 02 | yes | yes | 8.5913 | 0 | yes | 44.0234 | 0.8808 | 9.9976 | 3 | 123.7837 | no |
+| 03 | yes | yes | 0.2128 | 0 | yes | 41.8305 | 0.3428 | 12.2108 | 1 | 130.5354 | no |
+| 04 | yes | yes | 0.1244 | 0 | yes | 44.1855 | 0.3691 | 13.0764 | 1 | 139.4542 | no |
+| 05 | yes | yes | 0.3312 | 0 | yes | 22.5416 | 2.0247 | 4.2389 | 1 | 67.6360 | no |
+| 06 | yes | yes | 1.2338 | 0 | yes | 30.0796 | 1.8413 | 5.9919 | 1 | 83.3317 | no |
+| 07 | yes | yes | 0.1021 | 0 | yes | 20.7054 | 1.4362 | 4.9712 | 1 | 69.0738 | no |
+| 08 | yes | yes | 0.3255 | 0 | yes | 48.6017 | 1.2685 | 12.6245 | 3 | 153.9298 | no |
+| 09 | yes | yes | 16.0473 | 0 | yes | 38.2865 | 1.4104 | 7.5040 | 1 | 94.1449 | no |
+| 10 | no | no | 16.5384 | — | — | — | — | — | — | — | — |
+| 11 | yes | yes | 0.4448 | 0 | yes | 29.2605 | 1.0168 | 6.8228 | 2 | 88.3952 | no |
+| 12 | no | no | 7.9370 | — | — | — | — | — | — | — | — |
 
 [CSV](results/RITP/metrics.csv) · [JSON](results/RITP/metrics.json) · [validation](results/RITP/validation.json).
 <!-- /results:RITP -->

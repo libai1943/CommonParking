@@ -8,5 +8,5 @@ dot=sum(d.*dd,2);curvature=gear*cross./speed.^3;
 curvatureDerivative=gear*(crossDerivative./speed.^3-3*cross.*dot./speed.^5);
 g=struct('x',p(:,1),'y',p(:,2),'theta',unwrap(atan2(gear*d(:,2),gear*d(:,1))), ...
  'phi',atan(wheelbase*curvature),'phi_s',wheelbase*curvatureDerivative./(1+(wheelbase*curvature).^2), ...
- 'parameter_speed',speed,'curvature',curvature);
+ 'parameter_speed',speed,'parameter_speed_derivative',dot./speed,'curvature',curvature);
 end
